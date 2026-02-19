@@ -1,0 +1,43 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+
+use Mavenbird\Blog\Block\Category\Widget;
+use Magento\Framework\Escaper;
+
+/** @var Widget $block */
+/** @var Escaper $escaper */
+$tree = $block->getTree();
+if ($tree) : ?>
+    <div class="mb-sidebar mpcss">
+        <div class="row">
+            <div class="block-title col-xs-12 sidebar-categories">
+                <p class="block-mb-sidebar-heading" role="heading" aria-label="2"><?= $escaper->escapeHtml(__('Categories')) ?></p>
+            </div>
+            <div class="col-xs-12">
+                <?= $block->getCategoryTreeHtml($tree) ?>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        require(['Mavenbird_Blog/js/categorytree'], function () {
+        });
+    </script>
+<?php endif; ?>

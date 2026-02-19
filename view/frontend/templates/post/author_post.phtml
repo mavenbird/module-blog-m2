@@ -1,0 +1,142 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+
+use Mavenbird\Blog\Block\Post\AuthorPost;
+use Mavenbird\Blog\Model\Post;
+use Magento\Framework\Escaper;
+
+/** @var AuthorPost $block */
+/** @var Escaper $escaper */
+$postCollection = $block->getPostCollection();
+?>
+<?php if (!$block->getAuthorStatus()) : ?>
+    <div>
+        <h3><?= $escaper->escapeHtml(__('Your account must be licensed in order to perform the Post creation and management function')) ?></h3>
+    </div>
+<?php else : ?>
+    <div class="mb-blog-new-post">
+        <button type="button" class="action primary" title="<?= $escaper->escapeHtmlAttr(__('Add New Post')) ?>">
+            <?= $escaper->escapeHtml(__('Add New Post')) ?>
+        </button>
+    </div>
+    <div class="post-list-content" id="mpblog-list-container">
+        <?php if ($postCollection && count($postCollection) > 0) : ?>
+            <div class="post-list-body">
+                <?php $i = 1 ?>
+                <?php /** @var Post $post */
+                foreach ($postCollection as $post) : ?>
+                    <div data-post-id="<?= $escaper->escapeHtml($post->getId()); ?>"
+                         class="post-list-item col-mb post-item-list mb-12">
+                        <div class="post-item-wraper">
+                            <?= /* @noEscape */ $block->getStatusHtmlById($post->getEnabled()) ?>
+                            <?php if ($post->getImage()) : ?>
+                                <div class="post-image">
+                                    <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
+                                        <img class="img-responsive"
+                                             src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(), '400x')) ?>"
+                                             alt="<?= $escaper->escapeHtmlAttr($post->getName()) ?>"/>
+                                    </a>
+                                </div>
+                            <?php endif; ?>
+                            <div class="post-info-wraper">
+                                <h2 class="mb-post-title">
+                                    <a class="post-link-title" title="<?= $escaper->escapeHtml($post->getName()); ?>"
+                                       href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
+                                        <?= $escaper->escapeHtml($post->getName()) ?>
+                                    </a>
+                                </h2>
+                                <div class="mb-post-info">
+                                    <?= /* @noEscape */ $block->getPostInfo($post) ?>
+                                </div>
+                                <div class="post-short-description">
+                                    <p>
+                                        <?= /* @noEscape */ $block->maxShortDescription($post->getShortDescription()) ?>
+                                    </p>
+                                </div>
+                                <div class="mb-clearfix"></div>
+                                <div class="mb-post-meta-info mb-alignright">
+                                    <div class="actions">
+                                        <a class="mb-read-more" href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
+                                           title="<?= $escaper->escapeHtmlAttr(__('Read More')) ?>">
+                                            <?= $escaper->escapeHtml(__('Read More')) ?>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-info-action" data-postId="<?= $escaper->escapeHtml($post->getId()); ?>">
+                                <div class="mpblog-post-duplicate">
+                                    <img
+                                        src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/duplicate.svg')) ?>"
+                                        align="middle"
+                                        alt="<?= $escaper->escapeHtmlAttr(__('Duplicate')); ?>"
+                                        title="<?= $escaper->escapeHtmlAttr(__('Duplicate')) ?>"
+                                    />
+                                </div>
+                                <div class="mpblog-post-edit" >
+                                    <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/writing.svg')) ?>"
+                                         align="middle"
+                                         alt="<?= $escaper->escapeHtmlAttr(__('Edit')); ?>"
+                                         title="<?= $escaper->escapeHtmlAttr(__('Edit')) ?>"
+                                    />
+                                </div>
+                                <div class="mpblog-post-delete">
+                                    <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/delete.svg')) ?>"
+                                         align="middle"
+                                         alt="<?= $escaper->escapeHtmlAttr(__('Delete')) ?>"
+                                         title="<?= $escaper->escapeHtmlAttr(__('Delete')) ?>"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php $i++; ?>
+                    <?php if ($i % 2 == 0) : ?>
+                        <div class="mb-clear"></div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+                <div class="mb-clear"></div>
+            </div>
+            <?= $block->getPagerHtml() ?>
+        <?php else : ?>
+            <?= $escaper->escapeHtml(__('There are no posts at this moment')) ?>
+        <?php endif; ?>
+        <?= /* @noEscape */ $block->getChildHtml('additional') ?>
+    </div>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "Mavenbird_Blog/js/managePost": {
+                    "deleteUrl": "<?= $escaper->escapeHtml($block->getUrl('mpblog/post/deletepost')) ?>",
+                        "basePubUrl": "<?= $escaper->escapeHtml($block->getBaseMediaUrl()) ?>",
+                        "postDatas": <?= $escaper->escapeHtml($block->getPostDatas($postCollection)) ?>,
+                        "editorVersion": "<?= $escaper->escapeHtml($block->getVersion()) ?>",
+                        "magentoVersion": "<?= $escaper->escapeHtml($block->getMagentoVersion()) ?>"
+                    }
+                }
+            }
+    </script>
+    <script>
+        require(['jquery'], function ($) {
+            $('.limiter').css('float', 'right');
+        });
+    </script>
+    <div id="mb-blog-new-post-popup" style="display: none"><?= $block->getChildHtml('mpblog_manage_post') ?></div>
+<?php endif; ?>

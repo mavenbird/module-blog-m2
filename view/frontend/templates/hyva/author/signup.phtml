@@ -1,0 +1,268 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+
+use Mavenbird\Blog\Block\Author\SignupForm;
+use Magento\Framework\Escaper;
+
+/** @var SignupForm $block */
+/** @var Escaper $escaper */
+$author = $block->getAuthor();
+
+?>
+<form enctype="multipart/form-data"
+      action="<?= $escaper->escapeHtml($block->getUrl('mpblog/author/register')) ?>" method="post" class="form"
+      name="mp_blog_author_form"
+      id="blog_signup_author"
+>
+    <?= /* @noEscape */
+    $block->getBlockHtml('formkey'); ?>
+    <fieldset class="fieldset">
+        <div class="legend border-b pb-px">
+            <legend>
+                <span><?= /* @noEscape */
+                    $author['name'] === '' ? __('Signup Author') : __('Author Information') ?></span>
+            </legend>
+        </div>
+
+        <br>
+        <div class="field required mb-field ">
+            <label for="name" class="label"><span><?= $escaper->escapeHtml(__('Display Name ')) ?></span></label>
+            <div class="control">
+                <input type="text" name="name" id="name" value="<?= $escaper->escapeHtml($author['name']) ?>"
+                       title="<?= $escaper->escapeHtmlAttr(__('Display Name')) ?>"
+                       class="input-text" data-validate='{"required": true}'>
+            </div>
+        </div>
+        <?php if (isset($author['status'])) : ?>
+            <div class="field mb-field" style="margin-top: 1.5rem">
+                <label for="name" class="label"><span><?= $escaper->escapeHtml(__('Status')) ?></span></label>
+                <div class="control">
+                    <span><?= $escaper->escapeHtml($author['status']) ?></span>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <div class="field mb-field mb-2">
+            <label for="short_desciption" class="label">
+                <span><?= $escaper->escapeHtml(__('Short Description')) ?></span>
+            </label>
+            <div class="control">
+                <textarea  name="short_description" id="short_description" rows="5" cols="19">
+                    <?= /* @noEscape */
+                    $author['short_description']
+                        ? $block->getPageFilter($author['short_description']) : '' ?>
+                </textarea>
+            </div>
+        </div>
+        <div class="field mb-field" style="margin-top: 1.5rem">
+            <label for="image" class="label"><span><?= /* @noEscape */
+                    __('Avatar') ?></span></label>
+            <div class="control" style="display: flex">
+                <?php if (!empty($author['image'])) : ?>
+                    <a class="mb-image-link" style="margin-right: 15px;"
+                       href="<?= $escaper->escapeUrl($block->getImageUrl($author['image'], 'auth')) ?>">
+                        <img src="<?= $escaper->escapeUrl($block->getImageUrl($author['image'], 'auth')) ?>"
+                             id="post_image_image"
+                             title="<?= $escaper->escapeHtmlAttr($author['image']) ?>"
+                             alt="<?= $escaper->escapeHtmlAttr($author['image']) ?>" height="70" width="70"
+                             class="small-image-preview v-middle">
+                    </a>
+                <?php endif; ?>
+                <input type="file" name="image" id="image" value="<?= $escaper->escapeHtml($author['image']) ?>"
+                       title="<?= $escaper->escapeHtmlAttr(__('Avatar')) ?>"
+                       class="input-file"
+                       style="width: 90%;position: relative;top: -5px">
+                <?php if (!empty($author['image'])) : ?>
+                    <span class="delete-image" style="display: inline-flex;">
+                    <input  type="checkbox" name="image[delete]" value="1" class="checkbox"
+                            id="post_image_delete">
+                    <label for="post_image_delete"> Delete Image</label>
+                    </span>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="field mb-field" style="margin-top: 1.5rem">
+            <label for="url_key" class="label"><span><?= $escaper->escapeHtml(__('URL Key')) ?></span></label>
+            <div class="control">
+                <input type="text" name="url_key" id="url_key" value="<?= $escaper->escapeHtmlAttr($author['url_key']) ?>"
+                       title="<?= $escaper->escapeHtmlAttr(__('URL Key')) ?>"
+                       class="input-text">
+            </div>
+        </div>
+        <div class="field mb-field" style="margin-top: 1.5rem">
+            <label for="full_url" class="label"><span><?= $escaper->escapeHtml(__('Full URL')) ?></span></label>
+            <div class="control">
+                <span class="mp_full_url">
+                    <?= $escaper->escapeHtml($block->getUrl("blog/author")
+                        . $author['url_key'] . $block->getUrlSuffix()) ?>
+                </span>
+            </div>
+        </div>
+        <div class="field mb-field" style="margin-top: 1.5rem">
+            <label for="facebook_link" class="label"><span><?= $escaper->escapeHtml(__('Facebook Link')) ?></span></label>
+            <div class="control">
+                <input type="url" name="facebook_link" id="facebook_link"
+                       value="<?= $escaper->escapeHtml($author['facebook_link']) ?>"
+                       title="<?= $escaper->escapeHtmlAttr(__('Facebook Link')) ?>" class="input-text">
+            </div>
+        </div>
+        <div class="field mb-field" style="margin-top: 1.5rem">
+            <label for="twitter_link" class="label"><span><?= $escaper->escapeHtml(__('Twitter Link')) ?></span></label>
+            <div class="control">
+                <input type="url" name="twitter_link" id="twitter_link"
+                       value="<?= $escaper->escapeHtmlAttr($author['twitter_link']) ?>"
+                       title="<?= $escaper->escapeHtmlAttr(__('Twitter Link')) ?>" class="input-text">
+            </div>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary"
+                    title="<?= /* @noEscape */
+                    $author['name'] === '' ? __('Submit') : __('Save') ?>">
+                <span>
+                    <?= /* @noEscape */
+                    $author['name'] === '' ? __('Submit') : __('Save') ?>
+                </span>
+            </button>
+        </div>
+    </div>
+</form>
+<style>
+    .mb-field {
+        display: flex;
+    }
+
+    .mb-field .control {
+        width: 70%;
+    }
+
+    .mb-field .control .delete-image {
+        width: 65%;
+    }
+
+    .mb-field .label {
+        width: 30%;
+    }
+
+    .sidebar.sidebar-main:before {
+        content: unset !important;
+    }
+    #maincontent h1 {
+        font-weight: 300;
+        line-height: 1.1;
+        font-size: 2.6rem;
+        margin-bottom: 2rem;
+    }
+    #maincontent h2 {
+        font-weight: 300;
+        line-height: 1.1;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+    #maincontent h3 {
+        font-weight: 600;
+        line-height: 1.1;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+    #maincontent h4 {
+        font-weight: 700;
+        line-height: 1.1;
+        font-size: 1.4rem;
+        margin-bottom: 2rem;
+    }
+    #maincontent h5 {
+        font-weight: 700;
+        line-height: 1.1;
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+    #maincontent  p {
+        margin-top: 0rem;
+        margin-bottom: 0.5rem;
+    }
+    .ck-editor__editable {min-height: 300px;}
+</style>
+
+
+<script>
+    CKEDITOR.ClassicEditor.create(document.getElementById("short_description"), {
+        toolbar: {
+            items: [
+                'undo', 'redo', '|',
+                'heading', '|',
+                'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript', 'superscript', 'removeFormat', '|',
+                'bulletedList', 'numberedList', 'todoList', '|',
+                'alignment:left', 'alignment:right', 'alignment:center', 'alignment:justify', '|',
+                'blockQuote', '|',
+                'outdent', 'indent',
+            ],
+            shouldNotGroupWhenFull: true
+        },
+        list: {
+            properties: {
+                styles: true,
+                startIndex: true,
+                reversed: true
+            }
+        },
+        heading: {
+            options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+                { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
+                { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
+                { model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
+                { model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
+            ]
+        },
+        placeholder: '',
+        removePlugins: [
+            'AIAssistant',
+            'CKBox',
+            'CKFinder',
+            'EasyImage',
+            'RealTimeCollaborativeComments',
+            'RealTimeCollaborativeTrackChanges',
+            'RealTimeCollaborativeRevisionHistory',
+            'PresenceList',
+            'Comments',
+            'TrackChanges',
+            'TrackChangesData',
+            'RevisionHistory',
+            'Pagination',
+            'WProofreader',
+            'MathType',
+            'SlashCommand',
+            'Template',
+            'DocumentOutline',
+            'FormatPainter',
+            'TableOfContents',
+            'PasteFromOfficeEnhanced'
+        ]
+    }).then( editor => {
+        window.editor = editor;
+    } ).catch( err => {
+        console.error( err.stack );
+    } );
+</script>

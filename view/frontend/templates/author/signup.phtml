@@ -1,0 +1,189 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+
+use Mavenbird\Blog\Block\Author\SignupForm;
+use Magento\Framework\Escaper;
+
+/** @var SignupForm $block */
+/** @var Escaper $escaper */
+$author = $block->getAuthor();
+?>
+<form enctype="multipart/form-data" data-mage-init='{"validation": {}}'
+      action="<?= $escaper->escapeHtml($block->getUrl('mpblog/author/register')) ?>" method="post" class="form"
+      name="mp_blog_author_form">
+    <fieldset class="fieldset">
+        <legend class="legend">
+            <span><?= /* @noEscape */ $author['name'] === '' ? __('Signup Author') : __('Author Information') ?></span>
+        </legend>
+        <br>
+        <div class="field required mb-field">
+            <label for="name" class="label"><span><?= $escaper->escapeHtml(__('Display Name')) ?></span></label>
+            <div class="control">
+                <input type="text" name="name" id="name" value="<?= $escaper->escapeHtml($author['name']) ?>"
+                       title="<?= $escaper->escapeHtmlAttr(__('Display Name')) ?>"
+                       class="input-text" data-validate="{required:true, 'validate-no-empty':true}">
+            </div>
+        </div>
+        <?php if (isset($author['status'])) : ?>
+            <div class="field mb-field">
+                <label for="name" class="label"><span><?= $escaper->escapeHtml(__('Status')) ?></span></label>
+                <div class="control">
+                    <span><?= $escaper->escapeHtml($author['status']) ?></span>
+                </div>
+            </div>
+        <?php endif;?>
+        <div class="field mb-field">
+            <label for="short_desciption" class="label">
+                <span><?= $escaper->escapeHtml(__('Short Description')) ?></span>
+            </label>
+            <div class="control">
+                <textarea name="short_description" id="short_description" rows="5" cols="19">
+                    <?= /* @noEscape */ $author['short_description']
+                        ? $block->getPageFilter($author['short_description']) : '' ?>
+                </textarea>
+            </div>
+        </div>
+        <div class="field mb-field">
+            <label for="image" class="label"><span><?= /* @noEscape */
+                    __('Avatar') ?></span></label>
+            <div class="control">
+                <?php if (!empty($author['image'])) : ?>
+                    <a class="mb-image-link"
+                       href="<?= $escaper->escapeUrl($block->getImageUrl($author['image'], 'auth')) ?>" >
+                        <img src="<?= $escaper->escapeUrl($block->getImageUrl($author['image'], 'auth')) ?>"
+                             id="post_image_image"
+                             title="<?= $escaper->escapeHtmlAttr($author['image']) ?>"
+                             alt="<?= $escaper->escapeHtmlAttr($author['image']) ?>" height="22" width="22"
+                             class="small-image-preview v-middle">
+                    </a>
+                <?php endif; ?>
+                <input type="file" name="image" id="image" value="<?= $escaper->escapeHtml($author['image']) ?>"
+                       title="<?= $escaper->escapeHtmlAttr(__('Avatar')) ?>"
+                       class="input-file"
+                       style="width: 90%;position: relative;top: -5px">
+                <?php if (!empty($author['image'])) : ?>
+                    <span class="delete-image">
+                    <input style="width: 8%" type="checkbox" name="image[delete]" value="1" class="checkbox" id="post_image_delete">
+                    <label for="post_image_delete"> Delete Image</label>
+                    </span>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="field mb-field">
+            <label for="url_key" class="label"><span><?= $escaper->escapeHtml(__('URL Key')) ?></span></label>
+            <div class="control">
+                <input type="text" name="url_key" id="url_key" value="<?= $escaper->escapeHtmlAttr($author['url_key']) ?>"
+                       title="<?= $escaper->escapeHtmlAttr(__('URL Key')) ?>"
+                       class="input-text">
+            </div>
+        </div>
+        <div class="field mb-field">
+            <label for="full_url" class="label"><span><?= $escaper->escapeHtml(__('Full URL')) ?></span></label>
+            <div class="control">
+                <span class="mp_full_url">
+                    <?= $escaper->escapeHtml($block->getUrl("blog/author")
+                        . $author['url_key'] . $block->getUrlSuffix()) ?>
+                </span>
+            </div>
+        </div>
+        <div class="field mb-field">
+            <label for="facebook_link" class="label"><span><?= $escaper->escapeHtml(__('Facebook Link')) ?></span></label>
+            <div class="control">
+                <input type="url" name="facebook_link" id="facebook_link"
+                       value="<?= $escaper->escapeHtml($author['facebook_link']) ?>"
+                       title="<?= $escaper->escapeHtmlAttr(__('Facebook Link')) ?>" class="input-text">
+            </div>
+        </div>
+        <div class="field mb-field">
+            <label for="twitter_link" class="label"><span><?= $escaper->escapeHtml(__('Twitter Link')) ?></span></label>
+            <div class="control">
+                <input type="url" name="twitter_link" id="twitter_link"
+                       value="<?= $escaper->escapeHtmlAttr($author['twitter_link']) ?>"
+                       title="<?= $escaper->escapeHtmlAttr(__('Twitter Link')) ?>" class="input-text">
+            </div>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary"
+                    title="<?= /* @noEscape */ $author['name'] === '' ? __('Submit') : __('Save') ?>">
+                <span>
+                    <?= /* @noEscape */ $author['name'] === '' ? __('Submit') : __('Save') ?>
+                </span>
+            </button>
+        </div>
+    </div>
+</form>
+<style>
+    .mb-field {
+        display: flex;
+    }
+
+    .mb-field .control{
+        width: 70%;
+    }
+
+    .mb-field .control .delete-image{
+        width: 65%;
+    }
+
+    .mb-field .label {
+        width: 30%;
+    }
+
+    .sidebar.sidebar-main:before {
+        content: unset !important;
+    }
+    @media (max-width: 768px) {
+        fieldset.fieldset {
+            display: contents;
+        }
+        fieldset.fieldset .control .mp_full_url {
+            word-break: break-all;
+        }
+        .actions-toolbar {
+            margin-top: 20px;
+        }
+    }
+</style>
+<script>
+    require(
+        [
+            'jquery',
+            "Mavenbird_Blog/js/get-editor"
+        ], function ($, editor) {
+            $('#url_key').on('keyup', function () {
+                var url = '<?= $escaper->escapeUrl($block->getUrl("blog/author")) ?>'
+                    + $(this).val() + '<?= $escaper->escapeHtml($block->getUrlSuffix())?>';
+
+                if ($(this).val() === '') {
+                    url = '';
+                }
+                $('.mp_full_url').html(url);
+            });
+            editor.config(
+                'short_description',
+                '<?= /* @noEscape */ $block->getVersion() ?>',
+                '<?= /* @noEscape */ $block->getMagentoVersion() ?>',
+                '99%'
+            );
+        });
+</script>

@@ -1,0 +1,48 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+
+use Mavenbird\Blog\Block\Category\Menu;
+use Magento\Framework\Escaper;
+
+/** @var Menu $block */
+/** @var Escaper $escaper */
+$categories = $block->getCollections();
+?>
+<li class="ui-menu-item level0 fullwidth <?= $categories->getSize() ? 'parent' : ''?>" role="presentation">
+    <div class="open-children-toggle"></div>
+    <a href="<?= $escaper->escapeUrl($block->getBlogHomeUrl()) ?>"
+       class="level-top" aria-haspopup="true" id="ui-id-6" tabindex="-1" role="menuitem">
+        <span><?= $escaper->escapeHtml($block->getBlogHomePageTitle()) ?></span>
+    </a>
+    <?php if ($categories->getSize()) : ?>
+        <div class="level0 submenu">
+            <div class="container">
+                <div class="row">
+                    <ul class="subchildmenu col-md-12 mega-columns columns4" role="menu" aria-expanded="false" aria-hidden="true">
+                        <?php foreach ($categories as $category) : ?>
+                            <?= $escaper->escapeHtml($block->getPortoMenuHtml($category)) ?>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    <?php endif;?>
+</li>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\App\RouterList">
+        <arguments>
+            <argument name="routerList" xsi:type="array">
+                <item name="mpblog" xsi:type="array">
+                    <item name="class" xsi:type="string">Mavenbird\Blog\Controller\Router</item>
+                    <item name="disable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="string">60</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <!--Plugin List-->
+    <type name="Magento\Theme\Block\Html\Topmenu">
+        <plugin name="blog-topmenu" type="Mavenbird\Blog\Plugin\Topmenu"/>
+    </type>
+    <type name="Smartwave\Megamenu\Block\Topmenu">
+        <plugin name="blog-porto-theme-topmenu" type="Mavenbird\Blog\Plugin\PortoTopmenu"/>
+    </type>
+    <type name="Infortis\UltraMegamenu\Block\Navigation">
+        <plugin name="blog-topmenu-infortis" type="Mavenbird\Blog\Plugin\InfortisTopmenu"/>
+    </type>
+    <type name="Magento\Framework\View\Element\Html\Links">
+        <plugin name="blog-customer-nav" type="Mavenbird\Blog\Plugin\Customer\LinkMenu"/>
+    </type>
+    <type name="Hyva\Theme\ViewModel\Navigation">
+        <plugin name="blog-customer-hyva-menu" type="Mavenbird\Blog\Plugin\HyvaMenu"/>
+    </type>
+</config>

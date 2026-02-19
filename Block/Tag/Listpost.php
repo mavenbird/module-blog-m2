@@ -1,0 +1,122 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+
+namespace Mavenbird\Blog\Block\Tag;
+
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Phrase;
+use Mavenbird\Blog\Helper\Data;
+use Mavenbird\Blog\Model\ResourceModel\Post\Collection;
+use Mavenbird\Blog\Model\TagFactory;
+
+/**
+ * Class Listpost
+ * @package Mavenbird\Blog\Block\Tag
+ */
+class Listpost extends \Mavenbird\Blog\Block\Listpost
+{
+    /**
+     * @var TagFactory
+     */
+    protected $_tag;
+
+    /**
+     * Override this function to apply collection for each type
+     *
+     * @return Collection
+     * @throws NoSuchEntityException
+     */
+    protected function getCollection()
+    {
+        if ($tag = $this->getBlogObject()) {
+            return $this->helperData->getPostCollection(Data::TYPE_TAG, $tag->getId());
+        }
+
+        return null;
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function getBlogObject()
+    {
+        if (!$this->_tag) {
+            $id = $this->getRequest()->getParam('id');
+
+            if ($id) {
+                $tag = $this->helperData->getObjectByParam($id, null, Data::TYPE_TAG);
+                if ($tag && $tag->getId()) {
+                    $this->_tag = $tag;
+                }
+            }
+        }
+
+        return $this->_tag;
+    }
+
+    /**
+     * @inheritdoc
+     * @throws LocalizedException
+     */
+    protected function _prepareLayout()
+    {
+        parent::_prepareLayout();
+
+        if ($breadcrumbs = $this->getLayout()->getBlock('breadcrumbs')) {
+            $tag     = $this->getBlogObject();
+            $tagName = preg_replace('/[^A-Za-z0-9\-]/', ' ', $tag->getName());
+            if ($tag) {
+                $breadcrumbs->addCrumb($tag->getUrlKey(), [
+                    'label' => __($tagName),
+                    'title' => __($tagName)
+                ]);
+            }
+        }
+    }
+
+    /**
+     * @param $meta
+     *
+     * @return array|Phrase|string
+     * @throws NoSuchEntityException
+     */
+    public function getBlogTitle($meta = false)
+    {
+        $blogTitle = parent::getBlogTitle($meta);
+        $tag       = $this->getBlogObject();
+        if (!$tag) {
+            return $blogTitle;
+        }
+
+        if ($meta) {
+            if ($this->helperData->getMetaTitleByStoreId($tag->getMetaTitle())) {
+                $blogTitle[] = $this->helperData->getMetaTitleByStoreId($tag->getMetaTitle());
+            } else {
+                $blogTitle[] = ucfirst($tag->getName());
+            }
+
+            return $blogTitle;
+        }
+
+        return ucfirst($tag->getName());
+    }
+}

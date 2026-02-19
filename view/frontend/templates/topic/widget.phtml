@@ -1,0 +1,48 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+
+use Mavenbird\Blog\Block\Topic\Widget;
+use Magento\Framework\Escaper;
+
+/** @var Widget $block */
+/** @var Escaper $escaper */
+$topics = $block->getTopicList();
+if ($topics && $topics->getSize()) : ?>
+    <div class="mb-sidebar mpcss">
+        <div class="row">
+            <div class="block-title col-xs-12 sidebar-categories">
+                <p class="block-mb-sidebar-heading" role="heading" aria-level="2"><?= $escaper->escapeHtml(__('Topics')) ?></p>
+            </div>
+            <div class="col-xs-12">
+                <ul class="block-content menu-categories">
+                    <?php foreach ($topics as $topic) : ?>
+                        <li class="category-item">
+                            <a class="list-categories" href="<?= $escaper->escapeUrl($block->getTopicUrl($topic)) ?>">
+                                <i class="fa fa-folder-o" aria-hidden="true">&nbsp;</i>
+                                <?= $escaper->escapeHtml(ucfirst($topic->getName())) ?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

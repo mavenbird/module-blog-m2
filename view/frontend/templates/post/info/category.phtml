@@ -1,0 +1,36 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+
+use Mavenbird\Blog\Block\Post\View;
+use Mavenbird\Blog\Helper\Image;
+use Mavenbird\Blog\Model\Config\Source\Comments\Type;
+use Magento\Framework\Escaper;
+
+/** @var View $block */
+/** @var Escaper $escaper */
+$_post = $block->getPost();
+?>
+<?php if ($categoryHtml = $block->getPostCategoryHtml($_post)) : ?>
+    |
+    <span><i class="fa fa-folder-open-o">&nbsp;</i>
+        <?= /* @noEscape */ (__('Categories: %1', $categoryHtml)); ?>
+    </span>
+<?php endif; ?>

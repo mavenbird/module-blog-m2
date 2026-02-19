@@ -1,0 +1,46 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+
+use Mavenbird\Blog\Block\Tag\Widget;
+use Magento\Framework\Escaper;
+
+/** @var Widget $block */
+/** @var Escaper $escaper */
+$tags = $block->getTagList();
+
+if ($tags && $tags->getSize()) : ?>
+    <div class="mb-sidebar mpcss">
+        <div class="row">
+            <div class="block-title col-xs-12 sidebar-tags">
+                <p class="block-mb-sidebar-heading" role="heading" aria-level="2"><?= $escaper->escapeHtml(__('Tags')) ?></p>
+            </div>
+            <div class="col-xs-12">
+                <?php foreach ($tags as $tag) : ?>
+                    <a class="label label-default tags-list"
+                       style="font-size:<?= $escaper->escapeHtmlAttr($block->getTagSize($tag)) . 'px'; ?>"
+                       href="<?= $escaper->escapeUrl($block->getTagUrl($tag)) ?>">
+                        <?= $escaper->escapeHtml($tag->getName()) ?>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

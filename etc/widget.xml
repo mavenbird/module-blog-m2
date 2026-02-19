@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="mavenbird_blog_posts" class="Mavenbird\Blog\Block\Widget\Posts">
+        <label>Mavenbird Blog</label>
+        <description>Mavenbird Blog Widget</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="false" visible="true">
+                <label>Title</label>
+            </parameter>
+            <parameter name="post_count" xsi:type="block" required="true" visible="true">
+                <label>Numbers of Posts Display</label>
+                <block class="Mavenbird\Blog\Block\Adminhtml\Widget\Number"/>
+            </parameter>
+            <parameter name="show_type" xsi:type="select" required="false" visible="true"
+                       source_model="Mavenbird\Blog\Model\Config\Source\WidgetShowType">
+                <label>Show Type</label>
+            </parameter>
+            <parameter name="category_id" xsi:type="select" required="true" visible="true"
+                       source_model="Mavenbird\Blog\Model\Config\Source\WidgetCategory">
+                <label>Category</label>
+                <depends>
+                    <parameter name="show_type" value="category"/>
+                </depends>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label>Template</label>
+                <options>
+                    <option name="posts" value="Mavenbird_Blog::widget/posts.phtml" selected="true">
+                        <label>Default Posts Template</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+        <containers>
+            <container name="content">
+                <template name="posts" value="posts"/>
+            </container>
+        </containers>
+    </widget>
+</widgets>

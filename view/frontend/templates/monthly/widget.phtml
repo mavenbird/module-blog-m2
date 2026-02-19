@@ -1,0 +1,54 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+
+use Mavenbird\Blog\Block\MonthlyArchive\Widget;
+use Magento\Framework\Escaper;
+
+/** @var Widget $block */
+/** @var Escaper $escaper */
+$dateArrayCount  = $block->getDateArrayCount();
+$dateArrayUnique = $block->getDateArrayUnique();
+$dateLabel       = $block->getDateLabel();
+
+if ($block->isEnable() && $dateArrayUnique) : ?>
+    <div class="mb-sidebar mpcss">
+        <div class="row">
+            <div class="block-title col-xs-12 sidebar-archives">
+                <p class="block-mb-sidebar-heading" role="heading"
+                   aria-level="2"><?= $escaper->escapeHtml(__('Monthly Archive')) ?></p>
+            </div>
+            <div class="col-xs-12">
+                <ul class="menu-archives">
+                    <?php $size = $block->getDateCount() ?>
+                    <?php for ($i = 0; $i < $size; $i++) : ?>
+                        <li class="archive-item">
+                            <a class="list-archives"
+                               href="<?= $escaper->escapeUrl($block->getMonthlyUrl(date("Y-m", $block->dateTime->timestamp($dateArrayUnique[$i])))) ?>">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;&nbsp;
+                                <?= $escaper->escapeHtml($dateLabel[$i] . '   (' . $dateArrayCount[$i] . ')') ?>
+                            </a>
+                        </li>
+                    <?php endfor; ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

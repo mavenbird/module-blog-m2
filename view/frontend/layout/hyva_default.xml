@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <body>
+        <referenceBlock name="footer-static-links">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Mavenbird_Blog::hyva/html/footer/links.phtml</argument>
+            </action>
+            <block class="Mavenbird\Blog\Block\Html\Footer" name="mp_blog_footer_link" template="Mavenbird_Blog::hyva/html/footer.phtml" after="-" ifconfig="blog/general/enabled"/>
+        </referenceBlock>
+    </body>
+</page>
+

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="mpblog_design"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Mavenbird\Blog\Block\Author\Listpost" name="mpblog.post.list" template="Mavenbird_Blog::post/list.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="blog.sidebar.main">
+            <block class="Mavenbird\Blog\Block\Author\Widget" after="mpblog.sidebar.mostview" name="mpblog.view.sidebar.author" template="Mavenbird_Blog::author/widget.phtml"/>
+        </referenceContainer>
+        <referenceBlock name="mpblog.sidebar.category" remove="true"/>
+        <referenceBlock name="mpblog.sidebar.monthly" remove="true"/>
+        <referenceBlock name="mpblog.sidebar.topic" remove="true"/>
+        <referenceBlock name="mpblog.sidebar.tag" remove="true"/>
+    </body>
+</page>

@@ -1,0 +1,34 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+
+use Mavenbird\Blog\Helper\Data;
+use Magento\Framework\Escaper;
+
+/** @var Escaper $escaper */
+$helper = $this->helper(Data::class);
+
+if ($helper->isEnabled() && $helper->getBlogConfig('display/toplinks')) : ?>
+    <li class="ui-menu-item level0 fullwidth">
+        <a href="<?= $escaper->escapeUrl($helper->getBlogUrl('')) ?>" class="level-top">
+            <span><?= $helper->getBlogConfig('display/name') ?: $escaper->escapeHtml(__('Blog')) ?></span>
+        </a>
+    </li>
+<?php endif; ?>

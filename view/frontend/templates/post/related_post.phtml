@@ -1,0 +1,82 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+use Mavenbird\Blog\Block\Post\RelatedPost;
+use Mavenbird\Blog\Model\ResourceModel\Post\Collection;
+use Magento\Framework\Escaper;
+
+/** @var Collection $posts */
+/** @var RelatedPost $block */
+/** @var Escaper $escaper */
+$posts = $block->getRelatedPostList();
+if ($posts && $block->isEnabledBlog()) : ?>
+    <h2><?= $posts->getSize() ? $escaper->escapeHtml(__('Related Posts')) : $escaper->escapeHtml(__('No Related Posts')) ?></h2>
+    <?php if ($block->getRelatedMode()) : ?>
+        <div class="mb-blog-owl-carousel owl-carousel owl-theme">
+            <?php foreach ($posts as $post) : ?>
+                <div class="item post-list-item col-mb post-item-list mb-4">
+                    <div class="post-item-wraper">
+                        <div class="post-info-wraper">
+                            <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
+                                <img class="img-responsive"
+                                     src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(), '400x')) ?>"
+                                     alt="<?= $escaper->escapeHtml($post->getName()); ?>"/>
+                            </a>
+                            <h2 class="mb-post-title" style="margin: 20px 0;">
+                                <a class="post-link-title" title="<?= $escaper->escapeHtml($post->getName()); ?>"
+                                   href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
+                                    <?= $escaper->escapeHtml($post->getName()) ?>
+                                </a>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <script>
+            require([
+                'jquery',
+                'owlCarousel'
+            ], function ($) {
+                'use strict';
+                $(document).ready(function () {
+                    $('.mb-blog-owl-carousel.owl-carousel').owlCarousel({
+                        items: 2,
+                        loop: false,
+                        margin: 10,
+                        responsive: {
+                            600: {
+                                items: 4
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
+    <?php else : ?>
+        <ul>
+            <?php foreach ($posts as $post) : ?>
+                <li>
+                    <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>"><?= $escaper->escapeHtml($post->getName()) ?></a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+<?php endif; ?>

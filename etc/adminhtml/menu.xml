@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <!-- <add id="Mavenbird_Blog::blog" title="Better Blog" module="Mavenbird_Blog" sortOrder="110" resource="Mavenbird_Blog::blog" parent="Magento_Backend::content"/>
+        <add id="Mavenbird_Blog::post" title="Manage Posts" module="Mavenbird_Blog" sortOrder="10" action="mavenbird_blog/post" resource="Mavenbird_Blog::post" parent="Mavenbird_Blog::blog"/>
+        <add id="Mavenbird_Blog::tag" title="Manage Tags" module="Mavenbird_Blog" sortOrder="20" action="mavenbird_blog/tag" resource="Mavenbird_Blog::tag" parent="Mavenbird_Blog::blog"/>
+        <add id="Mavenbird_Blog::topic" title="Manage Topics" module="Mavenbird_Blog" sortOrder="30" action="mavenbird_blog/topic" resource="Mavenbird_Blog::topic" parent="Mavenbird_Blog::blog"/>
+        <add id="Mavenbird_Blog::category" title="Categories" module="Mavenbird_Blog" sortOrder="40" action="mavenbird_blog/category" resource="Mavenbird_Blog::category" parent="Mavenbird_Blog::blog"/>
+        <add id="Mavenbird_Blog::author" title="Manage Authors" module="Mavenbird_Blog" sortOrder="50" action="mavenbird_blog/author" resource="Mavenbird_Blog::author" parent="Mavenbird_Blog::blog"/>
+        <add id="Mavenbird_Blog::comment" title="Manage Comments" module="Mavenbird_Blog" sortOrder="60" action="mavenbird_blog/comment" resource="Mavenbird_Blog::comment" parent="Mavenbird_Blog::blog"/>
+        <add id="Mavenbird_Blog::import" title="Import" module="Mavenbird_Blog" sortOrder="65" action="mavenbird_blog/import/edit" resource="Mavenbird_Blog::import" parent="Mavenbird_Blog::blog"/>
+        <add id="Mavenbird_Blog::configuration" title="Configuration" module="Mavenbird_Blog" sortOrder="1000" action="adminhtml/system_config/edit/section/blog" resource="Mavenbird_Blog::configuration" parent="Mavenbird_Blog::blog"/> -->
+
+        <!-- <update id="Magento_Backend::mbmenu" title="Mavenbird" module="Magento_Backend" sortOrder="10" resource="Magento_Backend::mbmenu" /> -->
+
+        <add id="Mavenbird_Blog::mbblog" title="Better Blog" module="Mavenbird_Blog" sortOrder="110" resource="Mavenbird_Blog::blog" parent="Magento_Backend::mbmenu"/>
+        <add id="Mavenbird_Blog::mbpost" title="Manage Posts" module="Mavenbird_Blog" sortOrder="10" action="mavenbird_blog/post" resource="Mavenbird_Blog::post" parent="Mavenbird_Blog::mbblog"/>
+        <add id="Mavenbird_Blog::mbtag" title="Manage Tags" module="Mavenbird_Blog" sortOrder="20" action="mavenbird_blog/tag" resource="Mavenbird_Blog::tag" parent="Mavenbird_Blog::mbblog"/>
+        <add id="Mavenbird_Blog::mbtopic" title="Manage Topics" module="Mavenbird_Blog" sortOrder="30" action="mavenbird_blog/topic" resource="Mavenbird_Blog::topic" parent="Mavenbird_Blog::mbblog"/>
+        <add id="Mavenbird_Blog::mbcategory" title="Categories" module="Mavenbird_Blog" sortOrder="40" action="mavenbird_blog/category" resource="Mavenbird_Blog::category" parent="Mavenbird_Blog::mbblog"/>
+        <add id="Mavenbird_Blog::mbauthor" title="Manage Authors" module="Mavenbird_Blog" sortOrder="50" action="mavenbird_blog/author" resource="Mavenbird_Blog::author" parent="Mavenbird_Blog::mbblog"/>
+        <add id="Mavenbird_Blog::mbcomment" title="Manage Comments" module="Mavenbird_Blog" sortOrder="60" action="mavenbird_blog/comment" resource="Mavenbird_Blog::comment" parent="Mavenbird_Blog::mbblog"/>
+        <add id="Mavenbird_Blog::mbimport" title="Import" module="Mavenbird_Blog" sortOrder="65" action="mavenbird_blog/import/edit" resource="Mavenbird_Blog::import" parent="Mavenbird_Blog::mbblog"/>
+        <add id="Mavenbird_Blog::mbconfiguration" title="Configuration" module="Mavenbird_Blog" sortOrder="1000" action="adminhtml/system_config/edit/section/blog" resource="Mavenbird_Blog::configuration" parent="Mavenbird_Blog::mbblog"/>
+
+    </menu>
+</config>

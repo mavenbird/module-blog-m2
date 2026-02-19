@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="mpblog.post.view" >
+            <action method="setTemplate" >
+                <argument name="template" xsi:type="string">Mavenbird_Blog::hyva/post/view.phtml</argument>
+            </action>
+        </referenceBlock>
+
+        <referenceBlock name="related.category.products">
+            <action method="setTemplate" >
+                <argument name="template" xsi:type="string">Mavenbird_Blog::hyva/product/list.phtml</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

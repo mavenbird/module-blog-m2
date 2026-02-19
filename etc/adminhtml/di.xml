@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Ui\Model\Export\MetadataProvider">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="mavenbird_blog_post_listing" xsi:type="array">
+                    <item name="created_at" xsi:type="string">created_at</item>
+                    <item name="updated_at" xsi:type="string">updated_at</item>
+                    <item name="publish_date" xsi:type="string">publish_date</item>
+                </item>
+                <item name="mavenbird_blog_tag_listing" xsi:type="array">
+                    <item name="created_at" xsi:type="string">created_at</item>
+                    <item name="updated_at" xsi:type="string">updated_at</item>
+                </item>
+                <item name="mavenbird_blog_topic_listing" xsi:type="array">
+                    <item name="created_at" xsi:type="string">created_at</item>
+                    <item name="updated_at" xsi:type="string">updated_at</item>
+                </item>
+                <item name="mavenbird_blog_comment_listing" xsi:type="array">
+                    <item name="created_at" xsi:type="string">created_at</item>
+                </item>
+                <item name="mavenbird_blog_author_listing" xsi:type="array">
+                    <item name="created_at" xsi:type="string">created_at</item>
+                    <item name="updated_at" xsi:type="string">updated_at</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Model\ResourceModel\Product\Collection">
+        <plugin name="blog-post-product-sort" type="Mavenbird\Blog\Plugin\Catalog\AttributeSort"/>
+    </type>
+    <!-- update banner in config infomation tab -->
+    <type name="Mavenbird\Blog\Block\Adminhtml\System\Config\Docs">
+        <plugin name="blog-config-banner" type="Mavenbird\Blog\Plugin\System\Config\Banner"/>
+    </type>
+</config>

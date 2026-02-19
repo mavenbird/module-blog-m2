@@ -1,0 +1,75 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+
+use Mavenbird\Blog\Block\Author\Widget;
+use Mavenbird\Blog\Helper\Image;
+use Magento\Framework\Escaper;
+
+/** @var Widget $block */
+/** @var Escaper $escaper */
+$author = $block->getCurrentAuthor();
+if ($author) : ?>
+    <div class="mb-sidebar mpcss">
+        <div class="row">
+            <div class="author-name col-xs-12">
+                <h3><?= $escaper->escapeHtml($author->getName()) ?></h3>
+            </div>
+            <div class="author-image col-xs-12">
+                <img class="img-responsive"
+                     src="<?= $escaper->escapeUrl($author->getImage() ? $block->resizeImage($author->getImage(), '135x', Image::TEMPLATE_MEDIA_TYPE_AUTH) : $block->getDefaultAuthorImage()) ?>"
+                     alt="<?= $escaper->escapeHtml($author->getName()); ?>"/>
+            </div>
+            <div class="author-content col-xs-12">
+                <?= $block->getPageFilter(($author->getShortDescription())) ?: $escaper->escapeHtml(__('No info')) ?>
+            </div>
+            <div class="author-social col-xs-12">
+                <?php if ($author->getFacebookLink()) : ?>
+                    <a href="<?= $escaper->escapeUrl($author->getFacebookLink()) ?>" target="_blank">
+                        <img class="img-responsive"
+                             src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/facebook.png')) ?>"
+                             align="middle"
+                             alt="<?= $escaper->escapeHtml($author->getName()); ?>"/>
+                    </a>
+                <?php else : ?>
+                    <img class="img-responsive"
+                         src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/facebookoff.png')) ?>"
+                         align="middle"
+                         alt="<?= $escaper->escapeHtml($author->getName()); ?>"/>
+                <?php endif; ?>
+                <?php if ($author->getTwitterLink()) : ?>
+                    <a href="<?= $escaper->escapeUrl($author->getTwitterLink()) ?>" target="_blank">
+                        <img class="img-responsive"
+                             src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/twitter.png')) ?>"
+                             align="middle"
+                             alt="<?= $escaper->escapeHtml($author->getName()); ?>"/>
+                    </a>
+                <?php else : ?>
+                    <img class="img-responsive"
+                         src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/twitter-off.png')) ?>"
+                         align="middle"
+                         alt="<?= $escaper->escapeHtml($author->getName()); ?>"/>
+                <?php endif; ?>
+                <div class="mb-clear"></div>
+            </div>
+            <div class="author-border col-xs-12"></div>
+        </div>
+    </div>
+<?php endif; ?>

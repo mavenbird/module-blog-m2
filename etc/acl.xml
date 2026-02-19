@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::mbmenu" title="Mavenbird" sortOrder="10">
+                    <resource id="Mavenbird_Blog::blog" title="Mavenbird Better Blog" sortOrder="25">
+                        <resource id="Mavenbird_Blog::post" title="Posts" sortOrder="10"/>
+                        <resource id="Mavenbird_Blog::tag" title="Tags" sortOrder="20"/>
+                        <resource id="Mavenbird_Blog::topic" title="Topics" sortOrder="30"/>
+                        <resource id="Mavenbird_Blog::category" title="Categories" sortOrder="40"/>
+                        <resource id="Mavenbird_Blog::author" title="Author Information" sortOrder="50"/>
+                        <resource id="Mavenbird_Blog::comment" title="Manage Comments" sortOrder="60"/>
+                        <resource id="Mavenbird_Blog::import" title="Import" sortOrder="65"/>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Mavenbird_Blog::configuration" title="Mavenbird Better Blog"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

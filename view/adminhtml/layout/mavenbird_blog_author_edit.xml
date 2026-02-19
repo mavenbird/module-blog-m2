@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Mavenbird\Blog\Block\Adminhtml\Author\Edit" name="mavenbird_blog_author_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Mavenbird\Blog\Block\Adminhtml\Author\Edit\Tabs" name="mavenbird_blog_author_tabs">
+                <block class="Mavenbird\Blog\Block\Adminhtml\Author\Edit\Tab\Author" name="mavenbird_blog_author_edit_tab_author"/>
+                <block class="Mavenbird\Blog\Block\Adminhtml\Author\Edit\Tab\Post" name="mavenbird_blog_author_edit_tab_post"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">author</argument>
+                    <argument name="block" xsi:type="string">mavenbird_blog_author_edit_tab_author</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">post</argument>
+                    <argument name="block" xsi:type="string">mavenbird_blog_author_edit_tab_post</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

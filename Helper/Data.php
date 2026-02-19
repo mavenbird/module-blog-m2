@@ -1,0 +1,859 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+
+namespace Mavenbird\Blog\Helper;
+
+use DateTimeZone;
+use Exception;
+use Magento\Customer\Model\Context as CustomerContext;
+use Magento\Customer\Model\Session;
+use Magento\Framework\App\Helper\Context;
+use Magento\Framework\App\Http\Context as HttpContext;
+use Magento\Framework\App\ProductMetadataInterface;
+use Magento\Framework\DataObject;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Filter\TranslitUrl;
+use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
+use Magento\Framework\ObjectManagerInterface;
+use Magento\Framework\Stdlib\DateTime\DateTime;
+use Magento\Framework\View\DesignInterface;
+use Magento\Store\Model\Store;
+use Magento\Store\Model\StoreManagerInterface;
+use Mavenbird\Blog\Model\Author;
+use Mavenbird\Blog\Model\AuthorFactory;
+use Mavenbird\Blog\Model\Category;
+use Mavenbird\Blog\Model\CategoryFactory;
+use Mavenbird\Blog\Model\Config\Source\SideBarLR;
+use Mavenbird\Blog\Model\Post;
+use Mavenbird\Blog\Model\PostFactory;
+use Mavenbird\Blog\Model\PostHistoryFactory;
+use Mavenbird\Blog\Model\ResourceModel\Author\Collection as AuthorCollection;
+use Mavenbird\Blog\Model\ResourceModel\Category\Collection as CategoryCollection;
+use Mavenbird\Blog\Model\ResourceModel\Post\Collection as PostCollection;
+use Mavenbird\Blog\Model\ResourceModel\Tag\Collection as TagCollection;
+use Mavenbird\Blog\Model\ResourceModel\Topic\Collection;
+use Mavenbird\Blog\Model\Tag;
+use Mavenbird\Blog\Model\TagFactory;
+use Mavenbird\Blog\Model\Topic;
+use Mavenbird\Blog\Model\TopicFactory;
+use Mavenbird\Blog\Helper\AbstractData as CoreHelper;
+
+/**
+ * Class Data
+ * @package Mavenbird\Blog\Helper
+ */
+class Data extends CoreHelper
+{
+    const CONFIG_MODULE_PATH = 'blog';
+    const TYPE_POST          = 'post';
+    const TYPE_CATEGORY      = 'category';
+    const TYPE_TAG           = 'tag';
+    const TYPE_TOPIC         = 'topic';
+    const TYPE_HISTORY       = 'history';
+    const TYPE_AUTHOR        = 'author';
+    const TYPE_MONTHLY       = 'month';
+
+    /**
+     * @var PostFactory
+     */
+    public $postFactory;
+
+    /**
+     * @var CategoryFactory
+     */
+    public $categoryFactory;
+
+    /**
+     * @var TagFactory
+     */
+    public $tagFactory;
+
+    /**
+     * @var TopicFactory
+     */
+    public $topicFactory;
+
+    /**
+     * @var AuthorFactory
+     */
+    public $authorFactory;
+
+    /**
+     * @var TranslitUrl
+     */
+    public $translitUrl;
+
+    /**
+     * @var DateTime
+     */
+    public $dateTime;
+
+    /**
+     * @var Session
+     */
+    protected $customerSession;
+
+    /**
+     * @var HttpContext
+     */
+    protected $_httpContext;
+
+    /**
+     * @var PostHistoryFactory
+     */
+    protected $postHistoryFactory;
+
+    /**
+     * @var ProductMetadataInterface
+     */
+    protected $_productMetadata;
+
+    /**
+     * Data constructor.
+     *
+     * @param Context $context
+     * @param ObjectManagerInterface $objectManager
+     * @param StoreManagerInterface $storeManager
+     * @param PostFactory $postFactory
+     * @param CategoryFactory $categoryFactory
+     * @param TagFactory $tagFactory
+     * @param TopicFactory $topicFactory
+     * @param AuthorFactory $authorFactory
+     * @param PostHistoryFactory $postHistoryFactory
+     * @param TranslitUrl $translitUrl
+     * @param ProductMetadataInterface $productMetadata
+     * @param Session $customerSession
+     * @param HttpContext $httpContext
+     * @param DateTime $dateTime
+     */
+    public function __construct(
+        Context $context,
+        ObjectManagerInterface $objectManager,
+        StoreManagerInterface $storeManager,
+        PostFactory $postFactory,
+        CategoryFactory $categoryFactory,
+        TagFactory $tagFactory,
+        TopicFactory $topicFactory,
+        AuthorFactory $authorFactory,
+        PostHistoryFactory $postHistoryFactory,
+        TranslitUrl $translitUrl,
+        ProductMetadataInterface $productMetadata,
+        Session $customerSession,
+        HttpContext $httpContext,
+        DateTime $dateTime
+    ) {
+        $this->postFactory        = $postFactory;
+        $this->categoryFactory    = $categoryFactory;
+        $this->tagFactory         = $tagFactory;
+        $this->topicFactory       = $topicFactory;
+        $this->authorFactory      = $authorFactory;
+        $this->postHistoryFactory = $postHistoryFactory;
+        $this->translitUrl        = $translitUrl;
+        $this->dateTime           = $dateTime;
+        $this->customerSession    = $customerSession;
+        $this->_httpContext       = $httpContext;
+        $this->_productMetadata   = $productMetadata;
+
+        parent::__construct($context, $objectManager, $storeManager);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEnabledReview()
+    {
+        $groupId = (string) $this->_httpContext->getValue(CustomerContext::CONTEXT_GROUP);
+
+        if ($this->getPostViewPageConfig('is_review')
+            && in_array($groupId, explode(',', (string) $this->getPostViewPageConfig('review_mode')), true)
+        ) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReviewMode()
+    {
+        $login = $this->_httpContext->getValue(CustomerContext::CONTEXT_AUTH);
+
+        if (!$login
+            && in_array('0', explode(',', $this->getPostViewPageConfig('review_mode') ?? ''), true)
+        ) {
+            return '0';
+        }
+
+        return '1';
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrentVersion()
+    {
+        return $this->_productMetadata->getVersion();
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getCurrentUser()
+    {
+        return $this->customerSession->getId();
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getCustomerIdByContext()
+    {
+        return $this->_httpContext->getValue('mp_customer_id') ?: $this->customerSession->getId();
+    }
+
+    /**
+     * @return int
+     * @throws NoSuchEntityException
+     */
+    public function getCurrentStoreId()
+    {
+        return $this->storeManager->getStore()->getId();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLogin()
+    {
+        return $this->_httpContext->getValue(CustomerContext::CONTEXT_AUTH);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAuthor()
+    {
+        $collection = $this->getAuthorCollection();
+
+        return empty($collection->getSize());
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isEnabledAuthor()
+    {
+        if (!$this->_httpContext->getValue(CustomerContext::CONTEXT_AUTH)) {
+            return false;
+        }
+
+        return $this->getCurrentAuthor() ? true : false;
+    }
+
+    /**
+     * Set Customer Id in Context
+     */
+    public function setCustomerContextId()
+    {
+        $customer = $this->customerSession->getCustomerData();
+        if (!$this->_httpContext->getValue('mp_customer_id') && $customer) {
+            $this->_httpContext->setValue('mp_customer_id', $customer->getId(), 0);
+        }
+    }
+
+    /**
+     * @return DataObject
+     */
+    public function getCurrentAuthor()
+    {
+        $collection = $this->getAuthorCollection();
+
+        return $collection ? $collection->getFirstItem() : null;
+    }
+
+    /**
+     * @return AbstractCollection
+     */
+    public function getAuthorCollection()
+    {
+        if ($customerId = $this->getCustomerIdByContext()) {
+            return $this->getFactoryByType('author')->create()->getCollection()
+                ->addFieldToFilter('customer_id', $customerId);
+        }
+
+        return null;
+    }
+
+    /**
+     * @return Image
+     */
+    public function getImageHelper()
+    {
+        return $this->objectManager->get(Image::class);
+    }
+
+    /**
+     * @param $code
+     * @param null $storeId
+     *
+     * @return mixed
+     */
+    public function getBlogConfig($code, $storeId = null)
+    {
+        $code = ($code !== '') ? '/' . $code : '';
+
+        return $this->getConfigValue(self::CONFIG_MODULE_PATH . $code, $storeId);
+    }
+
+    /**
+     * @param null $storeId
+     *
+     * @return array|mixed|string
+     */
+    public function getSidebarLayout($storeId = null)
+    {
+        $sideBarConfig = $this->getConfigValue(self::CONFIG_MODULE_PATH . '/sidebar/sidebar_left_right', $storeId);
+        if ($sideBarConfig == 0) {
+            return SideBarLR::LEFT;
+        }
+
+        if ($sideBarConfig == 1) {
+            return SideBarLR::RIGHT;
+        }
+
+        return $sideBarConfig;
+    }
+
+    /**
+     * @param $code
+     * @param null $storeId
+     *
+     * @return mixed
+     */
+    public function getDisplayConfig($code, $storeId = null)
+    {
+        return $this->getBlogConfig('display/' . $code, $storeId);
+    }
+
+    /**
+     * @param $code
+     * @param null $storeId
+     *
+     * @return mixed
+     */
+    public function getIndexPageConfig($code, $storeId = null)
+    {
+        return $this->getBlogConfig('index_page/' . $code, $storeId);
+    }
+
+    /**
+     * @param $code
+     * @param null $storeId
+     *
+     * @return mixed
+     */
+    public function getPostViewPageConfig($code, $storeId = null)
+    {
+        return $this->getBlogConfig('post_view_page/' . $code, $storeId);
+    }
+
+    /**
+     * @param $code
+     * @param null $storeId
+     *
+     * @return mixed
+     */
+    public function getProductPostConfig($code, $storeId = null)
+    {
+        return $this->getBlogConfig('product_post/' . $code, $storeId);
+    }
+
+    /**
+     * @param $code
+     * @param null $storeId
+     *
+     * @return mixed
+     */
+    public function getSidebarConfig($code, $storeId = null)
+    {
+        return $this->getBlogConfig('sidebar/' . $code, $storeId);
+    }
+
+    /**
+     * @param $code
+     * @param null $storeId
+     *
+     * @return mixed
+     */
+    public function getCommentConfig($code, $storeId = null)
+    {
+        return $this->getBlogConfig('comment/' . $code, $storeId);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function showAuthorInfo($storeId = null)
+    {
+        return $this->getPostViewPageConfig('display_author', $storeId);
+    }
+
+    /**
+     * @param null $store
+     *
+     * @return string
+     */
+    public function getBlogName($store = null)
+    {
+        return $this->getDisplayConfig('name', $store) ?: __('Blog');
+    }
+
+    /**
+     * @param null $store
+     *
+     * @return string
+     */
+    public function getRoute($store = null)
+    {
+        return $this->getDisplayConfig('url_prefix', $store) ?: 'blog';
+    }
+
+    /**
+     * @param null $store
+     *
+     * @return mixed
+     */
+    public function getUrlSuffix($store = null)
+    {
+        return $this->getDisplayConfig('url_suffix', $store)
+            ? '.' . $this->getDisplayConfig('url_suffix', $store) : '';
+    }
+
+    /**
+     * Get current theme id
+     * @return mixed
+     */
+    public function getCurrentThemeId()
+    {
+        return $this->getConfigValue(DesignInterface::XML_PATH_THEME_ID);
+    }
+
+    /**
+     * @param null $type
+     * @param null $id
+     * @param null $storeId
+     *
+     * @return PostCollection
+     * @throws NoSuchEntityException
+     */
+    public function getPostCollection($type = null, $id = null, $storeId = null)
+    {
+        if ($id === null) {
+            $id = $this->_request->getParam('id');
+        }
+
+        /** @var PostCollection $collection */
+        $collection = $this->getPostList($storeId);
+
+        switch ($type) {
+            case self::TYPE_AUTHOR:
+                $collection->addFieldToFilter('author_id', $id);
+                break;
+            case self::TYPE_CATEGORY:
+                $collection->join(
+                    ['category' => $collection->getTable('mavenbird_blog_post_category')],
+                    'main_table.post_id=category.post_id AND category.category_id=' . $id,
+                    ['position']
+                );
+                $collection->getSelect()->order('position asc');
+                break;
+            case self::TYPE_TAG:
+                $collection->join(
+                    ['tag' => $collection->getTable('mavenbird_blog_post_tag')],
+                    'main_table.post_id=tag.post_id AND tag.tag_id=' . $id,
+                    ['position']
+                );
+                $collection->getSelect()->order('position asc');
+                break;
+            case self::TYPE_TOPIC:
+                $collection->join(
+                    ['topic' => $collection->getTable('mavenbird_blog_post_topic')],
+                    'main_table.post_id=topic.post_id AND topic.topic_id=' . $id,
+                    ['position']
+                );
+                $collection->getSelect()->order('position asc');
+                break;
+            case self::TYPE_MONTHLY:
+                $collection->addFieldToFilter('publish_date', ['like' => $id . '%']);
+                break;
+        }
+
+        return $collection;
+    }
+
+    /**
+     * @param null $storeId
+     *
+     * @return PostCollection
+     * @throws NoSuchEntityException
+     */
+    public function getPostList($storeId = null)
+    {
+        /** @var PostCollection $collection */
+        $collection = $this->getObjectList(self::TYPE_POST, $storeId)
+            ->addFieldToFilter('publish_date', ['to' => $this->dateTime->date()])
+            ->setOrder('publish_date', 'desc');
+
+        return $collection;
+    }
+
+    /**
+     * @param $array
+     *
+     * @return \Magento\Sales\Model\ResourceModel\Collection\AbstractCollection
+     */
+    public function getCategoryCollection($array)
+    {
+        try {
+            $collection = $this->getObjectList(self::TYPE_CATEGORY)
+                ->addFieldToFilter('category_id', ['in' => $array]);
+
+            return $collection;
+        } catch (Exception $exception) {
+            $this->_logger->error($exception->getMessage());
+        }
+
+        return null;
+    }
+
+    /**
+     * Get object collection (Category, Tag, Post, Topic)
+     *
+     * @param null $type
+     * @param null $storeId
+     *
+     * @return AuthorCollection|CategoryCollection|PostCollection|TagCollection|Collection
+     * @throws NoSuchEntityException
+     */
+    public function getObjectList($type = null, $storeId = null)
+    {
+        /** @var AuthorCollection|CategoryCollection|PostCollection|TagCollection|Collection $collection */
+        $collection = $this->getFactoryByType($type)
+            ->create()
+            ->getCollection()
+            ->addFieldToFilter('enabled', 1);
+
+        $this->addStoreFilter($collection, $storeId);
+
+        return $collection;
+    }
+
+    /**
+     * @param $collection
+     * @param null $storeId
+     *
+     * @return mixed
+     * @throws NoSuchEntityException
+     */
+    public function addStoreFilter($collection, $storeId = null)
+    {
+        if ($storeId === null) {
+            $storeId = $this->storeManager->getStore()->getId();
+        }
+
+        $collection->addFieldToFilter('store_ids', [
+            ['finset' => Store::DEFAULT_STORE_ID],
+            ['finset' => $storeId]
+        ]);
+
+        return $collection;
+    }
+
+    /**
+     * @param $post
+     * @param bool $modify
+     *
+     * @return Author
+     */
+    public function getAuthorByPost($post, $modify = false)
+    {
+        $author = $this->authorFactory->create();
+
+        $authorId = $modify ? $post->getModifierId() : $post->getAuthorId();
+        if ($authorId) {
+            $author->load($authorId);
+        }
+
+        return $author;
+    }
+
+    /**
+     * @param null $urlKey
+     * @param null $type
+     * @param null $store
+     *
+     * @return string
+     */
+    public function getBlogUrl($urlKey = null, $type = null, $store = null)
+    {
+        if (is_object($urlKey)) {
+            $urlKey = $urlKey->getUrlKey();
+        }
+
+        $urlKey = ($type ? $type . '/' : '') . $urlKey;
+        $url    = $this->getUrl($this->getRoute($store) . '/' . $urlKey);
+        $url    = explode('?', $url ?? '');
+        $url    = $url[0];
+
+        return rtrim($url, '/') . $this->getUrlSuffix($store);
+    }
+
+    /**
+     * @param $value
+     * @param null $code
+     * @param null $type
+     *
+     * @return Author|Category|Post|Tag|Topic
+     */
+    public function getObjectByParam($value, $code = null, $type = null)
+    {
+        $object = $this->getFactoryByType($type)
+            ->create()
+            ->load($value, $code);
+
+        return $object;
+    }
+
+    /**
+     * @param $type
+     *
+     * @return AuthorFactory|CategoryFactory|PostFactory|TagFactory|TopicFactory
+     */
+    public function getFactoryByType($type = null)
+    {
+        switch ($type) {
+            case self::TYPE_CATEGORY:
+                $object = $this->categoryFactory;
+                break;
+            case self::TYPE_TAG:
+                $object = $this->tagFactory;
+                break;
+            case self::TYPE_AUTHOR:
+                $object = $this->authorFactory;
+                break;
+            case self::TYPE_TOPIC:
+                $object = $this->topicFactory;
+                break;
+            case self::TYPE_HISTORY:
+                $object = $this->postHistoryFactory;
+                break;
+            default:
+                $object = $this->postFactory;
+        }
+
+        return $object;
+    }
+
+    /**
+     * Generate url_key for post, tag, topic, category, author
+     *
+     * @param $resource
+     * @param $object
+     * @param $name
+     *
+     * @return string
+     * @throws LocalizedException
+     */
+    public function generateUrlKey($resource, $object, $name)
+    {
+        $attempt = -1;
+        do {
+            if ($attempt++ >= 10) {
+                throw new LocalizedException(__('Unable to generate url key. Please check the setting and try again.'));
+            }
+
+            $urlKey = $this->translitUrl->filter($name);
+            if ($urlKey) {
+                $urlKey .= ($attempt ?: '');
+            }
+        } while ($this->checkUrlKey($resource, $object, $urlKey));
+
+        return $urlKey;
+    }
+
+    /**
+     * @param $resource
+     * @param $object
+     * @param $urlKey
+     *
+     * @return bool
+     */
+    public function checkUrlKey($resource, $object, $urlKey)
+    {
+        if (empty($urlKey)) {
+            return true;
+        }
+
+        $adapter = $resource->getConnection();
+        $select  = $adapter->select()
+            ->from($resource->getMainTable(), '*')
+            ->where('url_key = :url_key');
+
+        $binds = ['url_key' => (string) $urlKey];
+
+        if ($id = $object->getId()) {
+            $select->where($resource->getIdFieldName() . ' != :object_id');
+            $binds['object_id'] = (int) $id;
+        }
+
+        return $adapter->fetchOne($select, $binds);
+    }
+
+    /**
+     * get date formatted
+     *
+     * @param $date
+     * @param bool $monthly
+     *
+     * @return false|string
+     * @throws Exception
+     */
+    public function getDateFormat($date, $monthly = false)
+    {
+        $dateTime = new \DateTime($date, new DateTimeZone('UTC'));
+        $dateTime->setTimezone(new DateTimeZone($this->getTimezone()));
+
+        $dateType = $this->getBlogConfig($monthly ? 'sidebar/monthly_archive/date_type_monthly' : 'display/date_type');
+
+        return $dateTime->format($dateType);
+    }
+
+    /**
+     * @param $post
+     *
+     * @return mixed
+     * @throws Exception
+     */
+    public function formatPublishDate($post)
+    {
+        $publicDateTime = new \DateTime($post->getData('publish_date'), new DateTimeZone('UTC'));
+        $publicDateTime->setTimezone(new DateTimeZone($this->getTimezone()));
+        $publicDateTime = $publicDateTime->format('m/d/Y H:i:s');
+        $post->setData('publish_date', $publicDateTime);
+
+        return $post;
+    }
+
+    /**
+     * get configuration zone
+     * @return mixed
+     */
+    public function getTimezone()
+    {
+        return $this->getConfigValue('general/locale/timezone');
+    }
+
+    /**
+     * @param $route
+     * @param array $params
+     *
+     * @return string
+     */
+    public function getUrl($route, $params = [])
+    {
+        return $this->_urlBuilder->getUrl($route, $params);
+    }
+
+    /**
+     * @param $object
+     *
+     * @return bool
+     * @throws NoSuchEntityException
+     */
+    public function checkStore($object)
+    {
+        $storeEnable = explode(',', $object->getStoreIds() ?? '');
+
+        return in_array('0', $storeEnable, true)
+            || in_array((string) $this->storeManager->getStore()->getId(), $storeEnable, true);
+    }
+
+    /**
+     * @param $title
+     *
+     * @return mixed|null
+     * @throws NoSuchEntityException
+     */
+    public function getMetaTitleByStoreId($title)
+    {
+        if (!$title) {
+            return null;
+        }
+
+        $storeId = $this->storeManager->getStore()->getId();
+        $decoded   = json_decode($title, true);
+        if (json_last_error() !== JSON_ERROR_NONE || !is_array($decoded)) {
+            $decoded = ['0' => $title];
+        }
+
+        return $decoded[$storeId] ?? $decoded[0] ?? null;
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return array
+     */
+    public function handleSeoValueBeforeSave(array &$data)
+    {
+        $seoFields = ['meta_title', 'meta_description', 'meta_keywords', 'meta_robots'];
+
+        foreach ($seoFields as $field) {
+            if (!isset($data[$field])) {
+                continue;
+            }
+
+            if (is_array($data[$field])) {
+                $filtered = [];
+                foreach ($data[$field] as $k => $v) {
+                    if ($v !== null && !(is_string($v) && trim($v) === '')) {
+                        $filtered[$k] = $v;
+                    }
+                }
+
+                if (!empty($filtered)) {
+                    $data[$field] = json_encode($filtered, JSON_UNESCAPED_UNICODE | JSON_FORCE_OBJECT);
+                } else {
+                    $data[$field] = null;
+                }
+            } else {
+                if ($data[$field] === null || (is_string($data[$field]) && trim($data[$field]) === '')) {
+                    $data[$field] = null;
+                }
+            }
+        }
+
+        return $data;
+    }
+}

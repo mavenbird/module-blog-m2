@@ -1,0 +1,33 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+
+use Magento\Framework\Escaper;
+
+/** @var \Mavenbird\Blog\Block\Post\View $block */
+/** @var Escaper $escaper */
+$_post = $block->getPost();
+?>
+<!--Open Graph Meta tags by Mavenbird-->
+<meta property="og:url"             content="<?= $escaper->escapeUrl($_post->getUrl()) ?>" />
+<meta property="og:title"           content="<?= $escaper->escapeHtml($_post->getName()) ?>" />
+<meta property="og:image"           content="<?= $escaper->escapeUrl($block->getImageUrl($_post->getImage())) ?>" />
+<meta property="og:description"    content="<?= $escaper->escapeHtml($_post->getShortDescription()) ?>" />
+<!--End Open Graph Meta tags by Mavenbird-->

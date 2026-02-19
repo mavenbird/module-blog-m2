@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--Grid collection-->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mavenbird_blog_post_listing_data_source" xsi:type="string">Mavenbird\Blog\Model\ResourceModel\Post\Grid\Collection</item>
+                <item name="mavenbird_blog_tag_listing_data_source" xsi:type="string">Mavenbird\Blog\Model\ResourceModel\Tag\Grid\Collection</item>
+                <item name="mavenbird_blog_topic_listing_data_source" xsi:type="string">Mavenbird\Blog\Model\ResourceModel\Topic\Grid\Collection</item>
+                <item name="mavenbird_blog_comment_listing_data_source" xsi:type="string">Mavenbird\Blog\Model\ResourceModel\Comment\Grid\Collection</item>
+                <item name="mavenbird_blog_author_listing_data_source" xsi:type="string">Mavenbird\Blog\Model\ResourceModel\Author\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Mavenbird\Blog\Model\ResourceModel\Author\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mavenbird_blog_author</argument>
+            <argument name="resourceModel" xsi:type="string">Mavenbird\Blog\Model\ResourceModel\Author</argument>
+        </arguments>
+    </type>
+    <virtualType name="Mavenbird\Blog\Model\ResourceModel\Post\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mavenbird_blog_post</argument>
+            <argument name="resourceModel" xsi:type="string">Mavenbird\Blog\Model\ResourceModel\Post</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Mavenbird\Blog\Model\ResourceModel\Tag\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mavenbird_blog_tag</argument>
+            <argument name="resourceModel" xsi:type="string">Mavenbird\Blog\Model\ResourceModel\Tag</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Mavenbird\Blog\Model\ResourceModel\Topic\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mavenbird_blog_topic</argument>
+            <argument name="resourceModel" xsi:type="string">Mavenbird\Blog\Model\ResourceModel\Topic</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\App\Rss\RssManagerInterface">
+        <arguments>
+            <argument name="dataProviders" xsi:type="array">
+                <item name="blog_posts" xsi:type="string">Mavenbird\Blog\Block\Post\Rss\Lists</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <preference for="Mavenbird\Blog\Api\Data\PostInterface" type="Mavenbird\Blog\Model\Post" />
+    <preference for="Mavenbird\Blog\Api\Data\CommentInterface" type="Mavenbird\Blog\Model\Comment" />
+    <preference for="Mavenbird\Blog\Api\Data\TagInterface" type="Mavenbird\Blog\Model\Tag" />
+    <preference for="Mavenbird\Blog\Api\Data\CategoryInterface" type="Mavenbird\Blog\Model\Category" />
+    <preference for="Mavenbird\Blog\Api\Data\TopicInterface" type="Mavenbird\Blog\Model\Topic" />
+    <preference for="Mavenbird\Blog\Api\Data\AuthorInterface" type="Mavenbird\Blog\Model\Author" />
+    <preference for="Mavenbird\Blog\Api\Data\BlogConfigInterface" type="Mavenbird\Blog\Model\BlogConfig" />
+    <preference for="Mavenbird\Blog\Api\Data\MonthlyArchiveInterface" type="Mavenbird\Blog\Model\MonthlyArchive" />
+    <preference for="Mavenbird\Blog\Api\Data\Config\GeneralInterface" type="Mavenbird\Blog\Model\Config\General" />
+    <preference for="Mavenbird\Blog\Api\Data\Config\SidebarInterface" type="Mavenbird\Blog\Model\Config\Sidebar" />
+    <preference for="Mavenbird\Blog\Api\Data\Config\SeoInterface" type="Mavenbird\Blog\Model\Config\Seo" />
+    <preference for="Mavenbird\Blog\Api\BlogRepositoryInterface" type="Mavenbird\Blog\Model\Api\BlogRepository" />
+
+    <preference for="Mavenbird\Blog\Api\Data\SearchResult\PostSearchResultInterface" type="Mavenbird\Blog\Model\ResourceModel\Post\Collection" />
+    <preference for="Mavenbird\Blog\Api\Data\SearchResult\CategorySearchResultInterface" type="Mavenbird\Blog\Model\ResourceModel\Category\Collection" />
+    <preference for="Mavenbird\Blog\Api\Data\SearchResult\TagSearchResultInterface" type="Mavenbird\Blog\Model\ResourceModel\Tag\Collection" />
+    <preference for="Mavenbird\Blog\Api\Data\SearchResult\TopicSearchResultInterface" type="Mavenbird\Blog\Model\ResourceModel\Topic\Collection" />
+    <preference for="Mavenbird\Blog\Api\Data\SearchResult\CommentSearchResultInterface" type="Mavenbird\Blog\Model\ResourceModel\Comment\Collection" />
+</config>

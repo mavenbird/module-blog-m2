@@ -1,0 +1,27 @@
+{
+    "name": "mavenbird/blog-extension",
+    "description": "Magento 2 Blog extension",
+    "require": {
+        "php": ">=8.0.0",
+        "mavenbird/module-core": "*"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": "proprietary",
+    "authors": [
+        {
+          "name": "Mavenbird",
+          "email": "support@mavenbird.com",
+          "homepage": "https://www.mavenbird.com",
+          "role": "Technical Support"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4":  { 
+            "Mavenbird\\OrderInformation\\": ""
+        }
+    }
+}

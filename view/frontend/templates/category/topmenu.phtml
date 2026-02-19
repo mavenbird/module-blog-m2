@@ -1,0 +1,44 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+
+use Mavenbird\Blog\Block\Category\Menu;
+use Magento\Framework\Escaper;
+
+/** @var Menu $block */
+/** @var Escaper $escaper */
+$categories = $block->getCollections();
+?>
+<li class="level0 category-item level-top parent ui-menu-item" role="presentation">
+    <a href="<?= $escaper->escapeUrl($block->getBlogHomeUrl()) ?>"
+       class="level-top ui-corner-all" aria-haspopup="true" id="ui-id-6" tabindex="-1" role="menuitem">
+        <?php if ($categories->getSize()) : ?>
+            <span class="ui-menu-icon ui-icon ui-icon-carat-1-e"></span>
+        <?php endif; ?>
+        <span><?= $escaper->escapeHtml($block->getBlogHomePageTitle()) ?></span>
+    </a>
+    <?php if ($categories->getSize()) : ?>
+        <ul class="level0 submenu ui-menu ui-widget ui-widget-content ui-corner-all" role="menu" aria-expanded="false" style="display: none; top: 47px; left: -0.15625px;" aria-hidden="true">
+            <?php foreach ($categories as $category) : ?>
+                <?= /* @noEscape */ $block->getMenuHtml($category)?>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif;?>
+</li>

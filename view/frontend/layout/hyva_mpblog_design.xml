@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Mavenbird_Core::css/grid-mavenbird.css"/>
+        <css src="Mavenbird_Core::css/font-awesome.min.css"/>
+        <css src="Mavenbird_Blog::css/hyvaBlog.css"/>
+
+        <script src="Mavenbird_Blog::js/splide.min.js" />
+        <css src="Mavenbird_Blog::css/splide.min.css" />
+    </head>
+    <body>
+        <referenceContainer name="columns">
+            <container name="div.sidebar.main" htmlTag="div" htmlClass="sidebar sidebar-main" before="main">
+                <container name="blog.sidebar.main" as="sidebar_main" label="Sidebar Main">
+                    <block class="Mavenbird\Blog\Block\Sidebar\Search" name="mpblog.sidebar.search" template="Mavenbird_Blog::hyva/sidebar/search.phtml" ifconfig="blog/sidebar/search/enable_search"/>
+                    <block class="Mavenbird\Blog\Block\Sidebar\MostView" name="mpblog.sidebar.mostview" template="Mavenbird_Blog::hyva/sidebar/mostview.phtml" ifconfig="blog/sidebar/recent_post/enable_widget"/>
+                    <block class="Mavenbird\Blog\Block\Category\Widget" name="mpblog.sidebar.category" template="Mavenbird_Blog::hyva/category/widget.phtml"/>
+                    <block class="Mavenbird\Blog\Block\MonthlyArchive\Widget" name="mpblog.sidebar.monthly" template="Mavenbird_Blog::monthly/widget.phtml"/>
+                    <block class="Mavenbird\Blog\Block\Topic\Widget" name="mpblog.sidebar.topic" template="Mavenbird_Blog::topic/widget.phtml"/>
+                    <block class="Mavenbird\Blog\Block\Tag\Widget" name="mpblog.sidebar.tag" template="Mavenbird_Blog::tag/widget.phtml"/>
+                </container>
+            </container>
+        </referenceContainer>
+
+        <referenceBlock name="mpblog.design">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Mavenbird_Blog::hyva/design.phtml</argument>
+            </action>
+        </referenceBlock>
+
+    </body>
+</page>

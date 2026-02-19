@@ -1,0 +1,90 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+
+use Mavenbird\Blog\Block\Frontend;
+use Mavenbird\Blog\Model\Post;
+use Magento\Framework\Escaper;
+
+/** @var Frontend $block */
+/** @var Escaper $escaper */
+?>
+<div class="mb-blog-rss">
+    <a href="<?= $escaper->escapeUrl($block->getRssUrl('post/rss')) ?>" class="bb-rss-icon">
+        <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/rss.png')) ?>"
+             width="16px">
+    </a>
+</div>
+<div class="post-list-content" id="mpblog-list-container">
+    <?php $postCollection = $block->getPostCollection(); ?>
+    <?php if ($postCollection && $postCollection->getSize()) : ?>
+        <div class="post-list-body <?= $block->isGridView() ? /* @noEscape */ 'grid products-grid' : '' ?>">
+            <?php /** @var Post $post */
+            foreach ($postCollection as $post) : ?>
+                <div class="item product product-item post-list-item <?= $block->isGridView()
+                    ? ' post-item-grid  ' : ' post-item-list  '; ?>">
+                    <div class="post-item-wraper">
+                        <?php if ($post->getImage()) : ?>
+                            <div class="post-image">
+                                <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
+                                    <img class="img-responsive"
+                                         src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(), '400x')) ?>"
+                                         alt="<?= $escaper->escapeHtml($post->getName()); ?>"/>
+                                </a>
+                            </div>
+                        <?php endif; ?>
+                        <div class="post-info-wraper">
+                            <h2 class="mb-post-title">
+                                <a class="post-link-title" title="<?= $escaper->escapeHtml($post->getName()); ?>"
+                                   href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
+                                    <?= $escaper->escapeHtml($post->getName()) ?>
+                                </a>
+                            </h2>
+                            <div class="mb-post-info">
+                                <?= /** @noEscape */ $block->getPostInfo($post) ?>
+                            </div>
+                            <div class="post-short-description">
+                                <p><?= /** @noEscape */ $block->maxShortDescription($post->getShortDescription()) ?></p>
+                            </div>
+                            <div class="mb-clearfix"></div>
+                            <div class="mb-post-meta-info mb-alignright">
+                                <div class="actions">
+                                    <a class="mb-read-more" href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
+                                       title="<?= $escaper->escapeHtmlAttr(__('Read More')) ?>">
+                                        <?= $escaper->escapeHtml(__('Read More')) ?>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <?= $block->getPagerHtml() ?>
+    <?php else : ?>
+        <?= $escaper->escapeHtml(__('There are no posts at this moment')) ?>
+    <?php endif; ?>
+    <?= $block->getChildHtml('additional'); ?>
+</div>
+<style>
+    .limiter {
+        float: right;
+    }
+</style>

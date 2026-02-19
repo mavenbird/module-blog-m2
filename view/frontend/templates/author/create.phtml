@@ -1,0 +1,33 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+use Magento\Framework\Escaper;
+
+/** @var Escaper $escaper */
+?>
+<?php if ($block->isBlogEnabled()) : ?>
+    <div class="field choice mb-blog-sign-up-author">
+        <input type="checkbox" name="is_mp_author" title="<?= $block->escapeHtmlAttr(__('Sign Up to be an Author')) ?>"
+               value="1" id="is_mp_author" class="checkbox">
+        <label for="is_mp_author" class="label">
+            <span><?= $escaper->escapeHtml(__('Sign Up to be an Author')) ?></span>
+        </label>
+    </div>
+<?php endif; ?>

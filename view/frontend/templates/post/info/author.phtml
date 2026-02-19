@@ -1,0 +1,52 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+
+use Mavenbird\Blog\Block\Post\View;
+use Mavenbird\Blog\Helper\Image;
+use Mavenbird\Blog\Model\Config\Source\Comments\Type;
+use Magento\Framework\Escaper;
+
+/** @var View $block */
+/** @var Escaper $escaper */
+$helper       = $block->getBlogHelper();
+$_post        = $block->getPost();
+$author       = $helper->getAuthorByPost($_post);
+$authorName   = $author !== null ? $author->getName() : '';
+$modifier     = $helper->getAuthorByPost($_post, true);
+$modifierName = $modifier !== null ? $modifier->getName() : '';
+?>
+<?php if ($authorName && $helper->showAuthorInfo()) : ?>
+    |
+    <span><i class="fa fa-user">&nbsp;</i>
+                            <?= __(
+                                'By: %1',
+                                '<a class="mb-info" href="' . $author->getUrl() . '">' . $authorName . '</a>'
+                            ) ?></span>
+    <?php if ($authorName != $modifierName && $modifierName) : ?>
+        |
+        <span><i class="fa fa-edit">&nbsp;</i>
+                                <?= __(
+                                    'Modify By: %1 at %2',
+                                    '<a class="mb-info" href="' . $modifier->getUrl() . '">' . $modifierName . '</a>',
+                                    $block->getDateFormat($_post->getUpdatedAt())
+                                ) ?></span>
+    <?php endif; ?>
+<?php endif; ?>

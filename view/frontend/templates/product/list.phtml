@@ -1,0 +1,292 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+
+use Magento\Catalog\Block\Product\ReviewRendererInterface;
+use Magento\Catalog\Model\Product;
+use Magento\Framework\App\Action\Action;
+use Mavenbird\Blog\Block\Post\RelatedProduct;
+use Magento\Framework\Escaper;
+
+/** @var $block RelatedProduct */
+/** @var Escaper $escaper */
+$_productCollection = $block->getLoadedProductCollection();
+$_helper            = $block->getHelper();
+?>
+<?php if (!$_productCollection->count()) : ?>
+    <div class="message info empty">
+        <div><?= $escaper->escapeHtml(__('We can\'t find products matching the selection.')) ?></div>
+    </div>
+<?php else : ?>
+    <?= $block->getToolbarHtml() ?>
+    <?= $block->getAdditionalHtml() ?>
+    <?php
+    if ($block->getMode() == 'grid') {
+        $viewMode         = 'grid';
+        $imageDisplayArea = 'category_page_grid';
+        $showDescription  = false;
+        $templateType     = ReviewRendererInterface::SHORT_VIEW;
+    } else {
+        $viewMode         = 'list';
+        $imageDisplayArea = 'category_page_list';
+        $showDescription  = true;
+        $templateType     = ReviewRendererInterface::FULL_VIEW;
+    }
+    /**
+     * Position for actions regarding image size changing in vde if needed
+     */
+    $pos = $block->getPositioned();
+    ?>
+    <div class="products wrapper <?= /* @noEscape */ $viewMode ?> products-<?= /* @noEscape */ $viewMode ?>">
+        <?php if ($block->relatedMode() !== '1') : ?>
+            <ol class="products list items product-items">
+                <?php /** @var Product $_product */ ?>
+                <?php foreach ($_productCollection as $_product) : ?>
+                    <li class="item product product-item">
+                        <div class="product-item-info" data-container="product-<?= /* @noEscape */ $viewMode ?>">
+                            <?php
+                            $productImage = $block->getImage($_product, $imageDisplayArea);
+                            if ($pos != null) {
+                                $position = ' style="left:' . $productImage->getWidth() . 'px;'
+                                    . 'top:' . $productImage->getHeight() . 'px;"';
+                            }
+                            ?>
+                            <?php // Product Image ?>
+                            <a href="<?= $escaper->escapeUrl($block->getParentProductUrl($_product)) ?>"
+                               class="product photo product-item-photo"
+                               tabindex="-1">
+                                <?= $productImage->toHtml() ?>
+                            </a>
+                            <div class="product details product-item-details">
+                                <?php
+                                $_productNameStripped = $block->stripTags($_product->getName(), null, true);
+                                ?>
+                                <strong class="product name product-item-name">
+                                    <a class="product-item-link"
+                                       href="<?= $escaper->escapeUrl($block->getParentProductUrl($_product)) ?>">
+                                        <?= /* @noEscape */ $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+                                    </a>
+                                </strong>
+                                <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
+                                <?= /* @noEscape */ $block->getProductPrice($_product) ?>
+                                <?= $block->getProductDetailsHtml($_product) ?>
+                                <div class="product-item-inner">
+                                    <div class="product actions product-item-actions"
+                                        <?= strpos((string) $pos, $viewMode . '-actions')
+                                            ? $escaper->escapeHtmlAttr($position) : '' ?>>
+                                        <div class="actions-primary"
+                                            <?= strpos((string) $pos, $viewMode . '-primary')
+                                                ? $escaper->escapeHtmlAttr($position) : '' ?>>
+                                            <?php if ($_product->isSaleable()) : ?>
+                                                <?php $postParams = $block->getAddToCartPostParams($_product); ?>
+                                                <form data-role="tocart-form"
+                                                      data-product-sku="<?= $escaper->escapeHtml($_product->getSku()) ?>"
+                                                      action="<?= $escaper->escapeUrl($postParams['action']) ?>"
+                                                      method="post">
+                                                    <input type="hidden" name="product"
+                                                           value="<?=/* @noEscape */ $postParams['data']['product'] ?>">
+                                                    <input type="hidden" name="<?= /* @noEscape */
+                                                    Action::PARAM_NAME_URL_ENCODED ?>"
+                                                           value="<?= /* @noEscape */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
+                                                    <?= $block->getBlockHtml('formkey') ?>
+                                                    <button type="submit"
+                                                            title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
+                                                            class="action tocart primary">
+                                                        <span><?= $escaper->escapeHtml(__('Add to Cart')) ?></span>
+                                                    </button>
+                                                </form>
+                                            <?php else : ?>
+                                                <?php if ($_product->isAvailable()) : ?>
+                                                    <div class="stock available">
+                                                        <span><?= $escaper->escapeHtml(__('In stock')) ?></span></div>
+                                                <?php else : ?>
+                                                    <div class="stock unavailable">
+                                                        <span><?= $escaper->escapeHtml(__('Out of stock')) ?></span></div>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </div>
+                                        <div data-role="add-to-links" class="actions-secondary"
+                                            <?= strpos((string) $pos, $viewMode . '-secondary')
+                                                ? $escaper->escapeHtmlAttr($position) : '' ?>>
+                                            <?php if ($addToBlock = $block->getChildBlock('addto')) : ?>
+                                                <?= $addToBlock->setProduct($_product)->getChildHtml() ?>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                    <?php if ($showDescription) : ?>
+                                        <div class="product description product-item-description">
+                                            <?= /* @noEscape */ $_helper->productAttribute(
+                                                $_product,
+                                                $_product->getShortDescription(),
+                                                'short_description'
+                                            ) ?>
+                                            <a href="<?= $escaper->escapeUrl($block->getParentProductUrl($_product)) ?>"
+                                               title="<?= /* @noEscape */ $_productNameStripped ?>"
+                                               class="action more"><?= $escaper->escapeHtml(__('Learn More')) ?></a>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ol>
+        <?php else : ?>
+            <div class="owl-carousel owl-theme">
+                <?php /** @var $_product Product */ ?>
+                <?php foreach ($_productCollection as $_product) : ?>
+                    <div class="item product product-item mb-blog-slider-item">
+                        <div class="product-item-info" data-container="product-<?= /* @noEscape */ $viewMode ?>">
+                            <?php
+                            $productImage = $block->getImage($_product, $imageDisplayArea);
+                            if ($pos != null) {
+                                $position = ' style="left:' . $productImage->getWidth() . 'px;'
+                                    . 'top:' . $productImage->getHeight() . 'px;"';
+                            }
+                            ?>
+                            <?php // Product Image ?>
+                            <a href="<?= $escaper->escapeUrl($block->getParentProductUrl($_product)) ?>"
+                               class="product photo product-item-photo"
+                               tabindex="-1">
+                                <?= $productImage->toHtml() ?>
+                            </a>
+                            <div class="product details product-item-details">
+                                <?php
+                                $_productNameStripped = $block->stripTags($_product->getName(), null, true);
+                                ?>
+                                <strong class="product name product-item-name">
+                                    <a class="product-item-link"
+                                       href="<?= $escaper->escapeUrl($block->getParentProductUrl($_product)) ?>">
+                                        <?= /* @noEscape */
+                                        $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+                                    </a>
+                                </strong>
+                                <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
+                                <?= /* @noEscape */ $block->getProductPrice($_product) ?>
+                                <?= $block->getProductDetailsHtml($_product) ?>
+                                <div class="product-item-inner">
+                                    <div class="product actions product-item-actions"
+                                        <?= strpos((string) $pos, $viewMode . '-actions')
+                                            ? $escaper->escapeHtmlAttr($position) : '' ?>>
+                                        <div class="actions-primary"
+                                            <?= strpos((string) $pos, $viewMode . '-primary')
+                                                ? $escaper->escapeHtmlAttr($position) : '' ?>>
+                                            <?php if ($_product->isSaleable()) : ?>
+                                                <?php $postParams = $block->getAddToCartPostParams($_product); ?>
+                                                <form data-role="tocart-form"
+                                                      data-product-sku="<?= $escaper->escapeHtml($_product->getSku()) ?>"
+                                                      action="<?= $escaper->escapeUrl($postParams['action']) ?>"
+                                                      method="post">
+                                                    <input type="hidden"
+                                                           name="product"
+                                                           value="<?= /* @noEscape */ $postParams['data']['product'] ?>">
+                                                    <input type="hidden" name="<?= /* @noEscape */
+                                                    Action::PARAM_NAME_URL_ENCODED ?>"
+                                                           value="<?= /* @noEscape */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
+                                                    <?= $block->getBlockHtml('formkey') ?>
+                                                    <button type="submit"
+                                                            title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
+                                                            class="action tocart primary">
+                                                        <span><?= $escaper->escapeHtml(__('Add to Cart')) ?></span>
+                                                    </button>
+                                                </form>
+                                            <?php else : ?>
+                                                <?php if ($_product->isAvailable()) : ?>
+                                                    <div class="stock available">
+                                                        <span><?= $escaper->escapeHtml(__('In stock')) ?></span></div>
+                                                <?php else : ?>
+                                                    <div class="stock unavailable">
+                                                        <span><?= $escaper->escapeHtml(__('Out of stock')) ?></span></div>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </div>
+                                        <div data-role="add-to-links" class="actions-secondary"
+                                            <?= strpos((string) $pos, $viewMode . '-secondary')
+                                                ? $escaper->escapeHtmlAttr($position) : '' ?>>
+                                            <?php if ($addToBlock = $block->getChildBlock('addto')) : ?>
+                                                <?= $addToBlock->setProduct($_product)->getChildHtml() ?>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                    <?php if ($showDescription) : ?>
+                                        <div class="product description product-item-description">
+                                            <?= /* @noEscape */ $_helper->productAttribute(
+                                                $_product,
+                                                $_product->getShortDescription(),
+                                                'short_description'
+                                            ) ?>
+                                            <a href="<?= $escaper->escapeUrl($block->getParentProductUrl($_product)) ?>"
+                                               title="<?= /* @noEscape */ $_productNameStripped ?>"
+                                               class="action more"><?= $escaper->escapeHtml(__('Learn More')) ?></a>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <style>
+                .item.product.product-item.mb-blog-slider-item {
+                    width: 85%;
+                    text-align: center;
+                    height: 450px;
+                    margin-top: 5px;
+                }
+
+                .owl-stage-outer {
+                    padding-left: 5px;
+                }
+            </style>
+            <script>
+                require([
+                    'jquery',
+                    'owlCarousel'
+                ], function ($) {
+                    'use strict';
+                    $(document).ready(function () {
+                        $(".owl-carousel").owlCarousel({
+                            items: 4,
+                            loop: false,
+                            margin: 10,
+                            responsive: {
+                                600: {
+                                    items: 4
+                                }
+                            }
+                        });
+                    });
+                });
+            </script>
+        <?php endif; ?>
+    </div>
+    <?= $block->getToolbarHtml() ?>
+    <?php if (!$block->isRedirectToCartEnabled()) : ?>
+        <script type="text/x-magento-init">
+            {
+                "[data-role=tocart-form], .form.map.checkout": {
+                    "catalogAddToCart": {
+                        "product_sku": "<?= $escaper->escapeJs($_product->getSku()) ?>"
+                    }
+                }
+            }
+        </script>
+    <?php endif; ?>
+<?php endif; ?>
