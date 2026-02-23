@@ -65,6 +65,21 @@
         </arguments>
     </type>
 
+    <!-- <type name="Magento\Sitemap\Model\Sitemap">
+        <plugin name="mavenbird_blog_sitemap"
+                type="Mavenbird\Blog\Plugin\SitemapPlugin"/>
+    </type> -->
+
+    <type name="Magento\Sitemap\Model\ItemProvider\Composite">
+        <arguments>
+            <argument name="itemProviders" xsi:type="array">
+                <item name="mavenbird_blog" xsi:type="object">
+                    Mavenbird\Blog\Model\Sitemap\Blog
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
     <preference for="Mavenbird\Blog\Api\Data\PostInterface" type="Mavenbird\Blog\Model\Post" />
     <preference for="Mavenbird\Blog\Api\Data\CommentInterface" type="Mavenbird\Blog\Model\Comment" />
     <preference for="Mavenbird\Blog\Api\Data\TagInterface" type="Mavenbird\Blog\Model\Tag" />
@@ -83,4 +98,6 @@
     <preference for="Mavenbird\Blog\Api\Data\SearchResult\TagSearchResultInterface" type="Mavenbird\Blog\Model\ResourceModel\Tag\Collection" />
     <preference for="Mavenbird\Blog\Api\Data\SearchResult\TopicSearchResultInterface" type="Mavenbird\Blog\Model\ResourceModel\Topic\Collection" />
     <preference for="Mavenbird\Blog\Api\Data\SearchResult\CommentSearchResultInterface" type="Mavenbird\Blog\Model\ResourceModel\Comment\Collection" />
+
+
 </config>

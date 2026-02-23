@@ -25,6 +25,7 @@
         <sequence>
             <module name="Magento_Backend"/>
             <module name="Mavenbird_Core"/>
+            <module name="Magento_Sitemap"/>
         </sequence>
     </module>
 </config>
