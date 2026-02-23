@@ -27,7 +27,7 @@
     </head>
     <body>
         <referenceContainer name="content">
-            <block class="Mavenbird\Blog\Block\Post\ManagePost" name="mpblog.author.post" as="mpblog_post" template="Mavenbird_Blog::post/manage_post.phtml"/>
+            <block class="Mavenbird\Blog\Block\Post\ManagePost" name="mbblog.author.post" as="mbblog_post" template="Mavenbird_Blog::post/manage_post.phtml"/>
         </referenceContainer>
     </body>
 </page>

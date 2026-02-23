@@ -21,24 +21,12 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <head>
-        <css src="Mavenbird_Core::css/font-awesome.min.css"/>
-        <css src="Mavenbird_Blog::css/hyvaManagePost.css"/>
-        <css src="Mavenbird_Blog::css/hyvaBlog.css"/>
-
-        <script src="Mavenbird_Blog::js/ckeditor.js" />
-
-        <script src="Mavenbird_Blog::js/treeselectjs.umd.js" />
-        <css src="Mavenbird_Blog::css/treeselectjs.css" />
-    </head>
-    <update handle="hyva_form_validation"/>
-
+    <update handle="mbblog_design"/>
     <body>
-        <referenceBlock name="mpblog.design">
-            <action method="setTemplate">
-                <argument name="template" xsi:type="string">Mavenbird_Blog::hyva/design.phtml</argument>
-            </action>
-        </referenceBlock>
-
+        <referenceContainer name="content">
+            <block class="Mavenbird\Blog\Block\Post\Listpost" name="mbblog.post.list" as="mbblog_post" template="Mavenbird_Blog::post/list.phtml"/>
+            <block class="Magento\Framework\View\Element\Template" name="mbblog.copy.right" after="-" template="Mavenbird_Blog::html/copyright.phtml"/>
+        </referenceContainer>
     </body>
 </page>
+

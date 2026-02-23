@@ -56,7 +56,7 @@ class Edit extends Container
                         ]
                     ]
                 ],
-                'onclick' => 'mpBlogImport.initImportCheckConnection();'
+                'onclick' => 'mbBlogImport.initImportCheckConnection();'
             ],
             -100
         );

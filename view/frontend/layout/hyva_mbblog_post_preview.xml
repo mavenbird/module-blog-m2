@@ -21,12 +21,17 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <update handle="mpblog_design"/>
     <body>
-        <referenceContainer name="content">
-            <block class="Mavenbird\Blog\Block\Post\Listpost" name="mpblog.post.list" as="mpblog_post" template="Mavenbird_Blog::post/list.phtml"/>
-            <block class="Magento\Framework\View\Element\Template" name="mpblog.copy.right" after="-" template="Mavenbird_Blog::html/copyright.phtml"/>
-        </referenceContainer>
+        <referenceBlock name="mbblog.post.view" >
+            <action method="setTemplate" >
+                <argument name="template" xsi:type="string">Mavenbird_Blog::hyva/post/view.phtml</argument>
+            </action>
+        </referenceBlock>
+
+        <referenceBlock name="related.category.products">
+            <action method="setTemplate" >
+                <argument name="template" xsi:type="string">Mavenbird_Blog::hyva/product/list.phtml</argument>
+            </action>
+        </referenceBlock>
     </body>
 </page>
-

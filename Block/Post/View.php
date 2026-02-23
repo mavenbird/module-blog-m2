@@ -273,7 +273,7 @@ class View extends \Mavenbird\Blog\Block\Listpost
                         . $userCmt->getLastName();
                 }
                 $countLikes        = $this->getCommentLikes($comment['comment_id']);
-                $isLiked           = ($this->isLiked($comment['comment_id'])) ? "mpblog-liked" : "mpblog-like";
+                $isLiked           = ($this->isLiked($comment['comment_id'])) ? "mbblog-liked" : "mbblog-like";
                 $this->commentTree .= '<li id="cmt-id-' . $comment['comment_id']
                     . '" class="default-cmt__content__cmt-content__cmt-row cmt-row-'
                     . $comment['comment_id'] . ' cmt-row col-md-12'

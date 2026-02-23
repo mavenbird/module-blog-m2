@@ -21,277 +21,277 @@
  */
 -->
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
-    <route url="/V1/mpblog/post" method="GET">
+    <route url="/V1/mbblog/post" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getAllPost"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/monthly" method="GET">
+    <route url="/V1/mbblog/monthly" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getMonthlyArchive"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/monthly/:monthly/:year" method="GET">
+    <route url="/V1/mbblog/monthly/:monthly/:year" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getPostMonthlyArchive"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/config" method="GET">
+    <route url="/V1/mbblog/config" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getConfig"/>
         <resources>
             <resource ref="anonymous" />
         </resources>
     </route>
-    <route url="/V1/mpblog/post/view/:post_id" method="GET">
+    <route url="/V1/mbblog/post/view/:post_id" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getPostView"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/post/author/name/:author_name" method="GET">
+    <route url="/V1/mbblog/post/author/name/:author_name" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getPostViewByAuthorName"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/post/tag/name/:tag_name" method="GET">
+    <route url="/V1/mbblog/post/tag/name/:tag_name" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getPostByTagName"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/post/product/:post_id" method="GET">
+    <route url="/V1/mbblog/post/product/:post_id" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getProductByPost"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/post/related/:post_id" method="GET">
+    <route url="/V1/mbblog/post/related/:post_id" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getPostRelated"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/post/comment/add/:post_id" method="POST">
+    <route url="/V1/mbblog/post/comment/add/:post_id" method="POST">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="addCommentInPost"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/comment" method="GET">
+    <route url="/V1/mbblog/comment" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getAllComment"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/comment/view/:commentId" method="GET">
+    <route url="/V1/mbblog/comment/view/:commentId" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getCommentView"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/comment/list" method="GET">
+    <route url="/V1/mbblog/comment/list" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getCommentList"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/post/author/id/:author_id" method="GET">
+    <route url="/V1/mbblog/post/author/id/:author_id" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getPostViewByAuthorId"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/post/comment/:post_id" method="GET">
+    <route url="/V1/mbblog/post/comment/:post_id" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getPostComment"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/post/like/:post_id" method="GET">
+    <route url="/V1/mbblog/post/like/:post_id" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getPostLike"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/post/list" method="GET">
+    <route url="/V1/mbblog/post/list" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getPostList"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/post/create" method="POST">
+    <route url="/V1/mbblog/post/create" method="POST">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="createPost"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/post/delete/:post_id" method="DELETE">
+    <route url="/V1/mbblog/post/delete/:post_id" method="DELETE">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="deletePost"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/post/update/:post_id" method="PUT">
+    <route url="/V1/mbblog/post/update/:post_id" method="PUT">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="updatePost"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/tag" method="GET">
+    <route url="/V1/mbblog/tag" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getAllTag"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/tag/view/:tag_id" method="GET">
+    <route url="/V1/mbblog/tag/view/:tag_id" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getTagView"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/tag/list" method="GET">
+    <route url="/V1/mbblog/tag/list" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getTagList"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/tag/create" method="POST">
+    <route url="/V1/mbblog/tag/create" method="POST">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="createTag"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/tag/delete/:tag_id" method="DELETE">
+    <route url="/V1/mbblog/tag/delete/:tag_id" method="DELETE">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="deleteTag"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/tag/update/:tag_id" method="PUT">
+    <route url="/V1/mbblog/tag/update/:tag_id" method="PUT">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="updateTag"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/topic" method="GET">
+    <route url="/V1/mbblog/topic" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getAllTopic"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/topic/view/:topic_id" method="GET">
+    <route url="/V1/mbblog/topic/view/:topic_id" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getTopicView"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/topic/list" method="GET">
+    <route url="/V1/mbblog/topic/list" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getTopicList"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/topic/post/:topicId" method="GET">
+    <route url="/V1/mbblog/topic/post/:topicId" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getPostsByTopic"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/topic/create" method="POST">
+    <route url="/V1/mbblog/topic/create" method="POST">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="createTopic"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/topic/delete/:topic_id" method="DELETE">
+    <route url="/V1/mbblog/topic/delete/:topic_id" method="DELETE">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="deleteTopic"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/topic/update/:topic_id" method="PUT">
+    <route url="/V1/mbblog/topic/update/:topic_id" method="PUT">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="updateTopic"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/category" method="GET">
+    <route url="/V1/mbblog/category" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getAllCategory"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/category/view/:category_id" method="GET">
+    <route url="/V1/mbblog/category/view/:category_id" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getCategoryView"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/category/post/id/:category_id" method="GET">
+    <route url="/V1/mbblog/category/post/id/:category_id" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getPostsByCategoryId"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/post/category/:post_id" method="GET">
+    <route url="/V1/mbblog/post/category/:post_id" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getCategoriesByPostId"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/category/post/key/:category_key" method="GET">
+    <route url="/V1/mbblog/category/post/key/:category_key" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getPostsByCategory"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/category/list" method="GET">
+    <route url="/V1/mbblog/category/list" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getCategoryList"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/category/create" method="POST">
+    <route url="/V1/mbblog/category/create" method="POST">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="createCategory"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/category/delete/:category_id" method="DELETE">
+    <route url="/V1/mbblog/category/delete/:category_id" method="DELETE">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="deleteCategory"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/category/update/:category_id" method="PUT">
+    <route url="/V1/mbblog/category/update/:category_id" method="PUT">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="updateCategory"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/author" method="GET">
+    <route url="/V1/mbblog/author" method="GET">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="getAuthorList"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/author/create" method="POST">
+    <route url="/V1/mbblog/author/create" method="POST">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="createAuthor"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/author/delete/:author_id" method="DELETE">
+    <route url="/V1/mbblog/author/delete/:author_id" method="DELETE">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="deleteAuthor"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />
         </resources>
     </route>
-    <route url="/V1/mpblog/author/update/:author_id" method="PUT">
+    <route url="/V1/mbblog/author/update/:author_id" method="PUT">
         <service class="Mavenbird\Blog\Api\BlogRepositoryInterface" method="updateAuthor"/>
         <resources>
             <resource ref="Mavenbird_Blog::blog" />

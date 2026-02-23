@@ -25,7 +25,7 @@ define([
 ], function ($, modal, $t) {
     "use strict";
 
-    $.widget('mavenbird.mpBlogAuthor', {
+    $.widget('mavenbird.mbBlogAuthor', {
         options: {
             url: ''
         },
@@ -92,6 +92,6 @@ define([
         }
     });
 
-    return $.mavenbird.mpBlogAuthor;
+    return $.mavenbird.mbBlogAuthor;
 });
 

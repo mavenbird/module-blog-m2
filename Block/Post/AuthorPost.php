@@ -50,7 +50,7 @@ class AuthorPost extends \Mavenbird\Blog\Block\Listpost
             $collection->addFieldToFilter('author_id', $userId);
 
             if ($collection && $collection->getSize()) {
-                $pager         = $this->getLayout()->createBlock(Pager::class, 'mpblog.post.pager');
+                $pager         = $this->getLayout()->createBlock(Pager::class, 'mbblog.post.pager');
                 $perPageValues = (string) $this->helperData->getDisplayConfig('pagination');
                 $perPageValues = explode(',', $perPageValues ?? '');
                 $perPageValues = array_combine($perPageValues, $perPageValues);

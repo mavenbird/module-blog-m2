@@ -84,7 +84,7 @@ class LinkMenu
     {
         if ($links && !$this->_helper->getConfigGeneral('customer_approve')) {
             foreach ($links as $key => $link) {
-                if ($link->getPath() === 'mpblog/author/signup') {
+                if ($link->getPath() === 'mbblog/author/signup') {
                     $this->_helper->setCustomerContextId();
                     $author = $this->_helper->getCurrentAuthor();
                     if ($author === null || !$author->getId()) {

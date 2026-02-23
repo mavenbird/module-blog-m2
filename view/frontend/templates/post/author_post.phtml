@@ -37,7 +37,7 @@ $postCollection = $block->getPostCollection();
             <?= $escaper->escapeHtml(__('Add New Post')) ?>
         </button>
     </div>
-    <div class="post-list-content" id="mpblog-list-container">
+    <div class="post-list-content" id="mbblog-list-container">
         <?php if ($postCollection && count($postCollection) > 0) : ?>
             <div class="post-list-body">
                 <?php $i = 1 ?>
@@ -82,7 +82,7 @@ $postCollection = $block->getPostCollection();
                                 </div>
                             </div>
                             <div class="post-info-action" data-postId="<?= $escaper->escapeHtml($post->getId()); ?>">
-                                <div class="mpblog-post-duplicate">
+                                <div class="mbblog-post-duplicate">
                                     <img
                                         src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/duplicate.svg')) ?>"
                                         align="middle"
@@ -90,14 +90,14 @@ $postCollection = $block->getPostCollection();
                                         title="<?= $escaper->escapeHtmlAttr(__('Duplicate')) ?>"
                                     />
                                 </div>
-                                <div class="mpblog-post-edit" >
+                                <div class="mbblog-post-edit" >
                                     <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/writing.svg')) ?>"
                                          align="middle"
                                          alt="<?= $escaper->escapeHtmlAttr(__('Edit')); ?>"
                                          title="<?= $escaper->escapeHtmlAttr(__('Edit')) ?>"
                                     />
                                 </div>
-                                <div class="mpblog-post-delete">
+                                <div class="mbblog-post-delete">
                                     <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/delete.svg')) ?>"
                                          align="middle"
                                          alt="<?= $escaper->escapeHtmlAttr(__('Delete')) ?>"
@@ -124,7 +124,7 @@ $postCollection = $block->getPostCollection();
         {
             "*": {
                 "Mavenbird_Blog/js/managePost": {
-                    "deleteUrl": "<?= $escaper->escapeHtml($block->getUrl('mpblog/post/deletepost')) ?>",
+                    "deleteUrl": "<?= $escaper->escapeHtml($block->getUrl('mbblog/post/deletepost')) ?>",
                         "basePubUrl": "<?= $escaper->escapeHtml($block->getBaseMediaUrl()) ?>",
                         "postDatas": <?= $escaper->escapeHtml($block->getPostDatas($postCollection)) ?>,
                         "editorVersion": "<?= $escaper->escapeHtml($block->getVersion()) ?>",
@@ -138,5 +138,5 @@ $postCollection = $block->getPostCollection();
             $('.limiter').css('float', 'right');
         });
     </script>
-    <div id="mb-blog-new-post-popup" style="display: none"><?= $block->getChildHtml('mpblog_manage_post') ?></div>
+    <div id="mb-blog-new-post-popup" style="display: none"><?= $block->getChildHtml('mbblog_manage_post') ?></div>
 <?php endif; ?>

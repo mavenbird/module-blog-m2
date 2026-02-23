@@ -21,9 +21,17 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="mbblog_design"/>
     <body>
-        <referenceContainer name="fieldset.create.info.additional">
-            <block class="Mavenbird\Blog\Block\Frontend" ifconfig="blog/general/customer_approve" name="mbblog.author.create" as="mbblog.author.create" template="Mavenbird_Blog::author/create.phtml"/>
+        <referenceContainer name="content">
+            <block class="Mavenbird\Blog\Block\Author\Listpost" name="mbblog.post.list" template="Mavenbird_Blog::post/list.phtml"/>
         </referenceContainer>
+        <referenceContainer name="blog.sidebar.main">
+            <block class="Mavenbird\Blog\Block\Author\Widget" after="mbblog.sidebar.mostview" name="mbblog.view.sidebar.author" template="Mavenbird_Blog::author/widget.phtml"/>
+        </referenceContainer>
+        <referenceBlock name="mbblog.sidebar.category" remove="true"/>
+        <referenceBlock name="mbblog.sidebar.monthly" remove="true"/>
+        <referenceBlock name="mbblog.sidebar.topic" remove="true"/>
+        <referenceBlock name="mbblog.sidebar.tag" remove="true"/>
     </body>
 </page>

@@ -99,7 +99,7 @@ class Import extends Template
     {
         $importUrl = $this->getUrl('mavenbird_blog/import/import');
         $html = '&nbsp;&nbsp;<button id="word-press-import" href="' . $importUrl .
-            '" class="" type="button" onclick="mpBlogImport.importAction();">' .
+            '" class="" type="button" onclick="mbBlogImport.importAction();">' .
             '<span><span><span>Import</span></span></span></button>';
 
         return $html;

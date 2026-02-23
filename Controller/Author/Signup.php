@@ -98,12 +98,12 @@ class Signup extends Action
             return $page;
         }
         if ($this->_helperBlog->isAuthor() && $this->_helperBlog->getPostViewPageConfig('enable_to_save')) {
-            $resultRedirect->setPath('mpblog/post/save');
+            $resultRedirect->setPath('mbblog/post/save');
 
             return $resultRedirect;
         }
         if ($this->_helperBlog->isLogin()) {
-            $resultRedirect->setPath('mpblog/*/information');
+            $resultRedirect->setPath('mbblog/*/information');
         } else {
             $resultRedirect->setPath('customer/account');
         }

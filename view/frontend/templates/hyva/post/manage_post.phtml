@@ -27,8 +27,8 @@ use Magento\Framework\Escaper;
 ?>
 <button title="Close (Esc)" type="button" class="mfp-close" style="position: absolute;top: -5px;right: 10px;font-size: 25px;" onclick="hideMyDialogNewPost()">×</button>
 <form enctype="multipart/form-data" data-mage-init='{"validation": {}}'
-      action="<?= $escaper->escapeHtml($block->getUrl('mpblog/post/manage')) ?>" method="post" class="form"
-      name="mp_blog_post_form" id="mp_blog_post_form"
+      action="<?= $escaper->escapeHtml($block->getUrl('mbblog/post/manage')) ?>" method="post" class="form"
+      name="mb_blog_post_form" id="mb_blog_post_form"
       style="overflow-y: auto; height: 700px"
       x-data="Object.assign(hyva.formValidation($el), initAddNewPost())"
       @submit.prevent="submitForm();"
@@ -112,7 +112,7 @@ use Magento\Framework\Escaper;
     </fieldset>
     <div class="actions-toolbar">
         <div class="primary">
-            <button type="submit" class="action submit primary mpblog-action-new"
+            <button type="submit" class="action submit primary mbblog-action-new"
                     title="<?= $escaper->escapeHtmlAttr(__('Save')) ?>">
                 <span><?= $escaper->escapeHtml(__('Save')) ?></span>
             </button>
@@ -269,7 +269,7 @@ use Magento\Framework\Escaper;
             submitForm () {
                 this.validate()
                 .then(() => {
-                    const $form = document.querySelector('#mp_blog_post_form');
+                    const $form = document.querySelector('#mb_blog_post_form');
                     if (this.errors === 0) {
                         this.dispatchAddNewPostRequest($form);
                     }
@@ -315,7 +315,7 @@ use Magento\Framework\Escaper;
                     formData.append('image', imgElement.title);
                 }
 
-                fetch("<?= $escaper->escapeHtml($block->getUrl('mpblog/post/manage')) ?>", {
+                fetch("<?= $escaper->escapeHtml($block->getUrl('mbblog/post/manage')) ?>", {
                     method: 'POST',
                     headers: {
                         "X-Requested-With": "XMLHttpRequest"

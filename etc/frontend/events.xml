@@ -22,6 +22,6 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="customer_register_success">
-        <observer name="mp_blog_create_author" instance="Mavenbird\Blog\Observer\CreateAuthor"/>
+        <observer name="mb_blog_create_author" instance="Mavenbird\Blog\Observer\CreateAuthor"/>
     </event>
 </config>

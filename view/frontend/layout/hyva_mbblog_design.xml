@@ -33,17 +33,17 @@
         <referenceContainer name="columns">
             <container name="div.sidebar.main" htmlTag="div" htmlClass="sidebar sidebar-main" before="main">
                 <container name="blog.sidebar.main" as="sidebar_main" label="Sidebar Main">
-                    <block class="Mavenbird\Blog\Block\Sidebar\Search" name="mpblog.sidebar.search" template="Mavenbird_Blog::hyva/sidebar/search.phtml" ifconfig="blog/sidebar/search/enable_search"/>
-                    <block class="Mavenbird\Blog\Block\Sidebar\MostView" name="mpblog.sidebar.mostview" template="Mavenbird_Blog::hyva/sidebar/mostview.phtml" ifconfig="blog/sidebar/recent_post/enable_widget"/>
-                    <block class="Mavenbird\Blog\Block\Category\Widget" name="mpblog.sidebar.category" template="Mavenbird_Blog::hyva/category/widget.phtml"/>
-                    <block class="Mavenbird\Blog\Block\MonthlyArchive\Widget" name="mpblog.sidebar.monthly" template="Mavenbird_Blog::monthly/widget.phtml"/>
-                    <block class="Mavenbird\Blog\Block\Topic\Widget" name="mpblog.sidebar.topic" template="Mavenbird_Blog::topic/widget.phtml"/>
-                    <block class="Mavenbird\Blog\Block\Tag\Widget" name="mpblog.sidebar.tag" template="Mavenbird_Blog::tag/widget.phtml"/>
+                    <block class="Mavenbird\Blog\Block\Sidebar\Search" name="mbblog.sidebar.search" template="Mavenbird_Blog::hyva/sidebar/search.phtml" ifconfig="blog/sidebar/search/enable_search"/>
+                    <block class="Mavenbird\Blog\Block\Sidebar\MostView" name="mbblog.sidebar.mostview" template="Mavenbird_Blog::hyva/sidebar/mostview.phtml" ifconfig="blog/sidebar/recent_post/enable_widget"/>
+                    <block class="Mavenbird\Blog\Block\Category\Widget" name="mbblog.sidebar.category" template="Mavenbird_Blog::hyva/category/widget.phtml"/>
+                    <block class="Mavenbird\Blog\Block\MonthlyArchive\Widget" name="mbblog.sidebar.monthly" template="Mavenbird_Blog::monthly/widget.phtml"/>
+                    <block class="Mavenbird\Blog\Block\Topic\Widget" name="mbblog.sidebar.topic" template="Mavenbird_Blog::topic/widget.phtml"/>
+                    <block class="Mavenbird\Blog\Block\Tag\Widget" name="mbblog.sidebar.tag" template="Mavenbird_Blog::tag/widget.phtml"/>
                 </container>
             </container>
         </referenceContainer>
 
-        <referenceBlock name="mpblog.design">
+        <referenceBlock name="mbblog.design">
             <action method="setTemplate">
                 <argument name="template" xsi:type="string">Mavenbird_Blog::hyva/design.phtml</argument>
             </action>

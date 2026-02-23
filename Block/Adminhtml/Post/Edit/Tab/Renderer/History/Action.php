@@ -76,7 +76,7 @@ class Action extends \Magento\Backend\Block\Widget\Grid\Column\Renderer\Action
         try {
             $actions[] = [
                 'url' => $this->_storeManager->getStore()->getBaseUrl()
-                    . 'mpblog/post/preview?id=' . $row->getPostId() . '&historyId=' . $row->getId(),
+                    . 'mbblog/post/preview?id=' . $row->getPostId() . '&historyId=' . $row->getId(),
                 'popup' => true,
                 'caption' => __('Preview'),
             ];

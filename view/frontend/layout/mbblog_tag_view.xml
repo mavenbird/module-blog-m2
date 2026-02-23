@@ -20,14 +20,11 @@
  * @license     https://www.mavenbird.com/LICENSE.txt
  */
 -->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <update handle="mpblog_author"/>
-
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="mbblog_design"/>
     <body>
-        <referenceBlock name="blog_edit_form" >
-            <action method="setTemplate" >
-                <argument name="template" xsi:type="string">Mavenbird_Blog::hyva/author/signup.phtml</argument>
-            </action>
-        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Mavenbird\Blog\Block\Tag\Listpost" name="mb.blog.tag.post.list" template="Mavenbird_Blog::post/list.phtml"/>
+        </referenceContainer>
     </body>
 </page>

@@ -21,10 +21,23 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <update handle="mpblog_design"/>
+    <update handle="mbblog_author"/>
+    <update handle="hyva_modal"/>
+
     <body>
-        <referenceContainer name="content">
-            <block class="Mavenbird\Blog\Block\Tag\Listpost" name="mb.blog.tag.post.list" template="Mavenbird_Blog::post/list.phtml"/>
-        </referenceContainer>
+        <referenceBlock name="mbblog.author.post" >
+            <action method="setTemplate" >
+                <argument name="template" xsi:type="string">Mavenbird_Blog::hyva/post/author_post.phtml</argument>
+            </action>
+        </referenceBlock>
+
+        <referenceBlock name="mbblog.manage.post" >
+            <action method="setTemplate" >
+                <argument name="template" xsi:type="string">Mavenbird_Blog::hyva/post/manage_post.phtml</argument>
+            </action>
+        </referenceBlock>
+
+
     </body>
 </page>
+

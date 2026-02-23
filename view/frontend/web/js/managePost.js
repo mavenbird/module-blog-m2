@@ -28,7 +28,7 @@ define([
 ], function ($, $t, _, modal, registry, moment, editor) {
     'use strict';
 
-    $.widget('mavenbird.mpBlogManagePost', {
+    $.widget('mavenbird.mbBlogManagePost', {
             options: {
                 deleteUrl: '',
                 basePubUrl: '',
@@ -44,15 +44,15 @@ define([
                     self._AddNewPost(self, htmlPopup);
                 });
 
-                $('.mpblog-post-edit').on('click', function () {
+                $('.mbblog-post-edit').on('click', function () {
                     self._EditPost(self, this, htmlPopup);
                 });
 
-                $('.mpblog-post-duplicate').on('click', function () {
+                $('.mbblog-post-duplicate').on('click', function () {
                     self._DuplicatePost(self, this, htmlPopup);
                 });
 
-                $('.mpblog-post-delete').on('click', function () {
+                $('.mbblog-post-delete').on('click', function () {
                     self._DeletePost(self, this);
                 });
             },
@@ -71,7 +71,7 @@ define([
             _resetForm: function (postContent) {
                 var iframe = document.getElementById('post_content_ifr');
 
-                $('#mp_blog_post_form').trigger("reset");
+                $('#mb_blog_post_form').trigger("reset");
                 $('#short_description').empty();
                 $('#post_content').empty();
                 $('#post_id').removeAttr('value');
@@ -98,7 +98,7 @@ define([
                         'innerScroll': true,
                         'buttons': []
                     };
-                if (htmlPopup.find('#mp_blog_post_form [name="name"]').length > 0) {
+                if (htmlPopup.find('#mb_blog_post_form [name="name"]').length > 0) {
                     self._resetForm(postData['post_content']);
                 }
                 self._openPopup(options, htmlPopup, self);
@@ -106,7 +106,7 @@ define([
             },
             _setPopupFormData: function(postData, pubUrl, htmlPopup){
                 _.each(postData, function (value, name) {
-                    var field = htmlPopup.find('#mp_blog_post_form [name="' + name + '"]'),
+                    var field = htmlPopup.find('#mb_blog_post_form [name="' + name + '"]'),
                         imageEL,
                         deleteEL,
                         date;
@@ -157,7 +157,7 @@ define([
                         'buttons': []
                     };
 
-                if (htmlPopup.find('#mp_blog_post_form [name="name"]').length > 0) {
+                if (htmlPopup.find('#mb_blog_post_form [name="name"]').length > 0) {
                     self._resetForm(postData['post_content']);
                 }
                 self._openPopup(options, htmlPopup, self);
@@ -193,12 +193,12 @@ define([
 
                 popupModal = modal(options, htmlPopup);
                 popupModal.openModal();
-                $('#mp_blog_post_form').trigger('contentUpdated');
+                $('#mb_blog_post_form').trigger('contentUpdated');
 
                 editor.config('post_content', editorVersion, magentoVersion);
             }
         }
     );
 
-    return $.mavenbird.mpBlogManagePost;
+    return $.mavenbird.mbBlogManagePost;
 });

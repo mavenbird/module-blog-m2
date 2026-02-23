@@ -30,13 +30,13 @@ use Magento\Framework\Escaper;
         content: unset;
     }
 </style>
-<div class="mpblog-search">
+<div class="mbblog-search">
     <div class="field search">
-        <label class="label" for="mpblog-search-box" data-role="minisearch-label">
+        <label class="label" for="mbblog-search-box" data-role="minisearch-label">
             <span><?= $escaper->escapeHtml(__('Search')) ?></span>
         </label>
         <div class="control">
-            <input id="mpblog-search-box"
+            <input id="mbblog-search-box"
                    type="text"
                    name="query"
                    value="<?= $escaper->escapeHtmlAttr($block->getRequest()->getParam('query')) ?>"
@@ -60,7 +60,7 @@ use Magento\Framework\Escaper;
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var visibleImage = <?php echo /** @noEscape */   json_encode($block->getSidebarConfig('search/show_image')); ?>;
-        var searchBox    = document.getElementById('mpblog-search-box');
+        var searchBox    = document.getElementById('mbblog-search-box');
         let minChars =  <?= $block->getSidebarConfig('search/min_chars') ?: 1; ?>;
         searchBox.addEventListener('input', function () {
             var searchTerm = searchBox.value;
@@ -89,14 +89,14 @@ use Magento\Framework\Escaper;
                             }
                             existedPost             = true;
                             var suggestionDiv       = document.createElement('div');
-                            suggestionDiv.className = 'mpblog-suggestion';
+                            suggestionDiv.className = 'mbblog-suggestion';
 
                             var suggestionDivParrent       = document.createElement('div');
                             suggestionDivParrent.className = 'autocomplete-suggestion list-post-tabs cursor-pointer';
 
                             if (visibleImage && visibleImage !== '0') {
                                 var suggestionLeftDiv       = document.createElement('div');
-                                suggestionLeftDiv.className = 'mpblog-suggestion-left';
+                                suggestionLeftDiv.className = 'mbblog-suggestion-left';
                                 var img                     = document.createElement('img');
                                 img.className               = 'img-responsive';
                                 img.src                     = suggestion.image;
@@ -105,17 +105,17 @@ use Magento\Framework\Escaper;
                             }
 
                             var suggestionRightDiv       = document.createElement('div');
-                            suggestionRightDiv.className = 'mpblog-suggestion-right ' + (visibleImage ? 'image-visible' : '');
+                            suggestionRightDiv.className = 'mbblog-suggestion-right ' + (visibleImage ? 'image-visible' : '');
 
                             var productLineDiv         = document.createElement('div');
-                            productLineDiv.className   = 'mpblog-product-line mpblog-product-name';
+                            productLineDiv.className   = 'mbblog-product-line mbblog-product-name';
                             productLineDiv.textContent = suggestion.value;
                             suggestionRightDiv.appendChild(productLineDiv);
 
                             var productDesDiv       = document.createElement('div');
-                            productDesDiv.className = 'mpblog-product-des';
+                            productDesDiv.className = 'mbblog-product-des';
                             var shortDesP           = document.createElement('p');
-                            shortDesP.className     = 'mpblog-short-des';
+                            shortDesP.className     = 'mbblog-short-des';
                             shortDesP.textContent   = suggestion.desc;
                             productDesDiv.appendChild(shortDesP);
 

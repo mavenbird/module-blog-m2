@@ -26,8 +26,8 @@ use Magento\Framework\Escaper;
 /** @var Escaper $escaper */
 ?>
 <form enctype="multipart/form-data" data-mage-init='{"validation": {}}'
-      action="<?= $escaper->escapeHtml($block->getUrl('mpblog/post/manage'))?>" method="post" class="form"
-      name="mp_blog_post_form" id="mp_blog_post_form">
+      action="<?= $escaper->escapeHtml($block->getUrl('mbblog/post/manage'))?>" method="post" class="form"
+      name="mb_blog_post_form" id="mb_blog_post_form">
     <fieldset class="fieldset">
         <div class="field required mb-field">
             <label for="name" class="label"><span><?= $escaper->escapeHtml(__('Post Name')) ?></span></label>
@@ -115,7 +115,7 @@ use Magento\Framework\Escaper;
     </fieldset>
     <div class="actions-toolbar">
         <div class="primary">
-            <button type="button" class="action submit primary mpblog-action-new"
+            <button type="button" class="action submit primary mbblog-action-new"
                     title="<?= $escaper->escapeHtmlAttr(__('Save')) ?>">
                 <span><?= $escaper->escapeHtml(__('Save')) ?></span>
             </button>

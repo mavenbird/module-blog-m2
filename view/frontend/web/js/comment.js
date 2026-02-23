@@ -93,17 +93,17 @@ require([
                 if (isLogged === 'Yes') {
                     var likeCount = $(this).find('span').text();
                     if ($(this).attr('click') === '1') {
-                        if ($(this).hasClass('mpblog-liked')) {
+                        if ($(this).hasClass('mbblog-liked')) {
                             $(this).css('color', '#333333');
                             likeCount--;
                             $(this).find('span').text((likeCount === 0) ? "" : likeCount);
-                            $(this).removeClass('mpblog-liked')
+                            $(this).removeClass('mbblog-liked')
 
                         } else {
                             likeCount++;
                             $(this).find('span').text(likeCount);
                             $(this).css('color', likedColor);
-                            $(this).addClass('mpblog-liked')
+                            $(this).addClass('mbblog-liked')
                         }
                         $.ajax({
                             type: "POST",
@@ -262,7 +262,7 @@ require([
             + (isReply ? ('reply-row') : '') + '" data-cmt-id="' + cmt.cmt_id + '"' + (isReply ? ('data-reply-id="' + cmt.reply_cmt + '"') : '')
             + '> <div class="cmt-row__cmt-username"> <span class="cmt-row__cmt-username username username__' + cmt.cmt_id + '">' + cmt.user_cmt
             + '</span> </div> <div class="cmt-row__cmt-content"> <p>' + htmlComment(cmt.cmt_text)
-            + '</p> </div> <div class="cmt-row__cmt-interactions interactions"> <div class="interactions__btn-actions"> <a class="interactions__btn-actions action btn-like mpblog-like" data-cmt-id="'
+            + '</p> </div> <div class="cmt-row__cmt-interactions interactions"> <div class="interactions__btn-actions"> <a class="interactions__btn-actions action btn-like mbblog-like" data-cmt-id="'
             + cmt.cmt_id + '" click="1"><i class="fa fa-thumbs-up" aria-hidden="true" style="margin-right: 3px"></i><span class="count-like__like-text"></span></a> <a class="interactions__btn-actions action btn-reply" data-cmt-id="'
             + cmt.cmt_id + '">' + reply + '</a>  </div> <div class="interactions__cmt-createdat"> <span>' + cmt.created_at + '</span> </div> </div> </li>';
 

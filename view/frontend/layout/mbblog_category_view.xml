@@ -21,15 +21,10 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <update handle="mpblog_author"/>
+    <update handle="mbblog_design"/>
     <body>
         <referenceContainer name="content">
-            <block class="Mavenbird\Blog\Block\Post\AuthorPost" name="mpblog.author.post" as="mpblog_post" template="Mavenbird_Blog::post/author_post.phtml" cacheable="false">
-                <block class="Mavenbird\Blog\Block\Post\ManagePost" name="mpblog.manage.post" as="mpblog_manage_post" template="Mavenbird_Blog::post/manage_post.phtml">
-                    <block name="field_additional"/>
-                </block>
-            </block>
+            <block class="Mavenbird\Blog\Block\Category\Listpost" name="mb.blog.category.post.list" template="Mavenbird_Blog::post/list.phtml"/>
         </referenceContainer>
     </body>
 </page>
-

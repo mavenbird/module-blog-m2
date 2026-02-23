@@ -90,13 +90,13 @@ class Router implements RouterInterface
             return null;
         }
 
-        $request->setModuleName('mpblog')
+        $request->setModuleName('mbblog')
             ->setAlias(Url::REWRITE_REQUEST_PATH_ALIAS, $identifier . $urlSuffix);
         $controller = array_shift($routePath);
         if (!$controller) {
             $request->setControllerName('post')
                 ->setActionName('index')
-                ->setPathInfo('/mpblog/post/index');
+                ->setPathInfo('/mbblog/post/index');
 
             return $this->actionFactory->create(Forward::class);
         }
@@ -107,7 +107,7 @@ class Router implements RouterInterface
 
         $request->setControllerName($controller)
             ->setActionName($action)
-            ->setPathInfo('/mpblog/' . $controller . '/' . $action);
+            ->setPathInfo('/mbblog/' . $controller . '/' . $action);
 
         return $this->actionFactory->create(Forward::class);
     }

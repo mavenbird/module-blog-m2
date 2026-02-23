@@ -27,7 +27,7 @@
             <action method="setTemplate">
                 <argument name="template" xsi:type="string">Mavenbird_Blog::hyva/html/footer/links.phtml</argument>
             </action>
-            <block class="Mavenbird\Blog\Block\Html\Footer" name="mp_blog_footer_link" template="Mavenbird_Blog::hyva/html/footer.phtml" after="-" ifconfig="blog/general/enabled"/>
+            <block class="Mavenbird\Blog\Block\Html\Footer" name="mb_blog_footer_link" template="Mavenbird_Blog::hyva/html/footer.phtml" after="-" ifconfig="blog/general/enabled"/>
         </referenceBlock>
     </body>
 </page>

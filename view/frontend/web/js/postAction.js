@@ -24,17 +24,17 @@
     ], function ($) {
         'use strict';
 
-        $.widget('mavenbird.mpBlogPostAction', {
+        $.widget('mavenbird.mbBlogPostAction', {
                 options: {},
                 _create: function () {
                     var self = this;
 
-                    $('button.mpblog-action-new').on('click', function () {
+                    $('button.mbblog-action-new').on('click', function () {
                         self._AddNew();
                     });
                 },
                 _AddNew: function () {
-                    var form      = $('#mp_blog_post_form'),
+                    var form      = $('#mb_blog_post_form'),
                         formData  = new FormData(form[0]),
                         htmlPopup = $('#mb-blog-new-post-popup'),
                         url       = form.attr('action');
@@ -59,5 +59,5 @@
             }
         );
 
-        return $.mavenbird.mpBlogPostAction;
+        return $.mavenbird.mbBlogPostAction;
     });

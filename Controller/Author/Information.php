@@ -126,7 +126,7 @@ class Information extends Action
         }
 
         if ($this->_helperBlog->isLogin()) {
-            $resultRedirect->setPath('mpblog/*/signup');
+            $resultRedirect->setPath('mbblog/*/signup');
         } else {
             $resultRedirect->setPath('customer/account');
         }

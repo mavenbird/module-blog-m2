@@ -108,8 +108,8 @@ class Product extends Extended implements TabInterface
         $collection->clear();
 
         $collection->getSelect()->joinLeft(
-            ['mp_p' => $collection->getTable('mavenbird_blog_post_product')],
-            'e.entity_id = mp_p.entity_id',
+            ['mb_p' => $collection->getTable('mavenbird_blog_post_product')],
+            'e.entity_id = mb_p.entity_id',
             ['position']
         )->group('e.entity_id');
 

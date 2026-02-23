@@ -43,7 +43,7 @@ class Listpost extends Frontend
         $collection = $this->getCollection();
 
         if ($collection && $collection->getSize()) {
-            $pager = $this->getLayout()->createBlock(Pager::class, 'mpblog.post.pager');
+            $pager = $this->getLayout()->createBlock(Pager::class, 'mbblog.post.pager');
 
             $perPageValues = (string) $this->helperData
                 ->getDisplayConfig('pagination', $this->store->getStore()->getId());
@@ -143,7 +143,7 @@ class Listpost extends Frontend
             'title' => $label
         ];
 
-        if ($this->getRequest()->getFullActionName() !== 'mpblog_post_index') {
+        if ($this->getRequest()->getFullActionName() !== 'mbblog_post_index') {
             $data['link'] = $this->helperData->getBlogUrl();
         }
 
@@ -171,7 +171,7 @@ class Listpost extends Frontend
 
         $url = $object ? $object->getUrl() : $this->helperData->getBlogConfig('seo/url_key', $storeId);
 
-        if ($this->getRequest()->getFullActionName() === 'mpblog_post_view' && $url) {
+        if ($this->getRequest()->getFullActionName() === 'mbblog_post_view' && $url) {
             $this->pageConfig->addRemotePageAsset(
                 $url,
                 'canonical',

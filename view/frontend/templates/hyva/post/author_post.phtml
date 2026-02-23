@@ -63,13 +63,13 @@ $jsonData       = json_encode($postDatas);
         <header class="modal-header mb-3">
             <h3 id="popup_author_post" class="modal-title text-3xl border-b p-4" data-role="title">Add New Post</h3>
         </header>
-            {$block->getChildHtml('mpblog_manage_post')}
+            {$block->getChildHtml('mbblog_manage_post')}
     </div>
 HTML
             ) ?>
 
     </div>
-    <div class="post-list-content" id="mpblog-list-container">
+    <div class="post-list-content" id="mbblog-list-container">
         <?php if ($postCollection && count($postCollection) > 0) : ?>
             <div class="post-list-body">
                 <?php $i = 1 ?>
@@ -118,7 +118,7 @@ HTML
                                 </div>
                             </div>
                             <div class="post-info-action" data-postId="<?= $escaper->escapeHtml($post->getId()); ?>">
-                                <div class="mpblog-post-duplicate"
+                                <div class="mbblog-post-duplicate"
                                      onclick='handleDuplicate(this,<?= /** @noEscape */ $post->getId() ?>, "<?= /** @noEscape */ $post->getImage() ?>")'
                                 >
                                     <img
@@ -128,7 +128,7 @@ HTML
                                         title="<?= $escaper->escapeHtmlAttr(__('Duplicate')) ?>"
                                     />
                                 </div>
-                                <div class="mpblog-post-edit"
+                                <div class="mbblog-post-edit"
                                      onclick='handleEdit(this,<?= /** @noEscape */ $post->getId() ?>, "<?= /** @noEscape */ $post->getImage() ?>")'
                                 >
                                     <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/writing.svg')) ?>"
@@ -137,7 +137,7 @@ HTML
                                          title="<?= $escaper->escapeHtmlAttr(__('Edit')) ?>"
                                     />
                                 </div>
-                                <div class="mpblog-post-delete" onclick="handleDelete(this)">
+                                <div class="mbblog-post-delete" onclick="handleDelete(this)">
                                     <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/delete.svg')) ?>"
                                          align="middle"
                                          alt="<?= $escaper->escapeHtmlAttr(__('Delete')) ?>"
@@ -174,7 +174,7 @@ HTML
 
         function handleDelete (element) {
             var postId = element.closest('.post-info-action').getAttribute('data-postId');
-            fetch("<?= $escaper->escapeHtml($block->getUrl('mpblog/post/deletepost')) ?>", {
+            fetch("<?= $escaper->escapeHtml($block->getUrl('mbblog/post/deletepost')) ?>", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',

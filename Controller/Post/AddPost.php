@@ -40,7 +40,7 @@ class AddPost extends Action
     {
         $resultRedirect = $this->resultRedirectFactory->create();
 
-        $resultRedirect->setPath('mpblog/*/editpost');
+        $resultRedirect->setPath('mbblog/*/editpost');
 
         return $resultRedirect;
     }

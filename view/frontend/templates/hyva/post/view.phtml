@@ -42,7 +42,7 @@ $color        = $helper->getDisplayConfig('font_color');
                  width="16px">
         </a>
     </div>
-    <div class="mpcss post-view" id="mpblog-list-container">
+    <div class="mpcss post-view" id="mbblog-list-container">
         <div class="post-list-content col-md-12 col-sm-8">
             <div class="post-view-image col-xs-12">
                 <?php if ($_post->getImage()) : ?>
@@ -55,9 +55,9 @@ $color        = $helper->getDisplayConfig('font_color');
                 $block->getPageFilter($_post->getPostContent() ?: '') ?>
             </div>
             <div class="mb-clear"></div>
-            <?= $block->getChildHtml('mp_blog_post_info') ?>
+            <?= $block->getChildHtml('mb_blog_post_info') ?>
 
-            <?= $block->getChildHtml('mp_blog_post_slider') ?>
+            <?= $block->getChildHtml('mb_blog_post_slider') ?>
         </div>
     </div>
     <?php if ($helper->isEnabledReview()) : ?>
@@ -89,7 +89,7 @@ $color        = $helper->getDisplayConfig('font_color');
             {
                 "#mb-blog-review": {
                     "Mavenbird_Blog/js/helpful-rate": {
-                        "url": "<?= /* @noEscape */ $block->getUrl('mpblog/post/review') ?>",
+                        "url": "<?= /* @noEscape */ $block->getUrl('mbblog/post/review') ?>",
                         "post_id" : <?= /* @noEscape */ $_post->getId() ?>,
                         "mode": <?= /* @noEscape */ $helper->getReviewMode() ?>
             }
@@ -99,7 +99,7 @@ $color        = $helper->getDisplayConfig('font_color');
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 var options = {
-                    url: "<?= /* @noEscape */ $block->getUrl('mpblog/post/review') ?>",
+                    url: "<?= /* @noEscape */ $block->getUrl('mbblog/post/review') ?>",
                     post_id: "<?= /* @noEscape */ $_post->getId() ?>",
                     mode: "<?= /* @noEscape */ $helper->getReviewMode() ?>"
                 };
@@ -128,7 +128,7 @@ $color        = $helper->getDisplayConfig('font_color');
                         })
                         .catch(error => console.error('Error:', error));
                     } else {
-                        var storedPostData = JSON.parse(getCookie('mpblog_post_data'));
+                        var storedPostData = JSON.parse(getCookie('mbblog_post_data'));
                         if (storedPostData) {
                             subPostId = storedPostData;
                             if (subPostId[post_id] !== undefined) {
@@ -143,7 +143,7 @@ $color        = $helper->getDisplayConfig('font_color');
                                 currentPostIds = {},
                                 likeId         = 0;
 
-                            var storedPostIds = JSON.parse(getCookie('mpblog_post_data'));
+                            var storedPostIds = JSON.parse(getCookie('mbblog_post_data'));
 
                             if (this.classList.contains('mb-blog-like')) {
                                 action = 1;
@@ -154,7 +154,7 @@ $color        = $helper->getDisplayConfig('font_color');
                                 enableReview(storedPostIds[post_id].type);
                                 if (action === storedPostIds[post_id].type) {
                                     delete storedPostIds[post_id];
-                                    document.cookie = 'mpblog_post_data=' + JSON.stringify(storedPostIds);
+                                    document.cookie = 'mbblog_post_data=' + JSON.stringify(storedPostIds);
                                 } else {
                                     storedPostIds[post_id].type = action;
                                     disableReview(action);
@@ -177,7 +177,7 @@ $color        = $helper->getDisplayConfig('font_color');
                                     var storedPostIds = receiveCookiePostIds(post_id, action, response['postLike'], self);
                                     var jsonStringIds = JSON.stringify(storedPostIds);
 
-                                    document.cookie = 'mpblog_post_data=' + jsonStringIds + '; expires=Sun, 1 Jan 2023 00:00:00 GMT; path=/';
+                                    document.cookie = 'mbblog_post_data=' + jsonStringIds + '; expires=Sun, 1 Jan 2023 00:00:00 GMT; path=/';
                                 }
 
                                 if (response['status']) {
@@ -243,7 +243,7 @@ $color        = $helper->getDisplayConfig('font_color');
                             type: action,
                             likeId: likeId
                         },
-                        receivedJsonStr = getCookie('mpblog_post_data'),
+                        receivedJsonStr = getCookie('mbblog_post_data'),
                         postIds         = JSON.parse(receivedJsonStr) || {};
 
                     if (postIds[postId] !== undefined) {
@@ -572,7 +572,7 @@ $color        = $helper->getDisplayConfig('font_color');
         </div>
     <?php endif; ?>
 
-    <?= $block->getChildHtml('mp_blog_post_view_add') ?>
+    <?= $block->getChildHtml('mb_blog_post_view_add') ?>
 </div>
 <style>
     .default-cmt__content__cmt-content.row {
@@ -763,7 +763,7 @@ $color        = $helper->getDisplayConfig('font_color');
             '<p>' + htmlComment(cmt.cmt_text) + '</p> ' +
             '</div>' +
             '<div class="cmt-row__cmt-interactions interactions"> <div class="interactions__btn-actions"> ' +
-            '<a class="interactions__btn-actions action btn-like mpblog-like" data-cmt-id="' + cmt.cmt_id + '" click="1">' +
+            '<a class="interactions__btn-actions action btn-like mbblog-like" data-cmt-id="' + cmt.cmt_id + '" click="1">' +
             '<i class="fa fa-thumbs-up" aria-hidden="true" style="margin-right: 3px"></i>' +
             '<span class="count-like__like-text"></span>' +
             '</a>' +
@@ -817,16 +817,16 @@ $color        = $helper->getDisplayConfig('font_color');
                     var likeCountText = this.querySelector('span').textContent.trim();
                     var likeCount     = parseInt(likeCountText, 10) || 0; // Convert to integer, default to 0 if NaN
                     if (this.getAttribute('click') === '1') {
-                        if (this.classList.contains('mpblog-liked')) {
+                        if (this.classList.contains('mbblog-liked')) {
                             this.style.color = '#333333';
                             likeCount--;
                             this.querySelector('span').textContent = (likeCount === 0) ? "" : likeCount;
-                            this.classList.remove('mpblog-liked');
+                            this.classList.remove('mbblog-liked');
                         } else {
                             likeCount++;
                             this.querySelector('span').textContent = likeCount;
                             this.style.color                       = likedColor;
-                            this.classList.add('mpblog-liked');
+                            this.classList.add('mbblog-liked');
                         }
 
                         fetch(window.location.href, {

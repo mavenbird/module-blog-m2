@@ -30,13 +30,13 @@ use Magento\Framework\Escaper;
         content: unset;
     }
 </style>
-<div class="mpblog-search">
+<div class="mbblog-search">
     <div class="field search">
-        <label class="label" for="mpblog-search-box" data-role="minisearch-label">
+        <label class="label" for="mbblog-search-box" data-role="minisearch-label">
             <span><?= $escaper->escapeHtml(__('Search')) ?></span>
         </label>
         <div class="control">
-            <input id="mpblog-search-box"
+            <input id="mbblog-search-box"
                    type="text"
                    name="query"
                    value="<?= $escaper->escapeHtmlAttr($block->getRequest()->getParam('query')) ?>"
@@ -58,7 +58,7 @@ use Magento\Framework\Escaper;
     require(['jquery', 'mpDevbridgeAutocomplete'], function ($) {
         var visibleImage = <?= /** @noEscape */ $block->getSidebarConfig('search/show_image') ?>;
 
-        $('#mpblog-search-box').autocomplete({
+        $('#mbblog-search-box').autocomplete({
             lookup: <?= /** @noEscape */ $block->getSearchBlogData() ?>,
             lookupLimit: <?= $block->getSidebarConfig('search/search_limit') ?: 10; ?>,
             maxHeight: 2000,
@@ -71,16 +71,16 @@ use Magento\Framework\Escaper;
             },
             formatResult: function (suggestion, currentValue) {
                 var additionClass = '',
-                    html          = "<div class='mpblog-suggestion'>";
+                    html          = "<div class='mbblog-suggestion'>";
 
                 if (visibleImage) {
-                    html += "<div class='mpblog-suggestion-left'><img class='img-responsive' src='" + suggestion.image + "' /></div>";
+                    html += "<div class='mbblog-suggestion-left'><img class='img-responsive' src='" + suggestion.image + "' /></div>";
                     additionClass = 'image-visible';
                 }
 
-                html += "<div class='mpblog-suggestion-right " + additionClass + "'>" +
-                    "<div class='mpblog-product-line mpblog-product-name'>" + suggestion.value + "</div>" +
-                    "<div class='mpblog-product-des'><p class='mpblog-short-des'>" + suggestion.desc + "</p></div></div></div>";
+                html += "<div class='mbblog-suggestion-right " + additionClass + "'>" +
+                    "<div class='mbblog-product-line mbblog-product-name'>" + suggestion.value + "</div>" +
+                    "<div class='mbblog-product-des'><p class='mbblog-short-des'>" + suggestion.desc + "</p></div></div></div>";
 
                 return html;
             }

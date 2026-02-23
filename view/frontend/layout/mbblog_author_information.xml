@@ -21,15 +21,15 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <update handle="mpblog_signup"/>
+    <update handle="mbblog_author"/>
     <body>
         <referenceBlock name="page.main.title">
             <action method="setPageTitle">
-                <argument translate="true" name="title" xsi:type="string">Signup Author</argument>
+                <argument translate="true" name="title" xsi:type="string">Author Information</argument>
             </action>
         </referenceBlock>
         <referenceContainer name="content">
-            <block class="Mavenbird\Blog\Block\Author\SignupForm" name="blog_signup_form" template="Mavenbird_Blog::author/signup.phtml"/>
+            <block class="Mavenbird\Blog\Block\Author\SignupForm" name="blog_edit_form" template="Mavenbird_Blog::author/signup.phtml" cacheable="false"/>
         </referenceContainer>
     </body>
 </page>

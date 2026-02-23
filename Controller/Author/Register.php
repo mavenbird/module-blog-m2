@@ -129,11 +129,11 @@ class Register extends Action
 
             try {
                 $author->save();
-                $resultRedirect->setPath('mpblog/*/information');
+                $resultRedirect->setPath('mbblog/*/information');
                 $this->messageManager->addSuccessMessage($notify);
             } catch (Exception $e) {
                 $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the Author.'));
-                $resultRedirect->setPath('mpblog/*/signup');
+                $resultRedirect->setPath('mbblog/*/signup');
             }
         }
 

@@ -22,7 +22,7 @@ define([
 ], function ($) {
     'use strict';
 
-    $.widget('mavenbird.mpBlogHelpfulRate', {
+    $.widget('mavenbird.mbBlogHelpfulRate', {
             options: {
                 url: '',
                 post_id: '',
@@ -50,8 +50,8 @@ define([
                             }
                         }
                     });
-                } else if (JSON.parse(self.getCookie('mpblog_post_data'))) {
-                    subPostId = JSON.parse(self.getCookie('mpblog_post_data'));
+                } else if (JSON.parse(self.getCookie('mbblog_post_data'))) {
+                    subPostId = JSON.parse(self.getCookie('mbblog_post_data'));
                     if (typeof subPostId[post_id] !== "undefined") {
                         self.disableReview(subPostId[post_id].type);
                     }
@@ -66,8 +66,8 @@ define([
                             currentPostIds = {},
                             likeId         = 0;
 
-                        if (JSON.parse(self.getCookie('mpblog_post_data'))) {
-                            currentPostIds = JSON.parse(self.getCookie('mpblog_post_data'));
+                        if (JSON.parse(self.getCookie('mbblog_post_data'))) {
+                            currentPostIds = JSON.parse(self.getCookie('mbblog_post_data'));
                         }
 
                         if ($(this).hasClass('mb-blog-like')) {
@@ -79,7 +79,7 @@ define([
                             self.enableReview(currentPostIds[post_id].type);
                             if (action === currentPostIds[post_id].type) {
                                 delete currentPostIds[post_id];
-                                document.cookie = 'mpblog_post_data = ' + JSON.stringify(currentPostIds);
+                                document.cookie = 'mbblog_post_data = ' + JSON.stringify(currentPostIds);
                             } else {
                                 currentPostIds[post_id].type = action;
                                 self.disableReview(action);
@@ -104,7 +104,7 @@ define([
                                     storedPostIds   =
                                         self.receiveCookiePostIds(post_id, action, response['postLike'], self);
                                     jsonStringIds   = JSON.stringify(storedPostIds);
-                                    document.cookie = 'mpblog_post_data = ' + jsonStringIds;
+                                    document.cookie = 'mbblog_post_data = ' + jsonStringIds;
                                 }
 
                                 if (response['status']) {
@@ -172,7 +172,7 @@ define([
                         type: action,
                         likeId: likeId
                     },
-                    receivedJsonStr = self.getCookie('mpblog_post_data'),
+                    receivedJsonStr = self.getCookie('mbblog_post_data'),
                     postIds         = JSON.parse(receivedJsonStr);
 
                 if (postIds == null) {
@@ -189,5 +189,5 @@ define([
         }
     );
 
-    return $.mavenbird.mpBlogHelpfulRate;
+    return $.mavenbird.mbBlogHelpfulRate;
 });

@@ -35,7 +35,7 @@ use Magento\Framework\Escaper;
                 $('.columns').find('.sidebar.sidebar-main').remove();
             }
             <?php if ($block->getCurrentTheme() === "Etheme/yourstore") : ?>
-            body.addClass('mpblog-etheme-yourstore');
+            body.addClass('mbblog-etheme-yourstore');
             <?php endif; ?>
         });
     });
@@ -124,7 +124,7 @@ use Magento\Framework\Escaper;
         cursor: pointer;
     }
 
-    #mpblog-list-container a {
+    #mbblog-list-container a {
         text-decoration: none;
     }
 
@@ -140,7 +140,7 @@ use Magento\Framework\Escaper;
     ul.menu-categories a.list-categories:hover,
     .products-same-post a.product-item-link:hover,
     a.mb-relate-link,
-    .mpblog-product-name {
+    .mbblog-product-name {
         color: <?= /** @noEscape */ $color ?> !important;
     }
 
@@ -178,11 +178,11 @@ use Magento\Framework\Escaper;
         color: <?= /** @noEscape */ $color ?>;
     }
 
-    a.interactions__btn-actions.mpblog-like {
+    a.interactions__btn-actions.mbblog-like {
         color: #333333
     }
 
-    a.interactions__btn-actions.mpblog-liked {
+    a.interactions__btn-actions.mbblog-liked {
         color: <?= /** @noEscape */ $color ?>;
     }
 

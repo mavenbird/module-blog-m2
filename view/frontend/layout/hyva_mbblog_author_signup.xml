@@ -20,17 +20,14 @@
  * @license     https://www.mavenbird.com/LICENSE.txt
  */
 -->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <body>
-        <referenceBlock name="mpblog.post.view" >
-            <action method="setTemplate" >
-                <argument name="template" xsi:type="string">Mavenbird_Blog::hyva/post/view.phtml</argument>
-            </action>
-        </referenceBlock>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="mbblog_signup"/>
+    <update handle="hyva_form_validation"/>
 
-        <referenceBlock name="related.category.products">
+    <body>
+        <referenceBlock name="blog_signup_form" >
             <action method="setTemplate" >
-                <argument name="template" xsi:type="string">Mavenbird_Blog::hyva/product/list.phtml</argument>
+                <argument name="template" xsi:type="string">Mavenbird_Blog::hyva/author/signup.phtml</argument>
             </action>
         </referenceBlock>
     </body>
