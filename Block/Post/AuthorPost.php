@@ -163,7 +163,7 @@ class AuthorPost extends \Mavenbird\Blog\Block\Listpost
      */
     public function getAuthor()
     {
-        return $this->coreRegistry->registry('mp_author');
+        return $this->coreRegistry->registry('mb_author');
     }
 
     /**

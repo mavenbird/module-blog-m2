@@ -98,7 +98,7 @@ $author = $block->getAuthor();
         <div class="field mb-field">
             <label for="full_url" class="label"><span><?= $escaper->escapeHtml(__('Full URL')) ?></span></label>
             <div class="control">
-                <span class="mp_full_url">
+                <span class="mb_full_url">
                     <?= $escaper->escapeHtml($block->getUrl("blog/author")
                         . $author['url_key'] . $block->getUrlSuffix()) ?>
                 </span>
@@ -156,7 +156,7 @@ $author = $block->getAuthor();
         fieldset.fieldset {
             display: contents;
         }
-        fieldset.fieldset .control .mp_full_url {
+        fieldset.fieldset .control .mb_full_url {
             word-break: break-all;
         }
         .actions-toolbar {
@@ -177,7 +177,7 @@ $author = $block->getAuthor();
                 if ($(this).val() === '') {
                     url = '';
                 }
-                $('.mp_full_url').html(url);
+                $('.mb_full_url').html(url);
             });
             editor.config(
                 'short_description',

@@ -42,7 +42,7 @@ class SignupForm extends Frontend
      */
     public function getAuthor()
     {
-        $author = $this->coreRegistry->registry('mp_author');
+        $author = $this->coreRegistry->registry('mb_author');
 
         if ($author) {
             return [

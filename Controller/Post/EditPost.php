@@ -116,7 +116,7 @@ class EditPost extends Action
             if ($this->getRequest()->getParam('postId')) {
                 $author = $this->_helperBlog->getCurrentAuthor();
 
-                $this->coreRegistry->register('mp_author', $author);
+                $this->coreRegistry->register('mb_author', $author);
 
                 $page->getConfig()->getTitle()->set($author->getName());
             }

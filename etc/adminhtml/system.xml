@@ -29,7 +29,7 @@
             <resource>Mavenbird_Blog::configuration</resource>
             <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General</label>
-                <field id="head" translate="label" type="button" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <!-- <field id="head" translate="label" type="button" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                     <frontend_model>Mavenbird\Blog\Block\Adminhtml\System\Config\Head</frontend_model>
                     <comment><![CDATA[
                         <ul class="mavenbird-head">
@@ -38,7 +38,7 @@
                             <li>Magento stores see upwards of 30% revenue 💰 with AVADA. <a href="https://go.avada.io/mavenbird">Learn more</a></li>
 
                         </ul>]]></comment>
-                </field>
+                </field> -->
                 <field id="enabled" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -103,6 +103,11 @@
                     <label>Display author</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+                <field id="display_editing_date" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Display the Editing Date</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Select Yes to show the editing date for posts.</comment>
+                </field>
                 <field id="related_post" translate="label comment" type="text" sortOrder="35" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
                     <label>Limit related post</label>
                     <comment>Number of related post in post view page (Related posts are posts with the same topics)</comment>
@@ -122,10 +127,10 @@
                     <comment>Select Yes to allow selected group(s) below to vote for helpfulness.</comment>
                 </field>
                 <field id="review_mode" translate="label comment" type="multiselect" sortOrder="75" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                <label>Restrict Rating for</label>
-                <source_model>Magento\Customer\Model\ResourceModel\Group\Collection</source_model>
-                <comment>Select customer group(s) allowed to vote for helpfulness.</comment>
-            </field>
+                    <label>Restrict Rating for</label>
+                    <source_model>Magento\Customer\Model\ResourceModel\Group\Collection</source_model>
+                    <comment>Select customer group(s) allowed to vote for helpfulness.</comment>
+                </field>
             </group>
             <group id="product_post" translate="label" showInDefault="1" sortOrder="6" showInWebsite="1" showInStore="1">
                 <label>Related Products Content</label>
@@ -147,8 +152,7 @@
                     <field id="enable_product" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>Enable Related Products</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                        <comment><![CDATA[Show/Hide related products in post view page. Setup related products, up-sell, cross-sell products with ease,
-                        <a href="https://www.mavenbird.com/magento-2-automatic-related-products/?utm_source=store&utm_medium=documents&utm_campaign=m2-blog" target="_blank">explore now</a>
+                        <comment><![CDATA[Show/Hide related products in post view page. Setup related products, up-sell, cross-sell products with ease
                         ]]>
                         </comment>
                     </field>
@@ -178,10 +182,6 @@
                     <field id="enable_search" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>Enable</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                        <comment><![CDATA[This feature is using Ajax Search technology, same as
-                        <a href="https://www.mavenbird.com/magento-2-search-extension/?utm_source=store&utm_medium=documents&utm_campaign=m2-blog" target="_blank">Mavenbird Search</a>.
-                        ]]>
-                        </comment>
                     </field>
                     <field id="search_limit" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>Maximum Query Result</label>

@@ -71,9 +71,9 @@ class Collection extends SearchResult
         $this->addCustomerName();
 
         $this->addExpressionFieldToSelect(
-            'mp_created_at',
+            'mb_created_at',
             'main_table.created_at',
-            ['mp_created_at' => 'created_at']
+            ['mb_created_at' => 'created_at']
         );
 
         return $this;
@@ -90,7 +90,7 @@ class Collection extends SearchResult
         switch ($field) {
             case 'customer_name':
                 return parent::setOrder('user_name', $direction);
-            case 'mp_created_at':
+            case 'mb_created_at':
                 return parent::setOrder('main_table.created_at', $direction);
         }
 
@@ -111,7 +111,7 @@ class Collection extends SearchResult
 
         if ($field === 'post_name') {
             $field = 'mb.name';
-        } elseif ($field === 'mp_created_at') {
+        } elseif ($field === 'mb_created_at') {
             $field = 'main_table.created_at';
         }
 

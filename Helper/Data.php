@@ -229,7 +229,7 @@ class Data extends CoreHelper
      */
     public function getCustomerIdByContext()
     {
-        return $this->_httpContext->getValue('mp_customer_id') ?: $this->customerSession->getId();
+        return $this->_httpContext->getValue('mb_customer_id') ?: $this->customerSession->getId();
     }
 
     /**
@@ -277,8 +277,8 @@ class Data extends CoreHelper
     public function setCustomerContextId()
     {
         $customer = $this->customerSession->getCustomerData();
-        if (!$this->_httpContext->getValue('mp_customer_id') && $customer) {
-            $this->_httpContext->setValue('mp_customer_id', $customer->getId(), 0);
+        if (!$this->_httpContext->getValue('mb_customer_id') && $customer) {
+            $this->_httpContext->setValue('mb_customer_id', $customer->getId(), 0);
         }
     }
 

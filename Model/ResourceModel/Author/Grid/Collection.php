@@ -45,14 +45,14 @@ class Collection extends SearchResult
         $this->addFilterToMap('name', 'main_table.name');
         $this->addFilterToMap('url_key', 'main_table.url_key');
         $this->addExpressionFieldToSelect(
-            'mp_created_at',
+            'mb_created_at',
             'main_table.created_at',
-            ['mp_created_at' => 'created_at']
+            ['mb_created_at' => 'created_at']
         );
         $this->addExpressionFieldToSelect(
-            'mp_updated_at',
+            'mb_updated_at',
             'main_table.updated_at',
-            ['mp_created_at' => 'created_at']
+            ['mb_created_at' => 'created_at']
         );
 
         return $this;
@@ -75,10 +75,10 @@ class Collection extends SearchResult
                 }
 
                 return $this;
-            case 'mp_created_at':
+            case 'mb_created_at':
                 $field = 'main_table.created_at';
                 break;
-            case 'mp_updated_at':
+            case 'mb_updated_at':
                 $field = 'main_table.updated_at';
                 break;
         }
@@ -97,10 +97,10 @@ class Collection extends SearchResult
         switch ($field) {
             case 'customer_name':
                 return parent::setOrder('user_name', $direction);
-            case 'mp_updated_at':
+            case 'mb_updated_at':
                 $field = 'main_table.updated_at';
                 break;
-            case 'mp_created_at':
+            case 'mb_created_at':
                 $field = 'main_table.updated_at';
                 break;
         }
