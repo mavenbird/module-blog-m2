@@ -1,0 +1,42 @@
+<?php
+/**
+ * Mavenbird
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mavenbird.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mavenbird.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mavenbird
+ * @package     Mavenbird_Blog
+ * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
+ * @license     https://www.mavenbird.com/LICENSE.txt
+ */
+
+use Mavenbird\Blog\Block\Post\View;
+use Mavenbird\Blog\Helper\Image;
+use Mavenbird\Blog\Model\Config\Source\Comments\Type;
+use Magento\Framework\Escaper;
+
+/** @var View $block */
+/** @var Escaper $escaper */
+$_post = $block->getPost();
+// Calculate read time
+$postContent = strip_tags($_post->getPostContent());
+$wordCount = str_word_count($postContent);
+$wordsPerMinute = 200; // Average reading speed
+$readTime = max(1, ceil($wordCount / $wordsPerMinute));
+?>
+<?php if ($categoryHtml = $block->getPostCategoryHtml($_post)) : ?>
+    |
+    <span>
+        <i class="fa fa-clock-o"></i>
+        <?= $escaper->escapeHtml(__('%1 min read', $readTime)); ?>
+    </span>
+<?php endif; ?>
