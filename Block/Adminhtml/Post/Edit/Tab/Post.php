@@ -301,6 +301,21 @@ class Post extends Generic implements TabInterface
                 'time_format' => 'hh:mm:ss'
             ]
         );
+        $fieldset->addField('meta_title', 'text', [
+        'name'  => 'meta_title',
+        'label' => __('Meta Title'),
+        'title' => __('Meta Title')
+        ]);
+        $fieldset->addField('meta_description', 'textarea', [
+            'name'  => 'meta_description',
+            'label' => __('Meta Description'),
+            'title' => __('Meta Description')
+        ]);
+        $fieldset->addField('meta_keywords', 'textarea', [
+            'name'  => 'meta_keywords',
+            'label' => __('Meta Keywords'),
+            'title' => __('Meta Keywords')
+        ]);
         $this->_eventManager->dispatch('after_adminhtml_blog_post_info_tab', ['fieldset' => $fieldset]);
 
         $designFieldset = $form->addFieldset('design_fieldset', [

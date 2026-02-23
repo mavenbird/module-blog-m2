@@ -108,6 +108,24 @@ use Magento\Framework\Escaper;
 
             </div>
         </div>
+        <div class="field mb-field" style="margin-top: 1.5rem">
+            <label for="meta_title" class="label"><b><?= $escaper->escapeHtml(__('Meta Title')) ?></b></label>
+            <div class="control">
+                <input type="text" name="meta_title" id="meta_title" class="input-text">
+            </div>
+        </div>
+        <div class="field mb-field" style="margin-top: 1.5rem">
+            <label for="meta_description" class="label"><b><?= $escaper->escapeHtml(__('Meta Description')) ?></b></label>
+            <div class="control">
+                <textarea name="meta_description" id="meta_description" rows="3" cols="19" class="w-full"></textarea>
+            </div>
+        </div>
+        <div class="field mb-field" style="margin-top: 1.5rem">
+            <label for="meta_keywords" class="label"><b><?= $escaper->escapeHtml(__('Meta Keywords')) ?></b></label>
+            <div class="control">
+                <textarea name="meta_keywords" id="meta_keywords" rows="3" cols="19" class="w-full"></textarea>
+            </div>
+        </div>
         <?= $block->getChildHtml('field_additional') ?>
     </fieldset>
     <div class="actions-toolbar">

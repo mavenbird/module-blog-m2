@@ -174,6 +174,22 @@ class Category extends Generic implements TabInterface
             }
         }
 
+        $fieldset->addField('meta_title', 'text', [
+        'name'  => 'meta_title',
+        'label' => __('Meta Title'),
+        'title' => __('Meta Title')
+        ]);
+        $fieldset->addField('meta_description', 'textarea', [
+            'name'  => 'meta_description',
+            'label' => __('Meta Description'),
+            'title' => __('Meta Description')
+        ]);
+        $fieldset->addField('meta_keywords', 'textarea', [
+            'name'  => 'meta_keywords',
+            'label' => __('Meta Keywords'),
+            'title' => __('Meta Keywords')
+        ]);
+
         $form->addValues($category->getData());
         $this->setForm($form);
 
