@@ -34,6 +34,7 @@
                     <block class="Mavenbird\Blog\Block\Post\View" name="mp_blog_post_info_category" template="Mavenbird_Blog::post/info/category.phtml"/>
                     <block class="Mavenbird\Blog\Block\Post\View" name="mp_blog_post_info_tag" template="Mavenbird_Blog::post/info/tag.phtml"/>
                     <block class="Mavenbird\Blog\Block\Post\View" name="mp_blog_post_info_author" template="Mavenbird_Blog::post/info/author.phtml"/>
+                    <block class="Mavenbird\Blog\Block\Post\View" name="mp_blog_post_info_readtime" template="Mavenbird_Blog::post/info/readtime.phtml"/>
                 </block>
                 <block class="Mavenbird\Blog\Block\Post\RelatedProduct" name="related.category.products" as="related_products" template="Mavenbird_Blog::product/list.phtml"/>
             </block>
