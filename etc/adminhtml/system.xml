@@ -108,6 +108,11 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Select Yes to show the editing date for posts.</comment>
                 </field>
+                <field id="display_navigation_blog" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Display the Navigation Blog</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Select Yes to show the navigation previous and next button blog for posts.</comment>
+                </field>
                 <field id="related_post" translate="label comment" type="text" sortOrder="35" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
                     <label>Limit related post</label>
                     <comment>Number of related post in post view page (Related posts are posts with the same topics)</comment>

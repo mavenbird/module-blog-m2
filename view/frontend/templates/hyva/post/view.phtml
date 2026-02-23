@@ -34,6 +34,8 @@ $modifier     = $helper->getAuthorByPost($_post, true);
 $modifierName = $modifier !== null ? $modifier->getName() : '';
 $isLogged     = ($block->isLoggedIn()) ? 'Yes' : 'No';
 $color        = $helper->getDisplayConfig('font_color');
+$previousPost = $block->getPreviousPost();
+$nextPost = $block->getNextPost();
 ?>
 <div class="mb-blog-view">
     <div class="mb-blog-rss">
@@ -54,6 +56,29 @@ $color        = $helper->getDisplayConfig('font_color');
                 <?= /** @noEscape */
                 $block->getPageFilter($_post->getPostContent() ?: '') ?>
             </div>
+            <?php if ($block->getDisplayNavigationBlog() && ($previousPost || $nextPost)): ?>
+                <div class="mb-blog-navigation" style="display:flex; justify-content:space-between; margin:40px 0;">
+
+                    <div class="mb-blog-prev">
+                        <?php if ($previousPost && $previousPost->getId()): ?>
+                            <a href="<?= $escaper->escapeUrl($previousPost->getUrl()) ?>">
+                                ← <?= __('Previous Post') ?><br>
+                                <strong><?= $escaper->escapeHtml($previousPost->getName()) ?></strong>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="mb-blog-next" style="text-align:right;">
+                        <?php if ($nextPost && $nextPost->getId()): ?>
+                            <a href="<?= $escaper->escapeUrl($nextPost->getUrl()) ?>">
+                                <?= __('Next Post') ?> →<br>
+                                <strong><?= $escaper->escapeHtml($nextPost->getName()) ?></strong>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+
+                </div>
+            <?php endif; ?>
             <div class="mb-clear"></div>
             <?= $block->getChildHtml('mb_blog_post_info') ?>
 

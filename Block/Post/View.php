@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Mavenbird
  *
@@ -427,5 +428,35 @@ class View extends \Mavenbird\Blog\Block\Listpost
     {
         /** @var \Mavenbird\Blog\Helper\Data $helper */
         return $this->helperData->getPostViewPageConfig('display_editing_date');
+    }
+
+    public function getPreviousPost()
+    {
+        $currentPost = $this->getPost();
+
+        return $this->postFactory->create()->getCollection()
+            ->addFieldToFilter('created_at', ['lt' => $currentPost->getCreatedAt()])
+            ->addFieldToFilter('enabled', 1)
+            ->setOrder('publish_date', 'DESC')
+            ->setPageSize(1)
+            ->getFirstItem();
+    }
+
+    public function getNextPost()
+    {
+        $currentPost = $this->getPost();
+
+        return $this->postFactory->create()->getCollection()
+            ->addFieldToFilter('created_at', ['gt' => $currentPost->getCreatedAt()])
+            ->addFieldToFilter('enabled', 1)
+            ->setOrder('publish_date', 'ASC')
+            ->setPageSize(1)
+            ->getFirstItem();
+    }
+
+    public function getDisplayNavigationBlog()
+    {
+        /** @var \Mavenbird\Blog\Helper\Data $helper */
+        return $this->helperData->getPostViewPageConfig('display_navigation_blog');
     }
 }
