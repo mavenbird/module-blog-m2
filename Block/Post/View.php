@@ -422,4 +422,10 @@ class View extends \Mavenbird\Blog\Block\Listpost
 
         return $messagesBlock->toHtml();
     }
+
+    public function getDisplayEditingDate()
+    {
+        /** @var \Mavenbird\Blog\Helper\Data $helper */
+        return $this->helperData->getPostViewPageConfig('display_editing_date');
+    }
 }

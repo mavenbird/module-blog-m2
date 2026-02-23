@@ -28,6 +28,15 @@ use Magento\Framework\Escaper;
 /** @var Escaper $escaper */
 $_post = $block->getPost();
 ?>
-<span><i class="fa fa-calendar-times-o">&nbsp;</i>
-    <?= $escaper->escapeHtml($block->getDateFormat($_post->getPublishDate())) ?>
-</span>
+<?php if (
+    $block->getDisplayEditingDate() &&
+    $_post->getPublishDate() != $_post->getUpdatedAt()
+): ?>
+    <span><i class="fa fa-refresh">&nbsp;</i>
+        <?= $escaper->escapeHtml(__('Updated on %1', $block->getDateFormat($_post->getUpdatedAt()))) ?>
+    </span>
+<?php else: ?>
+    <span><i class="fa fa-calendar-times-o">&nbsp;</i>
+        <?= $escaper->escapeHtml($block->getDateFormat($_post->getPublishDate())) ?>
+    </span>
+<?php endif; ?>
