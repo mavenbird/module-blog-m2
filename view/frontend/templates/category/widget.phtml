@@ -26,15 +26,13 @@ use Magento\Framework\Escaper;
 /** @var Escaper $escaper */
 $tree = $block->getTree();
 if ($tree) : ?>
-    <div class="mb-sidebar mpcss">
-        <div class="row">
-            <div class="block-title col-xs-12 sidebar-categories">
-                <p class="block-mb-sidebar-heading" role="heading" aria-label="2"><?= $escaper->escapeHtml(__('Categories')) ?></p>
+    <div class="sidebar-info">
+            <div class="block-title sidebar-categories">
+                <strong class="block-title-sidebar-heading" role="heading" aria-label="2"><?= $escaper->escapeHtml(__('Categories')) ?></strong>
             </div>
-            <div class="col-xs-12">
+            <div class="categories-items-list">
                 <?= $block->getCategoryTreeHtml($tree) ?>
             </div>
-        </div>
     </div>
     <script type="text/javascript">
         require(['Mavenbird_Blog/js/categorytree'], function () {

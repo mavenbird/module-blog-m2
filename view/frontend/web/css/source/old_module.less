@@ -17,6 +17,9 @@
  * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
  * @license     https://www.mavenbird.com/LICENSE.txt
  */
+
+
+
 .mb-blog-view a,
 .mb-sidebar a {
   text-decoration: none;
@@ -27,10 +30,10 @@
 }
 
 .mb-post-info {
-  color: #999999;
-  font-size: 10px;
-  line-height: 18px;
-  margin: 0;
+         color: #4e4e4e;
+        font-size: 10px;
+        line-height: 18px;
+        margin: 0;
 
   span {
     color: #6f6f6f;;
@@ -47,15 +50,17 @@
 }
 
 .post-info-wraper {
-  padding: 20px 15px 10px 15px;
+  padding: 10px 15px 10px 15px;
 }
 
-.post-list-item {
-  margin-bottom: 20px;
-}
+// .post-list-item {
+//   margin-bottom: 20px;
+// }
 
 .post-short-description {
   max-width: 100%;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0px;
 
   p {
     max-width: 100%;
@@ -100,6 +105,8 @@
 
   .related-content-container {
     padding: 0 10px;
+    display: flex;
+
 
     .author-content-image {
       float: left;
@@ -133,14 +140,14 @@ a.mb-relate-link {
   }
 }
 
-.menu-archives {
-  list-style: none;
-  padding-left: 8px;
+// .menu-archives {
+//   list-style: none;
+//   padding-left: 8px;
 
-  a.list-archives {
-    color: inherit;
-  }
-}
+//   a.list-archives {
+//     color: inherit;
+//   }
+// }
 
 .author-image {
   text-align: center;
@@ -175,9 +182,9 @@ a.mb-relate-link {
 .mb-sidebar {
   margin-bottom: 25px;
 
-  .block-content {
-    padding-left: 10px;
-  }
+  // .block-content {
+  //   padding-left: 10px;
+  // }
 
   .data.item.title {
     cursor: pointer;
@@ -232,31 +239,31 @@ a.label.label-default.tags-list {
   margin-right: 5px
 }
 
-ul.menu-categories {
-  li.category-item {
-    list-style: none;
-    //padding: 10px 0 5px 0;
-  }
+// ul.menu-categories {
+//   li.category-item {
+//     list-style: none;
+//     //padding: 10px 0 5px 0;
+//   }
 
-  .category-level3 {
-    display: none;
-    padding-left: 15px;
-  }
+//   .category-level3 {
+//     display: none;
+//     padding-left: 15px;
+//   }
 
-  .category-level4 {
-    display: none;
-    padding-left: 30px;
-  }
+//   .category-level4 {
+//     display: none;
+//     padding-left: 30px;
+//   }
 
-  a.list-categories {
-    color: inherit;
-    margin-left: 8px;
-  }
+//   a.list-categories {
+//     color: inherit;
+//     margin-left: 8px;
+//   }
 
-  i {
-    cursor: pointer;
-  }
-}
+//   i {
+//     cursor: pointer;
+//   }
+// }
 
 h2.list-title {
   margin-bottom: 30px;
@@ -628,9 +635,14 @@ li.default-cmt__content__cmt-content__cmt-row.cmt-row {
     text-align: center;
   }
 }
-
+.post-image  {  min-width: 250px; padding: 0px 10px; }
 .post-item-wraper {
-  padding: 10px !important;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #e9eaec;
+  background: #ffffff;
+  border-radius: 7px;
+  box-shadow: none;
 }
 
 @media only screen and (min-width: 600px) {
@@ -638,6 +650,7 @@ li.default-cmt__content__cmt-content__cmt-row.cmt-row {
     .post-image {
       min-width: 250px;
       display: table-cell;
+      padding: 0px 10px;
     }
 
     .post-info-wraper {
@@ -656,20 +669,20 @@ li.default-cmt__content__cmt-content__cmt-row.cmt-row {
   }
 }
 
-.post-list-content {
-  .limiter {
-    display: block !important;
-  }
-}
+// .post-list-content {
+//   .limiter {
+//     display: block !important;
+//   }
+// }
 
 /** Yourstore theme */
 .mbblog-etheme-yourstore {
-  .post-list-container,
-  .post-view,
-  .mb-blog-rss {
-    width: 85%;
-    margin: auto;
-  }
+//   .post-list-container,
+//   .post-view,
+//   .mb-blog-rss {
+//     width: 85%;
+//     margin: auto;
+//   }
 
   .block-blog-related {
     border-bottom: solid 1px #dfdfdf;
@@ -678,13 +691,13 @@ li.default-cmt__content__cmt-content__cmt-row.cmt-row {
 
 @media (min-width: 768px) {
   .mbblog-etheme-yourstore {
-    .page-layout-2columns-right .post-list-content {
-      border-right: solid 1px #dfdfdf;
-    }
+    // .page-layout-2columns-right .post-list-content {
+    //   border-right: solid 1px #dfdfdf;
+    // }
 
-    .page-layout-2columns-left .post-list-content {
-      border-left: solid 1px #dfdfdf;
-    }
+    // .page-layout-2columns-left .post-list-content {
+    //   border-left: solid 1px #dfdfdf;
+    // }
   }
 }
 
@@ -706,14 +719,14 @@ li.default-cmt__content__cmt-content__cmt-row.cmt-row {
   }
 }
 @media all and (min-width: 640px) {
-  .post-list-content .products-grid .product-item {
-    width: 48%;
-  }
+  // .post-list-content .products-grid .product-item {
+  //   width: 48%;
+  // }
 }
 
 @media all and (max-width: 640px) {
-  .post-list-content .products-grid .product-item {
-    width: 98%;
-  }
+  // .post-list-content .products-grid .product-item {
+  //   width: 98%;
+  // }
 }
 /* mavenbird end blog style */

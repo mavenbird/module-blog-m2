@@ -29,9 +29,9 @@
 .post-info-wraper {
     padding: 20px 15px 10px 15px;
 }
-.post-list-item {
+/* .post-list-item {
     margin-bottom: 20px;
-}
+} */
 .post-short-description {
     max-width: 100%;
 }
@@ -92,10 +92,10 @@ a.mb-relate-link img.img-responsive {
     height: 200px;
     display: block;
 }
-.menu-archives {
+/* .menu-archives {
     list-style: none;
     padding-left: 8px;
-}
+} */
 
 .author-image {
     text-align: center;
@@ -125,7 +125,7 @@ a.mb-relate-link img.img-responsive {
     margin-bottom: 25px;
 }
 .mb-sidebar .block-content {
-    padding-left: 10px;
+    /* padding-left: 10px; */
 }
 .mb-sidebar .data.item.title {
     cursor: pointer;
@@ -151,18 +151,18 @@ a.label.label-default.tags-list {
 ul.menu-categories li.category-item {
     list-style: none;
 }
-ul.menu-categories .category-level3 {
+/* ul.menu-categories .category-level3 {
     display: none;
     padding-left: 15px;
-}
-ul.menu-categories .category-level4 {
+} */
+/* ul.menu-categories .category-level4 {
     display: none;
     padding-left: 30px;
-}
-ul.menu-categories a.list-categories {
+} */
+/* ul.menu-categories a.list-categories {
     color: inherit;
     margin-left: 8px;
-}
+} */
 ul.menu-categories i {
     cursor: pointer;
 }
@@ -488,26 +488,26 @@ li.default-cmt__content__cmt-content__cmt-row.cmt-row {
 .post-info-wraper h2.mb-post-title {
     margin-top: 0;
 }
-.post-list-content .limiter {
+/* .post-list-content .limiter {
     display: block !important;
-}
+} */
 /** Yourstore theme */
-.mbblog-etheme-yourstore .post-list-container,
+/* .mbblog-etheme-yourstore .post-list-container,
 .mbblog-etheme-yourstore .post-view,
 .mbblog-etheme-yourstore .mb-blog-rss {
     width: 85%;
     margin: auto;
-}
+} */
 .mbblog-etheme-yourstore .block-blog-related {
     border-bottom: solid 1px #dfdfdf;
 }
 @media (min-width: 768px) {
-    .mbblog-etheme-yourstore .page-layout-2columns-right .post-list-content {
+    /* .mbblog-etheme-yourstore .page-layout-2columns-right .post-list-content {
         border-right: solid 1px #dfdfdf;
     }
     .mbblog-etheme-yourstore .page-layout-2columns-left .post-list-content {
         border-left: solid 1px #dfdfdf;
-    }
+    } */
 }
 @media (min-width: 1024px) {
     .mbblog-etheme-yourstore .products-same-post li {
@@ -522,20 +522,20 @@ li.default-cmt__content__cmt-content__cmt-row.cmt-row {
     }
 }
 @media all and (min-width: 640px) {
-    .post-list-content .products-grid .product-item {
+    /* .post-list-content .products-grid .product-item {
         width: 48%;
-    }
+    } */
 }
 @media all and (max-width: 640px) {
-    .post-list-content .products-grid .product-item {
+    /* .post-list-content .products-grid .product-item {
         width: 98%;
-    }
+    } */
 }
 .mb-sidebar {
     margin-bottom: 25px;
 }
 .mb-sidebar .block-content {
-    padding-left: 10px;
+    /* padding-left: 10px; */
 }
 .mb-sidebar .data.item.title {
     cursor: pointer;
@@ -633,7 +633,7 @@ li.default-cmt__content__cmt-content__cmt-row.cmt-row {
 .product.data.items > .item.content {
     background: #ffffff;
     margin-top: 43px;
-    padding: 35px 35px 35px 35px;
+    /* padding: 35px 35px 35px 35px; */
     border: 1px solid #cccccc;
 }
 .product.data.items .item.title a:after {

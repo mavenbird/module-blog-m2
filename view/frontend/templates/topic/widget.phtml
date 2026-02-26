@@ -26,23 +26,25 @@ use Magento\Framework\Escaper;
 /** @var Escaper $escaper */
 $topics = $block->getTopicList();
 if ($topics && $topics->getSize()) : ?>
-    <div class="mb-sidebar mpcss">
-        <div class="row">
-            <div class="block-title col-xs-12 sidebar-categories">
-                <p class="block-mb-sidebar-heading" role="heading" aria-level="2"><?= $escaper->escapeHtml(__('Topics')) ?></p>
-            </div>
-            <div class="col-xs-12">
-                <ul class="block-content menu-categories">
-                    <?php foreach ($topics as $topic) : ?>
-                        <li class="category-item">
-                            <a class="list-categories" href="<?= $escaper->escapeUrl($block->getTopicUrl($topic)) ?>">
-                                <i class="fa fa-folder-o" aria-hidden="true">&nbsp;</i>
-                                <?= $escaper->escapeHtml(ucfirst($topic->getName())) ?>
-                            </a>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-        </div>
+<div class="sidebar-info">
+
+    <div class="block-title sidebar-categories">
+        <p class="block-title-sidebar-heading" role="heading" aria-level="2">
+            <strong><?= $escaper->escapeHtml(__('Topics')) ?></strong>
+        </p>
     </div>
+    <div class="menu-list">
+        <ul class="block-content menu-categories">
+            <?php foreach ($topics as $topic) : ?>
+            <li class="category-item">
+                <a class="list-categories" href="<?= $escaper->escapeUrl($block->getTopicUrl($topic)) ?>">
+                    <i class="fa fa-folder-o" aria-hidden="true">&nbsp;</i>
+                    <?= $escaper->escapeHtml(ucfirst($topic->getName())) ?>
+                </a>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+
+</div>
 <?php endif; ?>

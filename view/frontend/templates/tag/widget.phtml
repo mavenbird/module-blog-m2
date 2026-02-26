@@ -27,20 +27,20 @@ use Magento\Framework\Escaper;
 $tags = $block->getTagList();
 
 if ($tags && $tags->getSize()) : ?>
-    <div class="mb-sidebar mpcss">
-        <div class="row">
-            <div class="block-title col-xs-12 sidebar-tags">
-                <p class="block-mb-sidebar-heading" role="heading" aria-level="2"><?= $escaper->escapeHtml(__('Tags')) ?></p>
-            </div>
-            <div class="col-xs-12">
-                <?php foreach ($tags as $tag) : ?>
-                    <a class="label label-default tags-list"
-                       style="font-size:<?= $escaper->escapeHtmlAttr($block->getTagSize($tag)) . 'px'; ?>"
-                       href="<?= $escaper->escapeUrl($block->getTagUrl($tag)) ?>">
-                        <?= $escaper->escapeHtml($tag->getName()) ?>
-                    </a>
-                <?php endforeach; ?>
-            </div>
-        </div>
+<div class="sidebar-info ">
+    <div class="block-title sidebar-tags">
+        <p class="block-title-sidebar-heading" role="heading" aria-level="2">
+            <strong><?= $escaper->escapeHtml(__('Tags')) ?></strong>
+        </p>
     </div>
+    <div class="tags">
+        <?php foreach ($tags as $tag) : ?>
+        <a class="label label-default tags-list"
+            style="font-size:<?= $escaper->escapeHtmlAttr($block->getTagSize($tag)) . 'px'; ?>"
+            href="<?= $escaper->escapeUrl($block->getTagUrl($tag)) ?>">
+            <?= $escaper->escapeHtml($tag->getName()) ?>
+        </a>
+        <?php endforeach; ?>
+    </div>
+</div>
 <?php endif; ?>

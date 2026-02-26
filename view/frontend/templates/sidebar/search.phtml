@@ -31,10 +31,10 @@ use Magento\Framework\Escaper;
     }
 </style>
 <div class="mbblog-search">
-    <div class="field search">
-        <label class="label" for="mbblog-search-box" data-role="minisearch-label">
+    <label class="label" for="mbblog-search-box" data-role="minisearch-label">
             <span><?= $escaper->escapeHtml(__('Search')) ?></span>
         </label>
+    <div class="field search">
         <div class="control">
             <input id="mbblog-search-box"
                    type="text"
@@ -47,12 +47,12 @@ use Magento\Framework\Escaper;
                    aria-autocomplete="both"
             />
         </div>
-    </div>
-    <div class="actions">
-        <button type="submit" title="<?= $escaper->escapeHtmlAttr(__('Search')) ?>" class="action search">
-            <i class="fa fa-search" aria-hidden="true" style="font-size: 16px;margin-top: 5px;"></i>
-        </button>
-    </div>
+        <div class="actions">
+            <button type="submit" title="<?= $escaper->escapeHtmlAttr(__('Search')) ?>" class="action search">
+                <i class="fa fa-search" aria-hidden="true" style="font-size: 16px;margin-top: 5px;"></i>
+            </button>
+        </div>
+    </div> 
 </div>
 <script>
     require(['jquery', 'mpDevbridgeAutocomplete'], function ($) {

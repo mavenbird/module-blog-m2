@@ -26,21 +26,21 @@ use Magento\Framework\Escaper;
 /** @var Frontend $block */
 /** @var Escaper $escaper */
 ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <div class="mb-blog-rss">
     <a href="<?= $escaper->escapeUrl($block->getRssUrl('post/rss')) ?>" class="bb-rss-icon">
         <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/rss.png')) ?>"
              width="16px">
     </a>
 </div>
-<div class="post-list-content" id="mbblog-list-container">
+<div class="post-list-content" id="mbblog-list">
     <?php $postCollection = $block->getPostCollection(); ?>
     <?php if ($postCollection && $postCollection->getSize()) : ?>
-        <div class="post-list-body <?= $block->isGridView() ? /* @noEscape */ 'grid products-grid' : '' ?>">
+        <div class="post-list <?= $block->isGridView() ? /* @noEscape */ 'grid products-grid' : '' ?>">
             <?php /** @var Post $post */
             foreach ($postCollection as $post) : ?>
-                <div class="item product product-item post-list-item <?= $block->isGridView()
+                <div class="post-list-item <?= $block->isGridView()
                     ? ' post-item-grid  ' : ' post-item-list  '; ?>">
-                    <div class="post-item-wraper">
                         <?php if ($post->getImage()) : ?>
                             <div class="post-image">
                                 <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
@@ -50,7 +50,7 @@ use Magento\Framework\Escaper;
                                 </a>
                             </div>
                         <?php endif; ?>
-                        <div class="post-info-wraper">
+                        <div class="post-info">
                             <h2 class="mb-post-title">
                                 <a class="post-link-title" title="<?= $escaper->escapeHtml($post->getName()); ?>"
                                    href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
@@ -63,17 +63,50 @@ use Magento\Framework\Escaper;
                             <div class="post-short-description">
                                 <p><?= /** @noEscape */ $block->maxShortDescription($post->getShortDescription()) ?></p>
                             </div>
-                            <div class="mb-clearfix"></div>
-                            <div class="mb-post-meta-info mb-alignright">
-                                <div class="actions">
-                                    <a class="mb-read-more" href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
-                                       title="<?= $escaper->escapeHtmlAttr(__('Read More')) ?>">
-                                        <?= $escaper->escapeHtml(__('Read More')) ?>
-                                    </a>
+                            <div class="details-sharing">
+                                <div class="mb-post-meta-info">
+                                    <div class="actions">
+                                        <a class="mb-read-more" href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
+                                        title="<?= $escaper->escapeHtmlAttr(__('Read More ...')) ?>">
+                                            <?= $escaper->escapeHtml(__('Read More ...')) ?>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- <div class="mb-clear"></div> -->
+                                <div class="mpcss">
+                                    <div id="sharing">
+                                        <div class="share-col-left">
+                                            <h5><?= $escaper->escapeHtml(__('Share this post')) ?></h5>
+                                        </div>
+                                        <div class="share-col-right">
+                                            <div class="post-sharing-button">
+                                                <span class="sharing-icon" title="Twitter">
+                                                    <i class="fa-brands fa-twitter"></i>
+                                                </span>
+                                                <span class="sharing-icon" title="Facebook">
+                                                    <i class="fa-brands fa-facebook-f"></i>
+                                                </span>
+                                                <span class="sharing-icon" title="Instagram">
+                                                    <i class="fa-brands fa-instagram"></i>
+                                                </span>
+                                                <span class="sharing-icon" title="Snapchat">
+                                                   <i class="fa-brands fa-snapchat"></i>
+                                                </span>
+                                                <span class="sharing-icon" title="Telegram">
+                                                    <i class="fa-brands fa-telegram"></i>
+                                                </span>
+                                                <span class="sharing-icon" title="Whatsapp">
+                                                    <i class="fa-brands fa-whatsapp"></i>
+                                                </span>
+                                                <span class="sharing-icon" title="Github">
+                                                    <i class="fa-brands fa-git-alt"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
             <?php endforeach; ?>
         </div>

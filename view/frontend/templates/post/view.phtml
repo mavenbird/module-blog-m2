@@ -35,6 +35,7 @@ $modifierName = $modifier !== null ? $modifier->getName() : '';
 $isLogged     = ($block->isLoggedIn()) ? 'Yes' : 'No';
 $color        = $helper->getDisplayConfig('font_color');
 ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <div class="mb-blog-view">
     <div class="mb-blog-rss">
         <a href="<?= $escaper->escapeUrl($block->getRssUrl('post/rss')) ?>" class="bb-rss-icon">
@@ -42,18 +43,17 @@ $color        = $helper->getDisplayConfig('font_color');
                  width="16px">
         </a>
     </div>
-    <div class="mpcss post-view" id="mbblog-list-container">
+    <div class="mpcss post-view" id="mbblog-list">
         <div class="post-list-content col-md-12 col-sm-8">
-            <div class="post-view-image col-xs-12">
+            <div class="post-view-image">
                 <?php if ($_post->getImage()) : ?>
                     <img class="img-responsive" src="<?= $escaper->escapeUrl($block->getImageUrl($_post->getImage())) ?>"
                          alt="<?= $escaper->escapeHtmlAttr($_post->getName()) ?>"/>
                 <?php endif; ?>
             </div>
-            <div class="post-post_content col-xs-12">
+            <div class="post-post_content">
                 <?= /** @noEscape */ $block->getPageFilter($_post->getPostContent() ?: '') ?>
             </div>
-            <div class="mb-clear"></div>
             <?= $block->getChildHtml('mb_blog_post_info') ?>
 
             <?= $block->getChildHtml('mb_blog_post_slider') ?>
@@ -97,7 +97,6 @@ $color        = $helper->getDisplayConfig('font_color');
         </script>
     <?php endif; ?>
     <?php if ($helper->getBlogConfig('platforms/fb_platform/fb_share') || $helper->getBlogConfig('platforms/x_platform/x_share')) : ?>
-        <div class="mb-clear"></div>
         <div class="mpcss">
             <div id="sharing">
                 <div class="share-col-left">
@@ -105,24 +104,27 @@ $color        = $helper->getDisplayConfig('font_color');
                 </div>
                 <div class="share-col-right">
                     <div class="post-sharing-button">
-                        <?php if ($helper->getBlogConfig('platforms/x_platform/x_share')) : ?>
-                            <img class="img-responsive"
-                                 src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/twitter.png')) ?>"
-                                 alt="Share on Twitter"
-                                 onclick="window.open('https://twitter.com/share?text=&amp;url=<?= /* @noEscape */
-                                 $_post->getUrl() ?>','Twitter-dialog','width=626,height=436'); return false;"
-                                 style="cursor: pointer;width: 43%;position: relative; left: 1rem"
-                            />
-                        <?php endif; ?>
-                        <?php if ($helper->getBlogConfig('platforms/fb_platform/fb_share')) : ?>
-                            <img class="img-responsive"
-                                 src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/facebook.png')) ?>"
-                                 alt="Share on Facebook"
-                                 onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('<?= /* @noEscape */
-                                 $_post->getUrl() ?>'),'facebook-share-dialog','width=626,height=436'); return false;"
-                                 style="cursor: pointer;"
-                            />
-                        <?php endif; ?>
+                        <span class="sharing-icon" title="Twitter">
+                            <i class="fa-brands fa-twitter"></i>
+                        </span>
+                        <span class="sharing-icon" title="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </span>
+                        <span class="sharing-icon" title="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </span>
+                        <span class="sharing-icon" title="Snapchat">
+                            <i class="fa-brands fa-snapchat"></i>
+                        </span>
+                        <span class="sharing-icon" title="Telegram">
+                            <i class="fa-brands fa-telegram"></i>
+                        </span>
+                        <span class="sharing-icon" title="Whatsapp">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </span>
+                        <span class="sharing-icon" title="Github">
+                            <i class="fa-brands fa-git-alt"></i>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -153,7 +155,7 @@ $color        = $helper->getDisplayConfig('font_color');
     <?php endif; ?>
     <?php $relatedPosts = $_post->getRelatedPostsCollection(); ?>
     <?php if ($relatedPosts && count($relatedPosts)) : ?>
-        <div class="block-blog-related topic-list mpcss" style="width: 90%;">
+        <div class="block-blog-related topic-list mpcss">
             <h2><?= $escaper->escapeHtml(__('Related Posts')) ?></h2>
             <?php if ($block->getRelatedMode()) : ?>
                 <div class="owl-carousel owl-theme">
@@ -171,13 +173,13 @@ $color        = $helper->getDisplayConfig('font_color');
                                     <?php endif; ?>
                                 </div>
                                 <div class="post-info-wraper">
-                                    <h2 class="mb-post-title">
+                                    <h3 class="mb-post-title">
                                         <a class="post-link-title"
                                            title="<?= $escaper->escapeHtmlAttr($post->getName()) ?>"
                                            href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
                                             <?= $escaper->escapeHtml($post->getName()) ?>
                                         </a>
-                                    </h2>
+                                    </h3>
                                     <div class="mb-post-info">
                                         <?= /* @noEscape */ $block->getPostInfo($post); ?>
                                     </div>
@@ -240,7 +242,7 @@ $color        = $helper->getDisplayConfig('font_color');
                             </div>
                         </div>
                     <?php endforeach; ?>
-                    <div class="mb-clear"></div>
+                    <!-- <div class="mb-clear"></div> -->
                 </div>
             <?php endif; ?>
         </div>

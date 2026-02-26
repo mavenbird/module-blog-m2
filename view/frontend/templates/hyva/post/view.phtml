@@ -44,15 +44,15 @@ $nextPost = $block->getNextPost();
                  width="16px">
         </a>
     </div>
-    <div class="mpcss post-view" id="mbblog-list-container">
+    <div class="mpcss post-view" id="mbblog-list">
         <div class="post-list-content col-md-12 col-sm-8">
-            <div class="post-view-image col-xs-12">
+            <div class="post-view-image">
                 <?php if ($_post->getImage()) : ?>
                     <img class="img-responsive" src="<?= $escaper->escapeUrl($block->getImageUrl($_post->getImage())) ?>"
                          alt="<?= $escaper->escapeHtmlAttr($_post->getName()) ?>"/>
                 <?php endif; ?>
             </div>
-            <div class="post-post_content col-xs-12">
+            <div class="post-post_content">
                 <?= /** @noEscape */
                 $block->getPageFilter($_post->getPostContent() ?: '') ?>
             </div>
@@ -79,7 +79,6 @@ $nextPost = $block->getNextPost();
 
                 </div>
             <?php endif; ?>
-            <div class="mb-clear"></div>
             <?= $block->getChildHtml('mb_blog_post_info') ?>
 
             <?= $block->getChildHtml('mb_blog_post_slider') ?>
@@ -342,7 +341,7 @@ $nextPost = $block->getNextPost();
     <?php endif; ?>
     <?php $relatedPosts = $_post->getRelatedPostsCollection(); ?>
     <?php if ($relatedPosts && count($relatedPosts)) : ?>
-        <div class="block-blog-related topic-list mpcss" style="width: 90%;">
+        <div class="block-blog-related topic-list mpcss">
             <h2><?= $escaper->escapeHtml(__('Related Posts')) ?></h2>
             <?php if ($block->getRelatedMode()) : ?>
                 <div class="">

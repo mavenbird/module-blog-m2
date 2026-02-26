@@ -37,7 +37,7 @@ $postCollection = $block->getPostCollection();
             <?= $escaper->escapeHtml(__('Add New Post')) ?>
         </button>
     </div>
-    <div class="post-list-content" id="mbblog-list-container">
+    <div class="post-list-content" id="mbblog-list">
         <?php if ($postCollection && count($postCollection) > 0) : ?>
             <div class="post-list-body">
                 <?php $i = 1 ?>
@@ -71,7 +71,7 @@ $postCollection = $block->getPostCollection();
                                         <?= /* @noEscape */ $block->maxShortDescription($post->getShortDescription()) ?>
                                     </p>
                                 </div>
-                                <div class="mb-clearfix"></div>
+                                <!-- <div class="mb-clearfix"></div> -->
                                 <div class="mb-post-meta-info mb-alignright">
                                     <div class="actions">
                                         <a class="mb-read-more" href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
@@ -109,10 +109,10 @@ $postCollection = $block->getPostCollection();
                     </div>
                     <?php $i++; ?>
                     <?php if ($i % 2 == 0) : ?>
-                        <div class="mb-clear"></div>
+                        <!-- <div class="mb-clear"></div> -->
                     <?php endif; ?>
                 <?php endforeach; ?>
-                <div class="mb-clear"></div>
+                <!-- <div class="mb-clear"></div> -->
             </div>
             <?= $block->getPagerHtml() ?>
         <?php else : ?>
