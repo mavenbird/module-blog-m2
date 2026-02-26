@@ -324,8 +324,54 @@ body { padding: 0; }
     line-height: 1.65;
     margin-top: 15px;
 }
-.page-main .post-list .mb-post-info {  font-size: 12px; }   
+.page-main .post-list .mb-post-info {  font-size: 12px; flex-wrap: wrap; }   
 .page-main .topic-list .post-image { max-width: 250px; }
+
+/*================== GRID VIEW FOR THE SAME BLOG PAGE ======================*/
+.page-main .post-list.grid.products-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+.page-main .post-list-item.post-item-grid {
+    border: 1px solid #ddd;
+    padding: 14px;
+    border-radius: 5px;
+}
+.page-main .post-item-grid .post-image {
+    width: 100%;
+    max-width: 100%;
+}
+.page-main .post-item-grid .post-image img {
+    width: 100%;
+    max-width: 100%;
+}
+.page-main .post-item-grid .post-list h2.mb-post-title {
+    margin: 10px 0px 12px 0px;
+    font-weight: 600;
+    font-size: large;
+}
+.page-main .post-item-grid .post-info .mb-post-info {
+    font-size: 12px;
+    flex-wrap: wrap;
+}
+.page-main .post-item-grid .post-info .details-sharing {
+    display: flex;
+    align-items: flex-start;
+    gap: 0px;
+    flex-wrap: wrap;
+}
+.page-main .post-item-grid .mb-post-meta-info {
+    margin-top: 10px;
+    font-size: 14px;
+    display: inline-flex;
+}
+.page-main .post-item-grid  #sharing .share-col-left h5 {
+    margin: 10px 0px 8px 0px;
+    padding: 0;
+}
+
 
 @media(min-width:1280px) and (max-width:1440px) {}
 @media(min-width:1024px) and (max-width:1279px) {
@@ -380,13 +426,13 @@ body { padding: 0; }
 @media (max-width: 575px) { 
     .post-list h2.mb-post-title { margin: 0px 0px 12px 0px; font-weight: 500; font-size: 19px; max-width: 327px;}
     .post-list .mb-post-info {  flex-wrap: wrap; }
-    .post-list .post-short-description { max-width: 88%; }
     .post-list .details-sharing { flex-direction: column; }
     .post-list .details-sharing #sharing {display: flex; gap: 10px; margin-top: 0px; flex-wrap: wrap; }
 }
 @media (max-width: 479px){
     .sidebar .sidebar-info .post-left { width: 50%; }
     .post-list .details-sharing #sharing { display: flex; gap: 8px; margin-top: 0px; flex-wrap: wrap; }
+    .page-main .post-list.grid.products-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 12px; }
 }
 @media (max-width: 400px){
     .about-admin .related-content-container { gap: 12px; flex-direction: column; }
