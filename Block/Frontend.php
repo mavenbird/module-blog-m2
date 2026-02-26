@@ -291,7 +291,7 @@ class Frontend extends Template
             $couldLike      = $likeCollection->addFieldToFilter('post_id', $post->getId())
                 ->addFieldToFilter('action', '1')->count();
             $html           = __(
-                '<i class="mb-blog-icon mb-blog-calendar-times"></i> %1',
+                '<i class="fa-regular fa-calendar-days"></i> %1',
                 $this->getDateFormat($post->getPublishDate())
             );
 
@@ -303,25 +303,25 @@ class Frontend extends Template
             if ($author && $author->getName() && $this->helperData->showAuthorInfo()) {
                 $aTag = '<a class="mb-info" href="' . $author->getUrl() . '">'
                     . $this->escapeHtml($author->getName()) . '</a>';
-                $html .= __('| <i class="mb-blog-icon mb-blog-user"></i> %1', $aTag);
+                $html .= __('| <i class="fa-solid fa-user"></i> %1', $aTag);
             }
 
             if ($this->getCommentinPost($post)) {
                 $html .= __(
-                    '| <i class="mb-blog-icon mb-blog-comments" aria-hidden="true"></i> %1',
+                    '| <i class="fa-regular fa-comments" aria-hidden="true"></i> %1',
                     $this->getCommentinPost($post)
                 );
             }
 
             if ($post->getViewTraffic()) {
                 $html .= __(
-                    '| <i class="mb-blog-icon mb-blog-traffic" aria-hidden="true"></i> %1',
+                    '| <i class="fa-regular fa-eye" aria-hidden="true"></i> %1',
                     $post->getViewTraffic()
                 );
             }
 
             if ($couldLike > 0) {
-                $html .= __('| <i class="mb-blog-icon mb-blog-thumbs-up" aria-hidden="true"></i> %1', $couldLike);
+                $html .= __('| <i class="fa-regular fa-thumbs-up" aria-hidden="true"></i> %1', $couldLike);
             }
         } catch (Exception $e) {
             $html = '';
