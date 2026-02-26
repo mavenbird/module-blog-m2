@@ -250,7 +250,7 @@ $color        = $helper->getDisplayConfig('font_color');
     <?php if ($helper->getBlogConfig('product_post/post_detail/enable_product')) : ?>
         <?php $relatedBlock = $block->getChildBlock('related_products'); ?>
         <?php if ($relatedBlock->hasProduct()) : ?>
-            <div class="block-blog-related products-same-post page-products mpcss" style="width: 90%;">
+            <div class="block-blog-related products-same-post page-products mpcss" style="width: 100%;">
                 <h2><?= $helper->getBlogConfig('product_post/post_detail/title') ?: $escaper->escapeHtml(__('Related Products')) ?></h2>
                 <div class="related-content-container">
                     <?= $relatedBlock->toHtml(); ?>
