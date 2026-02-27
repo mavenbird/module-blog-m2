@@ -41,28 +41,34 @@ if ($author) : ?>
         <?= $block->getPageFilter(($author->getShortDescription())) ?: $escaper->escapeHtml(__('No info')) ?>
     </div>
     <div class="author-social">
-        <?php if ($author->getFacebookLink()) : ?>
-        <a href="<?= $escaper->escapeUrl($author->getFacebookLink()) ?>" target="_blank">
-            <img class="img-responsive"
-                src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/facebook.png')) ?>"
-                align="middle" alt="<?= $escaper->escapeHtml($author->getName()); ?>" />
-        </a>
-        <?php else : ?>
-        <img class="img-responsive"
-            src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/facebookoff.png')) ?>"
-            align="middle" alt="<?= $escaper->escapeHtml($author->getName()); ?>" />
-        <?php endif; ?>
-        <?php if ($author->getTwitterLink()) : ?>
-        <a href="<?= $escaper->escapeUrl($author->getTwitterLink()) ?>" target="_blank">
-            <img class="img-responsive"
-                src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/twitter.png')) ?>"
-                align="middle" alt="<?= $escaper->escapeHtml($author->getName()); ?>" />
-        </a>
-        <?php else : ?>
-        <img class="img-responsive"
-            src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/twitter-off.png')) ?>"
-            align="middle" alt="<?= $escaper->escapeHtml($author->getName()); ?>" />
-        <?php endif; ?>
+        <div class="share-col-left">
+            <h5><?= $escaper->escapeHtml(__('Share this post')) ?></h5>
+        </div>
+        <div class="share-col-right">
+            <div class="post-sharing-button">
+                <span class="sharing-icon" title="Twitter">
+                    <i class="fa-brands fa-twitter"></i>
+                </span>
+                <span class="sharing-icon" title="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </span>
+                <span class="sharing-icon" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </span>
+                <span class="sharing-icon" title="Snapchat">
+                    <i class="fa-brands fa-snapchat"></i>
+                </span>
+                <span class="sharing-icon" title="Telegram">
+                    <i class="fa-brands fa-telegram"></i>
+                </span>
+                <span class="sharing-icon" title="Whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </span>
+                <span class="sharing-icon" title="Github">
+                    <i class="fa-brands fa-git-alt"></i>
+                </span>
+            </div>
+        </div>
 
     </div>
 </div>

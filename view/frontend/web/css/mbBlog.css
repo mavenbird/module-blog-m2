@@ -1,5 +1,5 @@
 body { padding: 0; }
-/*Post list section*/
+/*================== LIST VIEW FOR THE SAME BLOG PAGE ======================*/
 .post-list-content .mb-post-title a { color: #000; }
 .post-list .post-list-item.post-item-list {
   display: flex;
@@ -72,7 +72,8 @@ body { padding: 0; }
 .page-main .post-sharing-button {
     display: flex;
     align-items: center;
-    gap: 5px;
+    flex-wrap: wrap;
+    gap: 5px; 
 }
 .page-main .post-sharing-button .sharing-icon{
     display: flex;
@@ -292,38 +293,6 @@ body { padding: 0; }
     border-bottom: 1px dashed #ddd;
     padding-bottom: 11px;
 }   
-/* About-Author section */    
-.about-admin .h2 {
-    font-weight: 500;
-    font-size: 2.6rem;
-}
-.page-main .block-blog-related h2 {
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 8px;
-    font-weight: 600;
-}
-.about-admin .author-content-image img {
-    height: auto;
-    border: 1px solid #ddd;
-    border-radius: 55%;
-    object-fit: contain;
-    max-width: 150px;
-}
-.about-admin .related-content-container {
-    display: flex;
-    align-items: flex-start;
-    gap: 35px;
-}
-.about-admin .author-content-information .author-name {
-    font-weight: 600;
-    font-size: 18px;
-    border-bottom: 1px dashed #ccc;
-    padding-bottom: 8px;
-}
-.about-admin .related-content-container .author-description {
-    line-height: 1.65;
-    margin-top: 15px;
-}
 .page-main .post-list .mb-post-info {  font-size: 12px; flex-wrap: wrap; }   
 .page-main .topic-list .post-image { max-width: 250px; }
 /*================== VIEW PAGE RELATED POST BLOG PAGE ======================*/
@@ -345,8 +314,10 @@ body { padding: 0; }
     max-height: 100%;
 }
 .topic-list .post-item-wraper .post-image img {
-    max-width: 100%;
     width: 100%;
+    max-height: 190px;     
+    height: 200px;         
+    object-fit: cover;  
     border-radius: 5px;
     border: 1px solid #eee;
 }
@@ -357,6 +328,38 @@ body { padding: 0; }
     align-items: center;
     flex-wrap: wrap;
     gap: 5px;
+}
+/* About-Author section */    
+.about-admin .h2 {
+    font-weight: 500;
+    font-size: 2.6rem;
+}
+.page-main .block-blog-related h2 {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 8px;
+    font-weight: 600;
+}
+.about-admin .author-content-image img {
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 55%;
+    object-fit: contain;
+    max-width: 150px;
+}
+.about-admin .related-content-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+}
+.about-admin .author-content-information .author-name {
+    font-weight: 600;
+    font-size: 18px;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 8px;
+}
+.about-admin .related-content-container .author-description {
+    line-height: 1.65;
+    margin-top: 15px;
 }
 .topic-list .post-item-wraper .post-image { border-radius: 5px; max-width: 100%; }
 .topic-list .post-info-wraper { max-width: 300px; }
@@ -385,33 +388,27 @@ body { padding: 0; }
 }
 /* Hover effect without layout shift */
 .products-same-post .product-item-info:hover {
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    transform: translateY(-5px);
+    transform: translateY(-2px);
 }
 /* IMAGE FIX  */
-.products-same-post .product-image-wrapper {
-    overflow: hidden;
-}
+.products-same-post .product-image-wrapper { overflow: hidden; }
 .products-same-post .product-image-photo {
     width: 100%;
     height: auto;
     margin-top: 3px;
     transition: transform 0.5s ease;
 }
-/* Image Zoom on full card hover */
-.products-same-post .product-item-info:hover .product-image-photo {
-    transform: scale(1.08);
-}
 /* BUTTON FIX */
-.products-same-post .action.tocart {
-    margin-top: 10px;
-}
+.products-same-post .action.tocart { margin-top: 10px; }
+.products-same-post .product.details.product-item-details { max-width: 238px; }
+.products-same-post .product-item .price-box {  margin: 8px 0 8px; }
 /* WHEN PRODUCT HAS REVIEW */
 .products-same-post .products-grid .product-item-info:has(.product-reviews-summary) 
 .product-item-inner {
     background: #fff;
     border: 1px solid #ddd;
     border-top: none;
+    box-shadow: none;
     left: 0;
     margin: 0 0 0 -1px;
     padding: 0 9px 9px;
@@ -421,15 +418,14 @@ body { padding: 0; }
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
 }
-.products-same-post .products-grid .product-item-info:hover, .products-grid .product-item-info.active {  border: 1px solid #ddd; }
+.products-same-post .products-grid .product-item-info:hover, .products-grid .product-item-info.active {  border: 1px solid #ddd; padding: 0; 
+    margin: -2px; box-shadow: none;}
 .products-same-post .products-grid .product-item-info:has(.product-reviews-summary) 
 .product-reviews-summary {
     margin-bottom: 0px;
 }
 .products-same-post .products-grid .product-item-info:has(.product-reviews-summary) 
-.price-box.price-final_price {
-    margin: 10px 0 20px;
-}
+.price-box.price-final_price {  margin: 10px 0 20px; }
 /* WHEN PRODUCT HAS NO REVIEW */
 .products-same-post .products-grid .product-item-info:not(:has(.product-reviews-summary)) 
 .product-item-inner {
@@ -444,6 +440,121 @@ body { padding: 0; }
     right: -1px;
     z-index: 2;
     border-bottom: none;
+}
+/*================== SIDEBAR AUTHOR-DETAILS PAGE DESIGN ======================*/
+.sidebar .sidebar-info .author-name h3 {
+    color: #000000;
+    text-align: center;
+    font-size: 20px;
+    border-bottom: 1px dashed #ccc;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+}
+.sidebar .sidebar-info .author-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sidebar .sidebar-info .author-image img {
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    object-fit: contain;
+}
+.sidebar .sidebar-info .author-content {
+    margin-top: 12px;
+    max-width: 230px;
+    padding: 0px 4px 0px 4px;
+    text-align: left;
+}
+.sidebar .sidebar-info .author-social {
+    margin-top: 12px;
+}
+.sidebar .sidebar-info .share-col-left h5 {
+    margin: 10px 0px 6px 0px; border-bottom: 1px solid #ddd; padding-bottom: 3px;
+}
+/*================== FOOTER FOR BLOG PAGE ======================*/
+.page-main .mb-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.page-main span.mb-footer-links-light h3 {
+    margin-top: 5px;
+    max-width: 475px;
+}
+/*================== COMMENT FORM FIELD FOR BLOG PAGE ======================*/
+.blog-comment input[type="text"], input[type="password"], input[type="url"], input[type="tel"], input[type="search"], input[type="number"],
+ input[type*="date"], input[type="email"] {
+    background: #fff;
+    border: 1px solid #c2c2c2;
+    font-size: 14px;
+    height: 38px;
+    line-height: 1.4;
+    padding: 0 9px;
+    width: 100%;
+    border-radius: 5px;
+}
+.blog-comment textarea {
+    background: #fff;
+    border: 1px solid #c2c2c2;
+    border-radius: 5px;
+    font-size: 14px;
+    height: auto;
+    line-height: 1.4;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 8px;
+}
+.blog-comment .default-cmt__content {
+    width: 100%;
+    max-width: 100%;
+}
+.blog-comment form#default-cmt__content__cmt-block__guest-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 8px;
+}
+.blog-comment .default-cmt__content__cmt-block__cmt-box__cmt-btn {
+    margin-bottom: 8px;
+}
+.blog-comment .default-cmt__content__cmt-content {
+    margin-top: 10px;
+}
+.blog-comment ul.mbblog-comment-section.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 0px;
+    gap: 15px;
+}
+.blog-comment .default-cmt__content__cmt-content__cmt-row {
+    padding: 10px;
+    border: 1px solid #ccc !important;
+    border-radius: 5px;
+    list-style: none;
+    margin-bottom: 0px;
+}
+.blog-comment .col-mb.default-cmt__cmt-login {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.blog-comment span.cmt-row__cmt-username {
+    font-weight: 600;
+    color: #000000;
+    border-bottom: 1px solid #000;
+}
+.blog-comment .cmt-row__cmt-username {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+}
+/*================== REVIEW SECTION BLOG PAGE ======================*/
+.mb-blog-review-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
 }
 /*================== GRID VIEW FOR THE SAME BLOG PAGE ======================*/
 .page-main .post-list.grid.products-grid {
@@ -503,6 +614,7 @@ body { padding: 0; }
     padding: 0px 0px 0px 0px;
 }
 
+
 @media(min-width:1280px) and (max-width:1440px) {}
 @media(min-width:1024px) and (max-width:1279px) {
     .post-list .post-list-item.post-item-list { flex-direction: column; }
@@ -513,6 +625,8 @@ body { padding: 0; }
     .mbblog-category-view .page-main .sidebar-main { width: 22%; }
     .mbblog-post-index .page-main .column.main { width: 78%;; }
     .mbblog-post-index .page-main .sidebar-main { width: 22%; }
+    .mbblog-author-view .page-main .column.main { width: 78%;; }
+    .mbblog-author-view .page-main .sidebar-main { width: 22%; }
     .mbblog-post-view .page-main .column.main { width: 78%; }
     .mbblog-post-view .page-main .sidebar-main { width: 22%; }
     .sidebar .list-post-tabs .post-left { width: 100%; }
@@ -522,6 +636,8 @@ body { padding: 0; }
     /* For list view */
     .mbblog-category-view .page-main .column.main { width: 70%; }
     .mbblog-category-view .page-main .sidebar-main { width: 30%; }
+    .mbblog-author-view .page-main .column.main { width: 70%; }
+    .mbblog-author-view .page-main .sidebar-main { width: 30%; }
     .mbblog-post-index .page-main .column.main { width: 70%; }
     .mbblog-post-index .page-main .sidebar-main { width: 30%; }
     .mbblog-post-view .page-main .column.main { width: 70%; }
@@ -532,6 +648,8 @@ body { padding: 0; }
     .sidebar .sidebar-info .post-left { max-width: 100%; width: 100%; }
     .list-post-tabs { flex-direction: column; align-items: center; gap: 10px;}
     .products-same-post .owl-carousel.owl-theme { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 0px; }
+    .topic-list .owl-carousel.owl-theme { display: grid; grid-template-columns: repeat(2, 1fr);  }
+    .blog-comment ul.mbblog-comment-section.row { display: grid; grid-template-columns: repeat(3, 1fr); padding: 0px; gap: 12px; }
  }
 @media (max-width: 768px) {
     .sidebar .product.data.items > .item.title .data.switch { padding: 1px 10px 1px 10px; border-right: 1px solid #ccc; 
@@ -559,9 +677,12 @@ body { padding: 0; }
     .post-right span:first-child { font-size: 13px; }
     .create-at { font-size: 11px; }
     .products-same-post .owl-carousel.owl-theme { display: grid; grid-template-columns: 1fr 1fr ; gap: 20px 0px; }
+    .sidebar .sidebar-info .author-content { max-width: 100%; }
     .products-same-post .products-grid .page-products .product-item-info {  width: 100% !important; }
     .products-same-post .products-grid .product-item-info .product-item-inner {position: relative !important; left: auto !important; right: auto !important; 
         margin: 10px 0 0 0 !important; border: 1px solid #ddd; border-top: none !important; }
+    .topic-list .owl-carousel.owl-theme { display: grid; grid-template-columns: repeat(2, 1fr);  }
+    .blog-comment ul.mbblog-comment-section.row { display: grid; grid-template-columns: repeat(3, 1fr); padding: 0px; gap: 8px; }
 }
 @media (max-width: 767px) { }
 @media (max-width: 575px) { 
@@ -571,16 +692,18 @@ body { padding: 0; }
     .post-list .details-sharing { flex-direction: column; align-items: flex-start; }
     .post-list .details-sharing #sharing {display: flex; gap: 10px; margin-top: 0px; flex-wrap: wrap; }
     .page-main .post-list.grid.products-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 12px; }
-    .topic-list .owl-carousel.owl-theme { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .products-same-post .owl-carousel.owl-theme { display: grid; grid-template-columns: 1fr;}
+    .products-same-post .owl-carousel.owl-theme { display: grid; grid-template-columns: repeat(2, 1fr);}
+    .blog-comment ul.mbblog-comment-section.row { display: grid; grid-template-columns: repeat(2, 1fr); padding: 0px; gap: 5px; }
 }
 @media (max-width: 479px){
-    .about-admin .related-content-container { gap: 12px; flex-direction: column; }
+    .about-admin .related-content-container { gap: 12px; flex-direction: column; align-items: center;}
     .post-list .details-sharing #sharing { display: flex; gap: 0px; margin-top: 0px; flex-wrap: wrap; }
     .post-list .details-sharing #sharing .share-col-left h5{ margin: 4px 0 8px 0; }
     .products-same-post .products-grid .page-products .product-item-info {  width: 100% !important; }
     .products-same-post .products-grid .product-item-info .product-item-inner {position: relative !important; left: auto !important; right: auto !important; 
         margin: 10px 0 0 0 !important; border: 1px solid #ddd; border-top: none !important; }
+    .topic-list .owl-carousel.owl-theme { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    .blog-comment ul.mbblog-comment-section.row { display: grid; grid-template-columns: 1fr; padding: 0px; gap: 5px; }
 }
 @media (max-width: 400px){
     .sidebar-info .list-post-tabs { flex-direction: column; align-items: center; gap: 10px; }
@@ -588,5 +711,5 @@ body { padding: 0; }
     .post-right span:first-child { font-size: 12px; }
     .create-at { font-size: 10px; }
     .sidebar .product.data.items > .item.title .data.switch { padding: 0px 15px; font-size: 13px; }
-    .topic-list .owl-carousel.owl-theme { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    .blog-comment form#default-cmt__content__cmt-block__guest-form { display: grid; grid-template-columns: 1fr; gap: 18px; }
 }

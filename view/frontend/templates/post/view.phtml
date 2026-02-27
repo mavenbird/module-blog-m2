@@ -310,15 +310,15 @@ $color        = $helper->getDisplayConfig('font_color');
                             </button>
                         </div>
                     <?php endif; ?>
-                    <div class="col-mb mb-12" style="float: left;">
+                    <div class="col-mb mb-12">
                         <div class="default-cmt__content">
                             <div class="default-cmt__content__cmt-block">
                                 <?php if (!$block->isLoggedIn()) : ?>
                                     <form id="default-cmt__content__cmt-block__guest-form"
                                           data-mage-init='{"validation":{}}'>
                                         <div class="col-mb mb-6 default-cmt__content__cmt-block__guest-box">
-                                            <label for="default-cmt__content__cmt-block__guest-box__name-input">Name
-                                                *</label>
+                                            <label for="default-cmt__content__cmt-block__guest-box__name-input">
+                                                  <?= $escaper->escapeHtmlAttr(__('Name')) ?>  *</label>
                                             <input id="default-cmt__content__cmt-block__guest-box__name-input"
                                                    type="text"
                                                    name="default-cmt__content__cmt-block__guest-box__name-input"
@@ -326,8 +326,8 @@ $color        = $helper->getDisplayConfig('font_color');
                                                    data-validate="{required:true}">
                                         </div>
                                         <div class="col-mb mb-6 default-cmt__content__cmt-block__guest-box">
-                                            <label for="default-cmt__content__cmt-block__guest-box__email-input">Email
-                                                *</label>
+                                            <label for="default-cmt__content__cmt-block__guest-box__email-input">
+                                               <?= $escaper->escapeHtmlAttr(__('Email')) ?>  *</label>
                                             <input id="default-cmt__content__cmt-block__guest-box__email-input"
                                                    type="text"
                                                    name="default-cmt__content__cmt-block__guest-box__email-input"
