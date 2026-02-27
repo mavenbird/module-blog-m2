@@ -24,8 +24,8 @@
     <head>
         <css src="Mavenbird_Core::css/grid-mavenbird.css"/>
         <css src="Mavenbird_Core::css/font-awesome.min.css"/>
-        <css src="Mavenbird_Core::css/owl.carousel.css"/>
-        <css src="Mavenbird_Core::css/owl.theme.css"/>
+        <css src="Mavenbird_Blog::css/owl.carousel.css"/>
+        <css src="Mavenbird_Blog::css/owl.theme.css"/>
     </head>
     <body>
         <referenceContainer name="columns">

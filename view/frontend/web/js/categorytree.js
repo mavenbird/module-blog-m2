@@ -18,41 +18,24 @@
  * @license     https://www.mavenbird.com/LICENSE.txt
  */
 
-define([
-        'jquery'
-    ], function ($) {
-    "use strict";
+define(['jquery'], function ($) {
+    'use strict';
 
-        var parentCategory = $(".mb-blog-expand-tree-2");
-        var childCategory  = $(".mb-blog-expand-tree-3");
+    return function (config, element) {
+        var $root = $(element);
 
-        parentCategory.click(function () {
-            if ($(this).hasClass("mb-blog-expand-tree-2")) {
-                $(this).parent().find(".category-level3").slideDown("fast");
-                $(this).removeClass("mb-blog-expand-tree-2 fa fa-plus-square-o")
-                .addClass("mb-blog-narrow-tree-2 fa fa-minus-square-o");
-            } else {
-                $(this).parent().find(".category-level4").slideUp("fast");
-                $(this).parent().find(".category-level3").slideUp("fast");
-                $(this).removeClass("mb-blog-narrow-tree-2 fa fa-minus-square-o")
-                .addClass("mb-blog-expand-tree-2 fa fa-plus-square-o");
-                $(this).parent().find(".mb-blog-narrow-tree-3")
-                .removeClass("mb-blog-narrow-tree-3 fa fa-minus-square-o")
-                .addClass("mb-blog-expand-tree-3 fa fa-plus-square-o");
+        $root.on('click', '.mb-category-toggle', function (e) {
+            e.preventDefault();
+
+            var $toggle = $(this);
+            var $children = $toggle.closest('li').children('.category-children');
+
+            if (!$children.length) {
+                return;
             }
 
+            $children.slideToggle(200);
+            $toggle.text($toggle.text() === '+' ? '−' : '+');
         });
-
-        childCategory.click(function () {
-            if ($(this).hasClass("mb-blog-expand-tree-3")) {
-                $(this).parent().find(".category-level4").slideDown("fast");
-                $(this).removeClass("mb-blog-expand-tree-3 fa fa-plus-square-o")
-                .addClass("mb-blog-narrow-tree-3 fa fa-minus-square-o");
-            } else {
-                $(this).parent().find(".category-level4").slideUp("fast");
-                $(this).removeClass("mb-blog-narrow-tree-3 fa fa-minus-square-o")
-                .addClass("mb-blog-expand-tree-3 fa fa-plus-square-o");
-            }
-        });
-    }
-);
+    };
+});

@@ -54,35 +54,57 @@ class Widget extends Frontend
      *
      * @return Phrase|string
      */
-    public function getCategoryTreeHtml($tree)
-    {
-        if (!$tree) {
-            return __('No Categories.');
-        }
-
-        $html = '';
-        foreach ($tree as $value) {
-            if (!$value) {
-                continue;
-            }
-            if ($value['enabled']) {
-                $level = count(explode('/', ($value['path'])));
-                $hasChild = isset($value['children']) && $level < 4;
-                $html .= '<ul class="block-content menu-categories category-level'
-                    . $level . '" style="margin-bottom:0px;margin-top:0px;">';
-                $html .= '<li class="category-item">';
-                $html .= $hasChild ? '<i class="fa fa-plus-square-o mb-blog-expand-tree-' . $level . '"></i>' : '';
-                $html .= '<a class="list-categories" href="' . $this->getCategoryUrl($value['url']) . '">';
-                $html .= '<i class="fa fa-folder-open-o">&nbsp;&nbsp;</i>';
-                $html .= ucfirst($value['text']) . '</a>';
-                $html .= $hasChild ? $this->getCategoryTreeHtml($value['children']) : '';
-                $html .= '</li>';
-                $html .= '</ul>';
-            }
-        }
-
-        return $html;
+public function getCategoryTreeHtml(array $tree, bool $accordion = false): string
+{
+    if (!$tree) {
+        return (string)__('No Categories.');
     }
+
+    $html = '<ul class="menu-categories">';
+
+    foreach ($tree as $value) {
+
+        // skip disabled category
+        if (!$value || empty($value['enabled'])) {
+            continue;
+        }
+
+        // check enabled children ONLY
+        $enabledChildren = array_filter(
+            $value['children'] ?? [],
+            fn($child) => !empty($child['enabled'])
+        );
+
+        $hasChild = !empty($enabledChildren);
+
+        $html .= '<li class="category-item">';
+
+        /* SHOW +/- ONLY WHEN:
+           accordion enabled AND category has enabled children
+        */
+        if ($accordion && $hasChild) {
+            $html .= '<span class="mb-category-toggle">+</span> ';
+        }
+
+        $html .= '<a href="' . $this->getCategoryUrl($value['url']) . '" class="list-categories">';
+        $html .= ucfirst($value['text']) . '</a>';
+
+        if ($hasChild) {
+
+            $childHtml = $this->getCategoryTreeHtml($enabledChildren, $accordion);
+
+            $html .= $accordion
+                ? '<ul class="category-children" style="display:none;">' . $childHtml . '</ul>'
+                : $childHtml;
+        }
+
+        $html .= '</li>';
+    }
+
+    $html .= '</ul>';
+
+    return $html;
+}
 
     /**
      * @param string $category
@@ -92,5 +114,13 @@ class Widget extends Frontend
     public function getCategoryUrl($category)
     {
         return $this->helperData->getBlogUrl($category, Data::TYPE_CATEGORY);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCategoryAccordionEnabled()
+    {
+        return (bool)$this->helperData->getConfigValue('blog/display/category_accordion');
     }
 }
