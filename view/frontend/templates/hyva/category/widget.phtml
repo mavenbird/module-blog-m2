@@ -25,6 +25,7 @@ use Magento\Framework\Escaper;
 /** @var Widget $block */
 /** @var Escaper $escaper */
 $tree = $block->getTree();
+$accordion = $block->isCategoryAccordionEnabled();
 if ($tree) : ?>
 <div class="sidebar-info">
     <div class="block-title sidebar-categories">
@@ -33,61 +34,30 @@ if ($tree) : ?>
         </p>
     </div>
     <div class="categories-item-list">
-        <?= $block->getCategoryTreeHtml($tree) ?>
-    </div>
+<?= $block->getCategoryTreeHtml($tree, $accordion) ?>    </div>
 </div>
-<script type="text/javascript">
-document.addEventListener('DOMContentLoaded', function() {
-    var parentCategory = document.querySelector(".mb-blog-expand-tree-2");
-    var childCategory = document.querySelector(".mb-blog-expand-tree-3");
-    if (parentCategory) {
-        parentCategory.addEventListener('click', function(e) {
-            var level3 = this.parentElement.querySelector(".category-level3");
-            if (this.classList.contains("mb-blog-expand-tree-2")) {
-                if (level3) {
-                    level3.style.display = "block";
-                }
-                this.classList.remove("mb-blog-expand-tree-2", "fa", "fa-plus-square-o");
-                this.classList.add("mb-blog-narrow-tree-2", "fa", "fa-minus-square-o");
-            } else {
-                var level4 = this.parentElement.querySelector(".category-level4");
-                if (level4) {
-                    level4.style.display = "none";
-                }
-                if (level3) {
-                    level3.style.display = "none";
-                }
-                this.classList.remove("mb-blog-narrow-tree-2", "fa", "fa-minus-square-o");
-                this.classList.add("mb-blog-expand-tree-2", "fa", "fa-plus-square-o");
-                if (this.parentElement.querySelector(".mb-blog-narrow-tree-3")) {
-                    this.parentElement.querySelector(".mb-blog-narrow-tree-3")
-                        .classList.remove("mb-blog-narrow-tree-3", "fa", "fa-minus-square-o");
-                    this.parentElement.querySelector(".mb-blog-narrow-tree-3")
-                        .classList.add("mb-blog-expand-tree-3", "fa", "fa-plus-square-o");
-                }
+<script>
+document.addEventListener('DOMContentLoaded', function () {
 
-            }
-        });
-    }
+    document.querySelectorAll('.mb-category-toggle')
+        .forEach(function(toggle){
 
-    if (childCategory) {
-        childCategory.addEventListener('click', function(e) {
-            var level4 = this.parentElement.querySelector(".category-level4");
-            if (this.classList.contains("mb-blog-expand-tree-3")) {
-                if (level4) {
-                    level4.style.display = "block";
-                }
-                this.classList.remove("mb-blog-expand-tree-3", "fa", "fa-plus-square-o");
-                this.classList.add("mb-blog-narrow-tree-3", "fa", "fa-minus-square-o");
-            } else {
-                if (level4) {
-                    level4.style.display = "none";
-                }
-                this.classList.remove("mb-blog-narrow-tree-3", "fa", "fa-minus-square-o");
-                this.classList.add("mb-blog-expand-tree-3", "fa", "fa-plus-square-o");
-            }
+        toggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const parentLi = this.closest('li');
+            const children = parentLi.querySelector(':scope > .category-children');
+
+            if (!children) return;
+
+            const isOpen = children.style.display === 'block';
+
+            children.style.display = isOpen ? 'none' : 'block';
+            this.textContent = isOpen ? '+' : '-';
         });
-    }
+
+    });
 
 });
 </script>

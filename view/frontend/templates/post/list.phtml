@@ -45,7 +45,7 @@ use Magento\Framework\Escaper;
                             <div class="post-image">
                                 <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
                                     <img class="img-responsive"
-                                         src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(), '400x')) ?>"
+                                         src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(), '1000x')) ?>"
                                          alt="<?= $escaper->escapeHtml($post->getName()); ?>"/>
                                 </a>
                             </div>

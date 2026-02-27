@@ -96,6 +96,11 @@
                     <comment>Comma-separated.</comment>
                     <backend_model>Mavenbird\Blog\Model\Config\Backend\Pagination</backend_model>
                 </field>
+                <field id="category_accordion" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Category Accordion</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Select Yes to enable category accordion in blog display.</comment>
+                </field>
             </group>
             <group id="post_view_page" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label><![CDATA[Blog List Page & Post View Page]]></label>
