@@ -22,8 +22,8 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <css src="Mavenbird_Core::css/owl.carousel.css"/>
-        <css src="Mavenbird_Core::css/owl.theme.css"/>
+        <css src="Mavenbird_Blog::css/owl.carousel.css"/>
+        <css src="Mavenbird_Blog::css/owl.theme.css"/>
     </head>
     <body>
         <referenceBlock name="product.info.details">

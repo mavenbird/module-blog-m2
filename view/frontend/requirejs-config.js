@@ -22,6 +22,6 @@ var config = {
     paths: {
         comment: 'Mavenbird_Blog/js/comment',
         categoryTree: 'Mavenbird_Blog/js/categorytree',
-        owlCarousel: 'Mavenbird_Core/js/owl.carousel.min'
+        owlCarousel: 'Mavenbird_Blog/js/owl.carousel.min'
     }
 };
