@@ -250,21 +250,21 @@ use Magento\Framework\Escaper;
         }
     });
     const domElementCategories = document.querySelector('#categories_ids');
-    const treeselectCategories = new Treeselect({
+    window.treeselectCategories = new Treeselect({
         parentHtmlContainer: domElementCategories,
         options: optionsCategories,
         value: []
 
     });
     const domElementTopics = document.querySelector('#topics_ids');
-    const treeselectTopics = new Treeselect({
+    window.treeselectTopics = new Treeselect({
         parentHtmlContainer: domElementTopics,
         options: optionsTopics,
         value: []
 
     });
     const domElementTags = document.querySelector('#tags_ids');
-    const treeselectTags = new Treeselect({
+     window.treeselectTags = new Treeselect({
         parentHtmlContainer: domElementTags,
         options: optionsTags,
         value: []
@@ -316,6 +316,9 @@ use Magento\Framework\Escaper;
                 formData.append('topics_ids', treeselectTopics.value?.join(','));
                 formData.append('tags_ids', treeselectTags.value?.join(','));
                 formData.append('allow_comment', document.querySelector('#allow_comment').value);
+                formData.append('meta_title', document.querySelector('#meta_title').value);
+                formData.append('meta_description', document.querySelector('#meta_description').value);
+                formData.append('meta_keywords', document.querySelector('#meta_keywords').value);
 
                 const publicDateValue = document.querySelector('#publish_date').value;
                 if(publicDateValue) {
