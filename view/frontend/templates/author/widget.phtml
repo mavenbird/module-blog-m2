@@ -27,49 +27,56 @@ use Magento\Framework\Escaper;
 /** @var Escaper $escaper */
 $author = $block->getCurrentAuthor();
 if ($author) : ?>
-<div class="sidebar-info">
-
-    <div class="author-name">
-        <h3><?= $escaper->escapeHtml($author->getName()) ?></h3>
-    </div>
-    <div class="author-image">
-        <img class="img-responsive"
-            src="<?= $escaper->escapeUrl($author->getImage() ? $block->resizeImage($author->getImage(), '135x', Image::TEMPLATE_MEDIA_TYPE_AUTH) : $block->getDefaultAuthorImage()) ?>"
-            alt="<?= $escaper->escapeHtml($author->getName()); ?>" />
-    </div>
-    <div class="author-content">
-        <?= $block->getPageFilter(($author->getShortDescription())) ?: $escaper->escapeHtml(__('No info')) ?>
-    </div>
-    <div class="author-social">
-        <div class="share-col-left">
-            <h5><?= $escaper->escapeHtml(__('Share this post')) ?></h5>
+<div class="mbblog-author-details">
+   
+    <div class="mbblog-author-description">
+        <div class="author-image">
+            <img class="img-responsive"
+                src="<?= $escaper->escapeUrl($author->getImage() ? $block->resizeImage($author->getImage(), '135x', Image::TEMPLATE_MEDIA_TYPE_AUTH) : $block->getDefaultAuthorImage()) ?>"
+                alt="<?= $escaper->escapeHtml($author->getName()); ?>" />
         </div>
-        <div class="share-col-right">
-            <div class="post-sharing-button">
-                <span class="sharing-icon" title="Twitter">
-                    <i class="fa-brands fa-twitter"></i>
+        <div class="mbblog-author-content">
+            <div class="author-name">
+                <span>
+                    <?= $escaper->escapeHtml(__('Written By')) ?>
                 </span>
-                <span class="sharing-icon" title="Facebook">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </span>
-                <span class="sharing-icon" title="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </span>
-                <span class="sharing-icon" title="Snapchat">
-                    <i class="fa-brands fa-snapchat"></i>
-                </span>
-                <span class="sharing-icon" title="Telegram">
-                    <i class="fa-brands fa-telegram"></i>
-                </span>
-                <span class="sharing-icon" title="Whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </span>
-                <span class="sharing-icon" title="Github">
-                    <i class="fa-brands fa-git-alt"></i>
-                </span>
+                <h3><?= $escaper->escapeHtml($author->getName()) ?></h3>
+            </div>
+            <div class="author-content">
+                <?= $block->getPageFilter(($author->getShortDescription())) ?: $escaper->escapeHtml(__('No info')) ?>
             </div>
         </div>
-
     </div>
+        <div class="author-social">
+            <div class="share-col-left">
+                <h5><?= $escaper->escapeHtml(__('Share this post')) ?></h5>
+            </div>
+            <div class="share-col-right">
+                <div class="post-sharing-button">
+                    <span class="sharing-icon" title="Twitter">
+                        <i class="fa-brands fa-twitter"></i>
+                    </span>
+                    <span class="sharing-icon" title="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </span>
+                    <span class="sharing-icon" title="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </span>
+                    <span class="sharing-icon" title="Snapchat">
+                        <i class="fa-brands fa-snapchat"></i>
+                    </span>
+                    <span class="sharing-icon" title="Telegram">
+                        <i class="fa-brands fa-telegram"></i>
+                    </span>
+                    <span class="sharing-icon" title="Whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </span>
+                    <span class="sharing-icon" title="Github">
+                        <i class="fa-brands fa-git-alt"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    
 </div>
 <?php endif; ?>

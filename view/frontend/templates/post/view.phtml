@@ -158,7 +158,7 @@ $color        = $helper->getDisplayConfig('font_color');
         <div class="block-blog-related topic-list mpcss">
             <h2><?= $escaper->escapeHtml(__('Related Posts')) ?></h2>
             <?php if ($block->getRelatedMode()) : ?>
-                <div class="owl-carousel owl-theme">
+                <div class="related-post owl-carousel owl-theme">
                     <?php foreach ($relatedPosts as $post) : ?>
                         <div class="item post-list-item ">
                             <div class="post-item-wraper">
