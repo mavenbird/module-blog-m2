@@ -24,14 +24,16 @@
     <update handle="mbblog_design"/>
     <body>
         <referenceContainer name="content">
+            <block class="Mavenbird\Blog\Block\Author\Widget" name="mbblog.view.author" template="Mavenbird_Blog::author/widget.phtml"/>
             <block class="Mavenbird\Blog\Block\Author\Listpost" name="mbblog.post.list" template="Mavenbird_Blog::post/list.phtml"/>
         </referenceContainer>
-        <referenceContainer name="blog.sidebar.main">
+        <!-- <referenceContainer name="blog.sidebar.main">
             <block class="Mavenbird\Blog\Block\Author\Widget" after="mbblog.sidebar.mostview" name="mbblog.view.sidebar.author" template="Mavenbird_Blog::author/widget.phtml"/>
-        </referenceContainer>
+        </referenceContainer> -->
         <referenceBlock name="mbblog.sidebar.category" remove="true"/>
         <referenceBlock name="mbblog.sidebar.monthly" remove="true"/>
         <referenceBlock name="mbblog.sidebar.topic" remove="true"/>
         <referenceBlock name="mbblog.sidebar.tag" remove="true"/>
+        <referenceBlock name="page.main.title" remove="true" />
     </body>
 </page>
