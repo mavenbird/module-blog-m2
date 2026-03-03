@@ -311,54 +311,53 @@ $color        = $helper->getDisplayConfig('font_color');
                         </div>
                     <?php endif; ?>
                     <div class="col-mb mb-12">
-                        <div class="default-cmt__content">
-                            <div class="default-cmt__content__cmt-block">
+                        <div class="mbblg-comment">
+                            <div class="mbblog-comment-section">
                                 <?php if (!$block->isLoggedIn()) : ?>
-                                    <form id="default-cmt__content__cmt-block__guest-form"
+                                    <form id="mbblog-comment-form"
                                           data-mage-init='{"validation":{}}'>
-                                        <div class="col-mb mb-6 default-cmt__content__cmt-block__guest-box">
-                                            <label for="default-cmt__content__cmt-block__guest-box__name-input">
+                                        <div class="col-mb mb-6 mbblog-comment-form-field">
+                                            <label for="mbblog-comment-guest-name">
                                                   <?= $escaper->escapeHtmlAttr(__('Name')) ?>  *</label>
-                                            <input id="default-cmt__content__cmt-block__guest-box__name-input"
+                                            <input id="mbblog-comment-guest-name"
                                                    type="text"
-                                                   name="default-cmt__content__cmt-block__guest-box__name-input"
+                                                   name="mbblog-comment-guest-name"
                                                    placeholder="<?= $escaper->escapeHtmlAttr(__('Your display name')) ?>"
                                                    data-validate="{required:true}">
                                         </div>
-                                        <div class="col-mb mb-6 default-cmt__content__cmt-block__guest-box">
-                                            <label for="default-cmt__content__cmt-block__guest-box__email-input">
+                                        <div class="col-mb mb-6 mbblog-comment-form-field">
+                                            <label for="mbblog-comment-guest-email">
                                                <?= $escaper->escapeHtmlAttr(__('Email')) ?>  *</label>
-                                            <input id="default-cmt__content__cmt-block__guest-box__email-input"
+                                            <input id="mbblog-comment-guest-email"
                                                    type="text"
-                                                   name="default-cmt__content__cmt-block__guest-box__email-input"
+                                                   name="mbblog-comment-guest-email"
                                                    placeholder="<?= $escaper->escapeHtmlAttr(__('Your email')) ?> "
                                                    data-validate="{required:true, 'validate-email':true}">
                                         </div>
                                     </form>
                                 <?php endif; ?>
-                                <div class="default-cmt__content__cmt-block__cmt-box">
+                                <div class="mbblog-comment-fields">
                                     <div class="col-mb mb-12">
                                         <label for="mb-guest-cmt-commentbox">Comment</label>
-                                        <textarea class="default-cmt__content__cmt-block__cmt-box__cmt-input"
-                                                  maxlength="255"
+                                        <textarea class="mbblog-comment-textarea"
                                                   placeholder="<?= $escaper->escapeHtmlAttr(__('Type comments here...')) ?>">
 
                                         </textarea>
                                     </div>
-                                    <div class="default-cmt__content__cmt-block__cmt-box__cmt-btn">
-                                        <div class="default-cmt_loading" style="display: none">
+                                    <div class="mbblog-comment-save">
+                                        <div class="mbblog-comment-loading" style="display: none">
                                             <img
                                                 src="<?= $escaper->escapeUrl($block->getViewFileUrl('images/loader-1.gif')) ?>"
                                                 alt="Loading...">
                                         </div>
-                                        <button class="default-cmt__content__cmt-block__cmt-box__cmt-btn__btn-submit
+                                        <button class="mbblog-comment-submitbtn
                                          primary btn-primary">
                                             <?= $escaper->escapeHtml(__('Comment')) ?>
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="default-cmt__content__cmt-content">
+                            <div class="mbblog-comment-details">
                                 <?php
                                 $comments = $block->getPostComments($_post->getId());
                                 $block->getCommentsTree($comments, 0);

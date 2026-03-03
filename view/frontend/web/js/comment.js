@@ -24,9 +24,9 @@ require([
 ], function ($) {
     'use strict';
 
-    var cmtBox = $('.default-cmt__content__cmt-block__cmt-box__cmt-input'),
-        submitCmt = $('.default-cmt__content__cmt-block__cmt-box__cmt-btn__btn-submit'),
-        defaultCmt = $('ul.default-cmt__content__cmt-content:first'),
+    var cmtBox = $('.mbblog-comment-textarea'),
+        submitCmt = $('.mbblog-comment-submitbtn'),
+        defaultCmt = $('ul.mbblog-comment-details:first'),
         likeBtn = defaultCmt.find('.btn-like'),
         replyBtn = defaultCmt.find('.btn-reply');
 
@@ -34,7 +34,7 @@ require([
     likeComment(likeBtn);
     showReply(replyBtn);
 
-    $('li.default-cmt__content__cmt-content__cmt-row:first').css({'border-top': 'none'});
+    $('li.mbblog-comment-details-list:first').css({'border-top': 'none'});
     $('.default-cmt__cmt-login__btn-login').click(function () {
         var socialPopup = $("[href$='social-login-popup']");
 
@@ -52,7 +52,7 @@ require([
      */
     function checkGuestFormValidate() {
         if (isLogged == 'No') {
-            return $("#default-cmt__content__cmt-block__guest-form").valid();
+            return $("#mbblog-comment-form").valid();
         }
         return true;
     }
@@ -62,21 +62,21 @@ require([
      */
     function submitComment() {
         submitCmt.click(function () {
-            $(".default-cmt__content__cmt-block__cmt-box").find('.messages').hide();
+            $(".mbblog-comment-fields").find('.messages').hide();
             if (checkGuestFormValidate()) {
                 var cmtText = cmtBox.val();
 
                 if (cmtText.trim().length) {
-                    $('.default-cmt_loading').show();
+                    $('.mbblog-comment-loading').show();
                     $(this).prop('disabled', true);
                     var ajaxRequest = ajaxCommentActions(cmtText, submitCmt);
                     ajaxRequest.done(function () {
                         cmtBox.val('');
-                        $('.default-cmt_loading').hide();
+                        $('.mbblog-comment-loading').hide();
                         $(this).prop('disabled', false);
                     }.bind(this));
                 } else {
-                    $('.default-cmt__content__cmt-block__cmt-box__cmt-input').parent().append(messengerBox.cmt_warning);
+                    $('.mbblog-comment-textarea').parent().append(messengerBox.cmt_warning);
                 }
             }
         });
@@ -89,7 +89,7 @@ require([
 
             likeEl.click(function () {
                 var cmtId = $(this).attr('data-cmt-id'),
-                    cmtRowContainer = $(this).closest('.default-cmt__content__cmt-content__cmt-row');
+                    cmtRowContainer = $(this).closest('.mbblog-comment-details-list');
                 if (isLogged === 'Yes') {
                     var likeCount = $(this).find('span').text();
                     if ($(this).attr('click') === '1') {
@@ -142,10 +142,10 @@ require([
         btn.each(function () {
 
             $(this).click(function () {
-                var cmtId = (typeof $(this).closest('.default-cmt__content__cmt-content__cmt-row').parent().parent().parent().parent().attr('data-cmt-id') !== 'undefined') ? $(this).closest('.default-cmt__content__cmt-content__cmt-row').parent().parent().attr('data-cmt-id') : $(this).attr('data-cmt-id'),
+                var cmtId = (typeof $(this).closest('.mbblog-comment-details-list').parent().parent().parent().parent().attr('data-cmt-id') !== 'undefined') ? $(this).closest('.mbblog-comment-details-list').parent().parent().attr('data-cmt-id') : $(this).attr('data-cmt-id'),
                     inputCmtID = $(this).attr('data-cmt-id'),
                     cmtRowCmt = $("div").find('#cmt-row');
-                var cmtRowContainer = $(this).closest('.default-cmt__content__cmt-content__cmt-row');
+                var cmtRowContainer = $(this).closest('.mbblog-comment-details-list');
                 if ($("li.cmt-row-" + cmtId).find("ul").length) {
                     var cmtRowContainer = $("#cmt-id-" + cmtId + " ul:last-child");
                 }
@@ -169,7 +169,7 @@ require([
                             '</div>');
                         var input = $('#reply_cmt' + inputCmtID);
                         input.closest('.form-group').append(
-                            $('.default-cmt__content__cmt-block__cmt-box__cmt-btn .default-cmt_loading').clone()
+                            $('.mbblog-comment-save .mbblog-comment-loading').clone()
                         );
                         input.focus();
                         submitReply(input, cmtId, cmtRowContainer);
@@ -196,12 +196,12 @@ require([
             var text = input.val();
             if (text !== '') {
                 if (e.keyCode === 13) {
-                    input.siblings('.default-cmt_loading').show();
+                    input.siblings('.mbblog-comment-loading').show();
                     input.prop('disabled', true);
                     var ajaxRequest = ajaxCommentActions(text, input, true, replyId, parentComment);
                     ajaxRequest.done(function () {
                         input.closest('.cmt-row__reply-row').hide();
-                        input.siblings('.default-cmt_loading').hide();
+                        input.siblings('.mbblog-comment-loading').hide();
                         input.prop('disabled', false);
                         $("#cmt-row").remove();
                     });
@@ -215,8 +215,8 @@ require([
         var isReply = (typeof checkReply !== 'undefined') ? 1 : 0,
             replyId = (typeof cmtId !== 'undefined') ? cmtId : 0,
             displayReply = (typeof checkReply !== 'undefined');
-        var guestName = $('#default-cmt__content__cmt-block__guest-box__name-input').val();
-        var guestEmail = $('#default-cmt__content__cmt-block__guest-box__email-input').val();
+        var guestName = $('#mbblog-comment-guest-name').val();
+        var guestEmail = $('#mbblog-comment-guest-email').val();
         return $.ajax({
             type: 'POST',
             url: window.location.href,
@@ -225,10 +225,10 @@ require([
             success: function (response) {
                 switch (response.status) {
                     case 'duplicated':
-                        $('.default-cmt__content__cmt-block__cmt-box__cmt-input').parent().append(messengerBox.exist_email_warning);
+                        $('.mbblog-comment-textarea').parent().append(messengerBox.exist_email_warning);
                         break;
                     case 3:
-                        $('.default-cmt__content__cmt-block').prepend(messengerBox.comment_approve);
+                        $('.mbblog-comment-section').prepend(messengerBox.comment_approve);
                         break;
                     case 1:
                         displayComment(response, displayReply);
@@ -258,25 +258,25 @@ require([
             }
             return html;
         }
-        var cmtRow = '<li style="width: 100%" id="cmt-id-' + cmt.cmt_id + '" class="default-cmt__content__cmt-content__cmt-row cmt-row-' + cmt.cmt_id + ' cmt-row col-m-12 '
+        var cmtRow = '<li style="width: 100%" id="cmt-id-' + cmt.cmt_id + '" class="mbblog-comment-details-list cmt-row-' + cmt.cmt_id + ' cmt-row col-m-12 '
             + (isReply ? ('reply-row') : '') + '" data-cmt-id="' + cmt.cmt_id + '"' + (isReply ? ('data-reply-id="' + cmt.reply_cmt + '"') : '')
-            + '> <div class="cmt-row__cmt-username"> <span class="cmt-row__cmt-username username username__' + cmt.cmt_id + '">' + cmt.user_cmt
-            + '</span> </div> <div class="cmt-row__cmt-content"> <p>' + htmlComment(cmt.cmt_text)
-            + '</p> </div> <div class="cmt-row__cmt-interactions interactions"> <div class="interactions__btn-actions"> <a class="interactions__btn-actions action btn-like mbblog-like" data-cmt-id="'
-            + cmt.cmt_id + '" click="1"><i class="fa fa-thumbs-up" aria-hidden="true" style="margin-right: 3px"></i><span class="count-like__like-text"></span></a> <a class="interactions__btn-actions action btn-reply" data-cmt-id="'
-            + cmt.cmt_id + '">' + reply + '</a>  </div> <div class="interactions__cmt-createdat"> <span>' + cmt.created_at + '</span> </div> </div> </li>';
+            + '> <div class="mbblog-comment-username"> <span class="mbblog-comment-username username username__' + cmt.cmt_id + '">' + cmt.user_cmt
+            + '</span> </div> <div class="mbblog-comment-details"> <p>' + htmlComment(cmt.cmt_text)
+            + '</p> </div> <div class="mbblog-comment-review interactions"> <div class="mbblog-comment-action-btn"> <a class="mbblog-comment-action-btn action btn-like mbblog-like" data-cmt-id="'
+            + cmt.cmt_id + '" click="1"><i class="fa fa-thumbs-up" aria-hidden="true" style="margin-right: 3px"></i><span class="count-like__like-text"></span></a> <a class="mbblog-comment-action-btn action btn-reply" data-cmt-id="'
+            + cmt.cmt_id + '">' + reply + '</a>  </div> <div class="mbblog-comment-createdate"> <span>' + cmt.created_at + '</span> </div> </div> </li>';
 
         if (isReply) {
             var replyCmtId = cmt.reply_cmt;
-            var replyCmt = defaultCmt.find('.default-cmt__content__cmt-content__cmt-row');
+            var replyCmt = defaultCmt.find('.mbblog-comment-details-list');
 
             replyCmt.each(function () {
                 var cmtEl = $(this);
                 if (cmtEl.attr('data-cmt-id') === replyCmtId) {
-                    var replyList = cmtEl.find('ul.default-cmt__content__cmt-content:first');
+                    var replyList = cmtEl.find('ul.mbblog-comment-details:first');
 
                     if (!replyList.length) {
-                        cmtRow = $('<ul class="default-cmt__content__cmt-content row">' + cmtRow + '</ul>');
+                        cmtRow = $('<ul class="mbblog-comment-details row">' + cmtRow + '</ul>');
                         cmtEl.append(cmtRow);
 
                         likeComment(cmtRow.find('.btn-like'));
