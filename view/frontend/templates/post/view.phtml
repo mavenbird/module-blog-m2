@@ -39,12 +39,11 @@ $color        = $helper->getDisplayConfig('font_color');
 <div class="mb-blog-view">
     <div class="mb-blog-rss">
         <a href="<?= $escaper->escapeUrl($block->getRssUrl('post/rss')) ?>" class="bb-rss-icon">
-            <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/rss.png')) ?>"
-                 width="16px">
+            <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/rss.png')) ?>" width="16px">
         </a>
     </div>
     <div class="mpcss post-view" id="mbblog-list">
-        <div class="post-list-content col-md-12 col-sm-8">
+        <div class="post-list-content">
             <div class="post-view-image">
                 <?php if ($_post->getImage()) : ?>
                     <img class="img-responsive" src="<?= $escaper->escapeUrl($block->getImageUrl($_post->getImage())) ?>"
@@ -188,11 +187,7 @@ $color        = $helper->getDisplayConfig('font_color');
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <style>
-                    .item.post-list-item.col-mb {
-                        width: 100%;
-                    }
-                </style>
+
                 <script>
                     require([
                         'jquery',
@@ -310,7 +305,6 @@ $color        = $helper->getDisplayConfig('font_color');
                             </button>
                         </div>
                     <?php endif; ?>
-                    <div class="col-mb mb-12">
                         <div class="mbblg-comment">
                             <div class="mbblog-comment-section">
                                 <?php if (!$block->isLoggedIn()) : ?>
@@ -365,7 +359,6 @@ $color        = $helper->getDisplayConfig('font_color');
                                 <?= $block->getCommentsHtml() ?>
                             </div>
                         </div>
-                    </div>
                 </div>
                 <script>
                     //get login url, text of button like, reply

@@ -45,7 +45,7 @@ $nextPost = $block->getNextPost();
         </a>
     </div>
     <div class="mpcss post-view" id="mbblog-list">
-        <div class="post-list-content col-md-12 col-sm-8">
+        <div class="post-list-content">
             <div class="post-view-image">
                 <?php if ($_post->getImage()) : ?>
                     <img class="img-responsive" src="<?= $escaper->escapeUrl($block->getImageUrl($_post->getImage())) ?>"
@@ -57,12 +57,12 @@ $nextPost = $block->getNextPost();
                 $block->getPageFilter($_post->getPostContent() ?: '') ?>
             </div>
             <?php if ($block->getDisplayNavigationBlog() && ($previousPost || $nextPost)): ?>
-                <div class="mb-blog-navigation" style="display:flex; justify-content:space-between; margin:40px 0;">
+                <div class="mb-blog-navigation">
 
                     <div class="mb-blog-prev">
                         <?php if ($previousPost && $previousPost->getId()): ?>
                             <a href="<?= $escaper->escapeUrl($previousPost->getUrl()) ?>">
-                                ← <?= __('Previous Post') ?><br>
+                                 <?= __('Previous Post') ?><br>
                                 <strong><?= $escaper->escapeHtml($previousPost->getName()) ?></strong>
                             </a>
                         <?php endif; ?>
@@ -71,7 +71,7 @@ $nextPost = $block->getNextPost();
                     <div class="mb-blog-next" style="text-align:right;">
                         <?php if ($nextPost && $nextPost->getId()): ?>
                             <a href="<?= $escaper->escapeUrl($nextPost->getUrl()) ?>">
-                                <?= __('Next Post') ?> →<br>
+                                <?= __('Next Post') ?> <br>
                                 <strong><?= $escaper->escapeHtml($nextPost->getName()) ?></strong>
                             </a>
                         <?php endif; ?>
@@ -384,24 +384,8 @@ $nextPost = $block->getNextPost();
                         </div>
                     </section>
                 </div>
-                <style>
-                    .splide__pagination {
-                        bottom: -0.5em;
-                    }
-
-                    .splide__arrow {
-                        display: none !important;
-                    }
-
-                    .splide__pagination__page.is-active {
-                        background: #869791
-                    }
-
-
-                </style>
-
             <?php else : ?>
-                <div class="related-content-container" style="display: flex; flex-wrap: wrap;">
+                <div class="related-content-container" >
                     <?php foreach ($relatedPosts as $post) : ?>
                         <div class="post-list-item">
                             <div class="post-item-wraper">
@@ -503,8 +487,7 @@ $nextPost = $block->getNextPost();
                             </button>
                         </div>
                     <?php endif; ?>
-                    <div class="col-mb mb-12" style="float: left;">
-                        <div class="mbblg-comment">
+                        <div class="mbblg-comment" style="float: left;width: 100%;">
                             <div class="mbblog-comment-section">
                                 <?php if (!$block->isLoggedIn()) : ?>
                                     <form id="mbblog-comment-form"
@@ -569,7 +552,6 @@ $nextPost = $block->getNextPost();
                                 <?= $block->getCommentsHtml() ?>
                             </div>
                         </div>
-                    </div>
                 </div>
                 <script>
                     //get login url, text of button like, reply
@@ -597,11 +579,7 @@ $nextPost = $block->getNextPost();
 
     <?= $block->getChildHtml('mb_blog_post_view_add') ?>
 </div>
-<style>
-    .mbblog-comment-details.row {
-        padding-inline-start: 40px;
-    }
-</style>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         if(document.getElementById('card-carousel')) {

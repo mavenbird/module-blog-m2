@@ -1,3 +1,4 @@
+
 body { padding: 0; }
 /*================== LIST VIEW FOR THE SAME BLOG PAGE ======================*/
 .post-list-content .mb-post-title a { color: #000; }
@@ -13,7 +14,7 @@ body { padding: 0; }
 }
 .mb-post-list .mb-post-info {
     color: #414141;
-    font-size: 12px;
+    font-size: 11px;
     line-height: 18px;
     display: flex;
     flex-wrap: wrap;
@@ -26,20 +27,16 @@ body { padding: 0; }
   border-bottom: 1px solid #ddd;
   padding: 10px 0px;
 }
-.mb-post-list .post-short-description:empty {
-    margin: 0;
-}
 .mb-post-list .post-info {
     padding: 0px 8px 0px 8px;
-    width: 100%;
 }
 .mb-post-list h2.mb-post-title {
     margin: 0px 0px 12px 0px;
     font-weight: 600;
 }
 .mb-post-list .post-item-list .post-image {
-    min-width: 360px;
-    max-width: 360px;
+    width: 100%;
+    max-width: 379px;
     height: auto;
     overflow: hidden;       
     display: block;   
@@ -47,6 +44,7 @@ body { padding: 0; }
 .mb-post-list .post-item-list .post-image img {
     width: 100%;
     height: auto;
+    max-width: 379px;
     position: relative;  
     object-fit: cover;
     transition: transform 500ms ease;
@@ -73,13 +71,13 @@ body { padding: 0; }
     gap: 10px;
     margin-top: 10px;
 }
-.post-list-content .post-sharing-button {
+.page-main .post-sharing-button {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 5px; 
 }
-.post-list-content .post-sharing-button .sharing-icon{
+.page-main .post-sharing-button .sharing-icon{
     display: flex;
     width: 35px;
     height: 35px;
@@ -93,8 +91,8 @@ body { padding: 0; }
     border: 1px solid #ccc;
     opacity: 0.8;
 }
-.post-list-content .post-sharing-button .sharing-icon:hover { background: #eee; }
-.post-list-content .post-sharing-button .sharing-icon i { color: gray;  font-size: 15px;} 
+.page-main .post-sharing-button .sharing-icon:hover { background: #eee; }
+.page-main .post-sharing-button .sharing-icon i { color: gray;  font-size: 15px;} 
 /* Sidebar section */
 .sidebar .mbblog-search .field.search {
     display: flex;
@@ -113,6 +111,9 @@ body { padding: 0; }
     margin-top: 40px;
     padding: 25px 20px 25px 20px;
     border: 1px solid #ccc;
+}
+.sidebar .list-post-tabs {
+    margin-bottom: 15px;
 }
 .sidebar .list-post-tabs .post-left img {
     max-width: 100%;
@@ -172,10 +173,11 @@ body { padding: 0; }
 .sidebar .categories-items-list li a,
 .sidebar .list-categories {
     display: block;
-    padding: 5px 12px;
+    padding: 5px 0px;
     color: #333;
     font-size: 14px;
     border-radius: 6px;
+    margin-right: 18px;
     transition: all 0.3s ease;
     text-decoration: none;
     position: relative;
@@ -190,8 +192,8 @@ body { padding: 0; }
 }
 /* SUB CATEGORY */
 .sidebar .categories-items-list ul ul {
-    padding-left: 12px;
-    margin-top: 5px;
+    padding-left: 15px;
+    margin-top: 8px;
 }
 /* ADD LEFT BORDER INDICATOR */
 .sidebar .menu-categories li a::before,
@@ -215,10 +217,23 @@ body { padding: 0; }
     padding: 2px 0px 0px 15px;
 }
 .sidebar .menu-categories li.category-item {
-    list-style: none;
+    list-style: none; position: relative;
+}
+.sidebar .menu-categories li.category-item .mb-category-toggle i {
+    margin-top: 4px; right: 0; top: 4px; left: unset; font-size: 14px; cursor: pointer;
 }
 .sidebar .archive-list .menu-archives {
     padding: 0; list-style: none;
+}
+.sidebar .menu-categories .category-item  i {
+    position: absolute;
+    font-size: 7px;
+    right: 0;
+    top: 12px;
+    left: 6px;
+}
+.sidebar .menu-categories .category-children .list-categories  {
+    padding: 5px 22px;
 }
 /* SIDEBAR TAB CONTAINER */
 .sidebar .product.data.items {
@@ -255,7 +270,6 @@ body { padding: 0; }
     flex-direction: column;
     padding: 10px 0;
     border-bottom: 1px dashed #ccc;
-    margin-bottom: 15px;
 }
 .list-post-tabs:last-child {
     border-bottom: none;
@@ -309,7 +323,8 @@ body { padding: 0; }
 }     
 .mbblog-post-view .about-admin h2,
 .mbblog-post-view .topic-list h2,
-.mbblog-post-view .blog-comment h2 {
+.mbblog-post-view .blog-comment h2, 
+.mbblog-post-view .products-same-post h2 {
     font-size: 22px;
     font-weight: 600;
     padding-bottom: 6px;
@@ -418,13 +433,7 @@ body { padding: 0; }
     padding: 10px;
     border-radius: 5px;
 }
-
-/* Remove owl width control */
-.products-same-post .item.product.product-item.mb-blog-slider-item {
-    width: 100%;
-    margin: 0;
-}
-/* CARD DESIGN */
+/* Product section grid CARD DESIGN */
 .products-same-post .product-item-info {
     background: #fff;
     border: 1px solid #ddd;
@@ -449,7 +458,6 @@ body { padding: 0; }
 .products-same-post .products-grid .product-item-info:has(.product-reviews-summary) .product-reviews-summary {
     margin-bottom: 0px;
 }
-
 .products-same-post .products-grid .product-item-info .product-item-inner {
     border: 1px solid #ddd;
     box-shadow: none;
@@ -462,6 +470,29 @@ body { padding: 0; }
     max-width: 100%;
     margin: 0;
 }
+
+/* Remove owl width control */
+.products-same-post .item.product.product-item.mb-blog-slider-item {
+    width: 100%;
+    margin: 0;
+}
+.products-same-post .product-item-info .product-item-name { min-height: 38px; margin: 5px 10px; }
+.products-same-post .owl-carousel .owl-stage-outer { padding-bottom: 60px; padding-top: 10px;}
+.products-same-post .owl-theme .owl-nav.disabled + .owl-dots { position: absolute; bottom: 10px; left: 0; right: 0; }
+/* PRODUCT GRID FIXED SYSTEM */
+.products-same-post .products-grid .product-item { width: 100%; max-width: 100%; }
+.page-products .products-grid .product-item { width: unset !important; }
+.products-same-post .products-grid .product-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+/* Hover Effect */
+.products-same-post .products-grid .product-item:hover { transform: translateY(-2px);}
+
 /*================== SIDEBAR AUTHOR-DETAILS PAGE DESIGN ======================*/
 .sidebar .sidebar-info .author-name h3 {
     color: #000000;
@@ -526,20 +557,20 @@ body { padding: 0; }
     width: 100%;
     margin-bottom: 8px;
 }
-.blog-comment .mbblg-comment {
+.blog-comment .default-cmt__content {
     width: 100%;
     max-width: 100%;
 }
-.blog-comment form#mbblog-comment-form {
+.blog-comment form#default-cmt__content__cmt-block__guest-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 18px;
     margin-bottom: 8px;
 }
-.blog-comment .mbblog-comment-save {
+.blog-comment .default-cmt__content__cmt-block__cmt-box__cmt-btn {
     margin-bottom: 8px;
 }
-.blog-comment .mbblog-comment-details {
+.blog-comment .default-cmt__content__cmt-content {
     margin-top: 10px;
 }
 .blog-comment ul.mbblog-comment-section.row {
@@ -548,7 +579,7 @@ body { padding: 0; }
     padding: 0px;
     gap: 15px;
 }
-.blog-comment .mbblog-comment-details-list {
+.blog-comment .default-cmt__content__cmt-content__cmt-row {
     padding: 10px;
     border: 1px solid #ccc !important;
     border-radius: 5px;
@@ -560,19 +591,20 @@ body { padding: 0; }
     align-items: center;
     justify-content: end;
 }
-.blog-comment span.mbblog-comment-username {
+.blog-comment span.cmt-row__cmt-username {
     font-weight: 600;
     color: #000000;
     border-bottom: 1px solid #000;
 }
-.blog-comment .mbblog-comment-username {
+.blog-comment .cmt-row__cmt-username {
     border-bottom: 1px solid #ccc;
     padding-bottom: 4px;
     margin-bottom: 8px;
 }
-.blog-comment .mbblog-comment-details ul {
+.blog-comment .default-cmt__content__cmt-content ul {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    padding: 0;
     gap: 10px;
  }
 /*================== REVIEW SECTION BLOG PAGE ======================*/
@@ -582,6 +614,13 @@ body { padding: 0; }
     font-weight: 700;
     margin-bottom: 8px;
 }
+/*================== NAVIGATION FOR PREVIOUS AND NEXT POST BLOG PAGE ======================*/
+.mb-blog-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 0;
+}
+
 /*================== GRID VIEW FOR THE SAME BLOG PAGE ======================*/
 .post-list-content .post-list.grid.products-grid {
     display: grid;
@@ -650,24 +689,14 @@ body { padding: 0; }
     max-width: 100%;
     max-height: 100%;
 }
-.products-same-post .product-item-info .product-item-name { min-height: 38px; margin: 5px 10px; }
-.products-same-post .owl-carousel .owl-stage-outer { padding-bottom: 60px; padding-top: 10px;}
-.products-same-post .owl-theme .owl-nav.disabled + .owl-dots { position: absolute; bottom: 10px; left: 0; right: 0; }
-/* PRODUCT GRID FIXED SYSTEM */
-.products-same-post .products-grid .product-item { width: 100%; max-width: 100%; }
-.page-products .products-grid .product-item { width: unset !important; }
-.products-same-post .products-grid .product-items {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px 15px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-/* Hover Effect */
-.products-same-post .products-grid .product-item:hover {
-    transform: translateY(-2px);
-}
+.admin__action-multiselect-crumb .action-close:before { top: -6px;  right: 8px; }
+.admin__action-multiselect-menu-inner-item._root .action-menu-item .admin__action-multiselect-label:before {  content: '\f846'; font-family: 'porto-icons'; }
+.admin__action-multiselect-dropdown:before { content: '\f803'; font-family: 'porto-icons'; }
+.admin__action-multiselect-tree .action-menu-item._expended .admin__action-multiselect-dropdown:before { right: 5px; position: absolute;
+     content: '\f800'; font-family: 'porto-icons'; }
+.helpdesk_email { display: none !important; }
+.contactformpro_email { display: none !important; }
+a.white-space-pre-line {  white-space: pre-line; }
 
 @media(min-width:1280px) and (max-width:1440px) {}
 @media(min-width:1024px) and (max-width:1279px) {
@@ -684,7 +713,7 @@ body { padding: 0; }
     .mbblog-post-view .page-main .column.main { width: 78%; }
     .mbblog-post-view .page-main .sidebar-main { width: 22%; }
     .sidebar .list-post-tabs .post-left { width: 100%; }
-    
+    .products-same-post .products-grid .product-items { grid-template-columns: repeat(3, 1fr); gap: 30px 10px;}
 }
 @media(min-width:767px) and (max-width:1023px) { 
     /* For list view */
@@ -702,7 +731,7 @@ body { padding: 0; }
     .sidebar .sidebar-info .post-left { max-width: 100%; width: 100%; }
     .list-post-tabs { flex-direction: column; align-items: center; gap: 10px;}
     .topic-list .related-content-container {display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .blog-comment .mbblog-comment-details ul { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;  padding-left: 10px;}
+    .blog-comment .default-cmt__content__cmt-content ul { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;  padding-left: 10px;}
     .blog-comment ul.mbblog-comment-section.row { display: grid; grid-template-columns: repeat(3, 1fr); padding: 0px; gap: 12px; }
     .products-same-post .products-grid .product-items { grid-template-columns: repeat(3, 1fr); gap: 30px 10px;}
  }
@@ -740,6 +769,7 @@ body { padding: 0; }
         margin: 10px 0 0 0; border-top: none; }
     .products-same-post .products-grid .product-item-info .product-item-inner { bottom: 0px; }
     .page-products .owl-carousel .owl-stage { flex-wrap: wrap; }
+     .products-same-post .products-grid .product-items { grid-template-columns: repeat(2, 1fr); gap: 20px 10px;}
     .topic-list .related-content-container {display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .blog-comment ul.mbblog-comment-section.row { display: grid; grid-template-columns: repeat(3, 1fr); padding: 0px; gap: 8px; }
 }
@@ -755,7 +785,7 @@ body { padding: 0; }
     .mbblog-author-details .author-social { flex-direction: column; }
     .mb-post-list .details-sharing #sharing {display: flex; gap: 10px; margin-top: 0px; flex-wrap: wrap; }
     .page-main .post-list.grid.products-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 12px; }
-    .blog-comment .mbblog-comment-details ul { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;  padding-left: 10px;}
+    .blog-comment .default-cmt__content__cmt-content ul { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;  padding-left: 10px;}
     /* .blog-comment ul.mbblog-comment-section.row { display: grid; grid-template-columns: repeat(2, 1fr); padding: 0px; gap: 5px; } */
 }
 @media (max-width: 479px){
@@ -775,6 +805,7 @@ body { padding: 0; }
     .post-right span:first-child { font-size: 12px; }
     .create-at { font-size: 10px; }
     .sidebar .product.data.items > .item.title .data.switch { padding: 0px 15px; font-size: 13px; }
-    .blog-comment .mbblog-comment-details ul { display: grid; grid-template-columns: 1fr; gap: 10px; padding-left: 0px; }
-    .blog-comment form#mbblog-comment-form { display: grid; grid-template-columns: 1fr; gap: 18px; }
+    .blog-comment .default-cmt__content__cmt-content ul { display: grid; grid-template-columns: 1fr; gap: 10px; padding-left: 0px; }
+    .blog-comment form#default-cmt__content__cmt-block__guest-form { display: grid; grid-template-columns: 1fr; gap: 18px; }
 }
+
