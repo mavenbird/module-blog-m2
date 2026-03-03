@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const isOpen = children.style.display === 'block';
 
             children.style.display = isOpen ? 'none' : 'block';
-            this.textContent = isOpen ? '+' : '-';
+            this.textContent = isOpen ? '<i class="fa-solid fa-plus"></i>' : '<i class="fa-solid fa-minus"></i>';
         });
 
     });

@@ -172,10 +172,11 @@ body { padding: 0; }
 .sidebar .categories-items-list li a,
 .sidebar .list-categories {
     display: block;
-    padding: 5px 12px;
+    padding: 5px 0px;
     color: #333;
     font-size: 14px;
     border-radius: 6px;
+    margin-right: 18px;
     transition: all 0.3s ease;
     text-decoration: none;
     position: relative;
@@ -190,8 +191,8 @@ body { padding: 0; }
 }
 /* SUB CATEGORY */
 .sidebar .categories-items-list ul ul {
-    padding-left: 12px;
-    margin-top: 5px;
+    padding-left: 15px;
+    margin-top: 8px;
 }
 /* ADD LEFT BORDER INDICATOR */
 .sidebar .menu-categories li a::before,
@@ -215,10 +216,23 @@ body { padding: 0; }
     padding: 2px 0px 0px 15px;
 }
 .sidebar .menu-categories li.category-item {
-    list-style: none;
+    list-style: none; position: relative;
+}
+.sidebar .menu-categories li.category-item .mb-category-toggle i {
+    margin-top: 4px; right: 0; top: 4px; left: unset; font-size: 14px; cursor: pointer;
 }
 .sidebar .archive-list .menu-archives {
     padding: 0; list-style: none;
+}
+.sidebar .menu-categories .category-item  i {
+    position: absolute;
+    font-size: 7px;
+    right: 0;
+    top: 12px;
+    left: 6px;
+}
+.sidebar .menu-categories .category-children .list-categories  {
+    padding: 5px 22px;
 }
 /* SIDEBAR TAB CONTAINER */
 .sidebar .product.data.items {
@@ -308,7 +322,8 @@ body { padding: 0; }
 }     
 .mbblog-post-view .about-admin h2,
 .mbblog-post-view .topic-list h2,
-.mbblog-post-view .blog-comment h2 {
+.mbblog-post-view .blog-comment h2, 
+.mbblog-post-view .products-same-post h2 {
     font-size: 22px;
     font-weight: 600;
     padding-bottom: 6px;

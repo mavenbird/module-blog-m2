@@ -35,7 +35,14 @@ define(['jquery'], function ($) {
             }
 
             $children.slideToggle(200);
-            $toggle.text($toggle.text() === '+' ? '−' : '+');
+
+            if ($toggle.hasClass('active')) {
+                $toggle.removeClass('active')
+                       .html('<i class="fa-solid fa-plus"></i>');
+            } else {
+                $toggle.addClass('active')
+                       .html('<i class="fa-solid fa-minus"></i>');
+            }
         });
     };
 });

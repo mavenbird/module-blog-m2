@@ -54,22 +54,23 @@ class Widget extends Frontend
      *
      * @return Phrase|string
      */
-public function getCategoryTreeHtml(array $tree, bool $accordion = false): string
+public function getCategoryTreeHtml(array $tree, bool $accordion = false, int $level = 0): string
 {
     if (!$tree) {
-        return (string)__('No Categories.');
+        return '';
     }
 
-    $html = '<ul class="menu-categories">';
+    $ulClass = $level === 0 ? 'menu-categories' : 'category-children';
+    $style = ($accordion && $level > 0) ? ' style="display:none;"' : '';
+
+    $html = '<ul class="' . $ulClass . '"' . $style . '>';
 
     foreach ($tree as $value) {
 
-        // skip disabled category
         if (!$value || empty($value['enabled'])) {
             continue;
         }
 
-        // check enabled children ONLY
         $enabledChildren = array_filter(
             $value['children'] ?? [],
             fn($child) => !empty($child['enabled'])
@@ -79,23 +80,22 @@ public function getCategoryTreeHtml(array $tree, bool $accordion = false): strin
 
         $html .= '<li class="category-item">';
 
-        /* SHOW +/- ONLY WHEN:
-           accordion enabled AND category has enabled children
-        */
+        // 🔵 Add dot ONLY for sub-children (level > 0)
+        if ($level > 0) {
+            $html .= '<i class="fa-regular fa-circle"></i> ';
+        }
+
+        // Toggle only for parent level
         if ($accordion && $hasChild) {
-            $html .= '<span class="mb-category-toggle">+</span> ';
+            $html .= '<span class="mb-category-toggle"><i class="fa-solid fa-plus"></i></span> ';
         }
 
         $html .= '<a href="' . $this->getCategoryUrl($value['url']) . '" class="list-categories">';
         $html .= ucfirst($value['text']) . '</a>';
 
+        // Recursion
         if ($hasChild) {
-
-            $childHtml = $this->getCategoryTreeHtml($enabledChildren, $accordion);
-
-            $html .= $accordion
-                ? '<ul class="category-children" style="display:none;">' . $childHtml . '</ul>'
-                : $childHtml;
+            $html .= $this->getCategoryTreeHtml($enabledChildren, $accordion, $level + 1);
         }
 
         $html .= '</li>';
