@@ -261,7 +261,7 @@ class View extends \Mavenbird\Blog\Block\Listpost
      */
     public function getCommentsTree($comments, $cmtId)
     {
-        $this->commentTree .= '<ul class="default-cmt__content__cmt-content row">';
+        $this->commentTree .= '<ul class="mbblog-comment-details row">';
         foreach ($comments as $comment) {
             if ($comment['reply_id'] == $cmtId && $comment['status'] == 1) {
                 $isReply = (bool) $comment['is_reply'];
@@ -276,31 +276,31 @@ class View extends \Mavenbird\Blog\Block\Listpost
                 $countLikes        = $this->getCommentLikes($comment['comment_id']);
                 $isLiked           = ($this->isLiked($comment['comment_id'])) ? "mbblog-liked" : "mbblog-like";
                 $this->commentTree .= '<li id="cmt-id-' . $comment['comment_id']
-                    . '" class="default-cmt__content__cmt-content__cmt-row cmt-row-'
+                    . '" class="mbblog-comment-details-list cmt-row-'
                     . $comment['comment_id'] . ' cmt-row col-md-12'
                     . ($isReply ? ' reply-row' : '') . '" data-cmt-id="'
                     . $comment['comment_id'] . '" ' . ($replyId
                         ? 'data-reply-id="' . $replyId . '"' : '') . '>
-                                <div class="cmt-row__cmt-username">
-                                    <span class="cmt-row__cmt-username username username__'
+                                <div class="mbblog-comment-username">
+                                    <span class="mbblog-comment-username username username__'
                     . $comment['comment_id'] . '">'
                     . $userName . '</span>
                                 </div>
-                                <div class="cmt-row__cmt-content">
+                                <div class="mbblog-comment-details">
                                    ' . $this->commentHtml($comment['content']) . '
                                 </div>
-                                <div class="cmt-row__cmt-interactions interactions">
-                                    <div class="interactions__btn-actions">
-                                        <a class="interactions__btn-actions action btn-like '
+                                <div class="mbblog-comment-review interactions">
+                                    <div class="mbblog-comment-action-btn">
+                                        <a class="mbblog-comment-action-btn action btn-like '
                     . $isLiked . '" data-cmt-id="'
                     . $comment['comment_id'] . '" click="1">
                                         <i class="fa fa-thumbs-up" aria-hidden="true"></i>
                                         <span class="count-like__like-text">'
                     . $countLikes . '</span></a>
-                                        <a class="interactions__btn-actions action btn-reply" data-cmt-id="'
+                                        <a class="mbblog-comment-action-btn action btn-reply" data-cmt-id="'
                     . $comment['comment_id'] . '">' . __('Reply') . '</a>
                                     </div>
-                                    <div class="interactions__cmt-createdat">
+                                    <div class="mbblog-comment-createdate">
                                         <span>' . $this->getDateFormat($comment['created_at']) . '</span>
                                     </div>
                                 </div>';

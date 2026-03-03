@@ -13,7 +13,7 @@ body { padding: 0; }
 }
 .mb-post-list .mb-post-info {
     color: #414141;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 18px;
     display: flex;
     flex-wrap: wrap;
@@ -26,16 +26,20 @@ body { padding: 0; }
   border-bottom: 1px solid #ddd;
   padding: 10px 0px;
 }
+.mb-post-list .post-short-description:empty {
+    margin: 0;
+}
 .mb-post-list .post-info {
     padding: 0px 8px 0px 8px;
+    width: 100%;
 }
 .mb-post-list h2.mb-post-title {
     margin: 0px 0px 12px 0px;
     font-weight: 600;
 }
 .mb-post-list .post-item-list .post-image {
-    width: 100%;
-    max-width: 379px;
+    min-width: 360px;
+    max-width: 360px;
     height: auto;
     overflow: hidden;       
     display: block;   
@@ -43,7 +47,6 @@ body { padding: 0; }
 .mb-post-list .post-item-list .post-image img {
     width: 100%;
     height: auto;
-    max-width: 379px;
     position: relative;  
     object-fit: cover;
     transition: transform 500ms ease;
@@ -70,13 +73,13 @@ body { padding: 0; }
     gap: 10px;
     margin-top: 10px;
 }
-.page-main .post-sharing-button {
+.post-list-content .post-sharing-button {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 5px; 
 }
-.page-main .post-sharing-button .sharing-icon{
+.post-list-content .post-sharing-button .sharing-icon{
     display: flex;
     width: 35px;
     height: 35px;
@@ -90,8 +93,8 @@ body { padding: 0; }
     border: 1px solid #ccc;
     opacity: 0.8;
 }
-.page-main .post-sharing-button .sharing-icon:hover { background: #eee; }
-.page-main .post-sharing-button .sharing-icon i { color: gray;  font-size: 15px;} 
+.post-list-content .post-sharing-button .sharing-icon:hover { background: #eee; }
+.post-list-content .post-sharing-button .sharing-icon i { color: gray;  font-size: 15px;} 
 /* Sidebar section */
 .sidebar .mbblog-search .field.search {
     display: flex;
@@ -110,9 +113,6 @@ body { padding: 0; }
     margin-top: 40px;
     padding: 25px 20px 25px 20px;
     border: 1px solid #ccc;
-}
-.sidebar .list-post-tabs {
-    margin-bottom: 15px;
 }
 .sidebar .list-post-tabs .post-left img {
     max-width: 100%;
@@ -255,6 +255,7 @@ body { padding: 0; }
     flex-direction: column;
     padding: 10px 0;
     border-bottom: 1px dashed #ccc;
+    margin-bottom: 15px;
 }
 .list-post-tabs:last-child {
     border-bottom: none;
@@ -525,20 +526,20 @@ body { padding: 0; }
     width: 100%;
     margin-bottom: 8px;
 }
-.blog-comment .default-cmt__content {
+.blog-comment .mbblg-comment {
     width: 100%;
     max-width: 100%;
 }
-.blog-comment form#default-cmt__content__cmt-block__guest-form {
+.blog-comment form#mbblog-comment-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 18px;
     margin-bottom: 8px;
 }
-.blog-comment .default-cmt__content__cmt-block__cmt-box__cmt-btn {
+.blog-comment .mbblog-comment-save {
     margin-bottom: 8px;
 }
-.blog-comment .default-cmt__content__cmt-content {
+.blog-comment .mbblog-comment-details {
     margin-top: 10px;
 }
 .blog-comment ul.mbblog-comment-section.row {
@@ -547,7 +548,7 @@ body { padding: 0; }
     padding: 0px;
     gap: 15px;
 }
-.blog-comment .default-cmt__content__cmt-content__cmt-row {
+.blog-comment .mbblog-comment-details-list {
     padding: 10px;
     border: 1px solid #ccc !important;
     border-radius: 5px;
@@ -559,17 +560,17 @@ body { padding: 0; }
     align-items: center;
     justify-content: end;
 }
-.blog-comment span.cmt-row__cmt-username {
+.blog-comment span.mbblog-comment-username {
     font-weight: 600;
     color: #000000;
     border-bottom: 1px solid #000;
 }
-.blog-comment .cmt-row__cmt-username {
+.blog-comment .mbblog-comment-username {
     border-bottom: 1px solid #ccc;
     padding-bottom: 4px;
     margin-bottom: 8px;
 }
-.blog-comment .default-cmt__content__cmt-content ul {
+.blog-comment .mbblog-comment-details ul {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
@@ -701,7 +702,7 @@ body { padding: 0; }
     .sidebar .sidebar-info .post-left { max-width: 100%; width: 100%; }
     .list-post-tabs { flex-direction: column; align-items: center; gap: 10px;}
     .topic-list .related-content-container {display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .blog-comment .default-cmt__content__cmt-content ul { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;  padding-left: 10px;}
+    .blog-comment .mbblog-comment-details ul { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;  padding-left: 10px;}
     .blog-comment ul.mbblog-comment-section.row { display: grid; grid-template-columns: repeat(3, 1fr); padding: 0px; gap: 12px; }
     .products-same-post .products-grid .product-items { grid-template-columns: repeat(3, 1fr); gap: 30px 10px;}
  }
@@ -754,8 +755,7 @@ body { padding: 0; }
     .mbblog-author-details .author-social { flex-direction: column; }
     .mb-post-list .details-sharing #sharing {display: flex; gap: 10px; margin-top: 0px; flex-wrap: wrap; }
     .page-main .post-list.grid.products-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 12px; }
-     .products-same-post .products-grid .product-items { grid-template-columns: repeat(2, 1fr); gap: 20px 10px;}
-    .blog-comment .default-cmt__content__cmt-content ul { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;  padding-left: 10px;}
+    .blog-comment .mbblog-comment-details ul { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;  padding-left: 10px;}
     /* .blog-comment ul.mbblog-comment-section.row { display: grid; grid-template-columns: repeat(2, 1fr); padding: 0px; gap: 5px; } */
 }
 @media (max-width: 479px){
@@ -775,6 +775,6 @@ body { padding: 0; }
     .post-right span:first-child { font-size: 12px; }
     .create-at { font-size: 10px; }
     .sidebar .product.data.items > .item.title .data.switch { padding: 0px 15px; font-size: 13px; }
-    .blog-comment .default-cmt__content__cmt-content ul { display: grid; grid-template-columns: 1fr; gap: 10px; padding-left: 0px; }
-    .blog-comment form#default-cmt__content__cmt-block__guest-form { display: grid; grid-template-columns: 1fr; gap: 18px; }
+    .blog-comment .mbblog-comment-details ul { display: grid; grid-template-columns: 1fr; gap: 10px; padding-left: 0px; }
+    .blog-comment form#mbblog-comment-form { display: grid; grid-template-columns: 1fr; gap: 18px; }
 }
