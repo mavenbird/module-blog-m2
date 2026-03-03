@@ -504,65 +504,64 @@ $nextPost = $block->getNextPost();
                         </div>
                     <?php endif; ?>
                     <div class="col-mb mb-12" style="float: left;">
-                        <div class="default-cmt__content">
-                            <div class="default-cmt__content__cmt-block">
+                        <div class="mbblg-comment">
+                            <div class="mbblog-comment-section">
                                 <?php if (!$block->isLoggedIn()) : ?>
-                                    <form id="default-cmt__content__cmt-block__guest-form"
+                                    <form id="mbblog-comment-form"
 
                                           x-data="Object.assign(hyva.formValidation($el), initCustomerCommentForm())"
                                           @submit.prevent="submitForm();"
                                     >
                                         <?= /* @noEscape */
                                         $block->getBlockHtml('formkey'); ?>
-                                        <div class="col-mb mb-6 default-cmt__content__cmt-block__guest-box">
-                                            <label for="default-cmt__content__cmt-block__guest-box__name-input">Name
+                                        <div class="col-mb mb-6 mbblog-comment-form-field">
+                                            <label for="mbblog-comment-guest-name">Name
                                                 *</label>
-                                            <input id="default-cmt__content__cmt-block__guest-box__name-input"
+                                            <input id="mbblog-comment-guest-name"
                                                    type="text"
-                                                   name="default-cmt__content__cmt-block__guest-box__name-input"
+                                                   name="mbblog-comment-guest-name"
                                                    placeholder="<?= $escaper->escapeHtmlAttr(__('Your display name')) ?>"
                                                    data-validate='{"required": true}'>
                                         </div>
-                                        <div class="col-mb mb-6 default-cmt__content__cmt-block__guest-box">
-                                            <label for="default-cmt__content__cmt-block__guest-box__email-input">Email
+                                        <div class="col-mb mb-6 mbblog-comment-form-field">
+                                            <label for="mbblog-comment-guest-email">Email
                                                 *</label>
-                                            <input id="default-cmt__content__cmt-block__guest-box__email-input"
+                                            <input id="mbblog-comment-guest-email"
                                                    type="text"
-                                                   name="default-cmt__content__cmt-block__guest-box__email-input"
+                                                   name="mbblog-comment-guest-email"
                                                    placeholder="<?= $escaper->escapeHtmlAttr(__('Your email')) ?> "
                                                    data-validate='{"required": true, "email": true}'
                                             >
                                         </div>
                                     </form>
                                 <?php endif; ?>
-                                <div class="default-cmt__content__cmt-block__cmt-box">
+                                <div class="mbblog-comment-fields">
                                     <div class="col-mb mb-12">
                                         <label for="mb-guest-cmt-commentbox">Comment</label>
                                         <div>
                                               <textarea
-                                                  class="default-cmt__content__cmt-block__cmt-box__cmt-input w-full"
-                                                  maxlength="255"
+                                                  class="mbblog-comment-textarea w-full"
                                                   placeholder="<?= $escaper->escapeHtmlAttr(__('Type comments here...')) ?>">
 
                                         </textarea>
                                         </div>
 
                                     </div>
-                                    <div class="default-cmt__content__cmt-block__cmt-box__cmt-btn">
-                                        <div class="default-cmt_loading" style="display: none">
+                                    <div class="mbblog-comment-save">
+                                        <div class="mbblog-comment-loading" style="display: none">
                                             <img
                                                 src="<?= $escaper->escapeUrl($block->getViewFileUrl('images/loader-1.gif')) ?>"
                                                 alt="Loading...">
                                         </div>
-                                        <button class="default-cmt__content__cmt-block__cmt-box__cmt-btn__btn-submit
+                                        <button class="mbblog-comment-submitbtn
                                          primary btn btn-primary" type="submit" style="display: block"
-                                                form="default-cmt__content__cmt-block__guest-form">
+                                                form="mbblog-comment-form">
                                             <?= $escaper->escapeHtml(__('Comment')) ?>
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="default-cmt__content__cmt-content">
+                            <div class="mbblog-comment-details">
                                 <?php
                                 $comments = $block->getPostComments($_post->getId());
                                 $block->getCommentsTree($comments, 0);
@@ -599,7 +598,7 @@ $nextPost = $block->getNextPost();
     <?= $block->getChildHtml('mb_blog_post_view_add') ?>
 </div>
 <style>
-    .default-cmt__content__cmt-content.row {
+    .mbblog-comment-details.row {
         padding-inline-start: 40px;
     }
 </style>
@@ -617,9 +616,9 @@ $nextPost = $block->getNextPost();
         }
 
     });
-    var cmtBox     = document.querySelector('.default-cmt__content__cmt-block__cmt-box__cmt-input');
-    var submitCmt  = document.querySelector('.default-cmt__content__cmt-block__cmt-box__cmt-btn__btn-submit');
-    var defaultCmt = document.querySelector('ul.default-cmt__content__cmt-content:first-child');
+    var cmtBox     = document.querySelector('.mbblog-comment-textarea');
+    var submitCmt  = document.querySelector('.mbblog-comment-submitbtn');
+    var defaultCmt = document.querySelector('ul.mbblog-comment-details:first-child');
     var likeBtn    = defaultCmt.querySelectorAll('.btn-like');
     var replyBtn   = defaultCmt.querySelectorAll('.btn-reply');
 
@@ -650,7 +649,7 @@ $nextPost = $block->getNextPost();
             submitForm () {
                 this.validate()
                 .then(() => {
-                    const $form = document.querySelector('#default-cmt__content__cmt-block__guest-form');
+                    const $form = document.querySelector('#mbblog-comment-form');
                     if (this.errors === 0) {
                         this.dispatchCommentRequest($form);
                     }
@@ -679,24 +678,24 @@ $nextPost = $block->getNextPost();
     submitComment();
 
     async function callApiSubmitComment () {
-        var messagesContainer = document.querySelector('.default-cmt__content__cmt-block__cmt-box .messages');
+        var messagesContainer = document.querySelector('.mbblog-comment-fields .messages');
         if (messagesContainer) {
             messagesContainer.style.display = 'none';
         }
 
-        var cmtBox    = document.querySelector('.default-cmt__content__cmt-block__cmt-box__cmt-input');
-        var submitCmt = document.querySelector('.default-cmt__content__cmt-block__cmt-box__cmt-btn__btn-submit');
+        var cmtBox    = document.querySelector('.mbblog-comment-textarea');
+        var submitCmt = document.querySelector('.mbblog-comment-submitbtn');
         var cmtText   = cmtBox.value;
         if (cmtText.trim().length) {
-            document.querySelector('.default-cmt_loading').style.display = 'block';
+            document.querySelector('.mbblog-comment-loading').style.display = 'block';
             this.disabled                                                = true;
             await ajaxCommentActions(cmtText, submitCmt);
             cmtBox.value                                                 = '';
-            document.querySelector('.default-cmt_loading').style.display = 'none';
+            document.querySelector('.mbblog-comment-loading').style.display = 'none';
             submitCmt.disabled                                           = false;
 
         } else {
-            var cmtInputParent = document.querySelector('.default-cmt__content__cmt-block__cmt-box__cmt-input').parentElement;
+            var cmtInputParent = document.querySelector('.mbblog-comment-textarea').parentElement;
             cmtInputParent.insertAdjacentHTML('beforeend', messengerBox.cmt_warning);
         }
     }
@@ -706,9 +705,9 @@ $nextPost = $block->getNextPost();
         var isReply      = (typeof checkReply !== 'undefined') ? 1 : 0,
             replyId      = (typeof cmtId !== 'undefined') ? cmtId : 0,
             displayReply = (typeof checkReply !== 'undefined');
-        var guestName    = document.querySelector('#default-cmt__content__cmt-block__guest-box__name-input')?.value;
+        var guestName    = document.querySelector('#mbblog-comment-guest-name')?.value;
 
-        var guestEmail = document.querySelector('#default-cmt__content__cmt-block__guest-box__email-input')?.value;
+        var guestEmail = document.querySelector('#mbblog-comment-guest-email')?.value;
         let url        = window.location.href;
         const body     = new URLSearchParams({
             form_key: hyva.getFormKey(),
@@ -733,10 +732,10 @@ $nextPost = $block->getNextPost();
         .then(data => {
             switch (data.status){
                 case 'duplicated':
-                    document.querySelector('.default-cmt__content__cmt-block__cmt-box__cmt-input').parentElement.appendChild(document.createRange().createContextualFragment(messengerBox.exist_email_warning));
+                    document.querySelector('.mbblog-comment-textarea').parentElement.appendChild(document.createRange().createContextualFragment(messengerBox.exist_email_warning));
                     break;
                 case 3:
-                    document.querySelector('.default-cmt__content__cmt-block').insertAdjacentHTML('afterbegin', messengerBox.comment_approve);
+                    document.querySelector('.mbblog-comment-section').insertAdjacentHTML('afterbegin', messengerBox.comment_approve);
                     break;
                 case 1:
                     displayComment(data, displayReply);
@@ -773,41 +772,41 @@ $nextPost = $block->getNextPost();
         var cmtRow         = document.createElement('li');
         cmtRow.style.width = '100%';
         cmtRow.id          = 'cmt-id-' + cmt.cmt_id;
-        cmtRow.className   = 'default-cmt__content__cmt-content__cmt-row cmt-row-' + cmt.cmt_id + ' cmt-row col-m-12' +
+        cmtRow.className   = 'mbblog-comment-details-list cmt-row-' + cmt.cmt_id + ' cmt-row col-m-12' +
             (isReply ? ' reply-row' : '');
         cmtRow.setAttribute('data-cmt-id', cmt.cmt_id);
         if (isReply) {
             cmtRow.setAttribute('data-reply-id', cmt.reply_cmt);
         }
 
-        cmtRow.innerHTML = '<div class="cmt-row__cmt-username"> ' +
-            '<span class="cmt-row__cmt-username username username__' + cmt.cmt_id + '">' + cmt.user_cmt + '</span> ' +
+        cmtRow.innerHTML = '<div class="mbblog-comment-username"> ' +
+            '<span class="mbblog-comment-username username username__' + cmt.cmt_id + '">' + cmt.user_cmt + '</span> ' +
             '</div>' +
-            '<div class="cmt-row__cmt-content"> ' +
+            '<div class="mbblog-comment-details"> ' +
             '<p>' + htmlComment(cmt.cmt_text) + '</p> ' +
             '</div>' +
-            '<div class="cmt-row__cmt-interactions interactions"> <div class="interactions__btn-actions"> ' +
-            '<a class="interactions__btn-actions action btn-like mbblog-like" data-cmt-id="' + cmt.cmt_id + '" click="1">' +
+            '<div class="mbblog-comment-review interactions"> <div class="mbblog-comment-action-btn"> ' +
+            '<a class="mbblog-comment-action-btn action btn-like mbblog-like" data-cmt-id="' + cmt.cmt_id + '" click="1">' +
             '<i class="fa fa-thumbs-up" aria-hidden="true" style="margin-right: 3px"></i>' +
             '<span class="count-like__like-text"></span>' +
             '</a>' +
-            '<a class="interactions__btn-actions action btn-reply" data-cmt-id="' + cmt.cmt_id + '">' + reply + '</a> ' +
+            '<a class="mbblog-comment-action-btn action btn-reply" data-cmt-id="' + cmt.cmt_id + '">' + reply + '</a> ' +
             '</div>' +
-            '<div class="interactions__cmt-createdat"> ' +
+            '<div class="mbblog-comment-createdate"> ' +
             '<span>' + cmt.created_at + '</span> ' +
             '</div> ';
 
         if (isReply) {
             var replyCmtId   = cmt.reply_cmt;
-            var replyCmtList = document.querySelectorAll('.default-cmt__content__cmt-content__cmt-row');
+            var replyCmtList = document.querySelectorAll('.mbblog-comment-details-list');
 
             replyCmtList.forEach(function (cmtEl) {
                 if (cmtEl.getAttribute('data-cmt-id') === replyCmtId) {
-                    var replyList = cmtEl.querySelector('ul.default-cmt__content__cmt-content:first-child');
+                    var replyList = cmtEl.querySelector('ul.mbblog-comment-details:first-child');
 
                     if (!replyList) {
                         var newUl       = document.createElement('ul');
-                        newUl.className = 'default-cmt__content__cmt-content row';
+                        newUl.className = 'mbblog-comment-details row';
                         newUl.appendChild(cmtRow);
                         cmtEl.appendChild(newUl);
 
@@ -835,7 +834,7 @@ $nextPost = $block->getNextPost();
         btns.forEach(function (likeEl) {
             likeEl.addEventListener('click', function () {
                 var cmtId           = this.getAttribute('data-cmt-id');
-                var cmtRowContainer = this.closest('.default-cmt__content__cmt-content__cmt-row');
+                var cmtRowContainer = this.closest('.mbblog-comment-details-list');
 
                 if (isLogged === 'Yes') {
                     var likeCountText = this.querySelector('span').textContent.trim();
@@ -899,7 +898,7 @@ $nextPost = $block->getNextPost();
 
                 var inputCmtID      = this.getAttribute('data-cmt-id');
                 var cmtRowCmt       = document.querySelector('#cmt-row');
-                var cmtRowContainer = this.closest('.default-cmt__content__cmt-content__cmt-row');
+                var cmtRowContainer = this.closest('.mbblog-comment-details-list');
 
                 if (document.querySelectorAll('.cmt-row__reply-row.row__' + inputCmtID).length) {
                     cmtRowContainer = document.querySelector("#cmt-id-" + cmtId + " ul:last-child");
@@ -927,7 +926,7 @@ $nextPost = $block->getNextPost();
 
                         var input = document.getElementById('reply_cmt' + inputCmtID);
                         input.closest('.form-group').appendChild(
-                            document.querySelector('.default-cmt__content__cmt-block__cmt-box__cmt-btn .default-cmt_loading').cloneNode(true)
+                            document.querySelector('.mbblog-comment-save .mbblog-comment-loading').cloneNode(true)
                         );
                         input.focus();
 
@@ -955,7 +954,7 @@ $nextPost = $block->getNextPost();
 
     showReply(replyBtn);
 
-    var firstCmtRow = document.querySelector('li.default-cmt__content__cmt-content__cmt-row:first-child');
+    var firstCmtRow = document.querySelector('li.mbblog-comment-details-list:first-child');
     if (firstCmtRow) {
         firstCmtRow.style.borderTop = 'none';
     }

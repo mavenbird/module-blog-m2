@@ -316,23 +316,23 @@ h2.list-title {
     display: none;
 }
 /* style comment */
-textarea.default-cmt__content__cmt-block__cmt-box__cmt-input {
+textarea.mbblog-comment-textarea {
     overflow: hidden !important;
     resize: none;
     min-height: 80px;
     border-radius: 4px;
     margin-bottom: 15px;
 }
-.default-cmt__content__cmt-block__guest-box {
+.mbblog-comment-form-field {
     margin-bottom: 20px;
 }
 .show-cmt__cmt-row.is-reply {
     padding-left: 50px !important;
 }
-.default-cmt__content__cmt-block__cmt-box__cmt-btn {
+.mbblog-comment-save {
     float: right;
 }
-.default-cmt__content__cmt-block__cmt-box__cmt-btn .default-cmt_loading {
+.mbblog-comment-save .mbblog-comment-loading {
     display: inline-block;
     width: 20px;
     vertical-align: middle;
@@ -346,31 +346,31 @@ textarea.default-cmt__content__cmt-block__cmt-box__cmt-input {
     margin-top: 20px;
     margin-bottom: 10px;
 }
-div.default-cmt__content__cmt-content {
+div.mbblog-comment-details {
     width: 100%;
     margin-top: 50px;
     float: left;
 }
-ul.default-cmt__content__cmt-content {
+ul.mbblog-comment-details {
     list-style: none !important;
 }
-.cmt-row__cmt-content {
+.mbblog-comment-details {
     font-size: 13px;
 }
-.cmt-row__cmt-interactions {
+.mbblog-comment-review {
     font-size: 13px;
 }
-.cmt-row__cmt-content p {
+.mbblog-comment-details p {
     margin: 3px 0 !important;
 }
-.interactions__btn-actions {
+.mbblog-comment-action-btn {
     display: inline-block;
     margin-right: 10px;
 }
-a.interactions__btn-actions.action {
+a.mbblog-comment-action-btn.action {
     cursor: pointer;
 }
-.interactions__cmt-createdat {
+.mbblog-comment-createdate {
     display: inline-block;
     color: #999;
     font-size: 13px;
@@ -382,7 +382,7 @@ a.interactions__btn-actions.action {
     margin-bottom: 0 !important;
     position: relative;
 }
-.reply-form__form-input .default-cmt_loading {
+.reply-form__form-input .mbblog-comment-loading {
     width: 20px;
     position: absolute;
     top: 5px;
@@ -391,17 +391,17 @@ a.interactions__btn-actions.action {
 .default-cmt__content__cmt-row.reply-row {
     margin-top: 0 !important;
 }
-li.default-cmt__content__cmt-content__cmt-row.cmt-row.reply-row {
+li.mbblog-comment-details-list.cmt-row.reply-row {
     margin-top: 5px;
     padding-bottom: 0;
 }
-li.default-cmt__content__cmt-content__cmt-row.cmt-row {
+li.mbblog-comment-details-list.cmt-row {
     margin-top: 5px;
     margin-bottom: 15px;
     padding-bottom: 5px;
     border-top: 1px solid #f5f5f5;
 }
-.default-cmt__content__cmt-content ul:first-child {
+.mbblog-comment-details ul:first-child {
     padding-left: 5px !important;
 }
 /* end style comment */
