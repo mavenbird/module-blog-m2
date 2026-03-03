@@ -172,11 +172,10 @@ body { padding: 0; }
 .sidebar .categories-items-list li a,
 .sidebar .list-categories {
     display: block;
-    padding: 5px 0px;
+    padding: 5px 12px;
     color: #333;
     font-size: 14px;
     border-radius: 6px;
-    margin-right: 18px;
     transition: all 0.3s ease;
     text-decoration: none;
     position: relative;
@@ -191,8 +190,8 @@ body { padding: 0; }
 }
 /* SUB CATEGORY */
 .sidebar .categories-items-list ul ul {
-    padding-left: 15px;
-    margin-top: 8px;
+    padding-left: 12px;
+    margin-top: 5px;
 }
 /* ADD LEFT BORDER INDICATOR */
 .sidebar .menu-categories li a::before,
@@ -216,23 +215,10 @@ body { padding: 0; }
     padding: 2px 0px 0px 15px;
 }
 .sidebar .menu-categories li.category-item {
-    list-style: none; position: relative;
-}
-.sidebar .menu-categories li.category-item .mb-category-toggle i {
-    margin-top: 4px; right: 0; top: 4px; left: unset; font-size: 14px; cursor: pointer;
+    list-style: none;
 }
 .sidebar .archive-list .menu-archives {
     padding: 0; list-style: none;
-}
-.sidebar .menu-categories .category-item  i {
-    position: absolute;
-    font-size: 7px;
-    right: 0;
-    top: 12px;
-    left: 6px;
-}
-.sidebar .menu-categories .category-children .list-categories  {
-    padding: 5px 22px;
 }
 /* SIDEBAR TAB CONTAINER */
 .sidebar .product.data.items {
@@ -322,8 +308,7 @@ body { padding: 0; }
 }     
 .mbblog-post-view .about-admin h2,
 .mbblog-post-view .topic-list h2,
-.mbblog-post-view .blog-comment h2, 
-.mbblog-post-view .products-same-post h2 {
+.mbblog-post-view .blog-comment h2 {
     font-size: 22px;
     font-weight: 600;
     padding-bottom: 6px;
@@ -432,7 +417,13 @@ body { padding: 0; }
     padding: 10px;
     border-radius: 5px;
 }
-/* Product section grid CARD DESIGN */
+
+/* Remove owl width control */
+.products-same-post .item.product.product-item.mb-blog-slider-item {
+    width: 100%;
+    margin: 0;
+}
+/* CARD DESIGN */
 .products-same-post .product-item-info {
     background: #fff;
     border: 1px solid #ddd;
@@ -457,6 +448,7 @@ body { padding: 0; }
 .products-same-post .products-grid .product-item-info:has(.product-reviews-summary) .product-reviews-summary {
     margin-bottom: 0px;
 }
+
 .products-same-post .products-grid .product-item-info .product-item-inner {
     border: 1px solid #ddd;
     box-shadow: none;
@@ -469,29 +461,6 @@ body { padding: 0; }
     max-width: 100%;
     margin: 0;
 }
-
-/* Remove owl width control */
-.products-same-post .item.product.product-item.mb-blog-slider-item {
-    width: 100%;
-    margin: 0;
-}
-.products-same-post .product-item-info .product-item-name { min-height: 38px; margin: 5px 10px; }
-.products-same-post .owl-carousel .owl-stage-outer { padding-bottom: 60px; padding-top: 10px;}
-.products-same-post .owl-theme .owl-nav.disabled + .owl-dots { position: absolute; bottom: 10px; left: 0; right: 0; }
-/* PRODUCT GRID FIXED SYSTEM */
-.products-same-post .products-grid .product-item { width: 100%; max-width: 100%; }
-.page-products .products-grid .product-item { width: unset !important; }
-.products-same-post .products-grid .product-items {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px 15px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-/* Hover Effect */
-.products-same-post .products-grid .product-item:hover { transform: translateY(-2px);}
-
 /*================== SIDEBAR AUTHOR-DETAILS PAGE DESIGN ======================*/
 .sidebar .sidebar-info .author-name h3 {
     color: #000000;
@@ -603,7 +572,6 @@ body { padding: 0; }
 .blog-comment .default-cmt__content__cmt-content ul {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    padding: 0;
     gap: 10px;
  }
 /*================== REVIEW SECTION BLOG PAGE ======================*/
@@ -681,6 +649,24 @@ body { padding: 0; }
     max-width: 100%;
     max-height: 100%;
 }
+.products-same-post .product-item-info .product-item-name { min-height: 38px; margin: 5px 10px; }
+.products-same-post .owl-carousel .owl-stage-outer { padding-bottom: 60px; padding-top: 10px;}
+.products-same-post .owl-theme .owl-nav.disabled + .owl-dots { position: absolute; bottom: 10px; left: 0; right: 0; }
+/* PRODUCT GRID FIXED SYSTEM */
+.products-same-post .products-grid .product-item { width: 100%; max-width: 100%; }
+.page-products .products-grid .product-item { width: unset !important; }
+.products-same-post .products-grid .product-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+/* Hover Effect */
+.products-same-post .products-grid .product-item:hover {
+    transform: translateY(-2px);
+}
 
 @media(min-width:1280px) and (max-width:1440px) {}
 @media(min-width:1024px) and (max-width:1279px) {
@@ -697,7 +683,7 @@ body { padding: 0; }
     .mbblog-post-view .page-main .column.main { width: 78%; }
     .mbblog-post-view .page-main .sidebar-main { width: 22%; }
     .sidebar .list-post-tabs .post-left { width: 100%; }
-    .products-same-post .products-grid .product-items { grid-template-columns: repeat(3, 1fr); gap: 30px 10px;}
+    
 }
 @media(min-width:767px) and (max-width:1023px) { 
     /* For list view */
@@ -753,7 +739,6 @@ body { padding: 0; }
         margin: 10px 0 0 0; border-top: none; }
     .products-same-post .products-grid .product-item-info .product-item-inner { bottom: 0px; }
     .page-products .owl-carousel .owl-stage { flex-wrap: wrap; }
-     .products-same-post .products-grid .product-items { grid-template-columns: repeat(2, 1fr); gap: 20px 10px;}
     .topic-list .related-content-container {display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .blog-comment ul.mbblog-comment-section.row { display: grid; grid-template-columns: repeat(3, 1fr); padding: 0px; gap: 8px; }
 }
@@ -769,6 +754,7 @@ body { padding: 0; }
     .mbblog-author-details .author-social { flex-direction: column; }
     .mb-post-list .details-sharing #sharing {display: flex; gap: 10px; margin-top: 0px; flex-wrap: wrap; }
     .page-main .post-list.grid.products-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 12px; }
+     .products-same-post .products-grid .product-items { grid-template-columns: repeat(2, 1fr); gap: 20px 10px;}
     .blog-comment .default-cmt__content__cmt-content ul { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;  padding-left: 10px;}
     /* .blog-comment ul.mbblog-comment-section.row { display: grid; grid-template-columns: repeat(2, 1fr); padding: 0px; gap: 5px; } */
 }
