@@ -13,7 +13,7 @@ body { padding: 0; }
 }
 .mb-post-list .mb-post-info {
     color: #414141;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 18px;
     display: flex;
     flex-wrap: wrap;
@@ -26,16 +26,20 @@ body { padding: 0; }
   border-bottom: 1px solid #ddd;
   padding: 10px 0px;
 }
+.mb-post-list .post-short-description:empty {
+    margin: 0;
+}
 .mb-post-list .post-info {
     padding: 0px 8px 0px 8px;
+    width: 100%;
 }
 .mb-post-list h2.mb-post-title {
     margin: 0px 0px 12px 0px;
     font-weight: 600;
 }
 .mb-post-list .post-item-list .post-image {
-    width: 100%;
-    max-width: 379px;
+    min-width: 360px;
+    max-width: 360px;
     height: auto;
     overflow: hidden;       
     display: block;   
@@ -43,7 +47,6 @@ body { padding: 0; }
 .mb-post-list .post-item-list .post-image img {
     width: 100%;
     height: auto;
-    max-width: 379px;
     position: relative;  
     object-fit: cover;
     transition: transform 500ms ease;
@@ -70,13 +73,13 @@ body { padding: 0; }
     gap: 10px;
     margin-top: 10px;
 }
-.page-main .post-sharing-button {
+.post-list-content .post-sharing-button {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 5px; 
 }
-.page-main .post-sharing-button .sharing-icon{
+.post-list-content .post-sharing-button .sharing-icon{
     display: flex;
     width: 35px;
     height: 35px;
@@ -90,8 +93,8 @@ body { padding: 0; }
     border: 1px solid #ccc;
     opacity: 0.8;
 }
-.page-main .post-sharing-button .sharing-icon:hover { background: #eee; }
-.page-main .post-sharing-button .sharing-icon i { color: gray;  font-size: 15px;} 
+.post-list-content .post-sharing-button .sharing-icon:hover { background: #eee; }
+.post-list-content .post-sharing-button .sharing-icon i { color: gray;  font-size: 15px;} 
 /* Sidebar section */
 .sidebar .mbblog-search .field.search {
     display: flex;
@@ -110,9 +113,6 @@ body { padding: 0; }
     margin-top: 40px;
     padding: 25px 20px 25px 20px;
     border: 1px solid #ccc;
-}
-.sidebar .list-post-tabs {
-    margin-bottom: 15px;
 }
 .sidebar .list-post-tabs .post-left img {
     max-width: 100%;
@@ -269,6 +269,7 @@ body { padding: 0; }
     flex-direction: column;
     padding: 10px 0;
     border-bottom: 1px dashed #ccc;
+    margin-bottom: 15px;
 }
 .list-post-tabs:last-child {
     border-bottom: none;
