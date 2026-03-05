@@ -24,80 +24,70 @@
     <system>
         <section id="blog" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
-            <label>Mavenbird Blog</label>
+            <label>Mavenbird Blog Settings</label>
             <tab>mavenbird</tab>
             <resource>Mavenbird_Blog::configuration</resource>
             <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>General</label>
-                <!-- <field id="head" translate="label" type="button" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <frontend_model>Mavenbird\Blog\Block\Adminhtml\System\Config\Head</frontend_model>
-                    <comment><![CDATA[
-                        <ul class="mavenbird-head">
-                            <li><a href="https://github.com/mavenbird/magento-2-blog/issues" target="_blank">Technical Support</a> </li>
-                            <li><strong><a href="https://www.mavenbird.com/?utm_source=store&utm_medium=documents&utm_campaign=m2-blog" target="_blank">Find more extensions</a></strong> </li>
-                            <li>Magento stores see upwards of 30% revenue 💰 with AVADA. <a href="https://go.avada.io/mavenbird">Learn more</a></li>
-
-                        </ul>]]></comment>
-                </field> -->
+                <label>General Configuration</label>
                 <field id="enabled" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Enable</label>
+                    <label>Enable Blog Module</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="customer_approve" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
-                    <label>Allows customers to register as an author</label>
+                    <label>Allow Customers to Register as Authors</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="auto_approve" translate="label comment" type="select" sortOrder="55" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
-                    <label>Automatically approve requests</label>
+                    <label>Auto-Approve Author Requests</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="auto_post" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
-                    <label>Automatically approve customer's posts</label>
+                    <label>Auto-Approve Customer Posts</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="history_limit" translate="label comment" type="text" sortOrder="65" showInDefault="1" canRestore="1">
-                    <label>Limit of Posts History</label>
+                    <label>Post History Limit</label>
                     <validate>validate-digits</validate>
                     <comment>Limit number of post history</comment>
                 </field>
             </group>
             <group id="display" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Display</label>
+                <label>Display Settings</label>
                 <field id="name" translate="label comment" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Blog Name</label>
+                    <label>Blog Title</label>
                 </field>
                 <field id="url_prefix" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Route Name</label>
+                    <label>Blog URL Route</label>
                     <validate>validate-alphanum</validate>
                 </field>
                 <field id="url_suffix" translate="label comment" type="text" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>URL Suffix</label>
+                    <label>URL Suffix for Blog Pages</label>
                     <comment>Leave empty for no suffix. Default: html</comment>
                     <validate>validate-alphanum</validate>
                 </field>
                 <field id="toplinks" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Show Blog Link in Top Menu</label>
+                    <label>Display Blog Link in Top Navigation</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="footer" translate="label comment" type="select" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Show Blog Link in Footer links</label>
+                    <label>Display Blog Link in Footer</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="font_color" translate="label comment" type="text" sortOrder="30" showInWebsite="1" showInStore="1" showInDefault="1" canRestore="1">
-                    <label>Choose blog's color</label>
+                    <label>Select Blog Theme Color</label>
                     <frontend_model>Mavenbird\Blog\Block\Adminhtml\System\Config\ColorPicker</frontend_model>
                 </field>
                 <field id="date_type" translate="label" type="select" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Date format</label>
+                    <label>Date Display Format</label>
                     <source_model>Mavenbird\Blog\Model\Config\Source\DateFormat\Type</source_model>
                 </field>
                 <field id="pagination" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
-                    <label>Blogs per Page Allowed Values</label>
+                    <label>Allowed Blog Posts per Page</label>
                     <comment>Comma-separated.</comment>
                     <backend_model>Mavenbird\Blog\Model\Config\Backend\Pagination</backend_model>
                 </field>
                 <field id="category_accordion" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Enable Category Accordion</label>
+                    <label>Enable Category Accordion View</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Select Yes to enable category accordion in blog display.</comment>
                 </field>
@@ -105,34 +95,34 @@
             <group id="post_view_page" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label><![CDATA[Blog List Page & Post View Page]]></label>
                 <field id="display_author" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Display author</label>
+                    <label>Show Author Name</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="display_editing_date" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Display the Editing Date</label>
+                    <label>Show Post Last Edited Date</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Select Yes to show the editing date for posts.</comment>
                 </field>
                 <field id="display_navigation_blog" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Display the Navigation Blog</label>
+                    <label>Show Previous/Next Blog Navigation</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Select Yes to show the navigation previous and next button blog for posts.</comment>
                 </field>
                 <field id="related_post" translate="label comment" type="text" sortOrder="35" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
-                    <label>Limit related post</label>
+                    <label>Maximum Related Posts</label>
                     <comment>Number of related post in post view page (Related posts are posts with the same topics)</comment>
                     <validate>validate-digits</validate>
                 </field>
                 <field id="related_mode" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
-                    <label>Display Related Posts Mode</label>
+                    <label>Related Posts Display Mode</label>
                     <source_model>Mavenbird\Blog\Model\Config\Source\RelatedMode</source_model>
                 </field>
                 <field id="display_style" translate="label comment" type="select" sortOrder="45" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
-                    <label>Display Blogs Mode</label>
+                    <label>Blog Listing Display Mode</label>
                     <source_model>Mavenbird\Blog\Model\Config\Source\DisplayType</source_model>
                 </field>
                 <field id="blog_mode_grid_view" translate="label comment" type="select" sortOrder="45" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
-                    <label>Display Grid Column</label>
+                    <label>Grid Column Layout</label>
                     <source_model>Mavenbird\Blog\Model\Config\Source\DisplayModeGrid</source_model>
                     <depends>
                         <field id="display_style">2</field>
@@ -140,103 +130,103 @@
                     <comment>Select grid column for blog display.</comment>
                 </field>
                 <field id="is_review" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Allow Voting for Helpfulness</label>
+                    <label>Enable Helpfulness Voting</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Select Yes to allow selected group(s) below to vote for helpfulness.</comment>
                 </field>
                 <field id="review_mode" translate="label comment" type="multiselect" sortOrder="75" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Restrict Rating for</label>
+                    <label>Restrict Rating for Customer Groups</label>
                     <source_model>Magento\Customer\Model\ResourceModel\Group\Collection</source_model>
                     <comment>Select customer group(s) allowed to vote for helpfulness.</comment>
                 </field>
             </group>
             <group id="product_post" translate="label" showInDefault="1" sortOrder="6" showInWebsite="1" showInStore="1">
-                <label>Related Products Content</label>
+                <label>Related Products Configuration</label>
                 <group id="product_detail" translate="label" showInDefault="1" sortOrder="10" showInWebsite="1" showInStore="1">
-                    <label>Product Detail Page</label>
+                    <label>Product Page Settings</label>
                     <field id="enable_post" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Enable Related Posts</label>
+                        <label>Enable Related Blog Posts</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                         <comment>Show/Hide related posts tab in product page</comment>
                     </field>
                     <field id="post_limit" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Limit of Related Posts</label>
+                        <label>Maximum Related Blog Posts</label>
                         <validate>validate-digits</validate>
                         <comment>Limit number of related posts in product page tab</comment>
                     </field>
                 </group>
                 <group id="post_detail" translate="label" showInDefault="1" sortOrder="10" showInWebsite="1" showInStore="1">
-                    <label>Post View Page</label>
+                    <label>Blog Post Page Settings</label>
                     <field id="enable_product" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Enable Related Products</label>
+                        <label>Enable Related Products Section</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                         <comment><![CDATA[Show/Hide related products in post view page. Setup related products, up-sell, cross-sell products with ease
                         ]]>
                         </comment>
                     </field>
                     <field id="related_mode" translate="label comment" type="select" sortOrder="15" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
-                        <label>Display Related Products Mode</label>
+                        <label>Related Products Display Mode</label>
                         <source_model>Mavenbird\Blog\Model\Config\Source\RelatedMode</source_model>
                     </field>
                     <field id="product_limit" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Limit of Related Products</label>
+                        <label>Maximum Related Products</label>
                         <validate>validate-digits</validate>
                         <comment>Limit number of related products in post view page</comment>
                     </field>
                     <field id="title" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title of Related Products</label>
+                        <label>Related Products Section Title</label>
                         <comment>Title of related products in post view page</comment>
                     </field>
                 </group>
             </group>
             <group id="sidebar" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Sidebar</label>
+                <label>Sidebar Configuration</label>
                 <field id="sidebar_left_right" translate="label comment" type="select" sortOrder="1" showInDefault="20" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Sidebar Location</label>
+                    <label>Sidebar Position</label>
                     <source_model>Mavenbird\Blog\Model\Config\Source\SideBarLR</source_model>
                 </field>
                 <group id="search" translate="label" showInDefault="1" sortOrder="5" showInWebsite="1" showInStore="1">
-                    <label>Search</label>
+                    <label>Search Settings</label>
                     <field id="enable_search" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Enable</label>
+                        <label>Enable Search</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     </field>
                     <field id="search_limit" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Maximum Query Result</label>
+                        <label>Maximum Search Results</label>
                         <validate>validate-digits</validate>
                     </field>
                     <field id="min_chars" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Min Chars</label>
+                        <label>Minimum Characters</label>
                         <validate>validate-digits</validate>
                     </field>
                     <field id="show_image" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Visible Image</label>
+                        <label>Show Post Image</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     </field>
                     <field id="description" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Description length</label>
+                        <label>Description Length</label>
                         <validate>validate-digits</validate>
                     </field>
                 </group>
                 <group id="recent_post" translate="label" showInDefault="1" sortOrder="10" showInWebsite="1" showInStore="1">
-                    <label>Recent posts and Popular posts</label>
+                    <label><![CDATA[Recent & Popular Posts]]></label>
                     <field id="enable_widget" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Enable</label>
+                        <label>Enable Widget</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     </field>
                     <field id="number_recent_posts" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Number of recent posts</label>
+                        <label>Recent Posts Count</label>
                         <validate>validate-digits</validate>
                     </field>
                     <field id="number_mostview_posts" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Number of most view posts</label>
+                        <label>Most Viewed Posts Count</label>
                         <validate>validate-digits</validate>
                     </field>
                 </group>
                 <group id="monthly_archive" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Monthly Archive</label>
+                    <label>Monthly Archive Settings</label>
                     <field id="enable_monthly" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Enable Monthly Archive</label>
+                        <label>Enable Monthly Archive Feature</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     </field>
                     <field id="number_records" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
@@ -250,13 +240,13 @@
                 </group>
             </group>
             <group id="comment" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Comments</label>
+                <label>Comment Settings</label>
                 <field id="type" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Type of comment</label>
+                    <label>Comment System Type</label>
                     <source_model>Mavenbird\Blog\Model\Config\Source\Comments\Type</source_model>
                 </field>
                 <field id="need_approve" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Need for Approval</label>
+                    <label>Require Comment Approval</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>If yes, the comment will not be shown until approved by Admin.</comment>
                     <depends>
@@ -264,14 +254,14 @@
                     </depends>
                 </field>
                 <field id="disqus" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Disqus unique name</label>
+                    <label>Disqus Shortname</label>
                     <comment><![CDATA[Create at <a href="https://disqus.com/admin/create/" target="_blank">Disqus</a>]]></comment>
                     <depends>
                         <field id="type">3</field>
                     </depends>
                 </field>
                 <field id="facebook_appid" translate="label" type="obscure" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Facebook: AppID</label>
+                    <label>Facebook App ID</label>
                     <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
                     <comment><![CDATA[Regiter AppID <a href="https://developers.facebook.com/apps/" target="_blank">here</a>. Let visitors login via Facebook account <a href="https://www.mavenbird.com/magento-2-social-login-extension/?utm_source=store&utm_medium=documents&utm_campaign=m2-blog" target="_blank">explore now</a>]]></comment>
                     <depends>
@@ -279,7 +269,7 @@
                     </depends>
                 </field>
                 <field id="facebook_number_comment" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Facebook: Number of comment</label>
+                    <label>Facebook Comments Count</label>
                     <comment><![CDATA[The number of comments to show by default. The minimum value is 1.]]></comment>
                     <validate>validate-digits</validate>
                     <depends>
@@ -287,7 +277,7 @@
                     </depends>
                 </field>
                 <field id="facebook_colorscheme" translate="label comment" type="select" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Facebook: Color scheme</label>
+                    <label>Facebook Comment Color Scheme</label>
                     <depends>
                         <field id="type">2</field>
                     </depends>
@@ -295,7 +285,7 @@
                     <source_model>Mavenbird\Blog\Model\Config\Source\Comments\Facebook\Colorscheme</source_model>
                 </field>
                 <field id="facebook_order_by" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Facebook: Order by</label>
+                    <label>Facebook Comment Sort Order</label>
                     <depends>
                         <field id="type">2</field>
                     </depends>
@@ -304,53 +294,53 @@
                 </field>
             </group>
             <group id="platforms" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Social platforms</label>
+                <label>Social Sharing Platforms</label>
                 <group id="fb_platform" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Facebook</label>
+                    <label>Facebook Sharing</label>
                     <field id="fb_share" translate="label comment" type="select" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Allow sharing posts to Facebook</label>
+                        <label>Enable Facebook Sharing</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     </field>
                 </group>
                 <group id="x_platform" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Twitter</label>
+                   <label>X (Twitter) Sharing</label>
                     <field id="x_share" translate="label comment" type="select" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Allow sharing posts to X</label>
+                        <label>Enable X (Twitter) Sharing</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     </field>
                 </group>
                 <group id="whatsapp_platform" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>WhatsApp</label>
+                    <label>WhatsApp Sharing</label>
                     <field id="whatsapp_share" translate="label comment" type="select" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Allow sharing posts to WhatsApp</label>
+                        <label>Enable WhatsApp Sharing</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     </field>
                 </group>
                 <group id="telegram_platform" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Telegram</label>
+                    <label>Telegram Sharing</label>
                     <field id="telegram_share" translate="label comment" type="select" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Allow sharing posts to Telegram</label>
+                        <label>Enable Telegram Sharing</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     </field>
                 </group>
                 <group id="linkedin_platform" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>LinkedIn</label>
+                    <label>LinkedIn Sharing</label>
                     <field id="linkedin_share" translate="label comment" type="select" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Allow sharing posts to LinkedIn</label>
+                        <label>Enable LinkedIn Sharing</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     </field>
                 </group>
                 <group id="reddit_platform" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Reddit</label>
+                    <label>Reddit Sharing</label>
                     <field id="reddit_share" translate="label comment" type="select" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Allow sharing posts to Reddit</label>
+                        <label>Enable Reddit Sharing</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     </field>
                 </group>
                 <group id="email_platform" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Email</label>
+                    <label>Email Sharing</label>
                     <field id="email_share" translate="label comment" type="select" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Allow sharing posts to Email</label>
+                        <label>Enable Email Sharing</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     </field>
                 </group>
