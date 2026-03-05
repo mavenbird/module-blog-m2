@@ -311,6 +311,41 @@
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     </field>
                 </group>
+                <group id="whatsapp_platform" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>WhatsApp</label>
+                    <field id="whatsapp_share" translate="label comment" type="select" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Allow sharing posts to WhatsApp</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                </group>
+                <group id="telegram_platform" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Telegram</label>
+                    <field id="telegram_share" translate="label comment" type="select" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Allow sharing posts to Telegram</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                </group>
+                <group id="linkedin_platform" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>LinkedIn</label>
+                    <field id="linkedin_share" translate="label comment" type="select" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Allow sharing posts to LinkedIn</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                </group>
+                <group id="reddit_platform" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Reddit</label>
+                    <field id="reddit_share" translate="label comment" type="select" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Allow sharing posts to Reddit</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                </group>
+                <group id="email_platform" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email</label>
+                    <field id="email_share" translate="label comment" type="select" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Allow sharing posts to Email</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                </group>
             </group>
         </section>
     </system>

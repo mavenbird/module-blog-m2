@@ -37,6 +37,7 @@ $color        = $helper->getDisplayConfig('font_color');
 $previousPost = $block->getPreviousPost();
 $nextPost = $block->getNextPost();
 ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <div class="mb-blog-view">
     <div class="mb-blog-rss">
         <a href="<?= $escaper->escapeUrl($block->getRssUrl('post/rss')) ?>" class="bb-rss-icon">
@@ -282,7 +283,7 @@ $nextPost = $block->getNextPost();
 
         </script>
     <?php endif; ?>
-    <?php if ($helper->getBlogConfig('platforms/fb_platform/fb_share') || $helper->getBlogConfig('platforms/x_platform/x_share')) : ?>
+    <?php if ($helper->getBlogConfig('platforms/fb_platform/fb_share') || $helper->getBlogConfig('platforms/x_platform/x_share') || $helper->getBlogConfig('platforms/linkedin_platform/linkedin_share') || $helper->getBlogConfig('platforms/email_platform/email_share') || $helper->getBlogConfig('platforms/whatsapp_platform/whatsapp_share') || $helper->getBlogConfig('platforms/telegram_platform/telegram_share') || $helper->getBlogConfig('platforms/reddit_platform/reddit_share')) : ?>
         <div class="mb-clear"></div>
         <div class="mpcss">
             <div id="sharing">
@@ -291,24 +292,18 @@ $nextPost = $block->getNextPost();
                 </div>
                 <div class="share-col-right">
                     <div class="post-sharing-button flex">
-                        <?php if ($helper->getBlogConfig('platforms/x_platform/x_share')) : ?>
-                            <img class="img-responsive"
-                                 src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/twitter.png')) ?>"
-                                 alt="Share on Twitter"
-                                 onclick="window.open('https://twitter.com/share?text=&amp;url=<?= /* @noEscape */
-                                 $_post->getUrl() ?>','Twitter-dialog','width=626,height=436'); return false;"
-                                 style="cursor: pointer;width: 43%;position: relative; left: 0.5rem"
-                            />
-                        <?php endif; ?>
-                        <?php if ($helper->getBlogConfig('platforms/fb_platform/fb_share')) : ?>
-                            <img class="img-responsive"
-                                 src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/facebook.png')) ?>"
-                                 alt="Share on Facebook"
-                                 onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('<?= /* @noEscape */
-                                 $_post->getUrl() ?>'),'facebook-share-dialog','width=626,height=436'); return false;"
-                                 style="cursor: pointer;"
-                            />
-                        <?php endif; ?>
+                        <?php foreach ($block->getShareLinks() as $share) : ?>
+                            <a class="sharing-icon"
+                            href="<?= $escaper->escapeUrl($share['url']) ?>"
+                            target="_blank"
+                            rel="noopener"
+                            title="<?= $escaper->escapeHtmlAttr($share['label']) ?>">
+
+                                <i class="<?= $escaper->escapeHtmlAttr($share['icon_class']) ?>
+                                        <?= $escaper->escapeHtmlAttr($share['icon']) ?>"></i>
+
+                            </a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

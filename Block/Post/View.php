@@ -459,4 +459,84 @@ class View extends \Mavenbird\Blog\Block\Listpost
         /** @var \Mavenbird\Blog\Helper\Data $helper */
         return $this->helperData->getPostViewPageConfig('display_navigation_blog');
     }
+
+    /**
+ * Get enabled social share links based on admin configuration
+ *
+ * @param \Mavenbird\Blog\Model\Post|null $post
+ * @return array
+ */
+public function getShareLinks(?Post $post = null): array
+{
+    $post = $post ?: $this->getPost();
+
+    if (!$post || !$post->getId()) {
+        return [];
+    }
+
+    $helper = $this->helperData;
+
+    $url   = urlencode($post->getUrl());
+    $title = urlencode($post->getName());
+
+    $platforms = [
+        'X' => [
+            'enabled' => $helper->getBlogConfig('platforms/x_platform/x_share'),
+            'icon_class' => 'fa-brands',
+            'icon' => 'fa-x-twitter',
+            'url' => "https://twitter.com/intent/tweet?url={$url}&text={$title}"
+        ],
+        'Facebook' => [
+            'enabled' => $helper->getBlogConfig('platforms/fb_platform/fb_share'),
+            'icon_class' => 'fa-brands',
+            'icon' => 'fa-facebook-f',
+            'url' => "https://www.facebook.com/sharer/sharer.php?u={$url}"
+        ],
+        'WhatsApp' => [
+            'enabled' => $helper->getBlogConfig('platforms/whatsapp_platform/whatsapp_share'),
+            'icon_class' => 'fa-brands',
+            'icon' => 'fa-whatsapp',
+            'url' => "https://wa.me/?text={$title}%20{$url}"
+        ],
+        'Telegram' => [
+            'enabled' => $helper->getBlogConfig('platforms/telegram_platform/telegram_share'),
+            'icon_class' => 'fa-brands',
+            'icon' => 'fa-telegram',
+            'url' => "https://t.me/share/url?url={$url}&text={$title}"
+        ],
+        'LinkedIn' => [
+            'enabled' => $helper->getBlogConfig('platforms/linkedin_platform/linkedin_share'),
+            'icon_class' => 'fa-brands',
+            'icon' => 'fa-linkedin-in',
+            'url' => "https://www.linkedin.com/sharing/share-offsite/?url={$url}"
+        ],
+        'Reddit' => [
+            'enabled' => $helper->getBlogConfig('platforms/reddit_platform/reddit_share'),
+            'icon_class' => 'fa-brands',
+            'icon' => 'fa-reddit-alien',
+            'url' => "https://www.reddit.com/submit?url={$url}&title={$title}"
+        ],
+        'Email' => [
+            'enabled' => $helper->getBlogConfig('platforms/email_platform/email_share'),
+            'icon_class' => 'fa-solid',
+            'icon' => 'fa-envelope',
+            'url' => "mailto:?subject={$title}&body={$url}"
+        ]
+    ];
+
+    $result = [];
+
+    foreach ($platforms as $label => $data) {
+        if (!empty($data['enabled'])) {
+            $result[] = [
+                'label' => __($label),
+                'icon_class' => $data['icon_class'],
+                'icon' => $data['icon'],
+                'url' => $data['url']
+            ];
+        }
+    }
+
+    return $result;
+}
 }

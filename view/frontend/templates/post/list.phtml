@@ -80,24 +80,20 @@ use Magento\Framework\Escaper;
                                         </div>
                                         <div class="share-col-right">
                                             <div class="post-sharing-button">
-                                                <span class="sharing-icon" title="Twitter">
-                                                    <i class="fa-brands fa-x-twitter"></i>
-                                                </span>
-                                                <span class="sharing-icon" title="Facebook">
-                                                    <i class="fa-brands fa-facebook-f"></i>
-                                                </span>
-                                                <span class="sharing-icon" title="LinkedIn">
-                                                    <i class="fa-brands fa-linkedin-in"></i>
-                                                </span>
-                                                <span class="sharing-icon" title="Reddit">
-                                                    <i class="fa-brands fa-square-reddit"></i>
-                                                </span>
-                                                <span class="sharing-icon" title="Telegram">
-                                                    <i class="fa-brands fa-telegram"></i>
-                                                </span>
-                                                <span class="sharing-icon" title="Whatsapp">
-                                                    <i class="fa-brands fa-whatsapp"></i>
-                                                </span>
+                                                <?php foreach ($block->getShareLinks($post) as $share) : ?>
+                                                    <?php if ($share['enabled']) : ?>
+                                                        <a class="sharing-icon"
+                                                        href="<?= $escaper->escapeUrl($share['url']) ?>"
+                                                        target="_blank"
+                                                        rel="noopener"
+                                                    title="<?= $escaper->escapeHtmlAttr($share['label']) ?>">
+
+                                                        <i class="<?= $escaper->escapeHtmlAttr($share['icon_class']) ?>
+                                                                <?= $escaper->escapeHtmlAttr($share['icon']) ?>"></i>
+
+                                                    </a>
+                                                    <?php endif; ?>
+                                                <?php endforeach; ?>
                                             </div>
                                         </div>
                                     </div>

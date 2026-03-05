@@ -429,4 +429,69 @@ class Frontend extends Template
     {
         return $this->getViewFileUrl('Mavenbird_Blog::media/images/no-artist-image.jpg');
     }
+
+  /**
+ * Get social share links for a post
+ *
+ * @param \Mavenbird\Blog\Model\Post $post
+ * @return array
+ */
+public function getShareLinks(Post $post): array
+{
+    $url   = urlencode($post->getUrl());
+    $title = urlencode($post->getName());
+
+    return [
+        [
+            'enabled' => $this->helperData->getBlogConfig('platforms/x_platform/x_share'),
+            'label' => __('X'),
+            'icon_class' => 'fa-brands',
+            'icon' => 'fa-x-twitter',
+            'url' => "https://twitter.com/intent/tweet?url={$url}&text={$title}"
+        ],
+        [
+            'enabled' => $this->helperData->getBlogConfig('platforms/fb_platform/fb_share'),
+            'label' => __('Facebook'),
+            'icon_class' => 'fa-brands',
+            'icon' => 'fa-facebook-f',
+            'url' => "https://www.facebook.com/sharer/sharer.php?u={$url}"
+        ],
+        [   
+            'enabled' => $this->helperData->getBlogConfig('platforms/whatsapp_platform/whatsapp_share'),
+            'label' => __('WhatsApp'),
+            'icon_class' => 'fa-brands',
+            'icon' => 'fa-whatsapp',
+            'url' => "https://wa.me/?text={$title}%20{$url}"
+        ],
+        [   
+            'enabled' => $this->helperData->getBlogConfig('platforms/telegram_platform/telegram_share'),
+            'label' => __('Telegram'),
+            'icon_class' => 'fa-brands',
+            'icon' => 'fa-telegram',
+            'url' => "https://t.me/share/url?url={$url}&text={$title}"
+        ],
+        [   
+            'enabled' => $this->helperData->getBlogConfig('platforms/linkedin_platform/linkedin_share'),
+            'label' => __('LinkedIn'),
+            'icon_class' => 'fa-brands',
+            'icon' => 'fa-linkedin-in',
+            'url' => "https://www.linkedin.com/sharing/share-offsite/?url={$url}"
+        ],
+        [   
+            'enabled' => $this->helperData->getBlogConfig('platforms/reddit_platform/reddit_share'),
+            'label' => __('Reddit'),
+            'icon_class' => 'fa-brands',
+            'icon' => 'fa-reddit-alien',
+            'url' => "https://www.reddit.com/submit?url={$url}&title={$title}"
+        ],
+        [   
+            'enabled' => $this->helperData->getBlogConfig('platforms/email_platform/email_share'),
+            'label' => __('Email'),
+            'icon_class' => 'fa-solid',
+            'icon' => 'fa-envelope',
+            'url' => "mailto:?subject={$title}&body={$url}"
+        ]
+    ];
+}
+
 }

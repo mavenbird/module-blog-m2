@@ -95,7 +95,7 @@ $color        = $helper->getDisplayConfig('font_color');
     }
         </script>
     <?php endif; ?>
-    <?php if ($helper->getBlogConfig('platforms/fb_platform/fb_share') || $helper->getBlogConfig('platforms/x_platform/x_share')) : ?>
+        <?php if ($helper->getBlogConfig('platforms/fb_platform/fb_share') || $helper->getBlogConfig('platforms/x_platform/x_share') || $helper->getBlogConfig('platforms/linkedin_platform/linkedin_share') || $helper->getBlogConfig('platforms/email_platform/email_share') || $helper->getBlogConfig('platforms/whatsapp_platform/whatsapp_share') || $helper->getBlogConfig('platforms/telegram_platform/telegram_share') || $helper->getBlogConfig('platforms/reddit_platform/reddit_share')) : ?>
         <div class="mpcss">
             <div id="sharing">
                 <div class="share-col-left">
@@ -103,27 +103,18 @@ $color        = $helper->getDisplayConfig('font_color');
                 </div>
                 <div class="share-col-right">
                     <div class="post-sharing-button">
-                        <span class="sharing-icon" title="Twitter">
-                            <i class="fa-brands fa-x-twitter"></i>
-                        </span>
-                        <span class="sharing-icon" title="Facebook">
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </span>
-                        <span class="sharing-icon" title="Instagram">
-                            <i class="fa-brands fa-instagram"></i>
-                        </span>
-                        <span class="sharing-icon" title="Snapchat">
-                            <i class="fa-brands fa-snapchat"></i>
-                        </span>
-                        <span class="sharing-icon" title="Telegram">
-                            <i class="fa-brands fa-telegram"></i>
-                        </span>
-                        <span class="sharing-icon" title="Whatsapp">
-                            <i class="fa-brands fa-whatsapp"></i>
-                        </span>
-                        <span class="sharing-icon" title="Github">
-                            <i class="fa-brands fa-git-alt"></i>
-                        </span>
+                        <?php foreach ($block->getShareLinks() as $share) : ?>
+                            <a class="sharing-icon"
+                            href="<?= $escaper->escapeUrl($share['url']) ?>"
+                            target="_blank"
+                            rel="noopener"
+                            title="<?= $escaper->escapeHtmlAttr($share['label']) ?>">
+
+                                <i class="<?= $escaper->escapeHtmlAttr($share['icon_class']) ?>
+                                        <?= $escaper->escapeHtmlAttr($share['icon']) ?>"></i>
+
+                            </a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

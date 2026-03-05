@@ -126,7 +126,7 @@ $postCollection = $block->getPostCollection();
                 "Mavenbird_Blog/js/managePost": {
                     "deleteUrl": "<?= $escaper->escapeHtml($block->getUrl('mbblog/post/deletepost')) ?>",
                         "basePubUrl": "<?= $escaper->escapeHtml($block->getBaseMediaUrl()) ?>",
-                        "postDatas": <?= $escaper->escapeHtml($block->getPostDatas($postCollection)) ?>,
+                        "postDatas": <?= /* @noEscape */ $block->getPostDatas($postCollection) ?>,
                         "editorVersion": "<?= $escaper->escapeHtml($block->getVersion()) ?>",
                         "magentoVersion": "<?= $escaper->escapeHtml($block->getMagentoVersion()) ?>"
                     }
