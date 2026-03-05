@@ -1,7 +1,9 @@
+
 /* ================================ HYVABLOG.CSS FROM MY SIDE Start ======================================== */
 .page-layout-2columns-right .columns  .page-main .column.main { width: 78%; display: flex;}
 .page-layout-2columns-right .columns  .page-main .sidebar-main { width: 22%; display: flex;}
-.page-main .columns { display: flex; }
+.page-main .columns { display: flex; gap: 15px; }
+.page-layout-2columns-right .columns .main .mb-blog-rss { margin: 0 0 10px 0; }
 /* title for all the sections that need to same css */
 .mbblog-post-view .about-admin h2, 
 .mbblog-post-view .topic-list h2, 
@@ -287,7 +289,7 @@
 }
 /* related post topic pages */
 .mbblog-post-view .block-blog-related.topic-list.mpcss {
-    margin-bottom: 10px;
+    margin-bottom: 25px;
 }
 /* Comment section code  */
 .blog-comment .mbblog-comment-section #mbblog-comment-form {
@@ -311,8 +313,17 @@
     width: 100%;
     max-width: 100%;
 }
-#mb-blog-review .mb-blog-like { background-color: #6AA84F;  left: 40%; width: 125px;}
-#mb-blog-review .mb-blog-dislike { width: 125px; }
+#mb-blog-review .mb-blog-like { background-color: #6AA84F;  left: 40%; width: 130px;}
+#mb-blog-review .mb-blog-dislike { width: 130px; }
+
+.products-same-post .product-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 .products-same-post .rating-summary {
     display: flex;
     align-items: center;
@@ -337,6 +348,98 @@
 .mbblog-author-details .share-col-right {
     margin: 10px 0px;
 }
+/* blog page grid section that need to be fixed */
+.page-layout-2columns-right .columns .main {
+    width: 200%;
+}
+.product-item-info:hover, .products-grid .product-item-info.active { 
+    box-shadow: none; padding: 10px;
+    border: 1px solid #ddd;
+}
+.column .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 12px;
+}
+.column .post-list-item.post-item-grid {
+    border: 1px solid #ddd;
+    padding: 14px;
+    border-radius: 5px;
+}
+.column .products-grid .post-image {
+    width: 100%;
+    max-width: 100%;
+}
+.column .products-grid .post-image img {
+    width: 100%;
+    max-width: 100%;
+}
+.column .products-grid h2.mb-post-title {
+    margin: 10px 0px 12px 0px;
+    font-weight: 600;
+    font-size: 24px;
+}
+.column .products-grid .post-info .mb-post-info {
+    font-size: 12px;
+    flex-wrap: wrap;
+}
+.column .products-grid .post-info .details-sharing {
+    display: flex;
+    align-items: flex-start;
+    gap: 0px;
+    flex-wrap: wrap;
+}
+.column .products-grid .mb-post-meta-info {
+    margin-top: 10px;
+    font-size: 14px;
+    display: inline-flex;
+}
+.column .products-grid  #sharing .share-col-left h5 {
+    margin: 10px 0px 8px 0px;
+    padding: 0;
+}
+.column .products-grid .details-sharing #sharing {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: space-between
+}
+.column .products-grid .post-sharing-button {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; 
+}
+.column .products-grid .mb-post-list .post-info {
+    padding: 0px;
+}
+.column .products-grid .mpcss {
+    border-top: 1px solid #ddd;
+    padding-top: 0px;
+    margin-top: 10px;
+    width: 100%;
+}
+.products-same-post { margin-bottom: 40px; }
+.products-same-post .splide__pagination { bottom: -2.5em; }
+.products-same-post .item.product.product-item.mb-blog-slider-item { max-width: 100%; display: flex; flex-wrap: wrap;}
+.products-same-post #products-carousel-track { min-height: 530px; margin-top: 40px; }
+.products-same-post .splide__slide { width: auto; }
+.products-same-post .splide__pagination__page.is-active {  background: #000000; }
+.products-same-post .splide__pagination__page.is-active {  background: #6b6b6bff }
+
+.product-item .price-box { margin: 10px 0 25px; }
+.item.product.product-item.mb-blog-slider-item { width: 85%; text-align: center; min-height: 450px; margin-top: 5px;}
+.product-item-info:hover .btn.btn-primary { display: block;  }
+.btn.btn-primary {  display: none; }
+.products-grid .product-item-actions { margin: -10px 0 10px;}
+.topic-list .splide__pagination { bottom: -1.2em;}
+.topic-list .splide__arrow { display: none !important; }
+.topic-list .splide__pagination__page.is-active {  background: #000000; }
+.topic-list .splide__pagination__page.is-active {  background: #6b6b6bff }
+#relatedposts-carousel, .relatedposts-list a:visited, .alink:visited { color: #006bb4;  text-decoration: none;}
+#relatedposts-carousel  a:hover, .alink:hover {  color: #006bb4; text-decoration: underline; }
+
 /* Inline css that need to remove from php files */
 .item.post-list-item.col-mb { width: 100%; }
 .splide__pagination { bottom: -0.5em; }
@@ -351,29 +454,40 @@
 .helpdesk_email { display: none !important; }
 .contactformpro_email { display: none !important; }
 a.white-space-pre-line { white-space: pre-line; }
-/* ================================ HYVABLOG.CSS FROM MY SIDE End ======================================== */
 
 @media(min-width:1280px) and (max-width:1440px) {
     #mb-blog-review .mb-blog-like { left: 35%;}
+    .column .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
 }
 @media(min-width:1024px) and (max-width:1279px) {
-    #mb-blog-review .mb-blog-like { width: 100px; left: 35%;}
-    #mb-blog-review .mb-blog-dislike { width: 100px; }
+    .column .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    #mb-blog-review .mb-blog-like { left: 30%;}
  }
 @media (min-width: 767px) and (max-width: 1023px) {
+    .column .products-grid { grid-template-columns: repeat(1, 1fr); gap: 10px; }
+    .products-same-post .product-items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px 15px; }
     .topic-list .related-content-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-    #mb-blog-review .mb-blog-like { width: 100px; left: 25%; }
-    #mb-blog-review .mb-blog-dislike { width: 100px; }
+    #mb-blog-review .mb-blog-like { left: 22%; }
 }
 @media (max-width: 768px) {
     .page-main .columns { display: flex; flex-wrap: wrap; }
     .topic-list .related-content-container {
     display: grid; grid-template-columns: repeat(1, 1fr); gap: 15px; }
     .block-blog-related .related-content-container .author-content-information { width: auto; }
-    #mb-blog-review .mb-blog-like { width: 100px; left: 30%; }
-    #mb-blog-review .mb-blog-dislike { width: 100px; }
+    #mb-blog-review .mb-blog-like { left: 28%; }
+    .column .products-grid { grid-template-columns: repeat(2, 1fr);  gap: 10px; }
+    .products-same-post .product-items { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px 15px; }
+}
+@media (max-width: 575px) { 
+    #mb-blog-review .mb-blog-like { left: 24%; }
+    .post-list-content .products-grid .details-sharing #sharing {  margin-top: 10px; }
+    .column .products-grid { grid-template-columns: repeat(1, 1fr); gap: 8px; }
 }
 @media (max-width: 480px) { 
-    #mb-blog-review .mb-blog-like { width: 100px; left: 20%; }
+    #mb-blog-review .mb-blog-like { left: 22%; }
+    .post-list-content .products-grid .details-sharing #sharing {  margin-top: 10px; }
+    .column .products-grid { grid-template-columns: repeat(1, 1fr); gap: 8px; }
+    .products-same-post .product-items { display: grid; grid-template-columns: repeat(1, 1fr); gap: 30px 15px; }
 }
 
+/* ================================ HYVABLOG.CSS FROM MY SIDE End ======================================== */
