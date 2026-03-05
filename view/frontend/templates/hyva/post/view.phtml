@@ -89,7 +89,7 @@ $nextPost = $block->getNextPost();
             <span><?= $escaper->escapeHtml(__('Did you find it helpful?')) ?></span>
         </div>
         <div id="mb-blog-review">
-            <div class="mb-blog-like" style="width: 155px">
+            <div class="mb-blog-like" >
                 <i class="fa fa-thumbs-up" aria-hidden="true"></i>
                 <span><?= $escaper->escapeHtml(__('LIKE')) ?></span>
                 <span class="mb-blog-view">
@@ -98,7 +98,7 @@ $nextPost = $block->getNextPost();
                     <?php endif; ?>
                     </span>
             </div>
-            <div class="mb-blog-dislike" style="width: 155px">
+            <div class="mb-blog-dislike">
                 <i class="fa fa-thumbs-down" aria-hidden="true"></i>
                 <span><?= $escaper->escapeHtml(__('DISLIKE')) ?></span>
                 <span class="mb-blog-view">
@@ -498,8 +498,7 @@ $nextPost = $block->getNextPost();
                                         <?= /* @noEscape */
                                         $block->getBlockHtml('formkey'); ?>
                                         <div class="col-mb mb-6 mbblog-comment-form-field">
-                                            <label for="mbblog-comment-guest-name">Name
-                                                *</label>
+                                            <label for="mbblog-comment-guest-name"><?= $escaper->escapeHtmlAttr(__('Name')) ?> *</label>
                                             <input id="mbblog-comment-guest-name"
                                                    type="text"
                                                    name="mbblog-comment-guest-name"
@@ -507,8 +506,7 @@ $nextPost = $block->getNextPost();
                                                    data-validate='{"required": true}'>
                                         </div>
                                         <div class="col-mb mb-6 mbblog-comment-form-field">
-                                            <label for="mbblog-comment-guest-email">Email
-                                                *</label>
+                                            <label for="mbblog-comment-guest-email"> <?= $escaper->escapeHtmlAttr(__('Email')) ?> *</label>
                                             <input id="mbblog-comment-guest-email"
                                                    type="text"
                                                    name="mbblog-comment-guest-email"
@@ -519,7 +517,7 @@ $nextPost = $block->getNextPost();
                                     </form>
                                 <?php endif; ?>
                                 <div class="mbblog-comment-fields">
-                                    <div class="col-mb mb-12">
+                                    <div class="col-mb">
                                         <label for="mb-guest-cmt-commentbox">Comment</label>
                                         <div>
                                               <textarea
@@ -933,9 +931,9 @@ $nextPost = $block->getNextPost();
     showReply(replyBtn);
 
     var firstCmtRow = document.querySelector('li.mbblog-comment-details-list:first-child');
-    if (firstCmtRow) {
-        firstCmtRow.style.borderTop = 'none';
-    }
+    // if (firstCmtRow) {
+    //     firstCmtRow.style.borderTop = 'none';
+    // }
     // handle reply comment
     function submitReply (input, replyId, parentComment) {
         input.addEventListener('keypress', async function (e) {

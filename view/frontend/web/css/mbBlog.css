@@ -532,7 +532,7 @@ body { padding: 0; }
 }
 .mb-footer span.mb-footer-links-light h3 {
     margin-top: 5px;
-    max-width: 475px;
+    min-width: 370px;
 }
 /*================== COMMENT FORM FIELD FOR BLOG PAGE ======================*/
 .blog-comment input[type="text"], input[type="password"], input[type="url"], input[type="tel"], input[type="search"], input[type="number"],

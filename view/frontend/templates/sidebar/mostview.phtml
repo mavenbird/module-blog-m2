@@ -30,9 +30,9 @@ $postsRecent = $block->getRecentPost();
 <div class="sidebar-info">
     <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
         <div class="data item title" data-role="collapsible" id="tab-label-popular">
-            <a class="data switch" tabindex="-1" data-toggle="switch" id="tab-label-popular-title">
+            <button class="data switch" tabindex="-1" data-toggle="switch" id="tab-label-popular-title">
                 <div><?= $escaper->escapeHtml(__('Popular')) ?></div>
-            </a>
+            </button>
         </div>
         <div class="data item content" id="tab-content-popular" data-role="content">
             <?php if ($posts->getSize()) : ?>
@@ -62,9 +62,9 @@ $postsRecent = $block->getRecentPost();
         </div>
 
         <div class="data item title" data-role="collapsible" id="tab-label-mostview">
-            <a class="data switch" tabindex="-1" data-toggle="switch" id="tab-label-mostview-title">
+            <button class="data switch" tabindex="-1" data-toggle="switch" id="tab-label-mostview-title">
                 <div><?= $escaper->escapeHtml(__('Latest')) ?></div>
-            </a>
+            </button>
         </div>
         <div class="data item content" id="tab-content-mostview" data-role="content">
             <?php if ($postsRecent->getSize()) : ?>
