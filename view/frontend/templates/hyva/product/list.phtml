@@ -54,7 +54,7 @@ $_helper            = $block->getHelper();
     ?>
     <div class="products wrapper <?= /* @noEscape */ $viewMode ?> products-<?= /* @noEscape */ $viewMode ?>">
         <?php if ($block->relatedMode() !== '1') : ?>
-            <div class="products list items product-items mt-6 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+            <div class="products list items product-items">
                 <?php /** @var Product $_product */ ?>
                 <?php foreach ($_productCollection as $_product) : ?>
                     <div class="item product product-item">
@@ -294,40 +294,3 @@ $_helper            = $block->getHelper();
         </script>
     <?php endif; ?>
 <?php endif; ?>
-<style>
-
-    .product-item .price-box {
-        margin: 10px 0 25px;
-    }
-
-
-    .item.product.product-item.mb-blog-slider-item {
-        width: 85%;
-        text-align: center;
-        min-height: 450px;
-        margin-top: 5px;
-    }
-    .product-item-info:hover, .products-grid .product-item-info.active {
-
-        background: #ffffff;
-        box-shadow: 3px 4px 4px 0 rgba(0, 0, 0, 0.3);
-        border: 1px solid #bbbbbb;
-        margin: -10px;
-        padding: 18px;
-        position: relative;
-        z-index: 9;
-    }
-
-    .product-item-info:hover .btn.btn-primary {
-        display: block;
-    }
-
-    .btn.btn-primary {
-        display: none;
-    }
-
-    .products-grid .product-item-actions {
-        margin: -10px 0 10px;
-    }
-
-</style>
