@@ -11,11 +11,14 @@
 .mbblog-post-view .products-same-post h2 {
     margin-bottom: 8px;
 }
-
+.mbblog-post-view .topic-list .post-image {
+    min-width: 250px;
+    width: 100%;
+}
 .mb-blog-view .post-view-image img
  {
     border-radius: 8px;
-    max-width: 100%;
+    min-width: 800px;
     width: 100%;
 }
 .sidebar .sidebar-info .block-title-sidebar-heading { 
@@ -61,6 +64,9 @@
     margin-bottom: 8px;
     margin-top: 12px;
 }
+.mbblog-post-view .column.main .mb-post-list {
+    margin: 20px 0px;
+}
 /* grid view for review section in related posts */
 .topic-list .related-content-container {
     display: grid;
@@ -92,7 +98,6 @@
 /* SIDEBAR BLOCK CARD */
 .sidebar .sidebar-categories,
 .sidebar .tags {
-    background: #ffffff;
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
@@ -353,7 +358,7 @@
     width: 200%;
 }
 .product-item-info:hover, .products-grid .product-item-info.active { 
-    box-shadow: none; padding: 10px;
+    box-shadow: none;
     border: 1px solid #ddd;
 }
 .column .products-grid {
@@ -361,6 +366,18 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
     margin-bottom: 12px;
+}
+.products-grid .grid-column-2 { display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px; 
+}
+.products-grid .grid-column-3 { display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px; 
+}
+.products-grid .grid-column-4 { display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px; 
 }
 .column .post-list-item.post-item-grid {
     border: 1px solid #ddd;
@@ -424,9 +441,12 @@
 .products-same-post .splide__pagination { bottom: -2.5em; }
 .products-same-post .item.product.product-item.mb-blog-slider-item { max-width: 100%; display: flex; flex-wrap: wrap;}
 .products-same-post #products-carousel-track { min-height: 530px; margin-top: 40px; }
-.products-same-post .splide__slide { width: auto; }
 .products-same-post .splide__pagination__page.is-active {  background: #000000; }
 .products-same-post .splide__pagination__page.is-active {  background: #6b6b6bff }
+
+.column.main .mb-blog-new-post .btn.btn-primary {
+    display: flex;
+}
 
 .product-item .price-box { margin: 10px 0 25px; }
 .item.product.product-item.mb-blog-slider-item { width: 85%; text-align: center; min-height: 450px; margin-top: 5px;}
@@ -462,12 +482,15 @@ a.white-space-pre-line { white-space: pre-line; }
 @media(min-width:1024px) and (max-width:1279px) {
     .column .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     #mb-blog-review .mb-blog-like { left: 30%;}
+    .products-grid .grid-column-4 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
  }
 @media (min-width: 767px) and (max-width: 1023px) {
     .column .products-grid { grid-template-columns: repeat(1, 1fr); gap: 10px; }
     .products-same-post .product-items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px 15px; }
     .topic-list .related-content-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
     #mb-blog-review .mb-blog-like { left: 22%; }
+    .products-grid .grid-column-4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .products-grid .grid-column-3 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 }
 @media (max-width: 768px) {
     .page-main .columns { display: flex; flex-wrap: wrap; }
@@ -476,6 +499,8 @@ a.white-space-pre-line { white-space: pre-line; }
     .block-blog-related .related-content-container .author-content-information { width: auto; }
     #mb-blog-review .mb-blog-like { left: 28%; }
     .column .products-grid { grid-template-columns: repeat(2, 1fr);  gap: 10px; }
+    .products-grid .grid-column-3 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .products-grid .grid-column-4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .products-same-post .product-items { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px 15px; }
 }
 @media (max-width: 575px) { 
@@ -487,6 +512,9 @@ a.white-space-pre-line { white-space: pre-line; }
     #mb-blog-review .mb-blog-like { left: 22%; }
     .post-list-content .products-grid .details-sharing #sharing {  margin-top: 10px; }
     .column .products-grid { grid-template-columns: repeat(1, 1fr); gap: 8px; }
+    .products-grid .grid-column-4 { display: grid; grid-template-columns: repeat(1, 1fr); gap: 12px; }
+    .products-grid .grid-column-2 { display: grid; grid-template-columns: repeat(1, 1fr); gap: 12px;  }
+    .products-grid .grid-column-3 { display: grid; grid-template-columns: repeat(1, 1fr); gap: 12px; }
     .products-same-post .product-items { display: grid; grid-template-columns: repeat(1, 1fr); gap: 30px 15px; }
 }
 

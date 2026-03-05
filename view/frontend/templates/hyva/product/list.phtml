@@ -54,7 +54,7 @@ $_helper            = $block->getHelper();
     ?>
     <div class="products wrapper <?= /* @noEscape */ $viewMode ?> products-<?= /* @noEscape */ $viewMode ?>">
         <?php if ($block->relatedMode() !== '1') : ?>
-            <div class="products list items product-items">
+            <div class="products list items product-items ">
                 <?php /** @var Product $_product */ ?>
                 <?php foreach ($_productCollection as $_product) : ?>
                     <div class="item product product-item">
