@@ -24,7 +24,7 @@
     <system>
         <section id="blog" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
-            <label>Better Blog</label>
+            <label>Mavenbird Blog</label>
             <tab>mavenbird</tab>
             <resource>Mavenbird_Blog::configuration</resource>
             <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -130,6 +130,14 @@
                 <field id="display_style" translate="label comment" type="select" sortOrder="45" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
                     <label>Display Blogs Mode</label>
                     <source_model>Mavenbird\Blog\Model\Config\Source\DisplayType</source_model>
+                </field>
+                <field id="blog_mode_grid_view" translate="label comment" type="select" sortOrder="45" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Display Grid Column</label>
+                    <source_model>Mavenbird\Blog\Model\Config\Source\DisplayModeGrid</source_model>
+                    <depends>
+                        <field id="display_style">2</field>
+                    </depends>
+                    <comment>Select grid column for blog display.</comment>
                 </field>
                 <field id="is_review" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Allow Voting for Helpfulness</label>

@@ -254,4 +254,9 @@ class Listpost extends Frontend
 
         return $robots[$storeId] ?? ($robots[0] ?? null);
     }
+
+    public function getBlogModeGridView()
+    {
+        return (int) $this->helperData->getPostViewPageConfig('blog_mode_grid_view');
+    }
 }

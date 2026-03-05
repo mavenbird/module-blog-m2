@@ -36,7 +36,8 @@ use Magento\Framework\Escaper;
 <div class="post-list-content" id="mbblog-list">
     <?php $postCollection = $block->getPostCollection(); ?>
     <?php if ($postCollection && $postCollection->getSize()) : ?>
-        <div class="mb-post-list <?= $block->isGridView() ? /* @noEscape */ 'grid products-grid' : '' ?>">
+        <div class="mb-post-list
+    <?= $block->isGridView() ? /* @noEscape */ 'grid products-grid' : ''?><?= $block->getBlogModeGridView() ? ' grid-column-' . $block->getBlogModeGridView() : '' ?>">
             <?php /** @var Post $post */
             foreach ($postCollection as $post) : ?>
                 <div class="post-list-item <?= $block->isGridView()
