@@ -26,12 +26,12 @@ use Magento\Framework\Escaper;
 /** @var ManagePost $block */
 /** @var Escaper $escaper */
 ?>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/treeselectjs/dist/css/treeselectjs.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/treeselectjs/dist/css/treeselectjs.css"> -->
 <button title="Close (Esc)" type="button" class="mfp-close" style="position: absolute;top: -5px;right: 10px;font-size: 25px;" onclick="hideMyDialogNewPost()">×</button>
 <form enctype="multipart/form-data" data-mage-init='{"validation": {}}'
     action="<?= $escaper->escapeHtml($block->getUrl('mbblog/post/manage')) ?>" method="post" class="form"
     name="mb_blog_post_form" id="mb_blog_post_form"
-    style="overflow-y: auto; height: 700px"
+    style="overflow-y: auto; height: 700px;"
     x-data="Object.assign(hyva.formValidation($el), initAddNewPost())"
     @submit.prevent="submitForm();">
     <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>

@@ -38,6 +38,7 @@
 .sidebar .sidebar-info .block-title-sidebar-heading { 
     margin-bottom: -1px; 
 }
+.topic-list #card-carousel .post-list-item { height: 100% }
 /* post view details content */
 .mb-blog-view .post-post_content {
     line-height: 30px;
@@ -519,31 +520,64 @@
 
 /* Author information section */
 .mbblog-author-information .column .submit.primary {
+    float: right;
+    padding: 10px 25px;
     border: 1px solid #bbb;
-    padding: 8px 25px;
-    border-radius: 5px;
-    background: #a0c2ff;
+    color: #fff;
+    background: rgb(32 56 209);
+    font-weight: 500;
+    border-radius: 10px;
 }
 .mbblog-author-information .column.main .mb-blog-new-post .btn-primary {  display: flex;}
 /* post list section */
 .mbblog-post-history .column .mb-blog-new-post .btn-primary {  float: unset; margin: 10px 0px; }
-.mb-blog-new-post .modal-header.mb-3 h3 {
+.mbblog-post-history .post-list-content .modal-header.mb-3 h3 {
     padding: 0 0 9px 0;
 }
-.mb-blog-new-post #mb-blog-new-post-popup {
+.mbblog-post-history .mb-blog-new-post .post-list-content #mb-blog-new-post-popup {
     padding: 20px;
 }
-.mb-blog-new-post .mbblog-action-new { 
+.mbblog-post-history .mb-blog-new-post .post-list-content .mbblog-action-new { 
+    float: right;
+    padding: 10px 25px;
     border: 1px solid #bbb;
-    padding: 8px 25px;
+    color: #fff;
+    background: rgb(32 56 209);
+    font-weight: 500;
+    border-radius: 10px;
+}
+.mbblog-post-history .post-list-content .mb-post-title a {
+    font-size: 22px;
+    font-weight: 500;
+}
+.mbblog-post-history .post-list-content .post-item-wraper {
+    border: 1px solid #ddd;
+    padding: 20px;
     border-radius: 5px;
-    background: #a0c2ff;
 }
-.mb-blog-new-post .fieldset {
-    padding: 0px 10px;
+.mbblog-post-history .post-list-content .mb-post-info {
+    border-top: 1px solid #ddd;
+    padding: 4px 0px;
+    border-bottom: 1px solid #ddd;
+    margin: 10px 0;
+    display: flex;
+    gap: 5px;
 }
-
-
+.mbblog-post-history #mb_blog_post_form form{ margin: 0px 10px; }
+.mbblog-post-history #mb-blog-new-post-popup { padding: 20px; }  
+.mbblog-post-history .mb-post-meta-info.mb-alignright { display: flex; align-items: center; justify-content: end; }
+.mbblog-post-history .mb-post-meta-info.mb-alignright .actions { padding: 10px 25px; border: 1px solid #bbb; color: #fff;
+    background: rgb(32 56 209); font-weight: 500; border-radius: 10px; }
+.mbblog-post-history .mb-post-status.mb-post-approved { color: grey; font-size: 14px; }
+.mb-blog-new-post button {
+    float: right;
+    padding: 10px 25px;
+    border: 1px solid #bbb;
+    color: #fff;
+    background: rgb(32 56 209);
+    font-weight: 500;
+    border-radius: 10px;
+}
 
 /* Inline css that need to remove from php files */
 .product-item .price-box { margin: 10px 0 25px; }

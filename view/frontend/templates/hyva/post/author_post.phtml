@@ -94,9 +94,9 @@ HTML
             ->removeDialogClass('p-10')
             ->withDialogRefName("add-new-post-name")
             ->withContent(<<<HTML
-     <div id="mb-blog-new-post-popup">
+     <div id="mb-blog-new-post-popup" class="mbblog-post-popup">
         <header class="modal-header mb-3">
-            <h3 id="popup_author_post" class="modal-title text-3xl border-b p-4" data-role="title">Add New Post</h3>
+            <h3 id="popup_author_post" class="modal-title text-3xl border-b pb-2" data-role="title">Add New Post</h3>
         </header>
             {$block->getChildHtml('mbblog_manage_post')}
     </div>
