@@ -171,6 +171,9 @@ HTML
         let short_description = document.querySelector('#short_description');
         let allow_comment     = document.querySelector('#allow_comment');
         let publish_date      = document.querySelector('#publish_date');
+        let meta_description   = document.querySelector('#meta_description');
+        let meta_keywords      = document.querySelector('#meta_keywords');
+        let meta_title        = document.querySelector('#meta_title');
 
         function handleDelete (element) {
             var postId = element.closest('.post-info-action').getAttribute('data-postId');
@@ -206,11 +209,18 @@ HTML
         // open modal edit new post
         function handleEdit (e, post_id, image) {
             resetFormModal();
-            let listData           = <?php echo /** @noEscape */ json_decode($jsonData) ?>;
+            console.log("EDIT CLICKED");
+            let listData           = <?php echo json_decode($jsonData) ?>;
+            console.log("All Posts Data:", listData);
             let dataSelect          = listData[post_id];
+                console.log("Selected Post Data:", dataSelect);
+
             name.value              = dataSelect?.name;
-            post_id.value           = dataSelect?.post_id;
+            document.getElementById('post_id').value = dataSelect?.post_id ?? post_id;
             short_description.value = dataSelect?.short_description;
+            meta_title.value        = dataSelect?.meta_title;
+            meta_keywords.value     = dataSelect?.meta_keywords;
+            meta_description.value  = dataSelect?.meta_description;
             editor.setData(dataSelect?.post_content ?? "");
             allow_comment.value = dataSelect?.allow_comment;
             publish_date.value  = convertDateToDisplay(dataSelect?.publish_date);
@@ -226,10 +236,13 @@ HTML
         // open modal duplicate new post
         function handleDuplicate (e, post_id, image) {
             resetFormModal();
-            let listData           = <?php echo /** @noEscape */ json_decode($jsonData) ?>;
+            let listData           = <?php echo json_decode($jsonData) ?>;
             let dataSelect          = listData[post_id];
             name.value              = dataSelect?.name;
             short_description.value = dataSelect?.short_description;
+            meta_title.value        = dataSelect?.meta_title;
+            meta_keywords.value     = dataSelect?.meta_keywords;
+            meta_description.value  = dataSelect?.meta_description;
             editor.setData(dataSelect?.post_content ?? "");
             allow_comment.value = dataSelect?.allow_comment;
             publish_date.value  = convertDateToDisplay(dataSelect?.publish_date);
@@ -245,6 +258,9 @@ HTML
             name.value              = '';
             post_id.value           = '';
             short_description.value = '';
+            meta_title.value        = '';
+            meta_keywords.value     = '';
+            meta_description.value  = '';
             editor.setData("");
             allow_comment.value = 0;
             publish_date.value  = '';
