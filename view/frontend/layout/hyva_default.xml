@@ -21,7 +21,10 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-
+    <head>
+        <script src="Mavenbird_Blog::js/splide.min.js" />
+        <css src="Mavenbird_Blog::css/splide.min.css" />
+    </head>
     <body>
         <referenceBlock name="footer-static-links">
             <action method="setTemplate">

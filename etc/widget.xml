@@ -43,6 +43,17 @@
                     <parameter name="show_type" value="category"/>
                 </depends>
             </parameter>
+            <parameter name="blog_show_type" xsi:type="select" required="false" visible="true">
+                <label>Blog Show Type</label>
+                <options>
+                    <option name="grid" value="grid" selected="true">
+                        <label>Grid</label>
+                    </option>
+                    <option name="slider" value="slider">
+                        <label>Slider</label>
+                    </option>
+                </options>
+            </parameter>
             <parameter name="template" xsi:type="select" required="true" visible="true">
                 <label>Template</label>
                 <options>

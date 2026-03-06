@@ -23,5 +23,10 @@ var config = {
         comment: 'Mavenbird_Blog/js/comment',
         categoryTree: 'Mavenbird_Blog/js/categorytree',
         owlCarousel: 'Mavenbird_Blog/js/owl.carousel.min'
+    },
+    shim: {
+        owlCarousel: {
+            deps: ['jquery']
+        }
     }
 };
