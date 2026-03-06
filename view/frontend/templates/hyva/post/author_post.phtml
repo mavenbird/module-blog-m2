@@ -209,12 +209,8 @@ HTML
         // open modal edit new post
         function handleEdit (e, post_id, image) {
             resetFormModal();
-            console.log("EDIT CLICKED");
             let listData           = <?php echo json_decode($jsonData) ?>;
-            console.log("All Posts Data:", listData);
             let dataSelect          = listData[post_id];
-                console.log("Selected Post Data:", dataSelect);
-
             name.value              = dataSelect?.name;
             document.getElementById('post_id').value = dataSelect?.post_id ?? post_id;
             short_description.value = dataSelect?.short_description;
