@@ -38,18 +38,53 @@ $jsonData       = json_encode($postDatas);
 <?php else : ?>
     <div class="mb-blog-new-post" x-data="{
     ...hyva.modal(),
+    deletePostId: null,
+    deletePostName: '',
+
     init() {
-        window.openDialogNewPost = function (event) {
-            this.show('add-new-post-name', event);
-        }.bind(this);
-       window.hideMyDialogNewPost = function (event) {
-        this.hide('add-new-post-name', event);
+        window.openDialogNewPost = (event) => this.show('add-new-post-name', event);
+        window.hideMyDialogNewPost = (event) => this.hide('add-new-post-name', event);
 
-        }.bind(this);
+        window.openDeleteConfirm = (postId, postName, event) => {
+            this.deletePostId = postId;
+            this.deletePostName = postName;
+            this.show('delete-post-confirm', event);
+        };
 
-
+        window.confirmDeletePost = () => {
+            handleDeleteRequest(this.deletePostId);
+            this.hide('delete-post-confirm');
+        };
     }
 }" x-init="init()">
+<?= $modalViewModel->createModal()
+    ->withDialogRefName("delete-post-confirm")
+    ->addDialogClass('fixed z-50 justify-center items-center w-96 md:inset-0')
+    ->withContent(<<<HTML
+<div class="p-6 text-center">
+    <h3 class="text-lg font-semibold mb-4">
+        Are you sure you want to delete
+        "<span class="font-bold text-red-600" x-text="deletePostName"></span>" ?
+    </h3>
+
+    <div class="flex justify-center gap-4">
+        <button
+            type="button"
+            class="btn btn-secondary"
+            @click="hide('delete-post-confirm')">
+            Cancel
+        </button>
+
+        <button
+            type="button"
+            class="btn btn-primary"
+            @click="confirmDeletePost()">
+            Delete
+        </button>
+    </div>
+</div>
+HTML
+) ?>
         <button onclick="handleAddPost()" type="button" aria-haspopup="dialog"
                 class="action primary btn btn-primary" title="<?= $escaper->escapeHtmlAttr(__('Add New Post')) ?>">
             <?= $escaper->escapeHtml(__('Add New Post')) ?>
@@ -137,7 +172,8 @@ HTML
                                          title="<?= $escaper->escapeHtmlAttr(__('Edit')) ?>"
                                     />
                                 </div>
-                                <div class="mbblog-post-delete" onclick="handleDelete(this)">
+                                <div class="mbblog-post-delete"
+     onclick="openDeleteConfirm(<?= $escaper->escapeHtml($post->getId()); ?>,'<?= $escaper->escapeHtml($post->getName()); ?>')">
                                     <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/delete.svg')) ?>"
                                          align="middle"
                                          alt="<?= $escaper->escapeHtmlAttr(__('Delete')) ?>"
@@ -175,31 +211,30 @@ HTML
         let meta_keywords      = document.querySelector('#meta_keywords');
         let meta_title        = document.querySelector('#meta_title');
 
-        function handleDelete (element) {
-            var postId = element.closest('.post-info-action').getAttribute('data-postId');
-            fetch("<?= $escaper->escapeHtml($block->getUrl('mbblog/post/deletepost')) ?>", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    "X-Requested-With": "XMLHttpRequest"
-                },
-                body: new URLSearchParams({
-                    post_id: postId
-                })
-            })
-            .then(response => response.json())
-            .then(result => {
-                if (result.status === 1) {
-                    var postListItem = document.querySelector('.post-list-item[data-post-id="' + result.post_id + '"]');
-                    if (postListItem) {
-                        postListItem.remove();
-                        const reloadCustomerDataEvent = new CustomEvent("reload-customer-section-data");
-                        window.dispatchEvent(reloadCustomerDataEvent);
-                    }
-                }
-            })
-            .catch(error => console.error('Error:', error));
+        function handleDeleteRequest(postId) {
+
+    fetch("<?= $escaper->escapeHtml($block->getUrl('mbblog/post/deletepost')) ?>", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            "X-Requested-With": "XMLHttpRequest"
+        },
+        body: new URLSearchParams({
+            post_id: postId
+        })
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.status === 1) {
+            var postListItem = document.querySelector('.post-list-item[data-post-id="' + result.post_id + '"]');
+            if (postListItem) {
+                postListItem.remove();
+                window.dispatchEvent(new CustomEvent("reload-customer-section-data"));
+            }
         }
+    })
+    .catch(error => console.error('Error:', error));
+}
         // open modal add new post
         function handleAddPost () {
             resetFormModal();
