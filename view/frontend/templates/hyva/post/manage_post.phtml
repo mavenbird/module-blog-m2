@@ -244,7 +244,6 @@ use Magento\Framework\Escaper;
     const categories = <?php echo
                         /** @noEscape */
                         ($block->getCategoriesTree()) ?>;
-    console.log('categories:', categories);
     const topics = <?php echo
                     /** @noEscape */
                     ($block->getTopicTree()) ?>;
@@ -253,14 +252,23 @@ use Magento\Framework\Escaper;
                     ($block->getTagTree()) ?>;
 
     function mapCategories(data) {
-        return data.map(item => ({
-            name: item.label,
-            value: item.value,
-            children: item.optgroup ? mapCategories(item.optgroup) : []
-        }));
-    }
+    if (!Array.isArray(data)) return [];
 
-    const optionsCategories = mapCategories(categories);
+    return data.map(item => {
+        const node = {
+            name: item.label,
+            value: item.value
+        };
+
+        if (item.optgroup && item.optgroup.length) {
+            node.children = mapCategories(item.optgroup);
+        }
+
+        return node;
+    });
+}
+
+const optionsCategories = mapCategories(categories);
     const optionsTopics = Object.values(topics)?.map(data => {
         return {
             name: data?.label,
@@ -277,8 +285,9 @@ use Magento\Framework\Escaper;
     window.treeselectCategories = new Treeselect({
         parentHtmlContainer: domElementCategories,
         options: optionsCategories,
-        value: []
-
+        value: [],
+        alwaysOpen: false
+        
     });
     const domElementTopics = document.querySelector('#topics_ids');
     window.treeselectTopics = new Treeselect({
