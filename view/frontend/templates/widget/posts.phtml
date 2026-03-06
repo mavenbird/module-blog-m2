@@ -29,7 +29,7 @@ $posts = $block->getCollection();
 <div class="blog-widget-title"><a></a></div>
 <div class="post-list-container mpcss" id="mbblog-list">
     <div class="widget-title">
-        <a href="<?= $escaper->escapeUrl($block->getBlogUrl('')) ?>"><?= $escaper->escapeHtml($block->getTitle()) ?></a>
+        <a class="text-2xl font-medium" href="<?= $escaper->escapeUrl($block->getBlogUrl('')) ?>"><?= $escaper->escapeHtml($block->getTitle()) ?></a>
     </div>
 
     <?php foreach ($posts as $post) : ?>

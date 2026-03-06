@@ -154,7 +154,7 @@ $_helper            = $block->getHelper();
                 <?php endforeach; ?>
             </div>
         <?php else : ?>
-            <div class="">
+            <div class="mbblog-product-slider">
                 <?php /** @var $_product Product */ ?>
                 <section id="products-carousel" class="splide" aria-label="Related Products">
                     <div class="splide__track">
@@ -166,10 +166,10 @@ $_helper            = $block->getHelper();
                                         $viewMode ?>">
                                             <?php
                                             $productImage = $block->getImage($_product, $imageDisplayArea);
-                                            if ($pos != null) {
-                                                $position = ' style="left:' . $productImage->getWidth() . 'px;'
-                                                    . 'top:' . $productImage->getHeight() . 'px;"';
-                                            }
+                                            // if ($pos != null) {
+                                            //     $position = ' style="left:' . $productImage->getWidth() . 'px;'
+                                            //         . 'top:' . $productImage->getHeight() . 'px;"';
+                                            // }
                                             ?>
                                             <?php // Product Image ?>
                                             <a href="<?= $escaper->escapeUrl($block->getParentProductUrl($_product)) ?>"
@@ -268,15 +268,23 @@ $_helper            = $block->getHelper();
             </div>
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
-                    new Splide('#products-carousel', {
-                        perPage: 3,
-                        breakpoints: {
-                            1028: {
-                                perPage: 2
-                            }
+                new Splide('#products-carousel', {
+                    perPage: 5,
+                    gap: '15px',
+                    autoWidth: true,
+                    breakpoints: {
+                        1024: {
+                            perPage: 3
+                        },
+                        768: {
+                            perPage: 2
+                        },
+                        480: {
+                            perPage: 1
                         }
-                    }).mount();
-                });
+                    }
+                }).mount();
+            });
             </script>
         <?php endif; ?>
     </div>
