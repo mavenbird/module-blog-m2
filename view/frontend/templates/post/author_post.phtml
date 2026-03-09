@@ -71,7 +71,6 @@ $postCollection = $block->getPostCollection();
                                         <?= /* @noEscape */ $block->maxShortDescription($post->getShortDescription()) ?>
                                     </p>
                                 </div>
-                                <!-- <div class="mb-clearfix"></div> -->
                                 <div class="mb-post-meta-info mb-alignright">
                                     <div class="actions">
                                         <a class="mb-read-more" href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
@@ -109,10 +108,8 @@ $postCollection = $block->getPostCollection();
                     </div>
                     <?php $i++; ?>
                     <?php if ($i % 2 == 0) : ?>
-                        <!-- <div class="mb-clear"></div> -->
                     <?php endif; ?>
                 <?php endforeach; ?>
-                <!-- <div class="mb-clear"></div> -->
             </div>
             <?= $block->getPagerHtml() ?>
         <?php else : ?>

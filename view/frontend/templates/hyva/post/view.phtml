@@ -284,7 +284,6 @@ $nextPost = $block->getNextPost();
         </script>
     <?php endif; ?>
     <?php if ($helper->getBlogConfig('platforms/fb_platform/fb_share') || $helper->getBlogConfig('platforms/x_platform/x_share') || $helper->getBlogConfig('platforms/linkedin_platform/linkedin_share') || $helper->getBlogConfig('platforms/email_platform/email_share') || $helper->getBlogConfig('platforms/whatsapp_platform/whatsapp_share') || $helper->getBlogConfig('platforms/telegram_platform/telegram_share') || $helper->getBlogConfig('platforms/reddit_platform/reddit_share')) : ?>
-        <div class="mb-clear"></div>
         <div class="mpcss">
             <div id="sharing">
                 <div class="share-col-left">
@@ -330,7 +329,6 @@ $nextPost = $block->getNextPost();
                         $author->getShortDescription() ? $block->getPageFilter($author->getShortDescription()) : '' ?>
                     </p>
                 </div>
-                <div class="mb-clear"></div>
             </div>
         </div>
     <?php endif; ?>
@@ -410,7 +408,6 @@ $nextPost = $block->getNextPost();
                             </div>
                         </div>
                     <?php endforeach; ?>
-                    <div class="mb-clear"></div>
                 </div>
             <?php endif; ?>
         </div>
