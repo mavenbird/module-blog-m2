@@ -47,6 +47,7 @@ use Mavenbird\Blog\Model\Like;
 use Mavenbird\Blog\Model\LikeFactory;
 use Mavenbird\Blog\Model\PostFactory;
 use Mavenbird\Blog\Model\TrafficFactory;
+use Magento\Framework\Registry;
 
 /**
  * Class View
@@ -127,6 +128,11 @@ class View extends Action
      */
     protected $postFactory;
 
+     /**
+     * @var Registry
+     */
+    protected $coreRegistry;
+
     /**
      * View constructor.
      *
@@ -145,6 +151,7 @@ class View extends Action
      * @param Session $customerSession
      * @param TrafficFactory $trafficFactory
      * @param PostFactory $postFactory
+     * @param Registry $coreRegistry
      */
     public function __construct(
         Context $context,
@@ -161,7 +168,8 @@ class View extends Action
         CustomerUrl $customerUrl,
         Session $customerSession,
         TrafficFactory $trafficFactory,
-        PostFactory $postFactory
+        PostFactory $postFactory,
+        Registry $registry
     ) {
         $this->storeManager         = $storeManager;
         $this->helperBlog           = $helperBlog;
@@ -177,6 +185,7 @@ class View extends Action
         $this->likeFactory          = $likeFactory;
         $this->dateTime             = $dateTime;
         $this->postFactory          = $postFactory;
+        $this->coreRegistry         = $registry;
 
         parent::__construct($context);
     }
@@ -198,6 +207,7 @@ class View extends Action
         if ($post->getEnabled() !== '1' || !$this->helperBlog->checkStore($post)) {
             return $this->_redirect('noroute');
         }
+        $this->coreRegistry->register('current_post', $post);
 
         $trafficModel = $this->trafficFactory->create()->load($id, 'post_id');
         if ($trafficModel->getId()) {
