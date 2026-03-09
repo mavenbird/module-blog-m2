@@ -24,7 +24,7 @@
     <system>
         <section id="blog" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
-            <label>Mavenbird Ultimate Blog Settings</label>
+            <label>Ultimate Blog Settings</label>
             <tab>mavenbird</tab>
             <resource>Mavenbird_Blog::configuration</resource>
             <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
