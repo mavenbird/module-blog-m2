@@ -372,7 +372,9 @@ body { padding: 0; }
      -webkit-box-orient: vertical; 
      overflow: hidden; 
      height: 40px;
+     line-height: 1.1;
 }
+.mbblog-post-view .topic-list a { color: #000;}
 /* About-Author section  & Author-admin page section*/    
 .about-admin .h2 {
     font-weight: 500;
@@ -662,6 +664,7 @@ body { padding: 0; }
      -webkit-box-orient: vertical; 
      overflow: hidden; 
      height: 50px;
+     line-height: 1.1;
 }
 .post-list-content .products-grid .post-info .mb-post-info {
     font-size: 12px;
