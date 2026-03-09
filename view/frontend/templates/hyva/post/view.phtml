@@ -489,7 +489,7 @@ $nextPost = $block->getNextPost();
                                     >
                                         <?= /* @noEscape */
                                         $block->getBlockHtml('formkey'); ?>
-                                        <div class="col-mb mb-6 mbblog-comment-form-field">
+                                        <div class="mbblog-comment-form-field">
                                             <label for="mbblog-comment-guest-name"><?= $escaper->escapeHtmlAttr(__('Name')) ?> *</label>
                                             <input id="mbblog-comment-guest-name"
                                                    type="text"
@@ -497,7 +497,7 @@ $nextPost = $block->getNextPost();
                                                    placeholder="<?= $escaper->escapeHtmlAttr(__('Your display name')) ?>"
                                                    data-validate='{"required": true}'>
                                         </div>
-                                        <div class="col-mb mb-6 mbblog-comment-form-field">
+                                        <div class="mbblog-comment-form-field">
                                             <label for="mbblog-comment-guest-email"> <?= $escaper->escapeHtmlAttr(__('Email')) ?> *</label>
                                             <input id="mbblog-comment-guest-email"
                                                    type="text"
