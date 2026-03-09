@@ -217,13 +217,13 @@ $color        = $helper->getDisplayConfig('font_color');
                                     <?php endif; ?>
                                 </div>
                                 <div class="post-info-wraper">
-                                    <h2 class="mb-post-title">
+                                    <h3 class="mb-post-title">
                                         <a class="post-link-title"
                                            title="<?= $escaper->escapeHtmlAttr($post->getName()); ?>"
                                            href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
                                             <?= $escaper->escapeHtml($post->getName()) ?>
                                         </a>
-                                    </h2>
+                                    </h3>
                                     <div class="mb-post-info">
                                         <?= /* @noEscape */ $block->getPostInfo($post) ?>
                                     </div>
