@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Mavenbird
  *
@@ -353,7 +354,7 @@ class Post extends AbstractModel
             $collection->getSelect()->join(
                 $this->getResource()->getTable('mavenbird_blog_post_tag'),
                 'main_table.tag_id=' . $this->getResource()->getTable('mavenbird_blog_post_tag') . '.tag_id AND '
-                . $this->getResource()->getTable('mavenbird_blog_post_tag') . '.post_id=' . $this->getId(),
+                    . $this->getResource()->getTable('mavenbird_blog_post_tag') . '.post_id=' . $this->getId(),
                 ['position']
             )->where("main_table.enabled='1'");
             $this->tagCollection = $collection;
@@ -372,7 +373,7 @@ class Post extends AbstractModel
             $collection->join(
                 $this->getResource()->getTable('mavenbird_blog_post_topic'),
                 'main_table.topic_id=' . $this->getResource()->getTable('mavenbird_blog_post_topic') . '.topic_id AND '
-                . $this->getResource()->getTable('mavenbird_blog_post_topic') . '.post_id=' . $this->getId(),
+                    . $this->getResource()->getTable('mavenbird_blog_post_topic') . '.post_id=' . $this->getId(),
                 ['position']
             );
             $this->topicCollection = $collection;
@@ -391,8 +392,8 @@ class Post extends AbstractModel
             $collection->join(
                 $this->getResource()->getTable('mavenbird_blog_post_category'),
                 'main_table.category_id=' . $this->getResource()->getTable('mavenbird_blog_post_category') .
-                '.category_id AND ' . $this->getResource()->getTable('mavenbird_blog_post_category') . '.post_id="'
-                . $this->getId() . '"',
+                    '.category_id AND ' . $this->getResource()->getTable('mavenbird_blog_post_category') . '.post_id="'
+                    . $this->getId() . '"',
                 ['position']
             );
             $this->categoryCollection = $collection;
@@ -552,7 +553,7 @@ class Post extends AbstractModel
                 ->join(
                     ['topic' => $this->getResource()->getTable('mavenbird_blog_post_topic')],
                     'main_table.post_id=topic.post_id AND topic.post_id != "' . $this->getId()
-                    . '" AND topic.topic_id IN (' . implode(',', $topicIds) . ')',
+                        . '" AND topic.topic_id IN (' . implode(',', $topicIds) . ')',
                     ['position']
                 )->group('main_table.post_id')->order('topic.position');
 
@@ -579,8 +580,8 @@ class Post extends AbstractModel
             $collection->getSelect()->join(
                 $this->getResource()->getTable('mavenbird_blog_post_product'),
                 'e.entity_id=' . $this->getResource()->getTable('mavenbird_blog_post_product')
-                . '.entity_id AND ' . $this->getResource()->getTable('mavenbird_blog_post_product') . '.post_id='
-                . $this->getId(),
+                    . '.entity_id AND ' . $this->getResource()->getTable('mavenbird_blog_post_product') . '.post_id='
+                    . $this->getId(),
                 ['position']
             );
             $this->productCollection = $collection;
@@ -636,5 +637,23 @@ class Post extends AbstractModel
         }
 
         return $this->nextPostCollection;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getStaticBlockIdentifier()
+    {
+        return $this->_getData('static_block_identifier');
+    }
+
+    /**
+     * @param string $staticBlockIdentifier
+     *
+     * @return $this
+     */
+    public function setStaticBlockIdentifier($staticBlockIdentifier)
+    {
+        return $this->setData('static_block_identifier', $staticBlockIdentifier);
     }
 }

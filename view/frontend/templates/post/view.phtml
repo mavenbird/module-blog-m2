@@ -188,7 +188,13 @@ $color        = $helper->getDisplayConfig('font_color');
                                 loop: false,
                                 margin: 10,
                                 responsive: {
-                                    600: {
+                                    300: {
+                                        items: 1
+                                    },
+                                    480: {
+                                        items: 2
+                                    },
+                                    1024: {
                                         items: 3
                                     }
                                 }
@@ -297,7 +303,7 @@ $color        = $helper->getDisplayConfig('font_color');
                                 <?php if (!$block->isLoggedIn()) : ?>
                                     <form id="mbblog-comment-form"
                                           data-mage-init='{"validation":{}}'>
-                                        <div class="col-mb mb-6 mbblog-comment-form-field">
+                                        <div class="mbblog-comment-form-field">
                                             <label for="mbblog-comment-guest-name">
                                                   <?= $escaper->escapeHtmlAttr(__('Name')) ?>  *</label>
                                             <input id="mbblog-comment-guest-name"
@@ -306,7 +312,7 @@ $color        = $helper->getDisplayConfig('font_color');
                                                    placeholder="<?= $escaper->escapeHtmlAttr(__('Your display name')) ?>"
                                                    data-validate="{required:true}">
                                         </div>
-                                        <div class="col-mb mb-6 mbblog-comment-form-field">
+                                        <div class="mbblog-comment-form-field">
                                             <label for="mbblog-comment-guest-email">
                                                <?= $escaper->escapeHtmlAttr(__('Email')) ?>  *</label>
                                             <input id="mbblog-comment-guest-email"

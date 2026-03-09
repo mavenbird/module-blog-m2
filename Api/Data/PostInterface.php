@@ -57,6 +57,9 @@ interface PostInterface
     const AUTHOR_URL        = 'author_url';
     const AUTHOR_NAME       = 'author_name';
     const VIEW_TRAFFIC      = 'view_traffic';
+    const STATIC_BLOCK_IDENTIFIER = 'static_block_identifier';
+
+
 
     const ATTRIBUTES = [
         self::POST_ID,
@@ -83,7 +86,8 @@ interface PostInterface
         self::TOPIC_IDS,
         self::AUTHOR_NAME,
         self::AUTHOR_URL,
-        self::VIEW_TRAFFIC
+        self::VIEW_TRAFFIC,
+        self::STATIC_BLOCK_IDENTIFIER,
     ];
 
     /**
@@ -460,4 +464,16 @@ interface PostInterface
      * @return int
      */
     public function getViewTraffic();
+
+    /**
+     * @return string|null
+     */
+    public function getStaticBlockIdentifier();
+
+     /**
+      * @param string $staticBlockIdentifier
+      *
+      * @return $this
+      */
+     public function setStaticBlockIdentifier($staticBlockIdentifier);
 }

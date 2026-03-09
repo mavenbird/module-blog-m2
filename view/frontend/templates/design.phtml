@@ -42,8 +42,6 @@ use Magento\Framework\Escaper;
 </script>
 <?php $color = $block->getHelper()->getDisplayConfig('font_color'); ?>
 <style type="text/css">
-
-
     /* .mb-blog-like {
         background-color: #6AA84F;
         left: 33%;
@@ -121,56 +119,37 @@ use Magento\Framework\Escaper;
         background: <?= /** @noEscape */ $color ?>;
         /* color: #fff !important; */
     }
-
     .list-post-tabs a {
-        /* background: #fbfbfb; */
         color: <?= /** @noEscape */ $color ?>;
     }
 
     /*Site Map CSS*/
     .mb-sidebar a.sitemap-link,
     .menu-archives a.list-archives:hover {
-        /* text-decoration: none !important; */
         color: <?= /** @noEscape */ $color ?> !important;
     }
-
-    /* .mb-sidebar .row div {
-        width: 100%;
-    } */
 
     /*Comment CSS*/
     button.mbblog-comment-submitbtn {
         background: <?= /** @noEscape */ $color ?> !important;
-        /* color: #fff; */
+        color: #fff; 
     }
-
     span.mbblog-comment-username {
-        /* font-weight: 600; */
         color: <?= /** @noEscape */ $color ?>;
     }
-
-    a.mbblog-comment-action-btn.mbblog-like {
-        color: #333333
-    }
-
     a.mbblog-comment-action-btn.mbblog-liked {
         color: <?= /** @noEscape */ $color ?>;
     }
 
     a.mbblog-comment-action-btn {
         color: <?= /** @noEscape */ $color ?>;
-
     }
-
     /*Widget CSS*/
     .widget-title a {
         color: <?= /** @noEscape */ $color ?>;
-        /* font-size: 26px; */
     }
-
     /*Author CSS*/
     .author-name h3 {
         color: <?= /** @noEscape */ $color ?>;
-        /* text-align: center; */
     }
 </style>

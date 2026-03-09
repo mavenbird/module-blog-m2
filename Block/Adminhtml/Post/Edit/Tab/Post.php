@@ -44,6 +44,7 @@ use Mavenbird\Blog\Block\Adminhtml\Post\Edit\Tab\Renderer\Topic;
 use Mavenbird\Blog\Helper\Image;
 use Mavenbird\Blog\Model\Config\Source\Author;
 use Mavenbird\Blog\Model\Config\Source\AuthorStatus;
+use Mavenbird\Blog\Model\Config\Source\ListOfStaticBlock;
 
 /**
  * Class Post
@@ -106,6 +107,11 @@ class Post extends Generic implements TabInterface
     protected $_status;
 
     /**
+     * @var ListOfStaticBlock
+     */
+    protected $_staticBlockOptions;
+
+    /**
      * Post constructor.
      *
      * @param Context $context
@@ -137,6 +143,7 @@ class Post extends Generic implements TabInterface
         Image $imageHelper,
         Author $author,
         AuthorStatus $status,
+        ListOfStaticBlock $staticBlockOptions,
         array $data = []
     ) {
         $this->wysiwygConfig     = $wysiwygConfig;
@@ -149,6 +156,7 @@ class Post extends Generic implements TabInterface
         $this->imageHelper       = $imageHelper;
         $this->_author           = $author;
         $this->_status           = $status;
+        $this->_staticBlockOptions = $staticBlockOptions;
 
         parent::__construct($context, $registry, $formFactory, $data);
     }
@@ -328,6 +336,19 @@ class Post extends Generic implements TabInterface
             'label'  => __('Layout'),
             'title'  => __('Layout'),
             'values' => $this->_layoutOptions->toOptionArray()
+        ]);
+
+        $staticBlockOptions = $this->_staticBlockOptions->toOptionArray();
+            array_unshift($staticBlockOptions, [
+                'value' => '',
+                'label' => __('-- Please Select --')
+            ]);
+
+        $designFieldset->addField('static_block_identifier', 'select', [
+            'name'   => 'static_block_identifier',
+            'label'  => __('Static Block Identifier'),
+            'title'  => __('Static Block Identifier'),
+            'values' => $staticBlockOptions
         ]);
 
         if (!$post->getId()) {

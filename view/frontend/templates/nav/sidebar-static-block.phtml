@@ -1,0 +1,4 @@
+<?php /** @var $block \Mavenbird\Blog\Block\Sidebar\StaticBlock */ ?>
+<?php if ($block->canShowStaticBlock()): ?>
+    <?= $block->renderSidebarStaticBlock(); ?>
+<?php endif; ?>
