@@ -23,6 +23,7 @@
     <column xsi:type="timestamp" name="publish_date" on_update="false" nullable="true"/>
     <column xsi:type="text" name="import_source" nullable="true" comment="Import Source"/>
     <column xsi:type="text" name="layout" nullable="true" comment="Post Layout"/>
+    <column xsi:type="text" name="static_block_identifier" nullable="true" comment="Static Block Identifier"/>
     <constraint xsi:type="primary" referenceId="PRIMARY">
       <column name="post_id"/>
     </constraint>

@@ -34,7 +34,7 @@
 
         <!-- <update id="Magento_Backend::mbmenu" title="Mavenbird" module="Magento_Backend" sortOrder="10" resource="Magento_Backend::mbmenu" /> -->
 
-        <add id="Mavenbird_Blog::mbblog" title="Mavenbird Ultimate Blog" module="Mavenbird_Blog" sortOrder="110" resource="Mavenbird_Blog::blog" parent="Magento_Backend::mbmenu"/>
+        <add id="Mavenbird_Blog::mbblog" title="Ultimate Blog" module="Mavenbird_Blog" sortOrder="110" resource="Mavenbird_Blog::blog" parent="Magento_Backend::mbmenu"/>
         <add id="Mavenbird_Blog::mbpost" title="Manage Posts" module="Mavenbird_Blog" sortOrder="10" action="mavenbird_blog/post" resource="Mavenbird_Blog::post" parent="Mavenbird_Blog::mbblog"/>
         <add id="Mavenbird_Blog::mbtag" title="Manage Tags" module="Mavenbird_Blog" sortOrder="20" action="mavenbird_blog/tag" resource="Mavenbird_Blog::tag" parent="Mavenbird_Blog::mbblog"/>
         <add id="Mavenbird_Blog::mbtopic" title="Manage Topics" module="Mavenbird_Blog" sortOrder="30" action="mavenbird_blog/topic" resource="Mavenbird_Blog::topic" parent="Mavenbird_Blog::mbblog"/>
