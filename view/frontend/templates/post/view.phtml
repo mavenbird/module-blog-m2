@@ -317,28 +317,28 @@ $color        = $helper->getDisplayConfig('font_color');
                                                    placeholder="<?= $escaper->escapeHtmlAttr(__('Your email')) ?> "
                                                    data-validate="{required:true, 'validate-email':true}">
                                         </div>
+                                        <div class="mbblog-comment-fields">
+                                            <div class="col-mb">
+                                                <label for="mb-guest-cmt-commentbox">Comment</label>
+                                                <textarea class="mbblog-comment-textarea"
+                                                        placeholder="<?= $escaper->escapeHtmlAttr(__('Type comments here...')) ?>">
+
+                                                </textarea>
+                                            </div>
+                                            <div class="mbblog-comment-save">
+                                                <div class="mbblog-comment-loading" style="display: none">
+                                                    <img
+                                                        src="<?= $escaper->escapeUrl($block->getViewFileUrl('images/loader-1.gif')) ?>"
+                                                        alt="Loading...">
+                                                </div>
+                                                <button class="mbblog-comment-submitbtn
+                                                primary btn-primary">
+                                                    <?= $escaper->escapeHtml(__('Comment')) ?>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </form>
                                 <?php endif; ?>
-                                <div class="mbblog-comment-fields">
-                                    <div class="col-mb">
-                                        <label for="mb-guest-cmt-commentbox">Comment</label>
-                                        <textarea class="mbblog-comment-textarea"
-                                                  placeholder="<?= $escaper->escapeHtmlAttr(__('Type comments here...')) ?>">
-
-                                        </textarea>
-                                    </div>
-                                    <div class="mbblog-comment-save">
-                                        <div class="mbblog-comment-loading" style="display: none">
-                                            <img
-                                                src="<?= $escaper->escapeUrl($block->getViewFileUrl('images/loader-1.gif')) ?>"
-                                                alt="Loading...">
-                                        </div>
-                                        <button class="mbblog-comment-submitbtn
-                                         primary btn-primary">
-                                            <?= $escaper->escapeHtml(__('Comment')) ?>
-                                        </button>
-                                    </div>
-                                </div>
                             </div>
                             <div class="mbblog-comment-details">
                                 <?php

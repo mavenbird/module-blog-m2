@@ -506,33 +506,32 @@ $nextPost = $block->getNextPost();
                                                    data-validate='{"required": true, "email": true}'
                                             >
                                         </div>
+                                        <div class="mbblog-comment-field-full">
+                                            <div class="col-mb">
+                                                <label for="mb-guest-cmt-commentbox">Comment</label>
+                                                <div>
+                                                    <textarea
+                                                        class="mbblog-comment-textarea w-full"
+                                                        placeholder="<?= $escaper->escapeHtmlAttr(__('Type comments here...')) ?>">
+                                                    </textarea>
+                                                </div>
+                                            </div>
+                                            <div class="mbblog-comment-save">
+                                                <div class="mbblog-comment-loading" style="display: none">
+                                                    <img
+                                                        src="<?= $escaper->escapeUrl($block->getViewFileUrl('images/loader-1.gif')) ?>"
+                                                        alt="Loading...">
+                                                </div>
+                                                <button class="mbblog-comment-submitbtn
+                                                primary btn btn-primary" type="submit" style="display: block"
+                                                        form="mbblog-comment-form">
+                                                    <?= $escaper->escapeHtml(__('Comment')) ?>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </form>
                                 <?php endif; ?>
-                                <div class="mbblog-comment-fields">
-                                    <div class="col-mb">
-                                        <label for="mb-guest-cmt-commentbox">Comment</label>
-                                        <div>
-                                              <textarea
-                                                  class="mbblog-comment-textarea w-full"
-                                                  placeholder="<?= $escaper->escapeHtmlAttr(__('Type comments here...')) ?>">
-
-                                        </textarea>
-                                        </div>
-
-                                    </div>
-                                    <div class="mbblog-comment-save">
-                                        <div class="mbblog-comment-loading" style="display: none">
-                                            <img
-                                                src="<?= $escaper->escapeUrl($block->getViewFileUrl('images/loader-1.gif')) ?>"
-                                                alt="Loading...">
-                                        </div>
-                                        <button class="mbblog-comment-submitbtn
-                                         primary btn btn-primary" type="submit" style="display: block"
-                                                form="mbblog-comment-form">
-                                            <?= $escaper->escapeHtml(__('Comment')) ?>
-                                        </button>
-                                    </div>
-                                </div>
+                               
                             </div>
                             <div class="mbblog-comment-details">
                                 <?php
