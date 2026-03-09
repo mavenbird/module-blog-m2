@@ -185,6 +185,24 @@
                     <label>Sidebar Position</label>
                     <source_model>Mavenbird\Blog\Model\Config\Source\SideBarLR</source_model>
                 </field>
+                <field id="show_table_of_content" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Table of Content</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Show/Hide Table of Content in post view page sidebar which guide readers to navigate through the post content]]></comment>
+                </field>
+                <field id="show_sidebar_static_block" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Sidebar Static Block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Show/Hide Static Block in post view page sidebar]]></comment>
+                </field>
+                <field id="list_of_static_block" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Select Static Block</label>
+                    <source_model>Mavenbird\Blog\Model\Config\Source\ListOfStaticBlock</source_model>
+                    <comment><![CDATA[Select Static Block to show in post view page sidebar]]></comment>
+                    <depends>
+                        <field id="show_sidebar_static_block">1</field>
+                    </depends>
+                </field>
                 <group id="search" translate="label" showInDefault="1" sortOrder="5" showInWebsite="1" showInStore="1">
                     <label>Search Settings</label>
                     <field id="enable_search" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
