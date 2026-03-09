@@ -34,11 +34,13 @@ if ($tags && $tags->getSize()) : ?>
         </p>
     </div>
     <div class="tags">
-        <?php foreach ($tags as $tag) : ?>
+        <?php foreach ($tags as $tag) :
+            $size = $block->getTagSize($tag);
+        ?>
         <a class="label label-default tags-list"
-            style="font-size:<?= $escaper->escapeHtmlAttr($block->getTagSize($tag)) . 'px'; ?>"
-            href="<?= $escaper->escapeUrl($block->getTagUrl($tag)) ?>">
-            <?= $escaper->escapeHtml($tag->getName()) ?>
+        style="font-size:<?= $escaper->escapeHtmlAttr($size) ?>px"
+        href="<?= $escaper->escapeUrl($block->getTagUrl($tag)) ?>">
+        <?= $escaper->escapeHtml($tag->getName()) ?>
         </a>
         <?php endforeach; ?>
     </div>

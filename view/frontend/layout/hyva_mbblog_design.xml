@@ -39,6 +39,7 @@
                     <block class="Mavenbird\Blog\Block\MonthlyArchive\Widget" name="mbblog.sidebar.monthly" template="Mavenbird_Blog::monthly/widget.phtml"/>
                     <block class="Mavenbird\Blog\Block\Topic\Widget" name="mbblog.sidebar.topic" template="Mavenbird_Blog::topic/widget.phtml"/>
                     <block class="Mavenbird\Blog\Block\Tag\Widget" name="mbblog.sidebar.tag" template="Mavenbird_Blog::tag/widget.phtml"/>
+                    <block class="Magento\Framework\View\Element\Template" name="mbblog.sidebar.nav" template="Mavenbird_Blog::hyva/nav/post-content-nav.phtml" />
                 </container>
             </container>
         </referenceContainer>
