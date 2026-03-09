@@ -141,20 +141,28 @@
     max-width: 307px;
     border-radius: 5px;
  }
-.sidebar .control .mbblog-product-name { 
+.sidebar .control .mbblog-product-name { font-weight: 600; }
+.sidebar .control .mbblog-product-name {
     font-weight: 600;
-    font-size: 20px;
+    font-size: 13px;
+    line-height: 1.2;
+}
+.sidebar .control .mbblog-product-des {
+    height: 33px;
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 16px;
 }
 .sidebar .control .mbblog-suggestion {
     display: flex;
-    flex-direction: column;
+    gap: 15px;
 }
-.sidebar .control .mbblog-suggestion-left,
-.sidebar .control .mbblog-suggestion-left img{
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
-    margin-bottom: 8px;
+.sidebar .control .mbblog-suggestion-left img {
+    border-radius: 3px;
+}
+.sidebar .control .mbblog-suggestion-left {
+    width: 80px;
+    min-width: 80px;
 }
 /* Hide Alpine elements before JS loads */
 [x-cloak] {
@@ -185,11 +193,6 @@
     padding: 15px;
 }
 /* Post item */
-.sidebar .list-post-tabs {
-    display: flex;
-    gap: 10px;
-    padding: 10px 0;
-}
 .sidebar .list-post-tabs:last-child {
     border-bottom: none;
 }
@@ -325,14 +328,6 @@
     padding: 5px 22px;
 }
 /* TAB CONTENT */
-.sidebar .list-post-tabs {
-    display: flex;
-    gap: 5px;
-    flex-direction: column;
-    padding: 10px 0;
-    border-bottom: 1px dashed #ccc;
-    margin-bottom: 15px;
-}
 .sidebar .list-post-tabs:last-child {
     border-bottom: 0;
     margin-bottom: 0;
@@ -452,6 +447,8 @@
     box-shadow: none;
     border: 1px solid #ddd;
 }
+/* post list list view for block pages */
+.column.main .post-list-content .post-list-item { background: #fff; }
 /* Grid section for related product,related post and post list */
 .column .products-grid {
     display: grid;
@@ -506,7 +503,10 @@
     display: flex;
     align-items: flex-start;
     gap: 0px;
-    flex-wrap: wrap;
+    flex-wrap: wrap; 
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+    padding-top: 8px;
 }
 .column .products-grid .mb-post-meta-info {
     margin-top: 10px;
@@ -520,7 +520,7 @@
 .column .products-grid .details-sharing #sharing {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 12px; margin: 0;
     flex-wrap: wrap;
     justify-content: space-between
 }
@@ -538,6 +538,7 @@
     margin-top: 10px;
     width: 100%;
 }
+.mb-post-list .post-info { padding: 0; }
 /* footer pagination code */
 .mbblog-posts-number { display: flex; justify-content: space-between; gap: 12px;}
 .mbblog-pagination { display: flex; align-items: center; justify-content: end;}
@@ -675,13 +676,13 @@
 .mbblog-product-slider .item.post-list-item { width: 100%; }
 .mbblog-product-slider .splide__arrow,
 .topic-list.splide__arrow { display: none !important; }
-
-/* .admin__action-multiselect-crumb .action-close:before { top: -6px; right: 8px;  }
+/* Admin category code that tacking form .phtml file */
+.admin__action-multiselect-crumb .action-close:before { top: -6px; right: 8px;  }
 .admin__action-multiselect-menu-inner-item._root .action-menu-item .admin__action-multiselect-label:before {
     content: '\f846'; font-family: 'porto-icons'; }
 .admin__action-multiselect-dropdown:before {  content: '\f803'; font-family: 'porto-icons'; }
 .admin__action-multiselect-tree .action-menu-item._expended .admin__action-multiselect-dropdown:before {
-     right: 5px; position: absolute; content: '\f800'; font-family: 'porto-icons'; } */
+     right: 5px; position: absolute; content: '\f800'; font-family: 'porto-icons'; }
 
 .blog-comment .helpdesk_email { display: none !important; }
 .blog-comment .contactformpro_email { display: none !important; }
@@ -700,7 +701,7 @@
     .mbblog-post-index .page-main .columns .column.main,
     .mbblog-author-view .page-main .columns .column.main { width: 78%; display: block;}
     .mbblog-post-view .page-main .columns .sidebar-main,
-    .mbblog-post-index .page-main .columns .sidebar-main,
+    /* .mbblog-post-index .page-main .columns .sidebar-main, */
     .mbblog-author-view .page-main .columns .sidebar-main { width: 20%; display: block;}
     .mbblog-post-view .topic-list .post-item-wraper { display: block; }
     .mbblog-post-view .topic-list .post-image { min-width: auto; }
@@ -711,7 +712,7 @@
     .mbblog-post-index .page-main .columns .column.main,
     .mbblog-author-view .page-main .columns .column.main { width: 78%; display: block;}
     .mbblog-post-view .page-main .columns .sidebar-main,
-    .mbblog-post-index .page-main .columns .sidebar-main,
+    /* .mbblog-post-index .page-main .columns .sidebar-main, */
     .mbblog-author-view .page-main .columns .sidebar-main { width: 20%; display: block;}
     .column .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .mbblog-post-view .topic-list .post-item-wraper { display: block; }
@@ -723,7 +724,7 @@
     .mbblog-post-index .page-main .columns .column.main,
     .mbblog-author-view .page-main .columns .column.main { width: 78%; display: block; }
     .mbblog-author-view .page-main .columns .sidebar-main,
-    .mbblog-post-index .page-main .columns .sidebar-main,
+    /* .mbblog-post-index .page-main .columns .sidebar-main, */
     .mbblog-post-view .page-main .columns .sidebar-main { width: 24%; display: block; }
     .column .products-grid { grid-template-columns: repeat(1, 1fr); gap: 10px; }
     .products-same-post .product-items { grid-template-columns: repeat(3, 1fr); gap: 30px 15px; }
@@ -735,32 +736,28 @@
 @media (max-width: 768px) {
     .mbblog-post-view .page-main .columns .column.main,
     .mbblog-post-index .page-main .columns .column.main,
-    .mbblog-author-view .page-main .columns .column.main { width: 78%; display: block; }
+    .mbblog-author-view .page-main .columns .column.main { width: 90%; display: block; }
     .mbblog-post-view .page-main .columns .sidebar-main,
-    .mbblog-post-index .page-main .columns .sidebar-main,
-    .mbblog-author-view .page-main .columns .sidebar-main { width: 24%; display: block;}
-    .page-main .column { gap: 5; }
-    .sidebar .tab-content { padding: 15px 5px 5px 5px; }
+    /* .mbblog-post-index .page-main .columns .sidebar-main, */
+    .mbblog-author-view .page-main .columns .sidebar-main { width: 90%; display: block; }
     .mbblog-post-view .topic-list .post-item-wraper { display: block; }
     .mbblog-post-view .topic-list .post-image { min-width: auto; }
     .mb-blog-view .post-view-image img { min-width: auto; }
     .topic-list .related-content-container { grid-template-columns: repeat(1, 1fr); gap: 15px; }
     .block-blog-related .related-content-container .author-content-information { width: auto; }
     .blog-comment .mbblog-comment-details.row { grid-template-columns: repeat(2, 1fr); }
-    .column .products-grid { grid-template-columns: 1fr;  gap: 10px; }
+    .column .products-grid { grid-template-columns: repeat(2, 1fr);  gap: 10px; }
     .products-grid .grid-column-3, .products-grid .grid-column-4 { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .products-same-post .product-items { grid-template-columns: repeat(2, 1fr); gap: 30px 15px; }
 }
 @media (max-width: 575px) { 
     .page-main .columns { margin: 0 25px; }
+    .page-main .columns { flex-direction: column; }
     .mb-blog-view .post-view-image img { min-width: auto; }
     .products-same-post .splide__pagination { bottom: -24px; }
     .post-list-content .products-grid .details-sharing #sharing {  margin-top: 10px; }
     .column .products-grid { grid-template-columns: repeat(1, 1fr); gap: 8px; }
     .mb-footer span.mb-footer-links-light h3 { min-width: 308px; }
-    .page-main .columns { flex-direction: column; }
-    .sidebar .control { width: 100%;  }
-    .sidebar #mbblog-search-box { width: 100%; }
 }
 @media (max-width: 480px) { 
     .blog-comment .mbblog-comment-details.row { grid-template-columns: 1fr; }
@@ -776,7 +773,6 @@
 @media (max-width: 430px) {
     .mb-post-list .post-item-list .post-image img {  max-width: 85%;  }
     /* .product-image-wrapper { width: 340px; height: auto; aspect-ratio: 340 / 340; } */
-    .page-main .columns { margin: 0 0px;}
 }
 
 /* ================================ HYVABLOG.CSS FROM MY SIDE End ======================================== */
