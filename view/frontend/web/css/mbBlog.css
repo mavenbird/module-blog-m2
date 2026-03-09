@@ -79,8 +79,8 @@ body { padding: 0; }
 }
 .page-main .post-sharing-button .sharing-icon{
     display: flex;
-    width: 35px;
-    height: 35px;
+    width: 34px;
+    height: 34px;
     justify-content: center;
     align-items: center;
     cursor: pointer;
@@ -112,9 +112,22 @@ body { padding: 0; }
     padding: 25px 20px 25px 20px;
     border: 1px solid #ccc;
 }
+
+/* TAB CONTENT */
 .sidebar .list-post-tabs {
-    margin-bottom: 15px;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    padding: 0px 0 18px;
+    border-bottom: 1px dashed #ccc;
+    margin-bottom: 20px;
 }
+.sidebar .list-post-tabs:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
 .sidebar .list-post-tabs .post-left img {
     max-width: 100%;
     height: auto;
@@ -123,7 +136,7 @@ body { padding: 0; }
 }
 .sidebar .list-post-tabs .post-right span { font-weight: 600; }
 .sidebar .list-post-tabs .post-right .create-at { font-weight: 500; font-size: small; color: #6f6c6c; }
-.sidebar .sidebar-info { margin-bottom: 18px; }
+.sidebar .sidebar-info { margin-bottom: 30px; }
 .sidebar .sidebar-info .block-title {
     color: #000000;
     position: relative;
@@ -264,20 +277,7 @@ body { padding: 0; }
     width: 100%;
     border-radius: 0;
 }
-/* TAB CONTENT */
-.list-post-tabs {
-    display: flex;
-    gap: 5px;
-    flex-direction: column;
-    padding: 10px 0;
-    border-bottom: 1px dashed #ccc;
-    margin-bottom: 15px;
-}
-.list-post-tabs:last-child {
-    border-bottom: 0;
-    margin-bottom: 0;
-   padding-bottom: 0;
-}
+
 /* image */
 .post-left img {
     width: 80px;
@@ -433,9 +433,10 @@ body { padding: 0; }
     font-weight: 400;
     color: gray;
 }
-.mbblog-author-details { margin-bottom: 20px; }
+.mbblog-author-details { margin-bottom: 30px; }
 .topic-list .post-item-wraper .post-image { border-radius: 5px; max-width: 100%; }
 .share-col-left h5 { margin: 0; }
+.mb-post-list.products-grid .post-info { padding-left: 0;}
 
 /*================== VIEW PAGE RELATED PRODUCTS & POST BLOG PAGE ======================*/
 
@@ -619,6 +620,8 @@ body { padding: 0; }
 .blog-comment .mbblog-comment-save {
     margin-bottom: 12px;
 }
+.blog-comment .mbblog-comment-section label { margin-bottom: 5px; display: block; }
+
 /*================== REVIEW SECTION BLOG PAGE ======================*/
 .mb-blog-review-title {
     text-align: center;
@@ -658,13 +661,13 @@ body { padding: 0; }
 .post-list-content .products-grid h2.mb-post-title {
     margin: 10px 0px 12px 0px;
     font-weight: 600;
-    font-size: 24px;
+    font-size: 21px;
      display: -webkit-box;
      -webkit-line-clamp: 2; 
      -webkit-box-orient: vertical; 
      overflow: hidden; 
-     height: 50px;
-     line-height: 1.1;
+     height: 54px;
+     line-height: 1.2;
 }
 .post-list-content .products-grid .post-info .mb-post-info {
     font-size: 12px;
