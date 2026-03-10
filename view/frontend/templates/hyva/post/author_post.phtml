@@ -90,12 +90,11 @@ HTML
             <?= $escaper->escapeHtml(__('Add New Post')) ?>
         </button>
         <?= /** @noEscape */ $modalViewModel->createModal()
-            ->addDialogClass('overflow-y-hidden overflow-x-hidden justify-center items-center md:inset-0 h-4/5')
-            ->addDialogClass('fixed z-50 w-[90%] max-w-2xl mx-auto bg-white rounded-lg shadow-xl max-h-[90vh] overflow-y-auto')
+            ->addDialogClass('overflow-y-hidden overflow-x-hidden fixed z-50 justify-center items-center w-3/4 md:inset-0 h-4/5')
             ->removeDialogClass('p-10')
             ->withDialogRefName("add-new-post-name")
             ->withContent(<<<HTML
-     <div id="mb-blog-new-post-popup" class="mbblog-post-popup">
+    <div id="mb-blog-new-post-popup" class="mbblog-post-popup">
         <header class="modal-header mb-3">
             <h3 id="popup_author_post" class="modal-title text-3xl font-bold border-b" data-role="title">Add New Post</h3>
         </header>
