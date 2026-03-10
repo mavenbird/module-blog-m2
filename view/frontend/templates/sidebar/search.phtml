@@ -35,7 +35,7 @@ use Magento\Framework\Escaper;
             <span><?= $escaper->escapeHtml(__('Search')) ?></span>
         </label>
     <div class="field search">
-        <div class="control">
+        <div class="control" id="mbblog-search-control">
             <input id="mbblog-search-box"
                    type="text"
                    name="query"
@@ -66,6 +66,7 @@ use Magento\Framework\Escaper;
             autoSelectFirst: true,
             showNoSuggestionNotice: true,
             triggerSelectOnValidInput: false,
+            appendTo: '#mbblog-search-control',
             onSelect: function (suggestion) {
                 window.location.href = suggestion.url;
             },
