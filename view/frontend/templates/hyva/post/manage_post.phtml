@@ -27,7 +27,7 @@ use Magento\Framework\Escaper;
 /** @var Escaper $escaper */
 ?>
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/treeselectjs/dist/css/treeselectjs.css"> -->
-<button title="Close (Esc)" type="button" class="mfp-close" style="position: absolute;top: -5px;right: 10px;font-size: 25px;" onclick="hideMyDialogNewPost()">×</button>
+<button title="Close (Esc)" type="button" class="mfp-close" style="position: absolute;top: 0px;right: 25px;font-size: 30px;" onclick="hideMyDialogNewPost()">×</button>
 <form enctype="multipart/form-data" data-mage-init='{"validation": {}}'
     action="<?= $escaper->escapeHtml($block->getUrl('mbblog/post/manage')) ?>" method="post" class="form"
     name="mb_blog_post_form" id="mb_blog_post_form"
@@ -43,11 +43,11 @@ use Magento\Framework\Escaper;
                 </span></label>
             <div class="control">
                 <input type="text" name="name" id="name" title="<?= $escaper->escapeHtmlAttr(__('Post Name')) ?>"
-                    class="input-text" data-validate='{"required": true}'>
+                    class="input-text w-full" data-validate='{"required": true}'>
             </div>
         </div>
         <input type="hidden" name="post_id" id="post_id">
-        <div class="field mb-field" style="margin-top: 1.5rem">
+        <div class="field mb-field">
             <b for="short_description" class="label">
                 <span><?= $escaper->escapeHtml(__('Short Description')) ?></span>
             </b>
@@ -55,45 +55,45 @@ use Magento\Framework\Escaper;
                 <textarea name="short_description" id="short_description" rows="5" cols="19" class="w-full"></textarea>
             </div>
         </div>
-        <div class="field mb-field" style="margin-top: 1.5rem">
+        <div class="field mb-field">
             <b for="post_content" class="label">
                 <span><?= $escaper->escapeHtml(__('Post Content')) ?></span>
             </b>
             <div class="control">
-                <textarea name="post_content" id="post_content" class="post_content_hyva" rows="5" cols="19">
+                <textarea name="post_content" id="post_content" class="post_content_hyva w-full" rows="5" cols="19">
                 </textarea>
             </div>
         </div>
-        <div class="field mb-field" style="margin-top: 1.5rem">
+        <div class="field mb-field">
             <label for="image" class="label"><b><?= $escaper->escapeHtml(__('Image')) ?></b></label>
             <div class="control" style="display: flex">
                 <input type="file" name="image" id="image" title="<?= $escaper->escapeHtmlAttr(__('Image')) ?>"
-                    class="input-file">
+                    class="input-file w-full">
             </div>
         </div>
         <div class="mb-custom">
-            <div class="field mb-field" style="margin-top: 1.5rem">
+            <div class="field mb-field">
                 <label class="label"><span><?= $escaper->escapeHtml(__('Select Category')) ?></span></label>
-                <div data-bind="scope: 'customCategory'">
+                <div data-bind="scope: 'customCategory'" class="w-full">
                     <div id="categories_ids"></div>
                 </div>
             </div>
-            <div class="field mb-field" style="margin-top: 1.5rem">
+            <div class="field mb-field">
                 <label class="label"><span><?= $escaper->escapeHtml(__('Select Topic')) ?></span></label>
-                <div data-bind="scope: 'customTopic'">
+                <div data-bind="scope: 'customTopic'" class="w-full">
                     <div id="topics_ids"></div>
                     <!-- ko template: getTemplate() --><!-- /ko -->
                 </div>
             </div>
-            <div class="field mb-field" style="margin-top: 1.5rem">
+            <div class="field mb-field">
                 <label class="label"><span><?= $escaper->escapeHtml(__('Select Tag')) ?></span></label>
-                <div data-bind="scope: 'customTag'">
+                <div data-bind="scope: 'customTag'" class="w-full">
                     <div id="tags_ids"></div>
                     <!-- ko template: getTemplate() --><!-- /ko -->
                 </div>
             </div>
         </div>
-        <div class="field mb-field" style="margin-top: 1.5rem">
+        <div class="field mb-field">
             <label for="allow_comment" class="label"><b><?= $escaper->escapeHtml(__('Allow Comment')) ?></b></label>
             <div class="control">
                 <select id="allow_comment" name="allow_comment" class="w-full">
@@ -102,26 +102,26 @@ use Magento\Framework\Escaper;
                 </select>
             </div>
         </div>
-        <div class="field mb-field" style="margin-top: 1.5rem">
+        <div class="field mb-field">
             <label for="publish_date" class="label"><b><?= $escaper->escapeHtml(__('Publish Date')) ?></b></label>
             <div class="control">
-                <input name="publish_date" id="publish_date" type="datetime-local">
+                <input name="publish_date" class="w-full" id="publish_date" type="datetime-local">
 
             </div>
         </div>
-        <div class="field mb-field" style="margin-top: 1.5rem">
+        <div class="field mb-field">
             <label for="meta_title" class="label"><b><?= $escaper->escapeHtml(__('Meta Title')) ?></b></label>
             <div class="control">
-                <input type="text" name="meta_title" id="meta_title" class="input-text">
+                <input type="text" name="meta_title" id="meta_title" class="input-text w-full">
             </div>
         </div>
-        <div class="field mb-field" style="margin-top: 1.5rem">
+        <div class="field mb-field">
             <label for="meta_description" class="label"><b><?= $escaper->escapeHtml(__('Meta Description')) ?></b></label>
             <div class="control">
                 <textarea name="meta_description" id="meta_description" rows="3" cols="19" class="w-full"></textarea>
             </div>
         </div>
-        <div class="field mb-field" style="margin-top: 1.5rem">
+        <div class="field mb-field">
             <label for="meta_keywords" class="label"><b><?= $escaper->escapeHtml(__('Meta Keywords')) ?></b></label>
             <div class="control">
                 <textarea name="meta_keywords" id="meta_keywords" rows="3" cols="19" class="w-full"></textarea>
@@ -130,7 +130,7 @@ use Magento\Framework\Escaper;
         <?= $block->getChildHtml('field_additional') ?>
     </fieldset>
     <div class="actions-toolbar">
-        <div class="primary">
+        <div class="btn primary btn-primary">
             <button type="submit" class="action submit primary mbblog-action-new"
                     title="<?= $escaper->escapeHtmlAttr(__('Save')) ?>">
                 <span class="btn-submit"><?= $escaper->escapeHtml(__('Save')) ?></span>

@@ -90,13 +90,14 @@ HTML
             <?= $escaper->escapeHtml(__('Add New Post')) ?>
         </button>
         <?= /** @noEscape */ $modalViewModel->createModal()
-            ->addDialogClass('overflow-y-hidden overflow-x-hidden fixed z-50 justify-center items-center w-3/4 md:inset-0 h-4/5')
+            ->addDialogClass('overflow-y-hidden overflow-x-hidden justify-center items-center md:inset-0 h-4/5')
+            ->addDialogClass('fixed z-50 w-[90%] max-w-2xl mx-auto bg-white rounded-lg shadow-xl max-h-[90vh] overflow-y-auto')
             ->removeDialogClass('p-10')
             ->withDialogRefName("add-new-post-name")
             ->withContent(<<<HTML
      <div id="mb-blog-new-post-popup" class="mbblog-post-popup">
         <header class="modal-header mb-3">
-            <h3 id="popup_author_post" class="modal-title text-3xl border-b pb-2" data-role="title">Add New Post</h3>
+            <h3 id="popup_author_post" class="modal-title text-3xl font-bold border-b" data-role="title">Add New Post</h3>
         </header>
             {$block->getChildHtml('mbblog_manage_post')}
     </div>
@@ -143,7 +144,7 @@ HTML
                                     </p>
                                 </div>
                                 <div class="mb-post-meta-info mb-alignright">
-                                    <div class="actions">
+                                    <div class="btn actions">
                                         <a class="mb-read-more" href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
                                            title="<?= $escaper->escapeHtmlAttr(__('Read More')) ?>">
                                             <?= $escaper->escapeHtml(__('Read More')) ?>
@@ -172,7 +173,7 @@ HTML
                                     />
                                 </div>
                                 <div class="mbblog-post-delete"
-     onclick="openDeleteConfirm(<?= $escaper->escapeHtml($post->getId()); ?>,'<?= $escaper->escapeHtml($post->getName()); ?>')">
+                                        onclick="openDeleteConfirm(<?= $escaper->escapeHtml($post->getId()); ?>,'<?= $escaper->escapeHtml($post->getName()); ?>')">
                                     <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/delete.svg')) ?>"
                                          align="middle"
                                          alt="<?= $escaper->escapeHtmlAttr(__('Delete')) ?>"

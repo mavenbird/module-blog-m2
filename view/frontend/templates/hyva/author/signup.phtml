@@ -35,7 +35,7 @@ $author = $block->getAuthor();
     <?= /* @noEscape */
     $block->getBlockHtml('formkey'); ?>
     <fieldset class="fieldset">
-        <div class="legend border-b pb-px">
+        <div class="legend border-b pb-px text-3xl font-bold">
             <legend>
                 <span><?= /* @noEscape */
                     $author['name'] === '' ? __('Signup Author') : __('Author Information') ?></span>
@@ -134,8 +134,8 @@ $author = $block->getAuthor();
         </div>
     </fieldset>
     <div class="actions-toolbar">
-        <div class="primary">
-            <button type="submit" class="action submit primary"
+        <div class="btn primary btn-primary">
+            <button type="submit" class="action submit primary "
                     title="<?= /* @noEscape */
                     $author['name'] === '' ? __('Submit') : __('Save') ?>">
                 <span>
@@ -152,7 +152,7 @@ $author = $block->getAuthor();
     }
 
     .mb-field .control {
-        width: 70%;
+        width: 100%;
     }
 
     .mb-field .control .delete-image {
@@ -201,6 +201,11 @@ $author = $block->getAuthor();
         margin-bottom: 0.5rem;
     }
     .ck-editor__editable {min-height: 300px;}
+    @media (max-width: 525px) {
+        .mb-field {
+                flex-direction: column;
+             }
+    }
 </style>
 
 
