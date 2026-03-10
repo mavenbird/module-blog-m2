@@ -469,7 +469,7 @@ $nextPost = $block->getNextPost();
                     </div>
                 </div>
             <?php elseif ($typeComment == Type::DEFAULT_COMMENT) : ?>
-                <div class="related-content-container container default-cmt">
+                <div class="related-content-container default-cmt">
                     <?php if (!$block->isLoggedIn()) : ?>
                         <div class="col-mb default-cmt__cmt-login">
                             <button class="primary btn default-cmt__cmt-login__btn-login">
@@ -477,7 +477,7 @@ $nextPost = $block->getNextPost();
                             </button>
                         </div>
                     <?php endif; ?>
-                        <div class="mbblg-comment" style="float: left;width: 100%;">
+                        <div class="mbblg-comment w-full">
                             <div class="mbblog-comment-section">
                                 <?php if (!$block->isLoggedIn()) : ?>
                                     <form id="mbblog-comment-form"
@@ -508,10 +508,7 @@ $nextPost = $block->getNextPost();
                                             <div class="col-mb">
                                                 <label for="mb-guest-cmt-commentbox">Comment</label>
                                                 <div>
-                                                    <textarea
-                                                        class="mbblog-comment-textarea w-full"
-                                                        placeholder="<?= $escaper->escapeHtmlAttr(__('Type comments here...')) ?>">
-                                                    </textarea>
+                                                    <textarea class="mbblog-comment-textarea w-full" placeholder="<?= $escaper->escapeHtmlAttr(__('Type comments here...')) ?>"></textarea>
                                                 </div>
                                             </div>
                                             <div class="mbblog-comment-save">
