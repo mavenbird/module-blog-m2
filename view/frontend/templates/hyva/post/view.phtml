@@ -45,7 +45,7 @@ $nextPost = $block->getNextPost();
                  width="16px">
         </a>
     </div>
-    <div class="mpcss post-view" id="mbblog-list">
+    <div class="post-view" id="mbblog-list">
         <div class="post-list-content">
             <div class="post-view-image">
                 <?php if ($_post->getImage()) : ?>
@@ -284,7 +284,6 @@ $nextPost = $block->getNextPost();
         </script>
     <?php endif; ?>
     <?php if ($helper->getBlogConfig('platforms/fb_platform/fb_share') || $helper->getBlogConfig('platforms/x_platform/x_share') || $helper->getBlogConfig('platforms/linkedin_platform/linkedin_share') || $helper->getBlogConfig('platforms/email_platform/email_share') || $helper->getBlogConfig('platforms/whatsapp_platform/whatsapp_share') || $helper->getBlogConfig('platforms/telegram_platform/telegram_share') || $helper->getBlogConfig('platforms/reddit_platform/reddit_share')) : ?>
-        <div class="mpcss">
             <div id="sharing">
                 <div class="share-col-left">
                     <h5><?= $escaper->escapeHtml(__('Share this post')) ?></h5>
@@ -306,7 +305,6 @@ $nextPost = $block->getNextPost();
                     </div>
                 </div>
             </div>
-        </div>
     <?php endif; ?>
     <?php if ($authorName && $helper->showAuthorInfo()) :
         $block->resizeImage($author->getImage(), '135x', Image::TEMPLATE_MEDIA_TYPE_AUTH);
@@ -334,10 +332,10 @@ $nextPost = $block->getNextPost();
     <?php endif; ?>
     <?php $relatedPosts = $_post->getRelatedPostsCollection(); ?>
     <?php if ($relatedPosts && count($relatedPosts)) : ?>
-        <div class="block-blog-related topic-list mpcss">
+        <div class="block-blog-related topic-list">
             <h2><?= $escaper->escapeHtml(__('Related Posts')) ?></h2>
             <?php if ($block->getRelatedMode()) : ?>
-                <div class="">
+                <div class="related-post-slider">
                     <section id="card-carousel" class="splide" aria-label="Related Posts">
                         <div class="splide__track">
                             <ul class="splide__list">
@@ -415,7 +413,7 @@ $nextPost = $block->getNextPost();
     <?php if ($helper->getBlogConfig('product_post/post_detail/enable_product')) : ?>
         <?php $relatedBlock = $block->getChildBlock('related_products'); ?>
         <?php if ($relatedBlock->hasProduct()) : ?>
-            <div class="block-blog-related products-same-post page-products mpcss" style="width: 100%;">
+            <div class="block-blog-related products-same-post page-products" style="width: 100%;">
                 <h2><?= $helper->getBlogConfig('product_post/post_detail/title') ?: $escaper->escapeHtml(__('Related Products')) ?></h2>
                 <div class="related-content-container">
                     <?= $relatedBlock->toHtml(); ?>

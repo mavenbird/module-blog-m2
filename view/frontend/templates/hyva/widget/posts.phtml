@@ -18,7 +18,7 @@ $blogShowType = $block->getData('blog_show_type') ?? 'grid'; // default to grid
 <script src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::js/splide.min.js')) ?>" defer></script>
 <?php endif; ?>
 
-<div class="post-list-container mpcss <?= $blogShowType === 'slider' ? 'splide-slider-view' : 'grid-view' ?>" style="margin-bottom:50px">
+<div class="post-list-container <?= $blogShowType === 'slider' ? 'splide-slider-view' : 'grid-view' ?>" style="margin-bottom:50px">
     <!-- Widget Title -->
     <div class="widget-title mb-6">
         <a class="text-2xl font-medium" href="<?= $escaper->escapeUrl($block->getBlogUrl('')) ?>">

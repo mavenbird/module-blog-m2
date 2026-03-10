@@ -27,68 +27,76 @@ use Magento\Framework\Escaper;
 $posts       = $block->getMostViewPosts();
 $postsRecent = $block->getRecentPost();
 ?>
-<div class="sidebar-info product info detailed">
-    <div class="product data items"  x-data="{ activeTab:  0 }">
-        <div class="data item title" data-role="collapsible" id="tab-label-popular" @click="activeTab = 0" :class="{ 'active': activeTab === 0 }">
-            <button class="data switch" tabindex="-1" data-toggle="switch" id="tab-label-popular-title" >
-                <div class="text-center"><?= $escaper->escapeHtml(__('Popular')) ?></div>
+<div class="sidebar-info">
+    <div class="product data items" x-data="{ tab: 'popular' }">
+
+        <!-- TAB HEADERS -->
+        <div class="blog-tabs-header">
+            <button class="tab-btn"
+                    :class="{ 'active': tab === 'popular' }"
+                    @click="tab = 'popular'">
+                <?= $escaper->escapeHtml(__('Popular')) ?>
             </button>
-        </div>
-        <div class="data item content" id="tab-content-popular" data-role="content" :class="{ 'active': activeTab === 0 }" x-show.transition.in.opacity.duration.600="activeTab === 0">
-            <?php if ($posts->getSize()) : ?>
-                <?php foreach ($posts as $post) : ?>
-                    <div class="list-post-tabs">
-                        <div class="post-left">
-                            <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
-                                <img class="img-responsive"
-                                     src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(), '400x')) ?>">
-                            </a>
-                        </div>
-                        <div class="post-right">
-                            <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
-                                <span><?= $escaper->escapeHtml($post->getName()) ?></span>
-                            </a>
-                            <span class="create-at">
-                                <?= $post->getPublishDate()
-                                    ? $escaper->escapeHtml($block->getDateFormat($post->getPublishDate())) : '' ?>
-                            </span>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            <?php else : ?>
-                <div class="mostview-nopost"><?= $escaper->escapeHtml(__('No Posts')) ?></div>
-            <?php endif; ?>
+
+            <button class="tab-btn"
+                    :class="{ 'active': tab === 'latest' }"
+                    @click="tab = 'latest'">
+                <?= $escaper->escapeHtml(__('Latest')) ?>
+            </button>
         </div>
 
-        <div class="data item title" data-role="collapsible" id="tab-label-mostview" @click="activeTab = 1" :class="{ 'active': activeTab === 1 }">
-            <button class="data switch" tabindex="-1" data-toggle="switch" id="tab-label-mostview-title" >
-                <div class="text-center"><?= $escaper->escapeHtml(__('Latest')) ?></div>
-            </button>
-        </div>
-        <div class="data item content" id="tab-content-mostview" data-role="content" :class="{ 'active': activeTab === 1 }" x-show.transition.in.opacity.duration.600="activeTab === 1">
-            <?php if ($postsRecent->getSize()) : ?>
-                <?php foreach ($postsRecent as $post) : ?>
-                    <div class="list-post-tabs" href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
-                        <div class="post-left">
-                            <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
-                                <img class="img-responsive"
-                                     src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(), '400x')) ?>">
-                            </a>
-                        </div>
-                        <div class="post-right">
-                            <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
-                                <span><?= $escaper->escapeHtml($post->getName()) ?></span>
-                            </a>
-                            <span class="create-at">
-                                <?= $post->getPublishDate()
-                                    ? $escaper->escapeHtml($block->getDateFormat($post->getPublishDate())) : '' ?>
-                            </span>
-                        </div>
+        <!-- POPULAR POSTS -->
+        <div class="tab-content" x-show="tab === 'popular'" x-cloak>
+            <?php foreach ($posts as $post) : ?>
+                <div class="list-post-tabs">
+
+                    <div class="post-left">
+                        <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
+                            <img src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(), '400x')) ?>">
+                        </a>
                     </div>
-                <?php endforeach; ?>
-            <?php else : ?>
-                <div class="mostview-nopost"><?= $escaper->escapeHtml(__('No Posts')) ?></div>
-            <?php endif; ?>
+
+                    <div class="post-right">
+                        <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
+                            <span><?= $escaper->escapeHtml($post->getName()) ?></span>
+                        </a>
+
+                        <span class="create-at">
+                            <?= $post->getPublishDate()
+                                ? $escaper->escapeHtml($block->getDateFormat($post->getPublishDate())) : '' ?>
+                        </span>
+                    </div>
+
+                </div>
+            <?php endforeach; ?>
         </div>
+
+
+        <!-- LATEST POSTS -->
+        <div class="tab-content" x-show="tab === 'latest'" x-cloak>
+            <?php foreach ($postsRecent as $post) : ?>
+                <div class="list-post-tabs">
+
+                    <div class="post-left">
+                        <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
+                            <img src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(), '400x')) ?>">
+                        </a>
+                    </div>
+
+                    <div class="post-right">
+                        <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
+                            <span><?= $escaper->escapeHtml($post->getName()) ?></span>
+                        </a>
+
+                        <span class="create-at">
+                            <?= $post->getPublishDate()
+                                ? $escaper->escapeHtml($block->getDateFormat($post->getPublishDate())) : '' ?>
+                        </span>
+                    </div>
+
+                </div>
+            <?php endforeach; ?>
+        </div>
+
     </div>
 </div>
