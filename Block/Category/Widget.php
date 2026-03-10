@@ -131,12 +131,16 @@ class Widget extends Frontend
             $html .= '<a href="' . $this->getCategoryUrl($value['url']) . '" class="list-categories">';
             $html .= ucfirst($value['text']) . '</a>';
             if ($hasChild) {
+                $childHtml = $this->getCategoryTreeHtmlLuma($enabledChildren, $accordion, $level + 1);
 
-                $childStyle = $accordion ? 'style="display:none;"' : '';
-
-                $html .= '<ul class="category-children" ' . $childStyle . '>';
-                $html .= $this->getCategoryTreeHtmlLuma($enabledChildren, $accordion, $level + 1);
-                $html .= '</ul>';
+                if ($accordion) {
+                    $childHtml = str_replace(
+                        '<ul class="category-children">',
+                        '<ul class="category-children" style="display:none;">',
+                        $childHtml
+                    );
+                }
+                $html .= $childHtml;
             }
             $html .= '</li>';
         }
