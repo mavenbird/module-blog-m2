@@ -361,12 +361,18 @@
 .mbblog-post-history .column.main .popup-container {
     width: 50%;
 }
-.mbblog-post-history .mb-field { display: flex; margin-top: 25px;}
+.mbblog-post-history .mb-field,
+.mbblog-author-information .mb-field { display: flex; margin-top: 25px;}
 .mbblog-post-history .mb-field .control { width: 100%; }
 .mbblog-post-history .mb-field .control .delete-image { width: 65%; }
 .mbblog-post-history .mb-field .label { width: 30%; }
 .mbblog-post-history .sidebar.sidebar-main:before { content: unset !important; }
-
+.mbblog-author-information #blog_signup_author {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
 .mbblog-post-history .post-list-content .post-item-wraper {position: relative;}
 .mbblog-author-information .column.main .mb-blog-new-post .btn-primary {  display: flex;}
 /* post list section */

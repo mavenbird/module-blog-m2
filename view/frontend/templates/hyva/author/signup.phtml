@@ -48,7 +48,7 @@ $author = $block->getAuthor();
             <div class="control">
                 <input type="text" name="name" id="name" value="<?= $escaper->escapeHtml($author['name']) ?>"
                        title="<?= $escaper->escapeHtmlAttr(__('Display Name')) ?>"
-                       class="input-text" data-validate='{"required": true}'>
+                       class="input-text w-full" data-validate='{"required": true}'>
             </div>
         </div>
         <?php if (isset($author['status'])) : ?>
@@ -104,7 +104,7 @@ $author = $block->getAuthor();
             <div class="control">
                 <input type="text" name="url_key" id="url_key" value="<?= $escaper->escapeHtmlAttr($author['url_key']) ?>"
                        title="<?= $escaper->escapeHtmlAttr(__('URL Key')) ?>"
-                       class="input-text">
+                       class="input-text w-full">
             </div>
         </div>
         <div class="field mb-field">
@@ -121,7 +121,7 @@ $author = $block->getAuthor();
             <div class="control">
                 <input type="url" name="facebook_link" id="facebook_link"
                        value="<?= $escaper->escapeHtml($author['facebook_link']) ?>"
-                       title="<?= $escaper->escapeHtmlAttr(__('Facebook Link')) ?>" class="input-text">
+                       title="<?= $escaper->escapeHtmlAttr(__('Facebook Link')) ?>" class="input-text w-full">
             </div>
         </div>
         <div class="field mb-field">
@@ -129,7 +129,7 @@ $author = $block->getAuthor();
             <div class="control">
                 <input type="url" name="twitter_link" id="twitter_link"
                        value="<?= $escaper->escapeHtmlAttr($author['twitter_link']) ?>"
-                       title="<?= $escaper->escapeHtmlAttr(__('Twitter Link')) ?>" class="input-text">
+                       title="<?= $escaper->escapeHtmlAttr(__('Twitter Link')) ?>" class="input-text w-full">
             </div>
         </div>
     </fieldset>
