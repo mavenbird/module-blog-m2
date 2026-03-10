@@ -7,16 +7,13 @@
 .mbblog-post-view .page-main .columns .sidebar-main,
 .mbblog-author-view .page-main .columns .sidebar-main { width: 22%; display: block;}
 
-.page-main .columns { display: flex; gap: 15px; padding: 0px; }
-.columns .main .mb-blog-rss { margin: 0 0 10px 0; }
-/* title for all the sections that need to same css */
 .mb-post-info a.mb-info:hover,
 .post-list-content .mb-post-title a:hover { text-decoration: underline; }
 .mbblog-post-view .about-admin h2, 
 .mbblog-post-view .topic-list h2, 
 .mbblog-post-view .blog-comment h2, 
 .mbblog-post-view .products-same-post h2 {
-    margin-bottom: 8px;
+    margin-bottom: 16px;
 }
 .mb-post-list .post-item-list .post-image img {
     width: 100%;
@@ -70,10 +67,7 @@
 .mbblog-post-view .block-blog-related .about-admin {
     margin-bottom: 12px;
 }
-.block-blog-related .related-content-container .author-content-information {
-    float: left;
-    padding-left: 20px;
-    padding-top: 10px;
+.block-blog-related .related-content-container .author-content-information {    
     width: calc(100% - 155px);
 }
 /* Related post information details sections */
@@ -110,38 +104,7 @@
     flex-wrap: wrap;
     border: 1px solid #ddd;
 }
-/* sidebar searchable things */
-.sidebar .control .autocomplete-suggestions{ 
-    background: #fff;
-    border: 1px solid #bbb;
-    padding: 10px;
-    max-width: 307px;
-    border-radius: 5px;
-    cursor: pointer;
- }
-.sidebar .control .mbblog-product-name { font-weight: 600; }
-.sidebar .control .mbblog-product-name {
-    font-weight: 600;
-    font-size: 13px;
-    line-height: 1.2;
-}
-.sidebar .control .mbblog-product-des {
-    height: 33px;
-    overflow: hidden;
-    font-size: 12px;
-    line-height: 16px;
-}
-.sidebar .control .mbblog-suggestion {
-    display: flex;
-    gap: 15px;
-}
-.sidebar .control .mbblog-suggestion-left img {
-    border-radius: 3px;
-}
-.sidebar .control .mbblog-suggestion-left {
-    width: 80px;
-    min-width: 80px;
-}
+
 /* Hide Alpine elements before JS loads */
 [x-cloak] {
     display: none !important;
@@ -176,22 +139,11 @@
 }
 /* Post image */
 .sidebar .post-left img {
-    width: 80px;
-    height: 60px;
-    object-fit: cover;
     border-radius: 6px;
 }
 /* Post text */
-.sidebar .post-right span:first-child {
-    font-size: 14px;
-    font-weight: 600;
-    color: #111827;
-    display: block;
-}
 .sidebar .list-post-tabs .post-right { padding-bottom: 10px; }
-.sidebar .list-post-tabs .post-right span { font-weight: 600; }
 .sidebar .list-post-tabs .post-right span:hover { text-decoration: underline; }
-.sidebar .list-post-tabs .post-right .create-at { font-weight: 500; font-size: small; color: #6f6c6c; }
 
 /* SUB CATEGORY */
 .sidebar .categories-items-list ul ul {
@@ -214,9 +166,6 @@
 .sidebar .menu-categories li a:hover::before,
 .sidebar .categories-items-list li a:hover::before {
     height: 100%;
-}
-.sidebar .sidebar-categories .menu-categories .list-categories{
-    padding: 2px 0px 0px 15px;
 }
 .sidebar .menu-categories li.category-item .mb-category-toggle i {
     margin-top: 4px; right: 0; top: 4px; left: unset; font-size: 14px; cursor: pointer;
@@ -241,7 +190,6 @@
 /* Sharing button in view page */
 .mbblog-post-view #sharing {
     margin-bottom: 15px;
-    padding: 10px 0px;
 }
 /* related post topic pages */
 .mbblog-post-view .related-post-slider {
@@ -265,9 +213,6 @@
 .blog-comment  a.mbblog-comment-action-btn.mbblog-like { color: #333333 }
 
 /* Review buttons css */
-#mb-blog-review div { padding: 10px 20px; color: #ffffff; cursor: pointer; width: 148px; text-align: center; margin-top: 10px; }
-#mb-blog-review .mb-blog-like { background-color: #6AA84F; }
-#mb-blog-review .mb-blog-dislike { background-color: #EC3A3C;}
 
 .products-same-post .product-items {
     display: grid;
@@ -301,7 +246,7 @@
 .mbblog-author-details .share-col-right {
     margin: 10px 0px;
 }
-.about-admin .related-content-container { margin-bottom: 18px; }
+.about-admin .related-content-container { margin-bottom: 24px; }
 
 .product-item-info:hover, .products-grid .product-item-info.active { 
     box-shadow: none;
@@ -309,7 +254,6 @@
 }
 /* post list list view for block pages */
 .column.main .post-list-content .post-list-item { background: #fff; }
-/* Grid section for related product,related post and post list */
 .products-grid .grid-column-2 { display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px; 
@@ -354,7 +298,7 @@
 .column .products-grid .mb-post-list .post-info {
     padding: 0px;
 }
-
+.mb-post-list hr { border-top: 1px solid #ccc; margin-bottom: 16px; margin-top: 16px; }
 .mb-post-list .post-info { padding: 0; }
 .topic-list .related-post-slider .mb-post-title .post-link-title {
     font-weight: 600;
@@ -477,14 +421,12 @@ form#blog_signup_author {
     display: flex;
     gap: 5px;
 }
+.sidebar .blog-content-nav li { margin-bottom: 8px; }
 .mbblog-post-history #mb_blog_post_form form{ margin: 0px 10px; }
 .mbblog-post-history #mb-blog-new-post-popup { padding: 20px; }  
 .mbblog-post-history .mb-post-meta-info.mb-alignright { display: flex; align-items: center; justify-content: end; }
 .mbblog-post-history .mb-post-status.mb-post-approved { color: grey; font-size: 14px; }
 .mb-blog-new-post {  height: 60px; }
-
-
-
 
 .post-info-action {
     display: flex;
@@ -530,49 +472,33 @@ form#blog_signup_author {
     .mbblog-post-view .topic-list .post-image { min-width: auto; }
 }
 @media(min-width:1280px) and (max-width:1440px) {
-    /* .mbblog-post-view .page-main .columns .column.main, 
-    .mbblog-post-index .page-main .columns .column.main,
-    .mbblog-author-view .page-main .columns .column.main { width: 78%; display: block;}
-    .mbblog-post-view .page-main .columns .sidebar-main,
-    /* .mbblog-post-index .page-main .columns .sidebar-main, 
-    .mbblog-author-view .page-main .columns .sidebar-main { width: 20%; display: block;} */
     .mbblog-post-view .topic-list .post-item-wraper { display: block; }
     .mbblog-post-view .topic-list .post-image { min-width: auto; }
     .column .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
 }
 @media(min-width:1024px) and (max-width:1279px) {
-    /* .mbblog-post-view .page-main .columns .column.main,
-    .mbblog-post-index .page-main .columns .column.main,
-    .mbblog-author-view .page-main .columns .column.main { width: 78%; display: block;}
-    .mbblog-post-view .page-main .columns .sidebar-main,
-    /* .mbblog-post-index .page-main .columns .sidebar-main, 
-    .mbblog-author-view .page-main .columns .sidebar-main { width: 20%; display: block;} */
     .column .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .mbblog-post-view .topic-list .post-item-wraper { display: block; }
     .mbblog-post-view .topic-list .post-image { min-width: auto; }
     .products-grid .grid-column-4 { grid-template-columns: repeat(3, 1fr); gap: 12px; }
  }
-@media (min-width: 767px) and (max-width: 1023px) {
-    /* .mbblog-post-view .page-main .columns .column.main,
-    .mbblog-post-index .page-main .columns .column.main,
-    .mbblog-author-view .page-main .columns .column.main { width: 78%; display: block; }
-    .mbblog-author-view .page-main .columns .sidebar-main,
-    /* .mbblog-post-index .page-main .columns .sidebar-main, 
-    .mbblog-post-view .page-main .columns .sidebar-main { width: 24%; display: block; } */
-    /* .column .products-grid { grid-template-columns: repeat(1, 1fr); gap: 10px; } */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .mbblog-post-index .page-main .columns .sidebar-main, 
+    .mbblog-post-view .page-main .columns .sidebar-main, 
+    .mbblog-author-view .page-main .columns .sidebar-main { width: 30%; }
+
+    .mbblog-post-index .page-main .columns .column.main, 
+    .mbblog-post-view .page-main .columns .column.main, 
+    .mbblog-author-view .page-main .columns .column.main { width: 70%; }
+    body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .columns { gap:20px; }
     .products-same-post .product-items { grid-template-columns: repeat(3, 1fr); gap: 30px 15px; }
     .topic-list .related-content-container { grid-template-columns: repeat(2, 1fr); gap: 15px; }
     .products-grid .grid-column-4, .products-grid .grid-column-3 { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .mb-blog-view .post-view-image img { min-width: auto; }
     .blog-comment .mbblog-comment-details.row { grid-template-columns: repeat(2, 1fr); }
+
 }
-@media (max-width: 768px) {
-    /* .mbblog-post-view .page-main .columns .column.main,
-    .mbblog-post-index .page-main .columns .column.main,
-    .mbblog-author-view .page-main .columns .column.main { width: 90%; display: block; }
-    .mbblog-post-view .page-main .columns .sidebar-main,
-    /* .mbblog-post-index .page-main .columns .sidebar-main, 
-    .mbblog-author-view .page-main .columns .sidebar-main { width: 90%; display: block; } */
+@media (max-width: 767px) {
     .mbblog-post-view .topic-list .post-item-wraper { display: block; }
     .mbblog-post-view .topic-list .post-image { min-width: auto; }
     .mb-blog-view .post-view-image img { min-width: auto; }
@@ -581,10 +507,16 @@ form#blog_signup_author {
     .blog-comment .mbblog-comment-details.row { grid-template-columns: repeat(2, 1fr); }
     .products-grid .grid-column-3, .products-grid .grid-column-4 { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .products-same-post .product-items { grid-template-columns: repeat(2, 1fr); gap: 30px 15px; }
+
+    .mbblog-post-index .page-main .columns .sidebar-main, 
+    .mbblog-post-view .page-main .columns .sidebar-main, 
+    .mbblog-author-view .page-main .columns .sidebar-main { width: 100%; order: 1; }
+
+    .mbblog-post-index .page-main .columns .column.main, 
+    .mbblog-post-view .page-main .columns .column.main, 
+    .mbblog-author-view .page-main .columns .column.main { width: 100%; }
 }
 @media (max-width: 575px) { 
-    .page-main .columns { margin: 0 25px; }
-    .page-main .columns { flex-direction: column; }
     .mb-blog-view .post-view-image img { min-width: auto; }
     .sidebar .list-post-tabs { flex-direction: row; align-items: center; }
     .products-same-post .splide__pagination { bottom: -24px; }
@@ -604,7 +536,6 @@ form#blog_signup_author {
 }
 @media (max-width: 430px) {
     .mb-post-list .post-item-list .post-image img {  max-width: 85%;  }
-    /* .product-image-wrapper { width: 340px; height: auto; aspect-ratio: 340 / 340; } */
 }
 
 /* ================================ HYVABLOG.CSS FROM MY SIDE End ======================================== */
