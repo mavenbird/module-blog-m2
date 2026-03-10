@@ -1,5 +1,6 @@
 /* ================================ HYVABLOG.CSS FROM MY SIDE Start ======================================== */
 
+.mbblog-topic-view .page-main .columns .column.main,
 .mbblog-author-signup .page-main .columns .column.main,
 .mbblog-category-view .page-main .columns .column.main,
 .mbblog-tag-view .page-main .columns .column.main,
@@ -7,6 +8,7 @@
 .mbblog-post-view .page-main .columns .column.main,
 .mbblog-author-view .page-main .columns .column.main { width: 78%; display: block;}
 
+.mbblog-topic-view .page-main .columns .sidebar-main,
 .mbblog-author-signup .page-main .columns .sidebar-main,
 .mbblog-category-view .page-main .columns .sidebar-main,
 .mbblog-tag-view .page-main .columns  .sidebar-main,
@@ -447,6 +449,7 @@
     .products-grid .grid-column-4 { grid-template-columns: repeat(3, 1fr); gap: 12px; }
  }
 @media (min-width: 768px) and (max-width: 1023px) {
+    .mbblog-topic-view .page-main .columns .sidebar-main,
     .mbblog-author-signup .page-main .columns  .sidebar-main,
     .mbblog-category-view .page-main .columns  .sidebar-main,
     .mbblog-tag-view .page-main .columns  .sidebar-main,
@@ -454,6 +457,7 @@
     .mbblog-post-view .page-main .columns .sidebar-main, 
     .mbblog-author-view .page-main .columns .sidebar-main { width: 30%; }
 
+    .mbblog-topic-view .page-main .columns .column.main,
     .mbblog-author-signup .page-main .columns  .column.main,
     .mbblog-category-view .page-main .columns  .column.main,
     .mbblog-tag-view .page-main .columns  .column.main,
@@ -478,6 +482,7 @@
     .products-grid .grid-column-3, .products-grid .grid-column-4 { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .products-same-post .product-items { grid-template-columns: repeat(2, 1fr); gap: 30px 15px; }
 
+    .mbblog-topic-view .page-main .columns .sidebar-main,
     .mbblog-author-signup .page-main .columns  .sidebar-main,
     .mbblog-category-view .page-main .columns  .sidebar-main,
     .mbblog-tag-view .page-main .columns  .sidebar-main,
@@ -485,6 +490,7 @@
     .mbblog-post-view .page-main .columns .sidebar-main, 
     .mbblog-author-view .page-main .columns .sidebar-main { width: 100%; order: 1; }
 
+    .mbblog-topic-view .page-main .columns .column.main,
     .mbblog-author-signup .page-main .columns  .column.main,
     .mbblog-category-view .page-main .columns  .column.main,
     .mbblog-tag-view .page-main .columns  .column.main,
