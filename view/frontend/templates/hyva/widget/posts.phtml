@@ -14,7 +14,6 @@ $blogShowType = $block->getData('blog_show_type') ?? 'grid'; // default to grid
 
 <!-- Include Splide CSS & JS -->
 <?php if ($blogShowType === 'slider'): ?>
-<link rel="stylesheet" href="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::css/splide.min.css')) ?>">
 <script src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::js/splide.min.js')) ?>" defer></script>
 <?php endif; ?>
 

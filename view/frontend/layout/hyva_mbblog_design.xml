@@ -27,7 +27,6 @@
         <css src="Mavenbird_Blog::css/hyvaBlog.css"/>
 
         <script src="Mavenbird_Blog::js/splide.min.js" />
-        <css src="Mavenbird_Blog::css/splide.min.css" />
     </head>
     <body>
         <referenceContainer name="columns">

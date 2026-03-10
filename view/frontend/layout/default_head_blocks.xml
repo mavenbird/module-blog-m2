@@ -23,7 +23,6 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
         <css src="Mavenbird_Blog::css/fontawesome/all.min.css"/>
-        <css src="Mavenbird_Blog::css/mbBlogIcon.css"/>
         <css src="Mavenbird_Blog::css/mbBlog.css"/>
         <css src="Mavenbird_Blog::css/owl.carousel.css"/>
         <css src="Mavenbird_Blog::css/owl.theme.css"/>
