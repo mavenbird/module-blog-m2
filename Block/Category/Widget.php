@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Mavenbird
  *
@@ -55,73 +56,94 @@ class Widget extends Frontend
      * @return Phrase|string
      */
 
-public function getCategoryTreeHtml(array $tree, bool $accordion = false, int $level = 0): string
-{
-    if (!$tree) {
-        return '';
-    }
-
-    $ulClass = $level === 0 ? 'menu-categories' : 'category-children';
-
-    $html = '<ul class="' . $ulClass . '">';
-
-    foreach ($tree as $value) {
-
-        if (!$value || empty($value['enabled'])) {
-            continue;
+    public function getCategoryTreeHtml(array $tree, bool $accordion = false, int $level = 0): string
+    {
+        if (!$tree) {
+            return '';
         }
+        $ulClass = $level === 0 ? 'menu-categories' : 'category-children';
+        $html = '<ul class="' . $ulClass . '">';
+        foreach ($tree as $value) {
+            if (!$value || empty($value['enabled'])) {
+                continue;
+            }
+            $enabledChildren = array_filter(
+                $value['children'] ?? [],
+                fn($child) => !empty($child['enabled'])
+            );
+            $hasChild = !empty($enabledChildren);
+            $html .= '<li class="category-item" ' . ($hasChild ? 'x-data="{open:false}"' : '') . '>';
+            if ($level > 0) {
+                $html .= '<i class="fa-regular fa-circle"></i>';
+            }
+            if ($accordion && $hasChild) {
 
-        $enabledChildren = array_filter(
-            $value['children'] ?? [],
-            fn($child) => !empty($child['enabled'])
-        );
-
-        $hasChild = !empty($enabledChildren);
-
-        $html .= '<li class="category-item" ' . ($hasChild ? 'x-data="{open:false}"' : '') . '>';
-
-        if ($level > 0) {
-            $html .= '<i class="fa-regular fa-circle"></i>';
-        }
-
-        if ($accordion && $hasChild) {
-
-            $html .= '<span class="mb-category-toggle"
+                $html .= '<span class="mb-category-toggle"
                         @click.prevent="open = !open">
                         <i class="fa-solid"
                            :class="open ? \'fa-minus\' : \'fa-plus\'"></i>
                       </span>';
-        }
-
-        $html .= '<a href="' . $this->getCategoryUrl($value['url']) . '" class="list-categories">';
-        $html .= ucfirst($value['text']) . '</a>';
-
-        if ($hasChild) {
-
-            if ($accordion) {
-
-                $html .= '<div x-show="open"
+            }
+            $html .= '<a href="' . $this->getCategoryUrl($value['url']) . '" class="list-categories">';
+            $html .= ucfirst($value['text']) . '</a>';
+            if ($hasChild) {
+                if ($accordion) {
+                    $html .= '<div x-show="open"
                                x-transition
                                style="display:none;">';
-
-                $html .= $this->getCategoryTreeHtml($enabledChildren, $accordion, $level + 1);
-
-                $html .= '</div>';
-
-            } else {
-
-                $html .= $this->getCategoryTreeHtml($enabledChildren, $accordion, $level + 1);
-
+                    $html .= $this->getCategoryTreeHtml($enabledChildren, $accordion, $level + 1);
+                    $html .= '</div>';
+                } else {
+                    $html .= $this->getCategoryTreeHtml($enabledChildren, $accordion, $level + 1);
+                }
             }
+            $html .= '</li>';
         }
-
-        $html .= '</li>';
+        $html .= '</ul>';
+        return $html;
     }
 
-    $html .= '</ul>';
+    public function getCategoryTreeHtmlLuma(array $tree, bool $accordion = false, int $level = 0): string
+    {
+        if (!$tree) {
+            return '';
+        }
+        $ulClass = $level === 0 ? 'menu-categories' : 'category-children';
+        $html = '<ul class="' . $ulClass . '">';
+        foreach ($tree as $value) {
+            if (!$value || empty($value['enabled'])) {
+                continue;
+            }
+            $enabledChildren = array_filter(
+                $value['children'] ?? [],
+                fn($child) => !empty($child['enabled'])
+            );
+            $hasChild = !empty($enabledChildren);
+            $html .= '<li class="category-item">';
+            if ($level > 0) {
+                $html .= '<i class="fa-regular fa-circle"></i>';
+            }
+            if ($accordion && $hasChild) {
+                $html .= '<span class="mb-category-toggle">
+                        <i class="fa-solid fa-plus"></i>
+                      </span>';
+            }
+            $html .= '<a href="' . $this->getCategoryUrl($value['url']) . '" class="list-categories">';
+            $html .= ucfirst($value['text']) . '</a>';
+            if ($hasChild) {
 
-    return $html;
-}
+                $childStyle = $accordion ? 'style="display:none;"' : '';
+
+                $html .= '<ul class="category-children" ' . $childStyle . '>';
+                $html .= $this->getCategoryTreeHtmlLuma($enabledChildren, $accordion, $level + 1);
+                $html .= '</ul>';
+            }
+            $html .= '</li>';
+        }
+        $html .= '</ul>';
+        return $html;
+    }
+    
     /**
      * @param string $category
      *

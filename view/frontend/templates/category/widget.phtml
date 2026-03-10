@@ -38,17 +38,19 @@ $accordion = $block->isCategoryAccordionEnabled();
     </div>
     <div class="categories-items-list" 
          data-mb-accordion="<?= $accordion ? 1 : 0 ?>">
-        <?= $block->getCategoryTreeHtml($tree, $accordion) ?>
+        <?= $block->getCategoryTreeHtmlLuma($tree, $accordion) ?>
     </div>
 </div>
 
 <?php if ($accordion) : ?>
 <script type="text/javascript">
-    require(['Mavenbird_Blog/js/categorytree'], function (categoryTree) {
-        // Initialize JS accordion for this element
-        var element = document.querySelector('.categories-items-list');
+require(['jquery', 'categoryTree'], function ($, categoryTree) {
+    var element = document.querySelector('.categories-items-list');
+
+    if (element) {
         categoryTree({}, element);
-    });
+    }
+});
 </script>
 <?php endif; ?>
 

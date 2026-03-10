@@ -30,5 +30,6 @@ var config = {
             deps: ['jquery']
         },
         mbDevbridgeAutocomplete: ["jquery"],
+        categoryTree:['jquery']
     }
 };
