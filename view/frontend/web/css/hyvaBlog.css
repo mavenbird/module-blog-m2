@@ -422,21 +422,7 @@
 }
 
 /* Author information section */
-.mb-field {
-    display: flex;
-    margin-top: 25px;
-}
-.fieldset .mb-field:first-of-type {
-    margin-top: 0;
-}
-form#blog_signup_author {
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 8px;
-    background: #fff;
-}
-.mbblog-author-information .column .submit.primary,
-.mb-blog-new-post button {
+.mbblog-author-information .column .submit.primary {
     float: right;
     padding: 10px 25px;
     border: 1px solid #bbb;
@@ -444,12 +430,6 @@ form#blog_signup_author {
     background: rgb(32 56 209);
     font-weight: 500;
     border-radius: 10px;
-}
-.mbblog-post-history .mb-post-meta-info .mb-alignright.actions {
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background: #8ba0f7;
 }
 .mbblog-author-information .column.main .mb-blog-new-post .btn-primary {  display: flex;}
 /* post list section */
@@ -466,7 +446,7 @@ form#blog_signup_author {
 }
 .mbblog-post-history .post-list-content .post-item-wraper {
     border: 1px solid #ddd;
-    padding: 20px; margin-top: 12px;
+    padding: 20px;
     border-radius: 5px;
 }
 .mbblog-post-history .post-list-content .mb-post-info {
@@ -480,12 +460,18 @@ form#blog_signup_author {
 .mbblog-post-history #mb_blog_post_form form{ margin: 0px 10px; }
 .mbblog-post-history #mb-blog-new-post-popup { padding: 20px; }  
 .mbblog-post-history .mb-post-meta-info.mb-alignright { display: flex; align-items: center; justify-content: end; }
+
 .mbblog-post-history .mb-post-status.mb-post-approved { color: grey; font-size: 14px; }
 .mb-blog-new-post {  height: 60px; }
-
-
-
-
+.mb-blog-new-post button {
+    float: right;
+    padding: 10px 25px;
+    border: 1px solid #bbb;
+    color: #fff;
+    background: rgb(32 56 209);
+    font-weight: 500;
+    border-radius: 10px;
+}
 .post-info-action {
     display: flex;
     position: absolute;
@@ -586,7 +572,6 @@ form#blog_signup_author {
     .page-main .columns { margin: 0 25px; }
     .page-main .columns { flex-direction: column; }
     .mb-blog-view .post-view-image img { min-width: auto; }
-    .sidebar .list-post-tabs { flex-direction: row; align-items: center; }
     .products-same-post .splide__pagination { bottom: -24px; }
     .post-list-content .products-grid .details-sharing #sharing {  margin-top: 10px; }
     .column .products-grid { grid-template-columns: repeat(1, 1fr); gap: 8px; }
