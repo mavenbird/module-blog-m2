@@ -1,20 +1,22 @@
 /* ================================ HYVABLOG.CSS FROM MY SIDE Start ======================================== */
 
-.mbblog-topic-view .page-main .columns .column.main,
+/* .mbblog-topic-view .page-main .columns .column.main,
 .mbblog-author-signup .page-main .columns .column.main,
 .mbblog-category-view .page-main .columns .column.main,
 .mbblog-tag-view .page-main .columns .column.main,
 .mbblog-post-index .page-main .columns  .column.main,
 .mbblog-post-view .page-main .columns .column.main,
-.mbblog-author-view .page-main .columns .column.main { width: 78%; display: block;}
+.mbblog-author-view .page-main .columns .column.main { width: 78%; display: block;} */
 
-.mbblog-topic-view .page-main .columns .sidebar-main,
+/* .mbblog-topic-view .page-main .columns .sidebar-main,
 .mbblog-author-signup .page-main .columns .sidebar-main,
 .mbblog-category-view .page-main .columns .sidebar-main,
 .mbblog-tag-view .page-main .columns  .sidebar-main,
 .mbblog-post-index .page-main .columns .sidebar-main,
 .mbblog-post-view .page-main .columns .sidebar-main,
-.mbblog-author-view .page-main .columns .sidebar-main { width: 22%; display: block;}
+.mbblog-author-view .page-main .columns .sidebar-main { width: 22%; display: block;} */
+body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .sidebar-main { width: 22%; display: block;}
+body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .column.main { width: 78%; display: block; }
 
 .mb-post-info a.mb-info:hover,
 .post-list-content .mb-post-title a:hover { text-decoration: underline; }
@@ -459,7 +461,7 @@
     .products-grid .grid-column-4 { grid-template-columns: repeat(3, 1fr); gap: 12px; }
  }
 @media (min-width: 768px) and (max-width: 1023px) {
-    .mbblog-topic-view .page-main .columns .sidebar-main,
+    /* .mbblog-topic-view .page-main .columns .sidebar-main,
     .mbblog-author-signup .page-main .columns  .sidebar-main,
     .mbblog-category-view .page-main .columns  .sidebar-main,
     .mbblog-tag-view .page-main .columns  .sidebar-main,
@@ -473,7 +475,11 @@
     .mbblog-tag-view .page-main .columns  .column.main,
     .mbblog-post-index .page-main .columns .column.main, 
     .mbblog-post-view .page-main .columns .column.main, 
-    .mbblog-author-view .page-main .columns .column.main { width: 70%; }
+    .mbblog-author-view .page-main .columns .column.main { width: 70%; } */
+
+    body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .sidebar-main { width: 30%; }
+    body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .column.main { width: 70%; }
+
     body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .columns { gap:20px; }
     .products-same-post .product-items { grid-template-columns: repeat(3, 1fr); gap: 30px 15px; }
     .topic-list .related-content-container { grid-template-columns: repeat(2, 1fr); gap: 15px; }
@@ -493,7 +499,7 @@
     .products-grid .grid-column-3, .products-grid .grid-column-4 { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .products-same-post .product-items { grid-template-columns: repeat(2, 1fr); gap: 30px 15px; }
 
-    .mbblog-topic-view .page-main .columns .sidebar-main,
+    /* .mbblog-topic-view .page-main .columns .sidebar-main,
     .mbblog-author-signup .page-main .columns  .sidebar-main,
     .mbblog-category-view .page-main .columns  .sidebar-main,
     .mbblog-tag-view .page-main .columns  .sidebar-main,
@@ -507,7 +513,10 @@
     .mbblog-tag-view .page-main .columns  .column.main,
     .mbblog-post-index .page-main .columns .column.main, 
     .mbblog-post-view .page-main .columns .column.main, 
-    .mbblog-author-view .page-main .columns .column.main { width: 100%; }
+    .mbblog-author-view .page-main .columns .column.main { width: 100%; } */
+
+    body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .sidebar-main { width: 100%; order: 1; }
+    body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .column.main { width: 100%; }
 }
 @media (max-width: 575px) { 
     .mb-blog-view .post-view-image img { min-width: auto; }

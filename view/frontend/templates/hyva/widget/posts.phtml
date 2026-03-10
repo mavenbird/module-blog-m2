@@ -18,7 +18,7 @@ $blogShowType = $block->getData('blog_show_type') ?? 'grid'; // default to grid
 <script src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::js/splide.min.js')) ?>" defer></script>
 <?php endif; ?>
 
-<div class="post-list-container <?= $blogShowType === 'slider' ? 'splide-slider-view' : 'grid-view' ?>" style="margin-bottom:50px">
+<div class="mbblog-widget-post post-list-container <?= $blogShowType === 'slider' ? 'splide-slider-view' : 'grid-view' ?>" style="margin-bottom:50px">
     <!-- Widget Title -->
     <div class="widget-title mb-6">
         <a class="text-2xl font-medium" href="<?= $escaper->escapeUrl($block->getBlogUrl('')) ?>">
@@ -44,7 +44,7 @@ $blogShowType = $block->getData('blog_show_type') ?? 'grid'; // default to grid
                                     </div>
                                 <?php endif; ?>
 
-                                <h2 class="mb-post-title text-lg font-semibold mb-2">
+                                <h2 class="mb-post-title text-lg xl:text-xl font-semibold mb-2">
                                     <a class="hover:text-blue-600"
                                        href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
                                        title="<?= $escaper->escapeHtmlAttr($post->getName()) ?>">
@@ -110,7 +110,7 @@ $blogShowType = $block->getData('blog_show_type') ?? 'grid'; // default to grid
                         </div>
                     <?php endif; ?>
 
-                    <h2 class="mb-post-title text-lg font-semibold mb-2">
+                    <h2 class="mb-post-title text-lg xl:text-xl font-semibold mb-2">
                         <a class="hover:text-blue-600"
                            href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
                            title="<?= $escaper->escapeHtmlAttr($post->getName()) ?>">
