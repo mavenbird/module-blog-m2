@@ -296,32 +296,32 @@ class Frontend extends Template
             );
 
             if ($categoryPost = $this->getPostCategoryHtml($post)) {
-                $html .= __('| Posted in %1', $categoryPost);
+                $html .= __(' | Posted in %1', $categoryPost);
             }
 
             $author = $this->helperData->getAuthorByPost($post);
             if ($author && $author->getName() && $this->helperData->showAuthorInfo()) {
                 $aTag = '<a class="mb-info" href="' . $author->getUrl() . '">'
                     . $this->escapeHtml($author->getName()) . '</a>';
-                $html .= __('| <i class="fa-solid fa-user"></i> %1', $aTag);
+                $html .= __(' | <i class="fa-solid fa-user"></i> %1', $aTag);
             }
 
             if ($this->getCommentinPost($post)) {
                 $html .= __(
-                    '| <i class="fa-regular fa-comments" aria-hidden="true"></i> %1',
+                    ' | <i class="fa-regular fa-comments" aria-hidden="true"></i> %1',
                     $this->getCommentinPost($post)
                 );
             }
 
             if ($post->getViewTraffic()) {
                 $html .= __(
-                    '| <i class="fa-regular fa-eye" aria-hidden="true"></i> %1',
+                    ' | <i class="fa-regular fa-eye" aria-hidden="true"></i> %1',
                     $post->getViewTraffic()
                 );
             }
 
             if ($couldLike > 0) {
-                $html .= __('| <i class="fa-regular fa-thumbs-up" aria-hidden="true"></i> %1', $couldLike);
+                $html .= __(' | <i class="fa-regular fa-thumbs-up" aria-hidden="true"></i> %1', $couldLike);
             }
         } catch (Exception $e) {
             $html = '';
