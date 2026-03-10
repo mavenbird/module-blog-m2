@@ -106,13 +106,52 @@ body { padding: 0; }
     height: 38px;
     border-radius: 5px;
 }
+.autocomplete-suggestions{ 
+    background: #fff;
+    border: 1px solid #bbb;
+    padding: 10px;
+    max-width: 307px;
+    border-radius: 5px;
+    width: 280px;
+ }
+.autocomplete-suggestion {
+    padding-bottom: 8px;
+    border-bottom: 1px dashed #ddd;
+    margin-bottom: 10px;
+}
+.autocomplete-suggestion:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.mbblog-product-name { font-weight: 600; }
+.mbblog-product-name {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 1.2;
+}
+.mbblog-product-des {
+    height: 33px;
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 16px;
+}
+.mbblog-suggestion {
+    display: flex;
+    gap: 15px;
+}
+.mbblog-suggestion-left img {
+    border-radius: 3px;
+}
+.mbblog-suggestion-left {
+    width: 80px;
+    min-width: 80px;
+}
 .sidebar .product.data.items > .item.content {
     background: #ffffff;
     margin-top: 40px;
     padding: 25px 20px 25px 20px;
     border: 1px solid #ccc;
 }
-
 /* TAB CONTENT */
 .sidebar .list-post-tabs {
     display: flex;
@@ -135,7 +174,7 @@ body { padding: 0; }
     border: 0;
 }
 .sidebar .list-post-tabs .post-right span { font-weight: 600; }
-.sidebar .list-post-tabs .post-right .create-at { font-weight: 500; font-size: small; color: #6f6c6c; }
+.sidebar .list-post-tabs .post-right .create-at { font-size: 12px; font-weight: 500; font-size: small; color: #6f6c6c; }
 .sidebar .sidebar-info { margin-bottom: 30px; }
 .sidebar .sidebar-info .block-title {
     color: #000000;
@@ -224,7 +263,6 @@ body { padding: 0; }
 .sidebar .categories-items-list li a:hover::before {
     height: 100%;
 }
-
 .sidebar .sidebar-categories .menu-categories .list-categories{
     padding: 2px 0px 0px 15px;
 }
@@ -277,26 +315,20 @@ body { padding: 0; }
     width: 100%;
     border-radius: 0;
 }
-
 /* image */
-.post-left img {
+.sidebar .post-left img {
     width: 80px;
     height: 60px;
     object-fit: cover;
     border-radius: 6px;
 }
 /* content */
-.post-right span:first-child {
+.sidebar .post-right span:first-child {
     font-size: 14px;
     font-weight: 600;
     color: #111827;
     display: block;
 }
-.create-at {
-    font-size: 12px;
-    color: #6b7280;
-}
-
 .sidebar .product.data.items > .item.title { margin: 0 0px 0 0; }
 /* Mb-blog-views section */
 .mb-blog-view .post-post_content { padding: 10px 0; }
@@ -375,6 +407,8 @@ body { padding: 0; }
      line-height: 1.1;
 }
 .mbblog-post-view .topic-list a { color: #000;}
+.mbblog-post-view .topic-list .post-info-wraper { padding: 0px; }
+.mbblog-post-view .topic-list .post-info-wraper h2 { border: none; }
 /* About-Author section  & Author-admin page section*/    
 .about-admin .h2 {
     font-weight: 500;
@@ -511,7 +545,7 @@ body { padding: 0; }
 .products-same-post .products-grid .product-item:hover { transform: translateY(-2px);}
 
 /*================== SIDEBAR AUTHOR-DETAILS PAGE DESIGN ======================*/
-.sidebar .sidebar-info .author-name h3 {
+/* .sidebar .sidebar-info .author-name h3 {
     color: #000000;
     text-align: center;
     font-size: 20px;
@@ -540,7 +574,7 @@ body { padding: 0; }
 }
 .sidebar .sidebar-info .share-col-left h5 {
     margin: 10px 0px 6px 0px; border-bottom: 1px solid #ddd; padding-bottom: 3px;
-}
+} */
 /*================== FOOTER FOR BLOG PAGE ======================*/
 .mb-footer {
     display: flex;
@@ -633,7 +667,7 @@ body { padding: 0; }
 .mb-blog-navigation {
     display: flex;
     justify-content: space-between;
-    margin: 40px 0;
+    margin: 35px 0; gap: 20px;
 }
 
 /*================== GRID VIEW FOR THE SAME BLOG PAGE ======================*/
@@ -702,7 +736,7 @@ body { padding: 0; }
 .post-list-content .products-grid .mb-post-list .post-info {
     padding: 0px;
 }
-.post-list-content .products-grid .mpcss {
+.post-list-content .products-grid {
     border-top: 1px solid #ddd;
     padding-top: 0px;
     margin-top: 20px;
@@ -781,7 +815,7 @@ a.mbblog-comment-action-btn.mbblog-like { color: #333333; }
     .mb-post-list .post-item-list .post-image img { max-width: 100%; }
     .sidebar .sidebar-info .post-left { max-width: 100%; width: 100%; }
     .list-post-tabs { flex-direction: column; gap: 10px;}
-       #mb-blog-review .mb-blog-like { left: 22%; }
+    #mb-blog-review .mb-blog-like { left: 22%; }
     .topic-list .related-content-container {display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .blog-comment .mbblog-comment-details.row { grid-template-columns: repeat(2, 1fr); }
     .products-same-post .products-grid .product-items { grid-template-columns: repeat(3, 1fr); gap: 30px 10px;}
