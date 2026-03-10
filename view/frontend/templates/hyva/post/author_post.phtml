@@ -90,7 +90,7 @@ HTML
             <?= $escaper->escapeHtml(__('Add New Post')) ?>
         </button>
         <?= /** @noEscape */ $modalViewModel->createModal()
-            ->addDialogClass('overflow-y-hidden overflow-x-hidden fixed z-50 justify-center items-center w-3/4 md:inset-0 h-4/5')
+            ->addDialogClass('overflow-y-hidden overflow-x-hidden fixed z-50 justify-center items-center w-3/4 md:inset-0 h-4/5 popup-container')
             ->removeDialogClass('p-10')
             ->withDialogRefName("add-new-post-name")
             ->withContent(<<<HTML
@@ -115,6 +115,7 @@ HTML
                         <div class="post-item-wraper">
                             <?= /* @noEscape */
                             $block->getStatusHtmlById($post->getEnabled()) ?>
+                        <div class="image-content-section">
                             <?php if ($post->getImage()) : ?>
                                 <div class="post-image">
                                     <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
@@ -151,6 +152,8 @@ HTML
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                         
                             <div class="post-info-action" data-postId="<?= $escaper->escapeHtml($post->getId()); ?>">
                                 <div class="mbblog-post-duplicate"
                                      onclick='handleDuplicate(this,<?= /** @noEscape */ $post->getId() ?>, "<?= /** @noEscape */ $post->getImage() ?>")'
