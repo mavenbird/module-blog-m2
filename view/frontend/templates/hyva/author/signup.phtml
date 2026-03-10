@@ -52,7 +52,7 @@ $author = $block->getAuthor();
             </div>
         </div>
         <?php if (isset($author['status'])) : ?>
-            <div class="field mb-field" style="margin-top: 1.5rem">
+            <div class="field mb-field">
                 <label for="name" class="label"><span><?= $escaper->escapeHtml(__('Status')) ?></span></label>
                 <div class="control">
                     <span><?= $escaper->escapeHtml($author['status']) ?></span>
@@ -60,7 +60,7 @@ $author = $block->getAuthor();
             </div>
         <?php endif; ?>
 
-        <div class="field mb-field mb-2">
+        <div class="field mb-field">
             <label for="short_desciption" class="label">
                 <span><?= $escaper->escapeHtml(__('Short Description')) ?></span>
             </label>
@@ -72,7 +72,7 @@ $author = $block->getAuthor();
                 </textarea>
             </div>
         </div>
-        <div class="field mb-field" style="margin-top: 1.5rem">
+        <div class="field mb-field">
             <label for="image" class="label"><span><?= /* @noEscape */
                     __('Avatar') ?></span></label>
             <div class="control" style="display: flex">
@@ -99,7 +99,7 @@ $author = $block->getAuthor();
                 <?php endif; ?>
             </div>
         </div>
-        <div class="field mb-field" style="margin-top: 1.5rem">
+        <div class="field mb-field">
             <label for="url_key" class="label"><span><?= $escaper->escapeHtml(__('URL Key')) ?></span></label>
             <div class="control">
                 <input type="text" name="url_key" id="url_key" value="<?= $escaper->escapeHtmlAttr($author['url_key']) ?>"
@@ -107,7 +107,7 @@ $author = $block->getAuthor();
                        class="input-text">
             </div>
         </div>
-        <div class="field mb-field" style="margin-top: 1.5rem">
+        <div class="field mb-field">
             <label for="full_url" class="label"><span><?= $escaper->escapeHtml(__('Full URL')) ?></span></label>
             <div class="control">
                 <span class="mb_full_url">
@@ -116,7 +116,7 @@ $author = $block->getAuthor();
                 </span>
             </div>
         </div>
-        <div class="field mb-field" style="margin-top: 1.5rem">
+        <div class="field mb-field">
             <label for="facebook_link" class="label"><span><?= $escaper->escapeHtml(__('Facebook Link')) ?></span></label>
             <div class="control">
                 <input type="url" name="facebook_link" id="facebook_link"
@@ -124,7 +124,7 @@ $author = $block->getAuthor();
                        title="<?= $escaper->escapeHtmlAttr(__('Facebook Link')) ?>" class="input-text">
             </div>
         </div>
-        <div class="field mb-field" style="margin-top: 1.5rem">
+        <div class="field mb-field">
             <label for="twitter_link" class="label"><span><?= $escaper->escapeHtml(__('Twitter Link')) ?></span></label>
             <div class="control">
                 <input type="url" name="twitter_link" id="twitter_link"

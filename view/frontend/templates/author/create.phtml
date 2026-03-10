@@ -25,7 +25,7 @@ use Magento\Framework\Escaper;
 <?php if ($block->isBlogEnabled()) : ?>
     <div class="field choice mb-blog-sign-up-author">
         <input type="checkbox" name="is_mb_author" title="<?= $block->escapeHtmlAttr(__('Sign Up to be an Author')) ?>"
-               value="1" id="is_mb_author" class="checkbox">
+               value="1" id="is_mb_author" class="checkbox" role="switch">
         <label for="is_mb_author" class="label">
             <span><?= $escaper->escapeHtml(__('Sign Up to be an Author')) ?></span>
         </label>
