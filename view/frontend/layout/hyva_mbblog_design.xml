@@ -39,9 +39,11 @@
                     <block class="Mavenbird\Blog\Block\MonthlyArchive\Widget" name="mbblog.sidebar.monthly" template="Mavenbird_Blog::monthly/widget.phtml"/>
                     <block class="Mavenbird\Blog\Block\Topic\Widget" name="mbblog.sidebar.topic" template="Mavenbird_Blog::topic/widget.phtml"/>
                     <block class="Mavenbird\Blog\Block\Tag\Widget" name="mbblog.sidebar.tag" template="Mavenbird_Blog::tag/widget.phtml"/>
-                    <block class="Mavenbird\Blog\Block\Sidebar\StaticBlock" name="mbblog.sidebar.staticblock" template="Mavenbird_Blog::nav/sidebar-static-block.phtml"/>
-                    <block class="Mavenbird\Blog\Block\Sidebar\TableOfContent" name="mbblog.sidebar.nav" template="Mavenbird_Blog::nav/post-content-nav.phtml" ifconfig="blog/sidebar/show_table_of_content"/>
-                </container>
+                    <container name="blog.sidebar.cmsblock" as="blogsidebar_cmsblock" htmlTag="div" htmlClass="blog-sidebar-cms-block">
+                        <block class="Mavenbird\Blog\Block\Sidebar\StaticBlock" name="mbblog.sidebar.staticblock" template="Mavenbird_Blog::nav/sidebar-static-block.phtml"/>
+                    </container>
+                        <block class="Mavenbird\Blog\Block\Sidebar\TableOfContent" name="mbblog.sidebar.nav" template="Mavenbird_Blog::nav/post-content-nav.phtml" ifconfig="blog/sidebar/show_table_of_content"/>
+                    </container>
             </container>
         </referenceContainer>
 
