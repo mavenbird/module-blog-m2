@@ -190,6 +190,14 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[Show/Hide Table of Content in post view page sidebar which guide readers to navigate through the post content]]></comment>
                 </field>
+                <field id="sticky_table_of_content" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Sticky Table of Content</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Sticky Table of Content in sidebar]]></comment>
+                    <depends>
+                        <field id="show_table_of_content">1</field>
+                    </depends>
+                </field>
                 <field id="show_sidebar_static_block" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Show Sidebar Static Block</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
