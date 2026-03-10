@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Mavenbird
  *
@@ -27,56 +28,50 @@ use Magento\Framework\Escaper;
 /** @var Escaper $escaper */
 $author = $block->getCurrentAuthor();
 if ($author) : ?>
-<div class="mbblog-author-details">
-   
-    <div class="mbblog-author-description">
-        <div class="author-image">
-            <img class="img-responsive"
-                src="<?= $escaper->escapeUrl($author->getImage() ? $block->resizeImage($author->getImage(), '135x', Image::TEMPLATE_MEDIA_TYPE_AUTH) : $block->getDefaultAuthorImage()) ?>"
-                alt="<?= $escaper->escapeHtml($author->getName()); ?>" />
-        </div>
-        <div class="mbblog-author-content">
-            <div class="author-name">
-                <span>
-                    <?= $escaper->escapeHtml(__('Written By')) ?>
-                </span>
-                <h3><?= $escaper->escapeHtml($author->getName()) ?></h3>
+    <div class="mbblog-author-details">
+
+        <div class="mbblog-author-description">
+            <div class="author-image">
+                <img class="img-responsive"
+                    src="<?= $escaper->escapeUrl($author->getImage() ? $block->resizeImage($author->getImage(), '135x', Image::TEMPLATE_MEDIA_TYPE_AUTH) : $block->getDefaultAuthorImage()) ?>"
+                    alt="<?= $escaper->escapeHtml($author->getName()); ?>" />
             </div>
-            <div class="author-content">
-                <?= $block->getPageFilter(($author->getShortDescription())) ?: $escaper->escapeHtml(__('No info')) ?>
-            </div>
-        </div>
-    </div>
-        <div class="author-social">
-            <div class="share-col-left">
-                <h5><?= $escaper->escapeHtml(__('Share this post')) ?></h5>
-            </div>
-            <div class="share-col-right">
-                <div class="post-sharing-button">
-                    <span class="sharing-icon" title="Twitter">
-                        <i class="fa-brands fa-x-twitter"></i>
+            <div class="mbblog-author-content">
+                <div class="author-name">
+                    <span>
+                        <?= $escaper->escapeHtml(__('Written By')) ?>
                     </span>
-                    <span class="sharing-icon" title="Facebook">
-                        <i class="fa-brands fa-facebook-f"></i>
-                    </span>
-                    <span class="sharing-icon" title="Whatsapp">
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </span>
-                    <span class="sharing-icon" title="Telegram">
-                        <i class="fa-brands fa-telegram"></i>
-                    </span>
-                    <span class="sharing-icon" title="LinkedIn">
-                        <i class="fa-brands fa-linkedin-in"></i>
-                    </span>
-                    <span class="sharing-icon" title="Reddit">
-                        <i class="fa-brands fa-reddit-alien"></i>
-                    </span>
-                    <span class="sharing-icon" title="Email">
-                        <i class="fa-solid fa-envelope"></i>
-                    </span>
+                    <h3><?= $escaper->escapeHtml($author->getName()) ?></h3>
+                </div>
+                <div class="author-content">
+                    <?= $block->getPageFilter(($author->getShortDescription())) ?: $escaper->escapeHtml(__('No info')) ?>
                 </div>
             </div>
         </div>
-    
-</div>
+        <?php if ($author->getTwitterLink() || $author->getFacebookLink()) :?>
+            <div class="author-social">
+                <div class="share-col-left">
+                    <h5><?= $escaper->escapeHtml(__('Share this author')) ?></h5>
+                </div>
+                <div class="share-col-right">
+                    <div class="post-sharing-button">
+                        <?php if ($author->getTwitterLink()) : ?>
+                        <a href="<?= $escaper->escapeUrl($author->getTwitterLink()) ?>" target="_blank">
+                                <span class="sharing-icon" title="Twitter">
+                                    <i class="fa-brands fa-x-twitter"></i>
+                                </span>
+                            </a>
+                        <?php endif; ?>
+                        <?php if ($author->getFacebookLink()) : ?>
+                            <a href="<?= $escaper->escapeUrl($author->getFacebookLink()) ?>" target="_blank">
+                                <span class="sharing-icon" title="Facebook">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                </span>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
 <?php endif; ?>
