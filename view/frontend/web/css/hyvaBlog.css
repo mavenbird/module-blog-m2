@@ -1,7 +1,15 @@
 /* ================================ HYVABLOG.CSS FROM MY SIDE Start ======================================== */
+
+.mbblog-author-signup .page-main .columns .column.main,
+.mbblog-category-view .page-main .columns .column.main,
+.mbblog-tag-view .page-main .columns .column.main,
 .mbblog-post-index .page-main .columns  .column.main,
 .mbblog-post-view .page-main .columns .column.main,
 .mbblog-author-view .page-main .columns .column.main { width: 78%; display: block;}
+
+.mbblog-author-signup .page-main .columns .sidebar-main,
+.mbblog-category-view .page-main .columns .sidebar-main,
+.mbblog-tag-view .page-main .columns  .sidebar-main,
 .mbblog-post-index .page-main .columns .sidebar-main,
 .mbblog-post-view .page-main .columns .sidebar-main,
 .mbblog-author-view .page-main .columns .sidebar-main { width: 22%; display: block;}
@@ -23,10 +31,6 @@
 .mb-post-list .post-item-list:hover .post-image img {
     transform: scale(1.1);
 }
-.mbblog-post-view .topic-list .post-image {
-    min-width: 250px;
-    width: 100%;
-}
 .mb-blog-view .post-view-image img {
     min-width: 800px;
 }
@@ -35,17 +39,7 @@
 .mb-blog-view .post-post_content {
     line-height: 30px;
 }
-/* NAVIGATION FOR PREVIOUS AND NEXT POST BLOG PAGE */
-.mb-blog-prev {
-    border: 1px solid #ddd;
-    padding: 8px;
-    border-radius: 5px; background:  #fff;
-}
-.mb-blog-next {
-    border: 1px solid #ddd;
-    padding: 8px;
-    border-radius: 5px; background: #fff;
-}
+
 /* Tags, Topics and Admin alse Author section  */
 .mbblog-post-view .mb-post-list .mb-post-info {
     font-size: 14px;
@@ -77,7 +71,6 @@
     margin: 0;
 }
 .topic-list .post-image {
-    min-height: 210px;
     position: relative;
 }
 /* SIDEBAR POST BLOCK CARD POPULAR/RECENT */
@@ -366,7 +359,6 @@
 
 .mbblog-author-information .column.main .mb-blog-new-post .btn-primary {  display: flex;}
 /* post list section */
-.mbblog-post-history .column .mb-blog-new-post .btn-primary {  float: unset; margin: 10px 0px; }
 .mbblog-post-history .post-list-content .modal-header.mb-3 h3 {
     padding: 0 0 9px 0;
 }
@@ -416,8 +408,11 @@
 .topic-list .splide__pagination { bottom: -2.2em;}
 .topic-list .splide__arrow { display: none !important; }
 .topic-list .splide__pagination__page.is-active {  background: #6b6b6bff }
-.mb-blog-owl-carousel .splide, .relatedposts-list a:visited, .alink:visited { color: #006bb4;  text-decoration: none;}
-.mb-blog-owl-carousel .splide  a:hover, .alink:hover { text-decoration: underline; }
+.mb-blog-owl-carousel .splide,
+.relatedposts-list a:visited, 
+.relatedposts-list .alink:visited { color: #006bb4;  text-decoration: none;}
+.mb-blog-owl-carousel .splide a:hover, 
+.mb-blog-owl-carousel .splide .alink:hover { text-decoration: underline; }
 .mbblog-product-slider .item.post-list-item { width: 100%; }
 .mbblog-product-slider .splide__arrow,
 .topic-list.splide__arrow { display: none !important; }
@@ -452,10 +447,16 @@
     .products-grid .grid-column-4 { grid-template-columns: repeat(3, 1fr); gap: 12px; }
  }
 @media (min-width: 768px) and (max-width: 1023px) {
+    .mbblog-author-signup .page-main .columns  .sidebar-main,
+    .mbblog-category-view .page-main .columns  .sidebar-main,
+    .mbblog-tag-view .page-main .columns  .sidebar-main,
     .mbblog-post-index .page-main .columns .sidebar-main, 
     .mbblog-post-view .page-main .columns .sidebar-main, 
     .mbblog-author-view .page-main .columns .sidebar-main { width: 30%; }
 
+    .mbblog-author-signup .page-main .columns  .column.main,
+    .mbblog-category-view .page-main .columns  .column.main,
+    .mbblog-tag-view .page-main .columns  .column.main,
     .mbblog-post-index .page-main .columns .column.main, 
     .mbblog-post-view .page-main .columns .column.main, 
     .mbblog-author-view .page-main .columns .column.main { width: 70%; }
@@ -477,10 +478,16 @@
     .products-grid .grid-column-3, .products-grid .grid-column-4 { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .products-same-post .product-items { grid-template-columns: repeat(2, 1fr); gap: 30px 15px; }
 
+    .mbblog-author-signup .page-main .columns  .sidebar-main,
+    .mbblog-category-view .page-main .columns  .sidebar-main,
+    .mbblog-tag-view .page-main .columns  .sidebar-main,
     .mbblog-post-index .page-main .columns .sidebar-main, 
     .mbblog-post-view .page-main .columns .sidebar-main, 
     .mbblog-author-view .page-main .columns .sidebar-main { width: 100%; order: 1; }
 
+    .mbblog-author-signup .page-main .columns  .column.main,
+    .mbblog-category-view .page-main .columns  .column.main,
+    .mbblog-tag-view .page-main .columns  .column.main,
     .mbblog-post-index .page-main .columns .column.main, 
     .mbblog-post-view .page-main .columns .column.main, 
     .mbblog-author-view .page-main .columns .column.main { width: 100%; }
