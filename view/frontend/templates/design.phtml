@@ -42,67 +42,10 @@ use Magento\Framework\Escaper;
 </script>
 <?php $color = $block->getHelper()->getDisplayConfig('font_color'); ?>
 <style type="text/css">
-    /* .mb-blog-like {
-        background-color: #6AA84F;
-        left: 33%;
-    }
-
-    .mb-blog-dislike {
-        background-color: #EC3A3C;
-        left: 52%;
-    }
-
-    @media (max-width: 1024px) {
-        .mb-blog-like {
-            left: 28%;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .mb-blog-like {
-            left: 20%;
-        }
-        main#maincontent {
-            position: relative;
-            padding-top: 41px;
-        }
-        .sidebar-main .block-collapsible-nav .title {
-            padding: 30px 40px 10px 15px;
-        }
-    }
-
-    @media (max-width: 375px) {
-        .mb-blog-like {
-            left: 0;
-        }
-    } */
-
-    /* .mb-blog-new-post {
-        height: 60px;
-    }
-
-    .mb-blog-new-post button {
-        float: right;
-        margin: 10px;
-        padding: 10px 30px
-    }
-
-    .post-item-wraper {
-        position: relative;
-        max-height: 250px;
-    }
-
-  */
-
-    /* #mbblog-list a {
-        text-decoration: none;
-    } */
-
-    /* .post-view-image {
-        text-align: center;
-    } */
-
+   
     /*Post List Content Css*/
+    .blog-content-nav li::marker,
+    .blog-content-nav li.active a,
     .post-info-wraper h2.mb-post-title a,
     .about-admin h4.admin-title a,
     .mb-post-meta-info a.mb-read-more,
@@ -134,17 +77,15 @@ use Magento\Framework\Escaper;
         background: <?= /** @noEscape */ $color ?> !important;
         color: #fff; 
     }
-    span.mbblog-comment-username {
-        color: <?= /** @noEscape */ $color ?>;
-    }
+
+    a.mbblog-comment-action-btn,
+    span.mbblog-comment-username,
     a.mbblog-comment-action-btn.mbblog-liked {
         color: <?= /** @noEscape */ $color ?>;
     }
 
-    a.mbblog-comment-action-btn {
-        color: <?= /** @noEscape */ $color ?>;
-    }
     /*Widget CSS*/
+    .blog-content-nav li::marker,
     .widget-title a {
         color: <?= /** @noEscape */ $color ?>;
     }

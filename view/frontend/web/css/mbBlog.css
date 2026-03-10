@@ -77,6 +77,9 @@ body { padding: 0; }
     flex-wrap: wrap;
     gap: 5px; 
 }
+.page-main .post-sharing-button a {
+    text-decoration: none;
+}
 .page-main .post-sharing-button .sharing-icon{
     display: flex;
     width: 34px;
@@ -138,6 +141,7 @@ body { padding: 0; }
 .mbblog-suggestion {
     display: flex;
     gap: 15px;
+    cursor: pointer;
 }
 .mbblog-suggestion-left img {
     border-radius: 3px;
@@ -149,8 +153,8 @@ body { padding: 0; }
 .sidebar .product.data.items > .item.content {
     background: #ffffff;
     margin-top: 40px;
-    padding: 25px 20px 25px 20px;
-    border: 1px solid #ccc;
+    padding: 16px;
+    border: 1px solid #ddd;
 }
 /* TAB CONTENT */
 .sidebar .list-post-tabs {
@@ -158,7 +162,7 @@ body { padding: 0; }
     gap: 5px;
     flex-direction: column;
     padding: 0px 0 18px;
-    border-bottom: 1px dashed #ccc;
+    border-bottom: 1px dashed #ddd;
     margin-bottom: 20px;
 }
 .sidebar .list-post-tabs:last-child {
@@ -175,13 +179,15 @@ body { padding: 0; }
 }
 .sidebar .list-post-tabs .post-right span { font-weight: 600; }
 .sidebar .list-post-tabs .post-right .create-at { font-size: 12px; font-weight: 500; font-size: small; color: #6f6c6c; }
-.sidebar .sidebar-info { margin-bottom: 30px; }
+.sidebar .sidebar-post,
+.sidebar .sidebar-info { margin-bottom: 20px; }
+.sidebar-info { border: 1px solid #ddd; padding: 16px; }
 .sidebar .sidebar-info .block-title {
     color: #000000;
     position: relative;
     padding: 0;
     font-size: 16px;    
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     min-width: 100%;
     border-bottom: 1px solid #ddd;
 }
@@ -264,7 +270,7 @@ body { padding: 0; }
     height: 100%;
 }
 .sidebar .sidebar-categories .menu-categories .list-categories{
-    padding: 2px 0px 0px 15px;
+    /* padding: 2px 0px 0px 15px; */
 }
 .sidebar .menu-categories li.category-item {
     list-style: none; position: relative;
@@ -737,9 +743,6 @@ body { padding: 0; }
     padding: 0px;
 }
 .post-list-content .products-grid {
-    border-top: 1px solid #ddd;
-    padding-top: 0px;
-    margin-top: 20px;
     width: 100%;
 }
 .products-same-post .owl-item .product-item-info { 
@@ -758,12 +761,17 @@ a.white-space-pre-line {  white-space: pre-line; }
 /* Review buttons css */
 .mb-blog-review-title { text-align: center; }
 #mb-blog-review { position: relative; display: flex; justify-content: center; }
-#mb-blog-review div { padding: 10px 20px; color: #ffffff; cursor: pointer; width: 148px; text-align: center; margin-top: 10px; max-width: 50%; }
+#mb-blog-review div { padding: 10px 20px; color: #ffffff; cursor: pointer; width: 148px; text-align: center; max-width: 50%; }
 #mb-blog-review .mb-blog-like { background-color: #6AA84F;  left: 36%; }
 #mb-blog-review .mb-blog-dislike { left: 53%; background-color: #EC3A3C; }
 .mb-blog-view .post-post_content img { padding: 10px 0; }
 a.mbblog-comment-action-btn.mbblog-like { color: #333333; }
 .mbblg-comment button.mbblog-comment-submitbtn { padding: 10px 20px; border: 0; }
+
+.blog-content-nav ul { padding: 0 0 0 16px; list-style: disclosure-closed; }
+.blog-content-nav li a { color: #333; }
+.mb-blog-rss { margin-bottom: 10px; }
+.blog-content-nav li.active a { text-decoration: underline; text-underline-offset: 3px; }
 
 @media(min-width:1280px) {
 .post-list-content .mb-post-list.products-grid.grid-column-3 { grid-template-columns: repeat(3, 1fr); }
