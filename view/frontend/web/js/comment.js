@@ -34,7 +34,7 @@ require([
     likeComment(likeBtn);
     showReply(replyBtn);
 
-    $('li.mbblog-comment-details-list:first').css({'border-top': 'none'});
+    $('ul.mbblog-comment-details').css({'list-style': 'none'});
     $('.default-cmt__cmt-login__btn-login').click(function () {
         var socialPopup = $("[href$='social-login-popup']");
 

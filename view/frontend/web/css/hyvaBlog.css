@@ -398,9 +398,9 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .column.main {
     border-radius: 8px;
     border: 1px solid #ccc;
 }
-.image-content-section {
+.post-list-body .image-content-section {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 15px;
 }
 .mbblog-post-history .post-list-content .post-item-wraper {position: relative;}
@@ -549,6 +549,7 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .column.main {
     .mb-footer span.mb-footer-links-light h3 { min-width: 308px; }
     .mbblog-post-history .column.main .popup-container { width: 80%; }
     .add-post-form .mb-field { flex-direction: column; }
+    .post-list-body .image-content-section { flex-direction: column; }
     .add-post-form .mb-field .label { width: auto; }
 }
 @media (max-width: 480px) { 
