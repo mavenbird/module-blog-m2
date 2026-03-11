@@ -757,8 +757,9 @@ a.mbblog-comment-action-btn.mbblog-like { color: #333333; }
 }
 
 /*Luma form fileds desiging */
-.mbblog-author-signup .author-form .actions-toolbar,
-.mbblog-author-information .author-form .actions-toolbar {
+.author-form .actions-toolbar,
+.author-form .actions-toolbar,
+.add-post-form .actions-toolbar {
     display: flex;
     align-items: center;
     justify-content: end;
