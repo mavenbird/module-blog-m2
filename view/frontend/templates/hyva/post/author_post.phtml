@@ -59,7 +59,7 @@ $jsonData       = json_encode($postDatas);
 }" x-init="init()">
 <?= $modalViewModel->createModal()
     ->withDialogRefName("delete-post-confirm")
-    ->addDialogClass('fixed z-50 justify-center items-center w-96 md:inset-0')
+    ->addDialogClass('fixed z-50 justify-center items-center w-96 md:inset-0 delete-container')
     ->withContent(<<<HTML
 <div class="p-6 text-center">
     <h3 class="text-lg font-semibold mb-4">

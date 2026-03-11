@@ -50,15 +50,20 @@ $author = $block->getAuthor();
                        class="input-text w-full" data-validate='{"required": true}'>
             </div>
         </div>
-        <?php if (isset($author['status'])) : ?>
-            <div class="field mb-field">
-                <label for="name" class="label"><span><?= $escaper->escapeHtml(__('Status')) ?></span></label>
-                <div class="control">
-                    <span class="post-status"><?= $escaper->escapeHtml($author['status']) ?></span>
-                </div>
+        <?php if (!empty($author['status'])) :
+            $statusClass = strtolower(str_replace(' ', '-', trim($author['status'])));
+        ?>
+        <div class="field mb-field">
+            <label class="label">
+                <span><?= $escaper->escapeHtml(__('Status')) ?></span>
+            </label>
+            <div class="control">
+                <span class="post-status <?= $escaper->escapeHtmlAttr($statusClass) ?>">
+                    <?= $escaper->escapeHtml($author['status']) ?>
+                </span>
             </div>
+        </div>
         <?php endif; ?>
-
         <div class="field mb-field">
             <label for="short_desciption" class="label">
                 <span><?= $escaper->escapeHtml(__('Short Description')) ?></span>
