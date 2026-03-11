@@ -800,12 +800,6 @@ a.mbblog-comment-action-btn.mbblog-like { color: #333333; }
 .mbblog-widget-post .mb-post-meta-info {
     margin-top: auto;
 }
-.mbblog-post-history .post-list-content .actions,
-.mbblog-widget-post .mb-post-meta-info .actions{
-    border: 1px solid #ddd;
-    padding: 5px 15px;
-    margin-top: 8px;
-}
 .mbblog-post-history .post-list-content .mb-post-info {
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
