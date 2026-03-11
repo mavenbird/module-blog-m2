@@ -1,4 +1,5 @@
 <?php
+
 use Mavenbird\Blog\Block\Widget\Posts;
 use Magento\Framework\Escaper;
 
@@ -12,79 +13,93 @@ $blogShowType = $block->getData('blog_show_type');
 
     <h2 class="widget-title">
         <a class="text-2xl font-medium"
-           href="<?= $escaper->escapeUrl($block->getBlogUrl('')) ?>">
+            href="<?= $escaper->escapeUrl($block->getBlogUrl('')) ?>">
             <?= $escaper->escapeHtml($block->getTitle()) ?>
         </a>
     </h2>
 
     <?php if ($blogShowType == 'slider'): ?>
         <div class="owl-carousel blog-post-carousel">
-    <?php endif; ?>
-    <div class="post-container">
-        <?php foreach ($posts as $post): ?>
-            <div class="post-list-item">
-                <div class="post-item-wraper">
+            <?php elseif ($blogShowType !== 'slider'): ?>
+            <div class="post-container">
+            <?php endif; ?>
+            <?php foreach ($posts as $post): ?>
+                <div class="post-list-item">
+                    <div class="post-item-wraper">
 
-                    <?php if ($post->getImage()): ?>
-                        <div class="post-image">
-                            <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
-                                <img class="img-responsive" src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(),'400x')) ?>"
-                                    alt="<?= $escaper->escapeHtml($post->getName()) ?>" />
-                            </a>
+                        <?php if ($post->getImage()): ?>
+                            <div class="post-image">
+                                <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
+                                    <img class="img-responsive" src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(), '400x')) ?>"
+                                        alt="<?= $escaper->escapeHtml($post->getName()) ?>" />
+                                </a>
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="post-info-wraper">
+                            <h3 class="mb-post-title">
+                                <a class="post-link-title"
+                                    title="<?= $escaper->escapeHtmlAttr($post->getName()) ?>"
+                                    href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
+                                    <?= $escaper->escapeHtml($post->getName()) ?>
+                                </a>
+                            </h3>
+
+                            <div class="mb-post-info">
+                                <?=
+                                /** @noEscape */
+                                $block->getPostInfo($post) ?>
+                            </div>
+
+                            <div class="post-short-description">
+                                <p><?=
+                                    /** @noEscape */
+                                    $post->getShortDescription() ?></p>
+                            </div>
                         </div>
-                    <?php endif; ?>
-
-                    <div class="post-info-wraper">
-                        <h3 class="mb-post-title">
-                            <a class="post-link-title"
-                            title="<?= $escaper->escapeHtmlAttr($post->getName()) ?>"
-                            href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
-                                <?= $escaper->escapeHtml($post->getName()) ?>
-                            </a>
-                        </h3>
-
-                        <div class="mb-post-info">
-                            <?= /** @noEscape */ $block->getPostInfo($post) ?>
-                        </div>
-
-                        <div class="post-short-description">
-                            <p><?= /** @noEscape */ $post->getShortDescription() ?></p>
-                        </div>                        
-                    </div>
-                    <div class="mb-post-meta-info mb-alignright">
-                        <div class="mb-read-more">
-                            <a class="action primary"
-                            href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
-                            title="<?= $escaper->escapeHtmlAttr(__('Read More')) ?>">
-                                <?= $escaper->escapeHtml(__('Read more')) ?>
-                            </a>
+                        <div class="mb-post-meta-info mb-alignright">
+                            <div class="mb-read-more">
+                                <a class="action primary"
+                                    href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
+                                    title="<?= $escaper->escapeHtmlAttr(__('Read More')) ?>">
+                                    <?= $escaper->escapeHtml(__('Read more')) ?>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
-    </div>
-    <?php if ($blogShowType == 'slider'): ?>
+            <?php endforeach; ?>
+        <?php if ($blogShowType !== 'grid'): ?>
+        </div>
+        <?php endif;?>
+
+        <?php if ($blogShowType == 'slider'): ?>
         </div>
 
-    <script>
-        require(['jquery', 'owlCarousel'], function ($) {
-            $(function () { // shorthand for document.ready
-                if ($('.blog-post-carousel').length) {
-                    $('.blog-post-carousel').owlCarousel({
-                        loop: true,
-                        margin: 20,
-                        nav: true,
-                        dots: true,
-                        responsive: {
-                            0: { items: 1 },
-                            768: { items: 2 },
-                            1024: { items: 3 }
-                        }
-                    });
-                }
+        <script>
+            require(['jquery', 'owlCarousel'], function($) {
+                $(function() { // shorthand for document.ready
+                    if ($('.blog-post-carousel').length) {
+                        $('.blog-post-carousel').owlCarousel({
+                            loop: true,
+                            margin: 20,
+                            nav: true,
+                            dots: true,
+                            responsive: {
+                                0: {
+                                    items: 1
+                                },
+                                768: {
+                                    items: 2
+                                },
+                                1024: {
+                                    items: 3
+                                }
+                            }
+                        });
+                    }
+                });
             });
-        });
         </script>
     <?php endif; ?>
 

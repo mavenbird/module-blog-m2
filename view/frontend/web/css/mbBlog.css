@@ -934,6 +934,7 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] main .sidebar-main { flex
     .post-list-content .mb-post-list.products-grid { grid-template-columns: 1fr; }
     .mbblog-widget-post .post-container { grid-template-columns: repeat(2, 1fr); }
  }
+ 
 @media(max-width:1023px) {
 body[class*="mbblog-"] span.mb-footer-links-light h3 { max-width: 100%; }
 .mb-post-list .post-info { padding: 0; }
