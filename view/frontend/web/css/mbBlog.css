@@ -581,7 +581,7 @@ body { padding: 0; }
 .blog-comment .mbblog-comment-details.row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 12px; padding: 0px;
     margin-top: 12px;
 }
 .blog-comment .mbblog-comment-details-list {
@@ -610,11 +610,11 @@ body { padding: 0; }
     margin-bottom: 8px;
     height: 100px;
 }
-.blog-comment span.mbblog-comment-username .username{
+.blog-comment .mbblog-comment-username .username{
     font-weight: 600;
     color: #000000;
-    padding-bottom: 6px;
-    border-bottom: 1px solid #000;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #000;
 }
 .blog-comment .mbblog-comment-username {
     border-bottom: 1px solid #ccc;
@@ -764,14 +764,12 @@ a.mbblog-comment-action-btn.mbblog-like { color: #333333; }
     align-items: center;
     justify-content: end;
 } 
-.mbblog-author-signup .author-form,
-.mbblog-author-information .author-form {
+.author-form {
     border: 1px solid #ddd;
     padding: 20px;
 }
 
-.mbblog-author-signup .author-form .legend > span,
-.mbblog-author-information .author-form .legend > span {
+.author-form .legend > span {
     margin-right: 5px;
     font-weight: 600;
 }
@@ -987,7 +985,7 @@ body[class*="mbblog-"] span.mb-footer-links-light h3 { max-width: 100%; }
     .page-products .owl-carousel .owl-stage { flex-wrap: wrap; }
      .products-same-post .products-grid .product-items { grid-template-columns: repeat(2, 1fr); gap: 20px 10px;}
     .topic-list .related-content-container {display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .blog-comment .mbblog-comment-details.row { grid-template-columns: repeat(2, 1fr); }
+    .blog-comment .mbblog-comment-details.row { grid-template-columns: repeat(2, 1fr); padding: 0; }
     .mbblog-author-view .page-title, 
     .mbblog-post-index .page-title, 
     .mbblog-post-view .page-title, 
@@ -1010,6 +1008,8 @@ body[class*="mbblog-"] span.mb-footer-links-light h3 { max-width: 100%; }
     .mbblog-author-details .share-col-left h5 { margin: 10px 0 0 10px; padding: 0; }
     .mbblog-author-details .share-col-right { margin: 0px 0 10px 0; }
     .mbblog-author-details .author-social { flex-direction: column; }
+    .author-form .mb-field { flex-direction: column; }
+    .author-form .mb-field .label { width: auto; }
     .mb-post-list .details-sharing #sharing { margin-top: 0px; flex-wrap: wrap; }  
     .mbblog-widget-post .post-container { grid-template-columns: repeat(1, 1fr); }  
 }
