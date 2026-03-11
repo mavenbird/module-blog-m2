@@ -861,6 +861,12 @@ a.mbblog-comment-action-btn.mbblog-like { color: #333333; }
 .mbblog-widget-post .post-list-item .post-item-wraper { display: flex; flex-direction: column; min-height: 100%; }
 body[class*="mbblog-"] .mb-footer { clear: both; padding-top: 10px;}
 
+.mbblog-post-history  .post-list-content  .mb-post-status {
+    margin-bottom: 12px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 12px;
+}
+
 @media(min-width:1280px) {
 .post-list-content .mb-post-list.products-grid.grid-column-3 { grid-template-columns: repeat(3, 1fr); }
 .post-list-content .mb-post-list.products-grid.grid-column-4 { grid-template-columns: repeat(3, 1fr); }
