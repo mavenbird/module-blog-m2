@@ -15,6 +15,8 @@ $blogShowType = $block->getData('blog_show_type') ?? 'grid'; // default to grid
 <!-- Include Splide CSS & JS -->
 <?php if ($blogShowType === 'slider'): ?>
 <script src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::js/splide.min.js')) ?>" defer></script>
+<link rel="stylesheet" type="text/css" href="<?= $block->getViewFileUrl('Mavenbird_Blog::css/splide.min.css') ?>" />
+<link rel="stylesheet" type="text/css" href="<?= $block->getViewFileUrl('Mavenbird_Blog::css/hyvawidget-post.css') ?>" />
 <?php endif; ?>
 
 <div class="mbblog-widget-post post-list-container <?= $blogShowType === 'slider' ? 'splide-slider-view' : 'grid-view' ?>" style="margin-bottom:50px">
@@ -59,8 +61,8 @@ $blogShowType = $block->getData('blog_show_type') ?? 'grid'; // default to grid
                                     <p><?= /** @noEscape */ $post->getShortDescription() ?></p>
                                 </div>
 
-                                <div class="mb-post-meta-info text-right">
-                                    <a class="mb-read-more hover:underline px-6 py-2.5 font-medium mt-4 rounded-lg"
+                                <div class="mb-post-meta-info text-left">
+                                    <a class="mb-read-more hover:underline py-2.5 font-medium mt-4 rounded-lg text-primary"
                                        href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
                                        title="<?= $escaper->escapeHtmlAttr(__('Read More')) ?>">
                                         <?= $escaper->escapeHtml(__('Read more')) ?>
@@ -86,7 +88,7 @@ $blogShowType = $block->getData('blog_show_type') ?? 'grid'; // default to grid
                     autoplay: false,
                     breakpoints: {
                         1024: { perPage: 3 },
-                        768: { perPage: 2 },
+                        991: { perPage: 2 },
                         480: { perPage: 1 }
                     }
                 }).mount();
