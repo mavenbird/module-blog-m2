@@ -43,6 +43,7 @@
                 <font_color>#00a046</font_color>
                 <date_type>F j, Y</date_type>
                 <pagination>10,20,50</pagination>
+                <short_description_length>12</short_description_length>
             </display>
             <post_view_page>
                 <display_author>1</display_author>

@@ -61,7 +61,7 @@ use Magento\Framework\Escaper;
                                 <?= /** @noEscape */ $block->getPostInfo($post) ?>
                             </div>
                             <div class="post-short-description">
-                                <p><?= /** @noEscape */ $block->maxShortDescription($post->getShortDescription()) ?></p>
+                                <p><?= /** @noEscape */ $block->maxShortDescription($post->getShortDescription(true)) ?></p>
                             </div>
                             <div class="details-sharing">
                                 <div class="mb-post-meta-info">

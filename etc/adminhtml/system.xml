@@ -86,6 +86,11 @@
                     <comment>Comma-separated.</comment>
                     <backend_model>Mavenbird\Blog\Model\Config\Backend\Pagination</backend_model>
                 </field>
+                <field id="short_description_length" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Short Description Character Limit</label>
+                    <validate>validate-digits</validate>
+                    <comment>Maximum characters to display for short description.</comment>
+                </field>
                 <field id="category_accordion" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable Category Accordion View</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>

@@ -54,7 +54,7 @@ $blogShowType = $block->getData('blog_show_type');
                             <div class="post-short-description">
                                 <p><?=
                                     /** @noEscape */
-                                    $post->getShortDescription() ?></p>
+                                    $post->getShortDescription(true) ?></p>
                             </div>
                         </div>
                         <div class="mb-post-meta-info mb-alignright">

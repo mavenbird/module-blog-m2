@@ -58,7 +58,7 @@ $blogShowType = $block->getData('blog_show_type') ?? 'grid'; // default to grid
                                 </div>
 
                                 <div class="post-short-description text-gray-700 mb-2">
-                                    <p><?= /** @noEscape */ $post->getShortDescription() ?></p>
+                                    <p><?= /** @noEscape */ $post->getShortDescription(true) ?></p>
                                 </div>
 
                                 <div class="mb-post-meta-info text-left">
@@ -124,7 +124,7 @@ $blogShowType = $block->getData('blog_show_type') ?? 'grid'; // default to grid
                     </div>
 
                     <div class="post-short-description text-gray-700 mb-2">
-                        <p><?= /** @noEscape */ $post->getShortDescription() ?></p>
+                        <p><?= /** @noEscape */ $post->getShortDescription(true) ?></p>
                     </div>
 
                     <div class="mb-post-meta-info text-right">
