@@ -2,12 +2,12 @@
 .mbblog-widget-post .splide__arrow--prev { left: auto; right: 42px; }
 .mbblog-widget-post .splide__arrow--next { right: 0; }
 .mbblog-widget-post .splide__slide .post-short-description {  
-     display: -webkit-box;
+     /* display: -webkit-box;
      -webkit-line-clamp: 2; 
      -webkit-box-orient: vertical; 
      overflow: hidden; 
      height: 42px;
-     line-height: 1.4;
+     line-height: 1.4; */
      margin: 0 0 16px;
 }
 .mbblog-widget-post .splide__slide .post-item-wraper { min-height: 100%; }

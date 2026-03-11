@@ -860,12 +860,12 @@ a.mbblog-comment-action-btn.mbblog-like { color: #333333; }
 }
 .mbblog-widget-post .post-list-item .mb-post-title  a { color: #333; }
 .mbblog-widget-post .post-list-item .post-short-description {  
-     display: -webkit-box;
+     /* display: -webkit-box;
      -webkit-line-clamp: 2; 
      -webkit-box-orient: vertical; 
      overflow: hidden; 
      height: 42px;
-     line-height: 1.4;
+     line-height: 1.4; */
      margin: 0 0 16px;
 }
 .mbblog-widget-post .post-list-item .post-image { margin-bottom: 12px; }    
