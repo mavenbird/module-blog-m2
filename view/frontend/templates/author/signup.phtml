@@ -27,7 +27,7 @@ use Magento\Framework\Escaper;
 $author = $block->getAuthor();
 ?>
 <form enctype="multipart/form-data" data-mage-init='{"validation": {}}'
-      action="<?= $escaper->escapeHtml($block->getUrl('mbblog/author/register')) ?>" method="post" class="form"
+      action="<?= $escaper->escapeHtml($block->getUrl('mbblog/author/register')) ?>" method="post" class="form author-form"
       name="mb_blog_author_form">
     <fieldset class="fieldset">
         <legend class="legend">
@@ -147,10 +147,6 @@ $author = $block->getAuthor();
 
     .mb-field .label {
         width: 30%;
-    }
-
-    .sidebar.sidebar-main:before {
-        content: unset !important;
     }
     @media (max-width: 768px) {
         fieldset.fieldset {

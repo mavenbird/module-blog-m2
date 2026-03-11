@@ -9,6 +9,7 @@ $blogShowType = $block->getData('blog_show_type');
 ?>
 
 <div class="post-list-container" id="mbblog-list">
+
     <div class="widget-title">
         <a class="text-2xl font-medium"
            href="<?= $escaper->escapeUrl($block->getBlogUrl('')) ?>">
@@ -19,53 +20,53 @@ $blogShowType = $block->getData('blog_show_type');
     <?php if ($blogShowType == 'slider'): ?>
         <div class="owl-carousel blog-post-carousel">
     <?php endif; ?>
+    <div class="post-container">
+        <?php foreach ($posts as $post): ?>
+            <div class="post-list-item" style="margin-left:5px">
+                <div class="post-item-wraper">
 
-    <?php foreach ($posts as $post): ?>
-        <div class="post-list-item" style="margin-left:5px">
-            <div class="post-item-wraper">
-
-                <?php if ($post->getImage()): ?>
-                    <div class="post-image">
-                        <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
-                            <img class="img-responsive" style="height:220px"
-                                 src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(),'400x')) ?>"
-                                 alt="<?= $escaper->escapeHtml($post->getName()) ?>" />
-                        </a>
-                    </div>
-                <?php endif; ?>
-
-                <div class="post-info-wraper">
-                    <h2 class="mb-post-title" style="font-size:22px">
-                        <a class="post-link-title"
-                           title="<?= $escaper->escapeHtmlAttr($post->getName()) ?>"
-                           href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
-                            <?= $escaper->escapeHtml($post->getName()) ?>
-                        </a>
-                    </h2>
-
-                    <div class="mb-post-info">
-                        <?= /** @noEscape */ $block->getPostInfo($post) ?>
-                    </div>
-
-                    <div class="post-short-description">
-                        <p><?= /** @noEscape */ $post->getShortDescription() ?></p>
-                    </div>
-
-                    <div class="mb-post-meta-info mb-alignright">
-                        <div class="actions">
-                            <a class="mb-read-more"
-                               href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
-                               title="<?= $escaper->escapeHtmlAttr(__('Read More')) ?>">
-                                <?= $escaper->escapeHtml(__('Read more')) ?>
+                    <?php if ($post->getImage()): ?>
+                        <div class="post-image">
+                            <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
+                                <img class="img-responsive" style="height:220px"
+                                    src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(),'400x')) ?>"
+                                    alt="<?= $escaper->escapeHtml($post->getName()) ?>" />
                             </a>
                         </div>
+                    <?php endif; ?>
+
+                    <div class="post-info-wraper">
+                        <h3 class="mb-post-title" style="font-size:22px">
+                            <a class="post-link-title"
+                            title="<?= $escaper->escapeHtmlAttr($post->getName()) ?>"
+                            href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
+                                <?= $escaper->escapeHtml($post->getName()) ?>
+                            </a>
+                        </h3>
+
+                        <div class="mb-post-info">
+                            <?= /** @noEscape */ $block->getPostInfo($post) ?>
+                        </div>
+
+                        <div class="post-short-description">
+                            <p><?= /** @noEscape */ $post->getShortDescription() ?></p>
+                        </div>
+
+                        <div class="mb-post-meta-info mb-alignright">
+                            <div class="mb-read-more">
+                                <a class="action primary"
+                                href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
+                                title="<?= $escaper->escapeHtmlAttr(__('Read More')) ?>">
+                                    <?= $escaper->escapeHtml(__('Read more')) ?>
+                                </a>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
-
             </div>
-        </div>
-    <?php endforeach; ?>
-
+        <?php endforeach; ?>
+    </div>
     <?php if ($blogShowType == 'slider'): ?>
         </div>
 

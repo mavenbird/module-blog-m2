@@ -752,6 +752,82 @@ a.mbblog-comment-action-btn.mbblog-like { color: #333333; }
     border-radius: 5px; background: #fff;
 }
 
+/*Luma form fileds desiging */
+.mbblog-author-information .author-form .actions-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+} 
+.mbblog-author-information .form.author-form {
+    border: 1px solid #ddd;
+    padding: 20px;
+}
+.mbblog-author-information .author-form .legend > span {
+    margin-right: 5px;
+    font-weight: 600;
+}
+.mbblog-post-history .post-list-content .image-content {
+    display: flex;
+    gap: 15px;
+}
+.mbblog-post-history .post-list-content .post-item-wraper {
+    border: 1px solid #ddd;
+    padding: 20px;
+    position: relative;
+    margin-top: 12px;
+}
+.mbblog-post-history .post-list-content .post-info-action {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    gap: 10px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mbblog-post-history .post-list-content .pager {
+    margin-top: 20px;
+}
+.mbblog-post-history .post-list-content .mb-post-meta-info,
+.cms-home .mb-post-meta-info{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.mbblog-post-history .post-list-content .actions,
+.cms-home .mb-post-meta-info .actions{
+    border: 1px solid #ddd;
+    padding: 5px 15px;
+    margin-top: 8px;
+}
+.mbblog-post-history .post-list-content .mb-post-info {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+.mbblog-post-history .modal-popup .modal-title { font-weight: 600; }
+/* cms hhome page design */
+.cms-home .post-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    gap: 15px;
+}
+.cms-home .post-list-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+}
+.cms-home .mb-post-info {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 3px;
+}
 @media(min-width:1280px) {
 .post-list-content .mb-post-list.products-grid.grid-column-3 { grid-template-columns: repeat(3, 1fr); }
 .post-list-content .mb-post-list.products-grid.grid-column-4 { grid-template-columns: repeat(3, 1fr); }
@@ -815,7 +891,7 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .sidebar-main 
 .page-main .mb-footer { clear: both; padding-top: 10px;}
 .mb-footer span.mb-footer-links-light h3 { max-width: 100%; }
 .mb-post-list .post-info { padding: 0; }
-
+.modal-popup .modal-inner-wrap { margin: 3rem auto; width: 50%; }
 }
 @media (max-width: 767px) {
     .sidebar .product.data.items > .item.title .data.switch { padding: 1px 10px 1px 10px; border-right: 1px solid #ccc; 
@@ -854,6 +930,7 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .sidebar-main 
     .mbblog-tag-view .page-title { font-size: 2.6rem; }
     .post-list-content .mb-post-list.products-grid { grid-template-columns: 1fr; gap: 12px; }
     .post-list-content .products-grid .post-image img { height: auto; }
+    .mbblog-post-history .modal-popup.modal-slide._inner-scroll .modal-inner-wrap { margin: 3rem auto; width: 80%; position: fixed; left: 0; }
 }
 
 @media (max-width: 575px) { 
@@ -875,6 +952,10 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .sidebar-main 
         margin: 10px 0 0 0 ; border-top: none; }
     .topic-list .related-content-container {display: grid; grid-template-columns: repeat(1, 1fr); gap: 10px; }
     .products-same-post .products-grid .product-items { grid-template-columns: 1fr; }
+    .mbblog-post-history .modal-popup.modal-slide._inner-scroll .modal-inner-wrap { margin: 3rem auto; width: 90%; position: fixed; left: 0; padding: 8px;}
+    .mbblog-post-history .modal-popup .modal-header, 
+    .mbblog-post-history .modal-popup .modal-content, 
+    .mbblog-post-history .modal-popup .modal-footer { padding-left: 10px; padding-right: 10px; }
 }
 @media (max-width: 400px){
     .sidebar-info .list-post-tabs { flex-direction: column; align-items: center; gap: 10px; }    
