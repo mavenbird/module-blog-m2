@@ -42,7 +42,6 @@ $author = $block->getAuthor();
             </legend>
         </div>
 
-        <br>
         <div class="field required mb-field ">
             <label for="name" class="label"><span><?= $escaper->escapeHtml(__('Display Name ')) ?></span></label>
             <div class="control">
@@ -55,7 +54,7 @@ $author = $block->getAuthor();
             <div class="field mb-field">
                 <label for="name" class="label"><span><?= $escaper->escapeHtml(__('Status')) ?></span></label>
                 <div class="control">
-                    <span><?= $escaper->escapeHtml($author['status']) ?></span>
+                    <span class="post-status"><?= $escaper->escapeHtml($author['status']) ?></span>
                 </div>
             </div>
         <?php endif; ?>
@@ -65,7 +64,7 @@ $author = $block->getAuthor();
                 <span><?= $escaper->escapeHtml(__('Short Description')) ?></span>
             </label>
             <div class="control">
-                <textarea  name="short_description" id="short_description" rows="5" cols="19">
+                <textarea  name="short_description" id="short_description" class="w-full" rows="5" cols="19">
                     <?= /* @noEscape */
                     $author['short_description']
                         ? $block->getPageFilter($author['short_description']) : '' ?>
@@ -75,7 +74,7 @@ $author = $block->getAuthor();
         <div class="field mb-field">
             <label for="image" class="label"><span><?= /* @noEscape */
                     __('Avatar') ?></span></label>
-            <div class="control" style="display: flex">
+            <div class="control w-full">
                 <?php if (!empty($author['image'])) : ?>
                     <a class="mb-image-link" style="margin-right: 15px;"
                        href="<?= $escaper->escapeUrl($block->getImageUrl($author['image'], 'auth')) ?>">
@@ -89,9 +88,9 @@ $author = $block->getAuthor();
                 <input type="file" name="image" id="image" value="<?= $escaper->escapeHtml($author['image']) ?>"
                        title="<?= $escaper->escapeHtmlAttr(__('Avatar')) ?>"
                        class="input-file"
-                       style="width: 90%;position: relative;top: -5px">
+                       style="position: relative;">
                 <?php if (!empty($author['image'])) : ?>
-                    <span class="delete-image" style="display: inline-flex;">
+                    <span class="delete-image">
                     <input  type="checkbox" name="image[delete]" value="1" class="checkbox"
                             id="post_image_delete">
                     <label for="post_image_delete"> Delete Image</label>

@@ -144,7 +144,7 @@ HTML
                                     </p>
                                 </div>
                                 <div class="mb-post-meta-info mb-alignright">
-                                    <div class="btn actions">
+                                    <div class="actions">
                                         <a class="mb-read-more" href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
                                            title="<?= $escaper->escapeHtmlAttr(__('Read More')) ?>">
                                             <?= $escaper->escapeHtml(__('Read More')) ?>
@@ -156,31 +156,16 @@ HTML
                          
                             <div class="post-info-action" data-postId="<?= $escaper->escapeHtml($post->getId()); ?>">
                                 <div class="mbblog-post-duplicate"
-                                     onclick='handleDuplicate(this,<?= /** @noEscape */ $post->getId() ?>, "<?= /** @noEscape */ $post->getImage() ?>")'
-                                >
-                                    <img
-                                        src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/duplicate.svg')) ?>"
-                                        align="middle"
-                                        alt="<?= $escaper->escapeHtmlAttr(__('Duplicate')); ?>"
-                                        title="<?= $escaper->escapeHtmlAttr(__('Duplicate')) ?>"
-                                    />
+                                     onclick='handleDuplicate(this,<?= /** @noEscape */ $post->getId() ?>, "<?= /** @noEscape */ $post->getImage() ?>")'>
+                                  <i class="fa-regular fa-clone" title="<?= $escaper->escapeHtmlAttr(__('Duplicate')) ?>"></i>
                                 </div>
                                 <div class="mbblog-post-edit"
-                                     onclick='handleEdit(this,<?= /** @noEscape */ $post->getId() ?>, "<?= /** @noEscape */ $post->getImage() ?>")'
-                                >
-                                    <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/writing.svg')) ?>"
-                                         align="middle"
-                                         alt="<?= $escaper->escapeHtmlAttr(__('Edit')); ?>"
-                                         title="<?= $escaper->escapeHtmlAttr(__('Edit')) ?>"
-                                    />
+                                     onclick='handleEdit(this,<?= /** @noEscape */ $post->getId() ?>, "<?= /** @noEscape */ $post->getImage() ?>")'>
+                                    <i class="fa-solid fa-pen-to-square" title="<?= $escaper->escapeHtmlAttr(__('Edit')) ?>"></i>
                                 </div>
                                 <div class="mbblog-post-delete"
                                         onclick="openDeleteConfirm(<?= $escaper->escapeHtml($post->getId()); ?>,'<?= $escaper->escapeHtml($post->getName()); ?>')">
-                                    <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/delete.svg')) ?>"
-                                         align="middle"
-                                         alt="<?= $escaper->escapeHtmlAttr(__('Delete')) ?>"
-                                         title="<?= $escaper->escapeHtmlAttr(__('Delete')) ?>"
-                                    />
+                                    <i class="fa-solid fa-trash-can" title="<?= $escaper->escapeHtmlAttr(__('Delete')) ?>"></i>
                                 </div>
                             </div>
                         </div>

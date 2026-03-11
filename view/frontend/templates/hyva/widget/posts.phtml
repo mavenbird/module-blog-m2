@@ -60,7 +60,7 @@ $blogShowType = $block->getData('blog_show_type') ?? 'grid'; // default to grid
                                 </div>
 
                                 <div class="mb-post-meta-info text-right">
-                                    <a class="mb-read-more hover:underline px-6 py-2.5 border border-gray-400 text-white bg-indigo-700 font-medium mt-4 rounded-lg"
+                                    <a class="mb-read-more hover:underline px-6 py-2.5 font-medium mt-4 rounded-lg"
                                        href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
                                        title="<?= $escaper->escapeHtmlAttr(__('Read More')) ?>">
                                         <?= $escaper->escapeHtml(__('Read more')) ?>
@@ -126,7 +126,7 @@ $blogShowType = $block->getData('blog_show_type') ?? 'grid'; // default to grid
                     </div>
 
                     <div class="mb-post-meta-info text-right">
-                        <a class="mb-read-more px-6 py-2.5 border border-gray-400 text-white bg-indigo-700 font-medium mt-4 rounded-lg hover:underline"
+                        <a class="mb-read-more px-6 py-2.5  font-medium mt-4 rounded-lg hover:underline"
                            href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
                            title="<?= $escaper->escapeHtmlAttr(__('Read More')) ?>">
                             <?= $escaper->escapeHtml(__('Read more')) ?>

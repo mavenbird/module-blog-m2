@@ -363,17 +363,44 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .column.main {
 .mbblog-post-history .column.main .popup-container {
     width: 50%;
 }
-.mbblog-post-history .mb-field,
-.mbblog-author-information .mb-field { display: flex; margin-top: 25px;}
-.mbblog-post-history .mb-field .control { width: 100%; }
-.mbblog-post-history .mb-field .control .delete-image { width: 65%; }
+.mbblog-post-history .mb-field, .mbblog-author-signup .mb-field, 
+.mbblog-author-information .author-form .mb-field,
+.mbblog-post-history .add-post-form .mb-field { margin-top: 25px; display: flex;}
+
+.mbblog-post-history .mb-field .control { display: flex; align-items: center; width: 100%; }
+
+.mbblog-post-history .mb-field .control .input-file[type="file"],
+.mbblog-author-information .mb-field .control .input-file[type="file"],
+.mbblog-author-signup .mb-field .control .input-file[type="file"] {
+    border: 1px solid #8aa1bd;
+    padding: 8px 5px;
+    border-radius: 8px;
+    margin-right: 20px;
+    width: 100%;
+}
+.mbblog-author-signup .mb-field .control .mb_full_url,
+.mbblog-author-information .mb-field .control .mb_full_url,
+.mbblog-post-history .mb-field .control .mb_full_url,
+.mbblog-author-information .author-form .mb-field .post-status span{
+    border: 1px solid #8aa1bd;
+    padding: 8px 5px;
+    border-radius: 8px;
+    width: 100%;
+    display: inline-flex;
+}
+.mbblog-post-history .mb-field .control .delete-image { width: 65%; display: inline-flex; align-items: center; gap: 5px;}
+.mbblog-post-history .mb-field .delete-image label { margin: 0; }
 .mbblog-post-history .mb-field .label { width: 30%; }
 .mbblog-post-history .sidebar.sidebar-main:before { content: unset !important; }
-.mbblog-author-information #blog_signup_author {
+.mbblog-author-signup .author-form, .mbblog-author-information .author-form {
     background: #fff;
-    padding: 20px;
     border-radius: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
+}
+.image-content-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 .mbblog-post-history .post-list-content .post-item-wraper {position: relative;}
 .mbblog-author-information .column.main .mb-blog-new-post .btn-primary {  display: flex;}
@@ -405,22 +432,8 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .column.main {
 .sidebar .blog-content-nav li { margin-bottom: 8px; }
 .mbblog-post-history #mb_blog_post_form form{ margin: 0px 10px; }
 .mbblog-post-history #mb-blog-new-post-popup { padding: 20px; }  
-.mbblog-post-history .mb-post-meta-info.mb-alignright { display: flex; align-items: center; justify-content: end; }
-
-.mbblog-post-history .mb-post-status.mb-post-approved { color: grey; font-size: 14px; }
 .mb-blog-new-post {  height: 60px; }
-.post-info-action {
-    display: flex;
-    position: absolute;
-    float: right;
-    right: 10px;
-    top: 10px;
-}
-.post-info-action div {
-    margin: 0 10px;
-    width: 25px;
-    cursor: pointer;
-}
+.post-info-action div { cursor: pointer; }
 /* Inline css that need to remove from php files */
 .product-item .price-box { margin: 10px 0 25px; }
 .product-item-info:hover .btn.btn-primary { display: block;  }

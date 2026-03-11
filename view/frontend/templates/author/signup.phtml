@@ -46,7 +46,7 @@ $author = $block->getAuthor();
             <div class="field mb-field">
                 <label for="name" class="label"><span><?= $escaper->escapeHtml(__('Status')) ?></span></label>
                 <div class="control">
-                    <span><?= $escaper->escapeHtml($author['status']) ?></span>
+                    <span class="post-status"><?= $escaper->escapeHtml($author['status']) ?></span>
                 </div>
             </div>
         <?php endif;?>
@@ -78,7 +78,7 @@ $author = $block->getAuthor();
                 <input type="file" name="image" id="image" value="<?= $escaper->escapeHtml($author['image']) ?>"
                        title="<?= $escaper->escapeHtmlAttr(__('Avatar')) ?>"
                        class="input-file"
-                       style="width: 90%;position: relative;top: -5px">
+                       style="position: relative;">
                 <?php if (!empty($author['image'])) : ?>
                     <span class="delete-image">
                     <input style="width: 8%" type="checkbox" name="image[delete]" value="1" class="checkbox" id="post_image_delete">
@@ -122,7 +122,7 @@ $author = $block->getAuthor();
         </div>
     </fieldset>
     <div class="actions-toolbar">
-        <div class="primary">
+        <div class="author-submit-btn">
             <button type="submit" class="action submit primary"
                     title="<?= /* @noEscape */ $author['name'] === '' ? __('Submit') : __('Save') ?>">
                 <span>
@@ -138,7 +138,7 @@ $author = $block->getAuthor();
     }
 
     .mb-field .control{
-        width: 70%;
+        width: 100%;
     }
 
     .mb-field .control .delete-image{
