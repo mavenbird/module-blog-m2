@@ -22,10 +22,7 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <css src="Mavenbird_Core::css/grid-mavenbird.css"/>
-        <css src="Mavenbird_Core::css/font-awesome.min.css"/>
         <css src="Mavenbird_Blog::css/hyvaBlog.css"/>
-
         <script src="Mavenbird_Blog::js/splide.min.js" />
     </head>
     <body>
