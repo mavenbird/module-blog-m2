@@ -26,10 +26,12 @@
         <css src="Mavenbird_Blog::css/managePost.css"/>
     </head>
     <body>
+        <attribute name="class" value="account"/>
         <referenceContainer name="sidebar.main">
             <block class="Magento\Framework\View\Element\Template" name="sidebar.main.blog_nav" template="Magento_Theme::html/collapsible.phtml" before="-">
                 <arguments>
                     <argument name="block_css" xsi:type="string">block-collapsible-nav</argument>
+                    <argument name="block_title" xsi:type="string" translate="true">My Blog</argument>
                 </arguments>
                 <block class="Mavenbird\Blog\Block\Navigation" name="blog_account_navigation" before="-">
                     <arguments>
