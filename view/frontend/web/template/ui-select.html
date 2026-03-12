@@ -1,4 +1,3 @@
-
 <!-- ko ifnot: disableLabel -->
 <label class="admin__form-field-label" data-bind="attr: {for: uid}
 ">
@@ -68,7 +67,7 @@ outerClick: outerClick.bind($data)
         <!-- ko if: filterOptions -->
         <div class="admin__action-multiselect-search-wrap">
             <input class="admin__control-text admin__action-multiselect-search" data-role="advanced-select-text"
-                   type="text" data-bind="
+                type="text" data-bind="
         event: {
             keydown: filterOptionsKeydown
         },
@@ -84,11 +83,7 @@ outerClick: outerClick.bind($data)
             </div>
         </div>
         <!-- /ko -->
-        <ul class="admin__action-multiselect-menu-inner _root" data-bind="
-        event: {
-            mousemove: function(data, event){onMousemove($data, event)}
-        }
-    ">
+        <ul class="admin__action-multiselect-menu-inner _root">
             <!-- ko foreach: { data: options, as: 'option'}  -->
             <li class="admin__action-multiselect-menu-inner-item _root" data-bind="css: { _parent: $data.optgroup }"
                 data-role="option-group">
@@ -117,12 +112,12 @@ outerClick: outerClick.bind($data)
                     <!-- /ko-->
                     <!--ko if: $parent.showCheckbox-->
                     <input class="admin__control-checkbox" type="checkbox" tabindex="-1"
-                           data-bind="attr: { 'checked': $parent.isSelected(option.value) }">
+                        data-bind="attr: { 'checked': $parent.isSelected(option.value) }">
                     <!-- /ko-->
                     <label class="admin__action-multiselect-label">
                         <span data-bind="text: option.label"></span>
                         <span if="$parent.getPath(option)" class="admin__action-multiselect-item-path"
-                              data-bind="text: $parent.getPath(option)"></span>
+                            data-bind="text: $parent.getPath(option)"></span>
                     </label>
                 </div>
                 <!-- ko if: $data.optgroup -->
@@ -135,7 +130,7 @@ outerClick: outerClick.bind($data)
         <!-- ko if: $data.closeBtn -->
         <div class="admin__action-multiselect-actions-wrap">
             <button class="action-default" data-action="close-advanced-select" type="button"
-                    data-bind="click: outerClick">
+                data-bind="click: outerClick">
                 <span translate="closeBtnLabel"></span>
             </button>
         </div>
