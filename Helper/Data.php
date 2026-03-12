@@ -363,6 +363,17 @@ class Data extends CoreHelper
      *
      * @return mixed
      */
+    public function getSeoConfig($code, $storeId = null)
+    {
+        return $this->getBlogConfig('seo/' . $code, $storeId);
+    }
+
+    /**
+     * @param $code
+     * @param null $storeId
+     *
+     * @return mixed
+     */
     public function getIndexPageConfig($code, $storeId = null)
     {
         return $this->getBlogConfig('index_page/' . $code, $storeId);

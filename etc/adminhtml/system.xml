@@ -376,6 +376,26 @@
                     </field>
                 </group>
             </group>
+            <group id="seo" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>SEO Settings</label>
+                <field id="blog_seo_meta_title" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Meta Title</label>
+                </field>
+                <field id="blog_seo_meta_description" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Meta Description</label>
+                </field>
+                <field id="blog_seo_meta_keywords" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Meta Keywords</label>
+                </field>
+                <!-- <field id="blog_seo_meta_robots" translate="label comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Meta Robots</label>
+                    <frontend_model>Mavenbird\Blog\Model\Config\Source\SeoRobots</frontend_model>
+                </field> -->
+                <field id="blog_seo_meta_robots" translate="label comment" type="select" sortOrder="45" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Meta Robots</label>
+                    <source_model>Mavenbird\Blog\Model\Config\Source\SeoRobots</source_model>
+                </field>
+            </group>
         </section>
     </system>
 </config>

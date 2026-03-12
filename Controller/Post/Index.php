@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Mavenbird
  *
@@ -67,8 +68,24 @@ class Index extends Action
     public function execute()
     {
         $page = $this->resultPageFactory->create();
+
         $page->getConfig()->setPageLayout($this->_helperBlog->getSidebarLayout());
 
+        $page->getConfig()->getTitle()->set(
+            $this->_helperBlog->getSeoConfig('blog_seo_meta_title')
+        );
+        $page->getConfig()->setMetadata(
+            'description',
+            $this->_helperBlog->getSeoConfig('blog_seo_meta_description')
+        );
+        $page->getConfig()->setMetadata(
+            'keywords',
+            $this->_helperBlog->getSeoConfig('blog_seo_meta_keywords')
+        );
+        $page->getConfig()->setMetadata(
+            'robots',
+            $this->_helperBlog->getSeoConfig('blog_seo_meta_robots')
+        );
         return $page;
     }
 }
