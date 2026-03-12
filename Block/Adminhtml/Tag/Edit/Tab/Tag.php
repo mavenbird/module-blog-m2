@@ -171,6 +171,28 @@ class Tag extends Generic implements TabInterface
                 'value' => $this->_storeManager->getStore()->getId()
             ]);
         }
+        $fieldset->addField('meta_title', 'text', [
+        'name'  => 'meta_title',
+        'label' => __('Meta Title'),
+        'title' => __('Meta Title')
+        ]);
+        $fieldset->addField('meta_description', 'text', [
+        'name'  => 'meta_description',
+        'label' => __('Meta Description'),
+        'title' => __('Meta Description')
+        ]);
+        $fieldset->addField('meta_keywords', 'text', [
+        'name'  => 'meta_keywords',
+        'label' => __('Meta Keywords'),
+        'title' => __('Meta Keywords')
+        ]);
+        $fieldset->addField('meta_robots', 'select', [
+        'name'  => 'meta_robots',
+        'label' => __('Meta Robots'),
+        'title' => __('Meta Robots'),
+        'values' => $this->metaRobots->toOptionArray(),
+        ]);
+
 
         $form->addValues($tag->getData());
         $this->setForm($form);

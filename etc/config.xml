@@ -105,6 +105,12 @@
                     <x_share>0</x_share>
                 </x_platform>
             </platforms>
+            <seo>
+                <blog_seo_meta_title>1</blog_seo_meta_title>
+                <blog_seo_meta_description>1</blog_seo_meta_description>
+                <blog_seo_meta_keywords>1</blog_seo_meta_keywords>
+                <blog_seo_meta_robots>INDEX,FOLLOW</blog_seo_meta_robots>
+            </seo>
         </blog>
     </default>
 </config>

@@ -45,7 +45,6 @@ use Mavenbird\Blog\Helper\Image;
 use Mavenbird\Blog\Model\Config\Source\Author;
 use Mavenbird\Blog\Model\Config\Source\AuthorStatus;
 use Mavenbird\Blog\Model\Config\Source\ListOfStaticBlock;
-
 /**
  * Class Post
  * @package Mavenbird\Blog\Block\Adminhtml\Post\Edit\Tab
@@ -157,7 +156,6 @@ class Post extends Generic implements TabInterface
         $this->_author           = $author;
         $this->_status           = $status;
         $this->_staticBlockOptions = $staticBlockOptions;
-
         parent::__construct($context, $registry, $formFactory, $data);
     }
 
@@ -224,6 +222,7 @@ class Post extends Generic implements TabInterface
             'name'   => 'post_content',
             'label'  => __('Content'),
             'title'  => __('Content'),
+            'required' => true,
             'config' => $this->wysiwygConfig->getConfig([
                 'add_variables'  => false,
                 'add_widgets'    => true,
@@ -323,6 +322,12 @@ class Post extends Generic implements TabInterface
             'name'  => 'meta_keywords',
             'label' => __('Meta Keywords'),
             'title' => __('Meta Keywords')
+        ]);
+        $fieldset->addField('meta_robots', 'select', [
+            'name'   => 'meta_robots',
+            'label'  => __('Meta Robots'),
+            'title'  => __('Meta Robots'),
+            'values' => $this->metaRobotsOptions->toOptionArray(),
         ]);
         $this->_eventManager->dispatch('after_adminhtml_blog_post_info_tab', ['fieldset' => $fieldset]);
 

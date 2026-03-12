@@ -189,6 +189,12 @@ class Category extends Generic implements TabInterface
             'label' => __('Meta Keywords'),
             'title' => __('Meta Keywords')
         ]);
+        $fieldset->addField('meta_robots', 'select', [
+            'name'   => 'meta_robots',
+            'label'  => __('Meta Robots'),
+            'title'  => __('Meta Robots'),
+            'values' => $this->metaRobotsOptions->toOptionArray(),
+        ]);
 
         $form->addValues($category->getData());
         $this->setForm($form);
