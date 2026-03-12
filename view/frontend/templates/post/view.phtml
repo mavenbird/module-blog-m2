@@ -56,24 +56,24 @@ $nextPost = $block->getNextPost();
             </div>
             <?php if ($block->getDisplayNavigationBlog() && ($previousPost || $nextPost)): ?>
                 <div class="mb-blog-navigation">
-
-                    <div class="mb-blog-prev">
-                        <?php if ($previousPost && $previousPost->getId()): ?>
+                
+                    <?php if ($previousPost && $previousPost->getId()): ?>
+                        <div class="mb-blog-prev">
                             <a href="<?= $escaper->escapeUrl($previousPost->getUrl()) ?>">
-                                 <?= __('Previous Post') ?><br>
+                                <?= __('Previous Post') ?><br>
                                 <strong><?= $escaper->escapeHtml($previousPost->getName()) ?></strong>
                             </a>
-                        <?php endif; ?>
-                    </div>
-
-                    <div class="mb-blog-next" style="text-align:right;">
-                        <?php if ($nextPost && $nextPost->getId()): ?>
+                        </div>
+                    <?php endif; ?>
+                
+                    <?php if ($nextPost && $nextPost->getId()): ?>
+                        <div class="mb-blog-next" style="text-align:right;">
                             <a href="<?= $escaper->escapeUrl($nextPost->getUrl()) ?>">
                                 <?= __('Next Post') ?> <br>
                                 <strong><?= $escaper->escapeHtml($nextPost->getName()) ?></strong>
                             </a>
-                        <?php endif; ?>
-                    </div>
+                        </div>
+                    <?php endif; ?>
 
                 </div>
             <?php endif; ?>
