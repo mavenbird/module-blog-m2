@@ -180,12 +180,13 @@ class Manage extends Action
         $data['enabled']     = $this->_helperBlog->getConfigGeneral('auto_post') ? 1 : 0;
         $data['in_rss']      = '0';
         $storeIds = (array)$data['store_ids'];
-        $selectedRobots = $data['meta_robots'];
+        $selectedRobots = isset($data['meta_robots']) ? $data['meta_robots'] : 'INDEX,FOLLOW';
         $robots = [0 => $selectedRobots];
         foreach ($storeIds as $storeId) {
             $robots[$storeId] = $selectedRobots;
         }
         $data['meta_robots'] = json_encode($robots);
+        $data['layout']      = 'empty';
         $data['layout']      = 'empty';
         /** Set specify field data */
         try {
