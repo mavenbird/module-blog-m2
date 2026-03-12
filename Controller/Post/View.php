@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Mavenbird
  *
@@ -128,7 +129,7 @@ class View extends Action
      */
     protected $postFactory;
 
-     /**
+    /**
      * @var Registry
      */
     protected $coreRegistry;
@@ -198,12 +199,16 @@ class View extends Action
     {
         $id   = $this->getRequest()->getParam('id');
         $post = $this->helperBlog->getFactoryByType(Data::TYPE_POST)->create()->load($id);
+        $metaRobots = $post->getMetaRobots(); // or getMetaRobots()
         $this->helperBlog->setCustomerContextId();
 
         $page       = $this->resultPageFactory->create();
         $pageLayout = ($post->getLayout() === 'empty') ? $this->helperBlog->getSidebarLayout() : $post->getLayout();
         $page->getConfig()->setPageLayout($pageLayout);
-
+        $page->getConfig()->setMetadata(
+            'robots',
+            $metaRobots
+        );
         if ($post->getEnabled() !== '1' || !$this->helperBlog->checkStore($post)) {
             return $this->_redirect('noroute');
         }
@@ -267,8 +272,7 @@ class View extends Action
 
             return $this->getResponse()->representJson($this->jsonHelper->jsonEncode($result));
         }
-
-        return $this->resultPageFactory->create();
+        return $page;
     }
 
     /**

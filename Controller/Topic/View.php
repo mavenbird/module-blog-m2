@@ -81,6 +81,8 @@ class View extends Action
         $topic = $this->helperBlog->getFactoryByType(HelperBlog::TYPE_TOPIC)->create()->load($id);
         $page = $this->resultPageFactory->create();
         $page->getConfig()->setPageLayout($this->helperBlog->getSidebarLayout());
+        $metaRobots = $topic->getMetaRobots();
+        $page->getConfig()->setMetadata('robots',$metaRobots);
 
         return $topic->getEnabled() ? $page : $this->_redirect('noroute');
     }

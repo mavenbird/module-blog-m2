@@ -387,13 +387,9 @@
                 <field id="blog_seo_meta_keywords" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Meta Keywords</label>
                 </field>
-                <!-- <field id="blog_seo_meta_robots" translate="label comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Meta Robots</label>
-                    <frontend_model>Mavenbird\Blog\Model\Config\Source\SeoRobots</frontend_model>
-                </field> -->
                 <field id="blog_seo_meta_robots" translate="label comment" type="select" sortOrder="45" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
                     <label>Meta Robots</label>
-                    <source_model>Mavenbird\Blog\Model\Config\Source\SeoRobots</source_model>
+                    <source_model>Magento\Config\Model\Config\Source\Design\Robots</source_model>
                 </field>
             </group>
         </section>
