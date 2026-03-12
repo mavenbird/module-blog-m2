@@ -70,9 +70,9 @@ $author = $block->getAuthor();
         <div class="field mb-field">
             <label for="image" class="label"><span><?= /* @noEscape */
                     __('Avatar') ?></span></label>
-            <div class="control">
+            <div class="control w-full">
                 <?php if (!empty($author['image'])) : ?>
-                    <a class="mb-image-link"
+                    <a class="mb-image-link" 
                        href="<?= $escaper->escapeUrl($block->getImageUrl($author['image'], 'auth')) ?>" >
                         <img src="<?= $escaper->escapeUrl($block->getImageUrl($author['image'], 'auth')) ?>"
                              id="post_image_image"

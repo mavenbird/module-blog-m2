@@ -19,14 +19,15 @@
  */
 
 .mb-post-status {
-    padding: 5px;
+    padding: 7px 14px;
     position: absolute;
-    top: 1px;
-    left: 1px;
+    top: 20px;
+    left: 20px;
     color: white;
-    border-radius: 5px;
-    font-size: 10px;
+    border-radius: 3px;
+    font-size: 12px;
     z-index: 5;
+    font-weight: 600;
 }
 
 .mb-post-disapproved {
@@ -42,13 +43,12 @@
 }
 
 .mb-blog-new-post {
-    height: 60px;
+    height: 45px;
 }
 
 .mb-blog-new-post button {
-    float: right;
-    margin: 10px;
-    padding: 10px 30px
+    float: right; 
+    outline: none;
 }
 
 .post-item-wraper {
@@ -68,8 +68,8 @@
 }
 
 .post-info-action div {
-    margin: 0 10px;
-    width: 25px;
+    margin: 0px 8px;
+    width: 20px;
     cursor: pointer;
 }
 
@@ -84,7 +84,7 @@
 
 .mb-field {
     display: flex;
-    padding: 0 10%;
+    /* padding: 0 10%; */
 }
 
 .mb-field .label {
@@ -233,8 +233,8 @@ input[type="checkbox"] {
 }
 
 .admin__action-multiselect-tree .action-menu-item._expended .admin__action-multiselect-dropdown:before {
-    line-height: 28px;
-    content: '\e621';
+    /* line-height: 28px; */ font-size: 15px;
+    content: '\e621';  right: 0; margin-left: 8px;
     font-family: 'luma-icons';
 }
 
@@ -250,7 +250,8 @@ input[type="checkbox"] {
     background: #ffffff;
     color: #a79d95;
     content: '\e622';
-    font-size: 2.2rem;
+    font-size: 16px;
+    margin-left: 6px;
     font-family: 'luma-icons';
 }
 
@@ -271,7 +272,7 @@ input[type="checkbox"] {
 }
 
 .admin__action-multiselect-tree .admin__action-multiselect-menu-inner-item {
-    position: relative;
+    position: relative; margin-bottom: 0;
 }
 
 .admin__action-multiselect-tree .admin__action-multiselect-menu-inner-item:last-child:before {
@@ -313,7 +314,7 @@ input[type="checkbox"] {
 }
 
 .admin__action-multiselect-tree .admin__action-multiselect-menu-inner-item._root:before {
-    left: 3.2rem;
+    left: 3.3rem;
     top: 1rem;
 }
 
@@ -330,13 +331,13 @@ input[type="checkbox"] {
 }
 
 .admin__action-multiselect-tree .admin__action-multiselect-label {
-    line-height: 2.2rem;
-    vertical-align: middle;
+    /* line-height: 2.2rem;
+    vertical-align: middle; */
     word-break: break-all;
 }
 
 .admin__action-multiselect-tree .admin__action-multiselect-label:before {
-    left: 1rem;
+    left: 1.5rem;
     position: absolute;
     top: 1.4rem;
 }
@@ -543,11 +544,11 @@ input[type="checkbox"] {
     min-width: 4rem;
 }
 
-button, input, optgroup, select, textarea, .block-footer .action-add {
+/* button, input, optgroup, select, textarea, .block-footer .action-add {
     color: inherit;
     font: inherit;
     margin: 0;
-}
+} */
 
 .admin__fieldset > .admin__field > .admin__field-control input[type="checkbox"] {
     margin-top: 1rem;
@@ -711,13 +712,13 @@ input[type='checkbox'] {
 }
 
 .action-default, button, .block-footer .action-add, .block-footer .action-add {
-    background: #e3e3e3;
+    /* background: #e3e3e3;
     border-color: #adadad;
-    color: #514943;
+    color: #514943; */
 }
 
 .action-default, button {
-    border: 1px solid;
+    /* border: 1px solid;
     border-radius: 0;
     display: inline-block;
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -726,18 +727,19 @@ input[type='checkbox'] {
     line-height: 1.36;
     padding: 0.6rem 1em 0.6rem;
     text-align: center;
-    vertical-align: baseline;
+    vertical-align: baseline; */
 }
 
 button, html input[type='button'], input[type='reset'], input[type='submit'], .block-footer .action-add {
-    -webkit-appearance: button;
+    /* -webkit-appearance: button;
     appearance: button;
-    cursor: pointer;
+    cursor: pointer; */
 }
 
-ul, ol, dl {
+ul, ol, dl, ul > li, ol > li {
     margin-top: 0;
     padding-left: 0;
+    margin-bottom: 0;
 }
 
 .admin__action-multiselect-wrap.action-select-wrap .action-menu,
@@ -837,4 +839,11 @@ ul, ol, dl {
 
 .admin__action-multiselect-search-wrap input[type="text"] {
     width: 100%;
+}
+/* Added by me */
+.admin__action-multiselect-search-count {
+    margin: 8px 0px 0px 6px;
+}
+.admin__action-multiselect-search-wrap .admin__action-multiselect-menu-inner-item ul > li {
+    margin-bottom: 0;
 }
