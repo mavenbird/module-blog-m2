@@ -1037,9 +1037,7 @@ body[class*="mbblog-"] span.mb-footer-links-light h3 { max-width: 100%; }
     .mbblog-author-description { flex-direction: column; }
     .mbblog-author-details .share-col-left h5 { margin: 10px 0 0 10px; padding: 0; }
     .mbblog-author-details .share-col-right { margin: 0px 0 10px 0; }
-    .mbblog-author-details .author-social { flex-direction: column; }
-    .author-form .mb-field { flex-direction: column; }
-    .author-form .mb-field .label { width: auto; }
+    .mbblog-author-details .author-social { flex-direction: column; }    
     .mb-post-list .details-sharing #sharing { margin-top: 0px; flex-wrap: wrap; }  
     .mbblog-widget-post .post-container { grid-template-columns: repeat(1, 1fr); }  
     .mbblog-post-history .post-list-content .image-content { flex-direction: column; }
@@ -1056,14 +1054,7 @@ body[class*="mbblog-"] span.mb-footer-links-light h3 { max-width: 100%; }
     .mbblog-post-history .modal-popup .modal-header, 
     .mbblog-post-history .modal-popup .modal-content, 
     .mbblog-post-history .modal-popup .modal-footer { padding-left: 15px; padding-right: 15px; }
-    .mbblog-post-history .modal-inner-wrap .admin__action-multiselect-tree .action-menu { min-width: 30.7rem; }
-    .author-form .mb-field, .add-post-form .mb-field { flex-direction:column; gap:6px; }
-    .author-form .mb-field .label, .add-post-form .mb-field .label { width:100%; }
-    .author-form .mb-field .control, .add-post-form .mb-field .control { width:100%; flex-direction: column; align-items: flex-start; gap: 14px; }
-    .add-post-form .mb-field .control .delete-image { width: 100%; }
-    .author-form .mb-field .control .mb_full_url { word-break:break-word; }
-    .add-post-form .mb-field .control input[type="file"],
-    .author-form .mb-field .control input[type="file"] { width:100%; }
+    .mbblog-post-history .modal-inner-wrap .admin__action-multiselect-tree .action-menu { min-width: 30.7rem; }    
 }
 @media (max-width: 400px){
     .sidebar-info .list-post-tabs { flex-direction: column; align-items: center; gap: 10px; }    

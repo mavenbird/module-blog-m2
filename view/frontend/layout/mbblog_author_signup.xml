@@ -21,10 +21,7 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <update handle="mbblog_signup"/>
-    <head>
-        <css src="Mavenbird_Blog::css/hyvaBlog.css"/>
-    </head>
+    <update handle="mbblog_signup"/>    
     <body>
         <referenceBlock name="page.main.title">
             <action method="setPageTitle">

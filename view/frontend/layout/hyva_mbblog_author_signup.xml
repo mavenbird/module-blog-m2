@@ -23,7 +23,9 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <update handle="mbblog_signup"/>
     <update handle="hyva_form_validation"/>
-
+    <head>
+        <css src="Mavenbird_Blog::css/hyvaBlog.css"/>
+    </head>
     <body>
         <referenceBlock name="blog_signup_form" >
             <action method="setTemplate" >
