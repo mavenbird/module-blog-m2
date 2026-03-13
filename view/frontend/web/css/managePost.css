@@ -852,7 +852,7 @@ ul, ol, dl, ul > li, ol > li {
     .author-form .mb-field .label { width: auto; }
 }
 @media (max-width: 479px){
-    .author-form .mb-field, .add-post-form .mb-field { flex-direction:column; gap:6px; }
+    .author-form .mb-field, .add-post-form .mb-field { flex-direction:column; }
     .author-form .mb-field .label, .add-post-form .mb-field .label { width:100%; }
     .author-form .mb-field .control, .add-post-form .mb-field .control { width:100%; flex-direction: column; align-items: flex-start; gap: 14px; }
     .add-post-form .mb-field .control .delete-image { width: 100%; }
