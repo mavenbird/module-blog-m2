@@ -530,6 +530,9 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .column.main {
     .products-grid .grid-column-3, .products-grid .grid-column-4 { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .products-same-post .product-items { grid-template-columns: repeat(2, 1fr); gap: 30px 15px; }
     .mbblog-post-history .page-title { margin-bottom: 24px; }
+    .add-post-form .mb-field .control { width:100%; flex-direction: column;  gap: 14px; }
+    .add-post-form .mb-field .control .delete-image { width: 100%; }
+    /* For getting the sidebar layout fixed in mobile view only */
     body[class*="account"][class*="mbblog-post-history"] .page-main .sidebar-main {
         width: 100%;
         order: 0 !important;
@@ -573,6 +576,14 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .column.main {
     .products-grid .grid-column-4, .products-grid .grid-column-2,
     .products-grid .grid-column-3 { grid-template-columns: repeat(1, 1fr); gap: 12px; }
     .products-same-post .product-items { grid-template-columns: repeat(1, 1fr); gap: 30px 15px; }
+    .author-form .mb-field, .add-post-form .mb-field { flex-direction:column; gap:6px; }
+    .author-form .mb-field .label, .add-post-form .mb-field .label { width:100%; }
+    .author-form .mb-field .control, .add-post-form .mb-field .control { width:100%; flex-direction: column;  gap: 14px; }
+    .add-post-form .mb-field .control .delete-image { width: 100%; }
+    .author-form .mb-field .control .mb_full_url { word-break:break-word; }
+    .add-post-form .mb-field .control input[type="file"],
+    .author-form .mb-field .control input[type="file"] { width:100%; }
+
 }
 @media (max-width: 430px) {
     .mb-post-list .post-item-list .post-image img {  max-width: 85%;  }
