@@ -280,7 +280,6 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] main .column.main { width
     padding: 0px;
 }
 .mb-post-list hr { border-top: 1px solid #ccc; margin-bottom: 16px; margin-top: 16px; }
-.mb-post-list .post-info { padding: 0; }
 .topic-list .related-post-slider .mb-post-title .post-link-title {
     font-weight: 600;
 }
@@ -381,7 +380,7 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] main .column.main { width
     border-radius: 8px;
     border: 1px solid #ccc;
 }
-.post-list-body .image-content-section {
+.post-list-body .image-content {
     display: flex;
     align-items: flex-start;
     gap: 15px;
@@ -451,6 +450,9 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] main .column.main { width
 .sidebar-info a.label.label-default.tags-list:hover,
 .sidebar-info a.label.label-default.tags-list:focus { color: #fff; }
 
+.add-post-form .treeselect-input { padding-left: 8px; }
+.mbblog-post-popup .modal-header h3 { padding-bottom: 5px; }
+
 @media(min-width:1440px) and (max-width:1640px) { 
     .mbblog-post-view .topic-list .post-item-wraper { display: block; }
     .mbblog-post-view .topic-list .post-image { min-width: auto; }
@@ -511,21 +513,17 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] main .column.main { width
     .column .products-grid { grid-template-columns: repeat(1, 1fr); gap: 8px; }
     .mb-footer span.mb-footer-links-light h3 { min-width: 308px; }
     .add-post-form .mb-field { flex-direction: column; }
-    .post-list-body .image-content-section { flex-direction: column; }
+    .post-list-body .image-content { flex-direction: column; }
     .add-post-form .mb-field .label { width: auto; }
 }
 @media (max-width: 480px) { 
     .blog-comment .mbblog-comment-details.row { grid-template-columns: 1fr; }
     .blog-comment .mbblog-comment-field-full { grid-column: span 1; }
-    .mb-post-list .post-item-list .post-image img {  max-width: 99%; }
     .post-list-content .products-grid .details-sharing #sharing {  margin-top: 10px; }
     .column .products-grid { grid-template-columns: repeat(1, 1fr); gap: 8px; }
     .products-grid .grid-column-4, .products-grid .grid-column-2,
     .products-grid .grid-column-3 { grid-template-columns: repeat(1, 1fr); gap: 12px; }
     .products-same-post .product-items { grid-template-columns: repeat(1, 1fr); gap: 30px 15px; }
-}
-@media (max-width: 430px) {
-    .mb-post-list .post-item-list .post-image img {  max-width: 85%;  }
 }
 
 /* ================================ HYVABLOG.CSS FROM MY SIDE End ======================================== */

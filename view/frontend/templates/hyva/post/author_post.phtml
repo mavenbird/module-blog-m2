@@ -111,11 +111,11 @@ HTML
                 <?php /** @var Post $post */
                 foreach ($postCollection as $post) : ?>
                     <div data-post-id="<?= $escaper->escapeHtml($post->getId()); ?>"
-                         class="post-list-item col-mb post-item-list mb-12">
+                         class="post-list-item col-mb post-item-list mb-4">
                         <div class="post-item-wraper">
                             <?= /* @noEscape */
                             $block->getStatusHtmlById($post->getEnabled()) ?>
-                        <div class="image-content-section">
+                        <div class="image-content">
                             <?php if ($post->getImage()) : ?>
                                 <div class="post-image">
                                     <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
