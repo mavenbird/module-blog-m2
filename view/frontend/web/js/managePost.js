@@ -133,7 +133,7 @@ define([
           field.parent().prepend(imageEL);
           deleteEL =
             '<span class="delete-image">' +
-            '<input style="width: 8%" type="checkbox" name="image[delete]"' +
+            '<input type="checkbox" name="image[delete]"' +
             ' value="1" class="checkbox" id="post_image_delete">' +
             '<label for="post_image_delete"> Delete Image</label>' +
             "</span>";

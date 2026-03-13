@@ -56,7 +56,7 @@ use Magento\Framework\Escaper;
         </div>
         <div class="field mb-field">
             <label for="image" class="label"><span><?= $escaper->escapeHtml(__('Image')) ?></span></label>
-            <div class="control">
+            <div class="control image-link-delete" style="display: flex">
                 <input type="file" name="image" id="image" title="<?= $escaper->escapeHtmlAttr(__('Image')) ?>"
                        class="input-file">
             </div>

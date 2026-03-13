@@ -87,7 +87,7 @@ $author = $block->getAuthor();
                        style="position: relative;">
                 <?php if (!empty($author['image'])) : ?>
                     <span class="delete-image">
-                    <input style="width: 8%" type="checkbox" name="image[delete]" value="1" class="checkbox" id="post_image_delete">
+                    <input type="checkbox" name="image[delete]" value="1" class="checkbox" id="post_image_delete">
                     <label for="post_image_delete"> Delete Image</label>
                     </span>
                 <?php endif; ?>
@@ -138,7 +138,7 @@ $author = $block->getAuthor();
         </div>
     </div>
 </form>
-<style>
+<!-- <style>
     .mb-field {
         display: flex;
     }
@@ -165,7 +165,7 @@ $author = $block->getAuthor();
             margin-top: 20px;
         }
     }
-</style>
+</style> -->
 <script>
     require(
         [

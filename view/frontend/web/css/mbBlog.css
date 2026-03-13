@@ -784,13 +784,19 @@ a.mbblog-comment-action-btn.mbblog-like { color: #333333; }
 } 
 .author-form {
     border: 1px solid #ddd;
-    padding: 20px;
+    padding: 20px; margin-bottom: 20px;
 }
 
 .author-form .legend > span {
     margin-right: 5px;
     font-weight: 600;
 }
+.add-post-form .mb-field .image-link-delete {
+    align-items: center;
+    gap: 12px;
+}
+.add-post-form .mb-field .control .delete-image { width: 30%; align-items: center; gap: 5px;}
+.add-post-form .mb-field .delete-image label { margin: 10px 0 0 0;}
 .mbblog-post-history .post-list-content .image-content {
     display: flex;
     gap: 15px; margin-top: 40px;
@@ -814,7 +820,7 @@ a.mbblog-comment-action-btn.mbblog-like { color: #333333; }
     justify-content: center;
 }
 .mbblog-post-history .post-list-content .pager {
-    margin-top: 20px;
+    margin: 20px 0  25px 0;
 }
 .mbblog-widget-post .mb-post-meta-info {
     margin-top: auto;
@@ -903,6 +909,7 @@ body[class*="mbblog-"] .mb-footer { clear: both; padding-top: 10px;}
 .mbblog-widget-post .owl-carousel .owl-nav button span { font-size:30px; }
 .mbblog-widget-post .owl-carousel .owl-nav button.owl-prev,
 .mbblog-widget-post .owl-carousel .owl-nav button.owl-next { min-width: 20px; } 
+.account .sidebar-additional { margin: 0; }
 
 @media(min-width:1280px) {
 .post-list-content .mb-post-list.products-grid.grid-column-3 { grid-template-columns: repeat(3, 1fr); }
@@ -1019,6 +1026,7 @@ body[class*="mbblog-"] span.mb-footer-links-light h3 { max-width: 100%; }
     .mbblog-post-history .page-title { margin: 0; }
     .mbblog-post-history .page-main,
     .mbblog-author-information .page-main { position: relative; }
+    .account .columns .column.main { margin: 0; padding: 0; }
 }
 
 @media (max-width: 575px) { 
@@ -1049,6 +1057,13 @@ body[class*="mbblog-"] span.mb-footer-links-light h3 { max-width: 100%; }
     .mbblog-post-history .modal-popup .modal-content, 
     .mbblog-post-history .modal-popup .modal-footer { padding-left: 15px; padding-right: 15px; }
     .mbblog-post-history .modal-inner-wrap .admin__action-multiselect-tree .action-menu { min-width: 30.7rem; }
+    .author-form .mb-field, .add-post-form .mb-field { flex-direction:column; gap:6px; }
+    .author-form .mb-field .label, .add-post-form .mb-field .label { width:100%; }
+    .author-form .mb-field .control, .add-post-form .mb-field .control { width:100%; flex-direction: column; align-items: flex-start; gap: 14px; }
+    .add-post-form .mb-field .control .delete-image { width: 100%; }
+    .author-form .mb-field .control .mb_full_url { word-break:break-word; }
+    .add-post-form .mb-field .control input[type="file"],
+    .author-form .mb-field .control input[type="file"] { width:100%; }
 }
 @media (max-width: 400px){
     .sidebar-info .list-post-tabs { flex-direction: column; align-items: center; gap: 10px; }    
