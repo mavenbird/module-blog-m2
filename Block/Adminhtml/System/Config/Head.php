@@ -14,7 +14,7 @@
  * version in the future.
  *
  * @category    Mavenbird
- * @package     Mavenbird_Core
+ * @package     Mavenbird_Blog
  * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
  * @license     https://www.mavenbird.com/LICENSE.txt
  */
