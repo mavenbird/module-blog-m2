@@ -93,6 +93,9 @@
 .author-form .mb-field > div {
     width: 100%;
 }
+.add-post-form .ck-editor__editable,
+.author-form .ck-editor__editable { min-height: 300px; }
+
 @media (max-width: 768px) {
     .mb-field .label {
         width: 100%;

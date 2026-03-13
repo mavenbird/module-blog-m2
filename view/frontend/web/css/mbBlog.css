@@ -795,8 +795,8 @@ a.mbblog-comment-action-btn.mbblog-like { color: #333333; }
     align-items: center;
     gap: 12px;
 }
-.add-post-form .mb-field .control .delete-image { width: 30%; align-items: center; gap: 5px;}
-.add-post-form .mb-field .delete-image label { margin: 10px 0 0 0;}
+.add-post-form .mb-field .control .delete-image { width: 30%; align-items: center; gap: 5px; margin-top: 10px;}
+.add-post-form .mb-field .delete-image label { margin-bottom: 0;}
 .mbblog-post-history .post-list-content .image-content {
     display: flex;
     gap: 15px; margin-top: 40px;
