@@ -719,11 +719,11 @@ body { padding: 0; }
     max-width: 100%;
     max-height: 100%;
 }
-.admin__action-multiselect-crumb .action-close:before { top: -6px;  right: 8px; }
+/* .admin__action-multiselect-crumb .action-close:before { top: -6px;  right: 8px; }
 .admin__action-multiselect-menu-inner-item._root .action-menu-item .admin__action-multiselect-label:before {  content: '\f846'; font-family: 'porto-icons'; }
 .admin__action-multiselect-dropdown:before { content: '\f803'; font-family: 'porto-icons'; }
 .admin__action-multiselect-tree .action-menu-item._expended .admin__action-multiselect-dropdown:before { right: 5px; position: absolute;
-     content: '\f800'; font-family: 'porto-icons'; }
+     content: '\f800'; font-family: 'porto-icons'; } */
 
 .helpdesk_email { display: none !important; }
 .contactformpro_email { display: none !important; }
@@ -795,7 +795,7 @@ a.mbblog-comment-action-btn.mbblog-like { color: #333333; }
     align-items: center;
     gap: 12px;
 }
-.add-post-form .mb-field .control .delete-image { width: 30%; align-items: center; gap: 5px; margin-top: 10px;}
+.add-post-form .mb-field .control .delete-image { min-width: 120px; align-items:center; gap:5px; margin-top: 0px; }
 .add-post-form .mb-field .delete-image label { margin-bottom: 0;}
 .mbblog-post-history .post-list-content .image-content {
     display: flex;
@@ -803,6 +803,9 @@ a.mbblog-comment-action-btn.mbblog-like { color: #333333; }
     border-top: 1px solid #ddd;
     padding-top: 12px;
 }
+.mbblog-post-history .post-list-content .image-content .post-image { min-width: 320px; }
+.mbblog-post-history .post-list-content .image-content .post-info-wraper { width: 100%; }
+
 .mbblog-post-history .post-list-content .post-item-wraper {
     border: 1px solid #ddd;
     padding: 20px;

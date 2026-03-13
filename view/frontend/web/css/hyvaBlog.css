@@ -1,22 +1,7 @@
 /* ================================ HYVABLOG.CSS FROM MY SIDE Start ======================================== */
 
-/* .mbblog-topic-view .page-main .columns .column.main,
-.mbblog-author-signup .page-main .columns .column.main,
-.mbblog-category-view .page-main .columns .column.main,
-.mbblog-tag-view .page-main .columns .column.main,
-.mbblog-post-index .page-main .columns  .column.main,
-.mbblog-post-view .page-main .columns .column.main,
-.mbblog-author-view .page-main .columns .column.main { width: 78%; display: block;} */
-
-/* .mbblog-topic-view .page-main .columns .sidebar-main,
-.mbblog-author-signup .page-main .columns .sidebar-main,
-.mbblog-category-view .page-main .columns .sidebar-main,
-.mbblog-tag-view .page-main .columns  .sidebar-main,
-.mbblog-post-index .page-main .columns .sidebar-main,
-.mbblog-post-view .page-main .columns .sidebar-main,
-.mbblog-author-view .page-main .columns .sidebar-main { width: 22%; display: block;} */
-body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .sidebar-main { width: 22%; display: block;}
-body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .column.main { width: 78%; display: block; }
+body[class*="mbblog-"][class*="page-layout-2columns-"] main .sidebar-main { width: 22%; display: block;}
+body[class*="mbblog-"][class*="page-layout-2columns-"] main .column.main { width: 78%; display: block; }
 
 .mb-post-info a.mb-info:hover,
 .post-list-content .mb-post-title a:hover { text-decoration: underline; }
@@ -361,7 +346,7 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .column.main {
     margin: 24px 12px 0px 0px;
 }
 .mbblog-post-history .column.main .popup-container {
-    width: 50%;
+    width: 98%; max-width: 1000px;
 }
 .add-post-form .mb-field, 
 .author-form .mb-field, 
@@ -390,7 +375,6 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .column.main {
     border-radius: 8px;
 }
 .add-post-form .mb-field .label { width: 30%; }
-.mbblog-post-history .post-list-content .mb-post-status { border-radius: 6px; }
 .mbblog-post-history .sidebar.sidebar-main:before { content: unset !important; }
 .mbblog-author-signup .author-form, .mbblog-author-information .author-form {
     background: #fff;
@@ -482,33 +466,17 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .column.main {
     .mbblog-post-view .topic-list .post-image { min-width: auto; }
     .products-grid .grid-column-4 { grid-template-columns: repeat(3, 1fr); gap: 12px; }
  }
-@media (min-width: 768px) and (max-width: 1023px) {
-    /* .mbblog-topic-view .page-main .columns .sidebar-main,
-    .mbblog-author-signup .page-main .columns  .sidebar-main,
-    .mbblog-category-view .page-main .columns  .sidebar-main,
-    .mbblog-tag-view .page-main .columns  .sidebar-main,
-    .mbblog-post-index .page-main .columns .sidebar-main, 
-    .mbblog-post-view .page-main .columns .sidebar-main, 
-    .mbblog-author-view .page-main .columns .sidebar-main { width: 30%; }
+@media (min-width: 768px) and (max-width: 1023px) {    
+    body[class*="mbblog-"][class*="page-layout-2columns-"] main .sidebar-main { width: 30%; }
+    body[class*="mbblog-"][class*="page-layout-2columns-"] main .column.main { width: 70%; }
 
-    .mbblog-topic-view .page-main .columns .column.main,
-    .mbblog-author-signup .page-main .columns  .column.main,
-    .mbblog-category-view .page-main .columns  .column.main,
-    .mbblog-tag-view .page-main .columns  .column.main,
-    .mbblog-post-index .page-main .columns .column.main, 
-    .mbblog-post-view .page-main .columns .column.main, 
-    .mbblog-author-view .page-main .columns .column.main { width: 70%; } */
-
-    body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .sidebar-main { width: 30%; }
-    body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .column.main { width: 70%; }
-
-    body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .columns { gap:20px; }
+    body[class*="mbblog-"][class*="page-layout-2columns-"] main .columns { gap:20px; }
     .products-same-post .product-items { grid-template-columns: repeat(3, 1fr); gap: 30px 15px; }
     .topic-list .related-content-container { grid-template-columns: repeat(2, 1fr); gap: 15px; }
     .products-grid .grid-column-4, .products-grid .grid-column-3 { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .mb-blog-view .post-view-image img { min-width: auto; }
     .mb-blog-new-post .delete-container { padding: 20px 20px; width: 90%; }
-    .mbblog-post-history .column.main .popup-container { width: 70%; }
+    .mbblog-post-history .column.main .popup-container { max-width: 880px; }
     .blog-comment .mbblog-comment-details.row { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 767px) {
@@ -516,7 +484,7 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .column.main {
     .mbblog-post-view .topic-list .post-image { min-width: auto; }
     .mb-blog-view .post-view-image img { min-width: auto; }
     .mb-blog-new-post .delete-container { padding: 20px 20px; width: 90%; }
-    .mbblog-post-history .column.main .popup-container { width: 80%; }
+    .mbblog-post-history .column.main .popup-container { width: 96%; }
     .topic-list .related-content-container { grid-template-columns: repeat(1, 1fr); gap: 15px; }
     .block-blog-related .related-content-container .author-content-information { width: auto; }
     .blog-comment .mbblog-comment-details.row { grid-template-columns: repeat(2, 1fr); }
@@ -526,30 +494,15 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .column.main {
     .add-post-form .mb-field .control { width:100%; flex-direction: column;  gap: 14px; }
     .add-post-form .mb-field .control .delete-image { width: 100%; }
  
-    /* .mbblog-topic-view .page-main .columns .sidebar-main,
-    .mbblog-author-signup .page-main .columns  .sidebar-main,
-    .mbblog-category-view .page-main .columns  .sidebar-main,
-    .mbblog-tag-view .page-main .columns  .sidebar-main,
-    .mbblog-post-index .page-main .columns .sidebar-main, 
-    .mbblog-post-view .page-main .columns .sidebar-main, 
-    .mbblog-author-view .page-main .columns .sidebar-main { width: 100%; order: 1; }
-
-    .mbblog-topic-view .page-main .columns .column.main,
-    .mbblog-author-signup .page-main .columns  .column.main,
-    .mbblog-category-view .page-main .columns  .column.main,
-    .mbblog-tag-view .page-main .columns  .column.main,
-    .mbblog-post-index .page-main .columns .column.main, 
-    .mbblog-post-view .page-main .columns .column.main, 
-    .mbblog-author-view .page-main .columns .column.main { width: 100%; } */
-
-    body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .sidebar-main { width: 100%; order: 1; }
-    body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .column.main { width: 100%; }
-    body[class*="account"][class*="mbblog-post-history"] .page-main .sidebar-main,
-    body[class*="account"][class*="mbblog-author-information"] .page-main .sidebar-main,
-    body[class*="mbblog-author-signup"] .page-main .sidebar-main  {
+    body[class*="mbblog-"][class*="page-layout-2columns-"] main .sidebar-main { width: 100%; order: 1; }
+    body[class*="mbblog-"][class*="page-layout-2columns-"] main .column.main { width: 100%; }
+    body[class*="account"][class*="mbblog-post-history"] main .sidebar-main,
+    body[class*="account"][class*="mbblog-author-information"] main .sidebar-main,
+    body[class*="mbblog-author-signup"][class*="page-layout-2columns-"] main .sidebar-main  {
         width: 100%;
         order: 0 ;
     }
+    
 }
 @media (max-width: 575px) { 
     .mb-blog-view .post-view-image img { min-width: auto; }
@@ -557,7 +510,6 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] .page-main .column.main {
     .post-list-content .products-grid .details-sharing #sharing {  margin-top: 10px; }
     .column .products-grid { grid-template-columns: repeat(1, 1fr); gap: 8px; }
     .mb-footer span.mb-footer-links-light h3 { min-width: 308px; }
-    .mbblog-post-history .column.main .popup-container { width: 80%; }
     .add-post-form .mb-field { flex-direction: column; }
     .post-list-body .image-content-section { flex-direction: column; }
     .add-post-form .mb-field .label { width: auto; }

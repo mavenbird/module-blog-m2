@@ -315,7 +315,7 @@ class Frontend extends Template
 
             if ($post->getViewTraffic()) {
                 $html .= __(
-                    ' | <i class="fa-regular fa-eye" aria-hidden="true"></i> %1',
+                    ' | <i class="fa-regular fa-eye" title="Views" aria-hidden="true"></i> %1',
                     $post->getViewTraffic()
                 );
             }

@@ -36,7 +36,7 @@
                 <argument name="template" xsi:type="string">Mavenbird_Blog::hyva/post/manage_post.phtml</argument>
             </action>
         </referenceBlock>
-
+    <referenceContainer name="sidebar.additional" remove="true"/>
 
     </body>
 </page>

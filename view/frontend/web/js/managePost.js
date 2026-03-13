@@ -127,7 +127,7 @@ define([
             value +
             '" alt="' +
             value +
-            '" height="22" width="22"' +
+            '" height="40" width="40"' +
             ' class="small-image-preview v-middle">' +
             "</a>";
           field.parent().prepend(imageEL);

@@ -30,7 +30,7 @@ $_post = $block->getPost();
 ?>
 <?php if ($_post->getViewTraffic()) : ?>
     |
-    <span><i class="fa-regular fa-eye" aria-hidden="true"></i>
+    <span><i class="fa-regular fa-eye" title="Views" aria-hidden="true"></i>
         <?= $escaper->escapeHtml(__('View: %1', $_post->getViewTraffic())) ?>
     </span>
 <?php endif; ?>

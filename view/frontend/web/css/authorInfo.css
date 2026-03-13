@@ -1,25 +1,5 @@
-/**
- * Mavenbird
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Mavenbird.com license that is
- * available through the world-wide-web at this URL:
- * https://www.mavenbird.com/LICENSE.txt
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade this extension to newer
- * version in the future.
- *
- * @category    Mavenbird
- * @package     Mavenbird_Blog
- * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
- * @license     https://www.mavenbird.com/LICENSE.txt
- */
-
 .mb-post-status {
-    padding: 7px 14px;
+    padding: 5px 14px;
     position: absolute;
     top: 20px;
     left: 20px;
@@ -29,23 +9,23 @@
     z-index: 5;
     font-weight: 600;
 }
-
 .mb-post-disapproved {
-    background-color: #e67878;
+    background-color: #fff5f5;
+    border: 1px solid #e67878;
+    color: #e67878;
 }
-
 .mb-post-approved {
-    background-color: #35a927;
+    background-color: #f6fff5;
+    color: #35a927;
+    border: 1px solid #cae7c6;
 }
 
 .mb-post-pending {
     background-color: #d7da1e;
 }
-
 .mb-blog-new-post {
     height: 45px;
 }
-
 .mb-blog-new-post button {
     float: right; 
     outline: none;
@@ -73,15 +53,6 @@
     cursor: pointer;
 }
 
-#mb-blog-new-post-popup .column.main {
-    width: 100%;
-}
-
-/* #mb_blog_post_form input#image {
-    position: relative;
-    bottom: 5px;
-} */
-
 .author-form .mb-field {
     display: flex;
 }
@@ -95,42 +66,15 @@
 }
 .add-post-form .ck-editor__editable,
 .author-form .ck-editor__editable { min-height: 300px; }
-
-@media (max-width: 768px) {
-    .mb-field .label {
-        width: 100%;
-    }
-
-    .mb-field {
-        flex-wrap: wrap;
-        padding: 0;
-        width: 100%;
-    }
-    .modal-content {
-        overflow-x: hidden;
-    }
-    .modal-content fieldset.fieldset {
-        display: contents;
-    }
-    .modal-content .actions-toolbar {
-        margin-top: 15px;
-    }
-}
 .mb-custom .mb-field {
     margin: 0 0 20px;
 }
 
 .mb-custom .field label.label {
     font-weight: 600;
+    margin-bottom: 8px;
+    display: inline-block;
 }
-
-.admin__form-field-label {
-    display: block;
-    font-weight: bold;
-    margin: 0 0 .3rem;
-    text-align: left;
-}
-
 .admin__data-grid-filters-wrap .admin__form-field .admin__form-field .admin__form-field-label {
     border: 1px solid transparent;
     float: left;
@@ -159,8 +103,9 @@
     vertical-align: baseline;
     width: auto;
 }
+.add-post-form .actions-toolbar .primary .action { margin-right: 0; }
 
-.admin__data-grid-filters-wrap .admin__form-field-label,
+/* .admin__data-grid-filters-wrap .admin__form-field-label,
 .admin__data-grid-filters-wrap .admin__control-text,
 .admin__data-grid-filters-wrap .admin__control-select,
 .admin__data-grid-filters-wrap .admin__action-multiselect,
@@ -174,7 +119,7 @@
 .admin__action-multiselect-tree .actions-split .dropdown-menu .action-submenu,
 .admin__action-multiselect-tree .actions-split .action-menu .action-submenu {
     min-width: 34.7rem;
-}
+} */
 
 .admin__action-multiselect-tree .action-menu .action-menu-item,
 .admin__action-multiselect-tree .abs-action-menu .action-submenu .action-menu-item,
@@ -230,23 +175,23 @@ input[type="checkbox"] {
     top: 2px;
 } */
 
-.admin__action-multiselect-wrap .action-menu-item {
+/* .admin__action-multiselect-wrap .action-menu-item {
     transition: background-color 0.1s linear;
 }
 
 .admin__action-multiselect-tree .action-menu-item._expended .admin__action-multiselect-dropdown:before {
-    /* line-height: 28px; */ font-size: 15px;
+    font-size: 15px;
     content: '\e621';  right: 0; margin-left: 8px;
     font-family: 'luma-icons';
-}
+} */
 
-[class*='admin__'] + label,
+/* [class*='admin__'] + label,
 [class*='admin__'] + label:after,
 [class*='admin__'] + label:before,
 [class*='admin__']:before,
 [class*='admin__']:after {
     box-sizing: border-box;
-}
+} */
 
 .admin__action-multiselect-dropdown:before {
     background: #ffffff;
@@ -258,21 +203,18 @@ input[type="checkbox"] {
 }
 
 .admin__action-multiselect-tree .action-menu-item._with-checkbox .admin__action-multiselect-label {
-    padding-left: 2.6rem;
+    padding-left: 24px;
 }
-
+.add-post-form .admin__action-multiselect-wrap input[type="checkbox"] { width: 0; }
 .admin__action-multiselect-tree .admin__action-multiselect-menu-inner {
     position: relative;
 }
-
 .admin__action-multiselect-tree .admin__action-multiselect-menu-inner .admin__action-multiselect-menu-inner {
     padding-left: 3.2rem;
 }
-
 .admin__action-multiselect-tree .admin__action-multiselect-menu-inner .admin__action-multiselect-menu-inner:before {
     left: 4.3rem;
 }
-
 .admin__action-multiselect-tree .admin__action-multiselect-menu-inner-item {
     position: relative; margin-bottom: 0;
 }
@@ -332,24 +274,20 @@ input[type="checkbox"] {
     height: 1rem;
 }
 
-.admin__action-multiselect-tree .admin__action-multiselect-label {
-    /* line-height: 2.2rem;
-    vertical-align: middle; */
+.admin__action-multiselect-tree .admin__action-multiselect-label {      
     word-break: break-all;
 }
 
 .admin__action-multiselect-tree .admin__action-multiselect-label:before {
     left: 1.5rem;
     position: absolute;
-    top: 1.4rem;
+    top: 12px;
 }
-
 .action-select-wrap {
     display: inline-block;
     position: relative;
 }
-
-.action-select-wrap .action-select {
+/* .action-select-wrap .action-select {
     padding-right: 3.2rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -394,7 +332,6 @@ input[type="checkbox"] {
 .action-select-wrap .action-select:hover:before {
     border-color: #878787;
 }
-
 .action-select-wrap .action-select:before {
     background-color: #e3e3e3;
     border: 1px solid #adadad;
@@ -405,7 +342,6 @@ input[type="checkbox"] {
     top: 0;
     width: 3.2rem;
 }
-
 .action-select-wrap .action-select._active {
     border-color: #007bdb;
 }
@@ -421,13 +357,13 @@ input[type="checkbox"] {
 
 .action-select-wrap .action-select[disabled]:after {
     border-color: #41362f transparent transparent transparent;
-}
+} */
 
 .action-select-wrap._active {
     z-index: 500;
 }
 
-.action-select-wrap._active .action-select {
+/* .action-select-wrap._active .action-select {
     border-color: #007bdb;
 }
 
@@ -437,9 +373,9 @@ input[type="checkbox"] {
 
 .action-select-wrap._active .action-select:after {
     transform: rotate(180deg);
-}
+} */
 
-.action-select-wrap .action-menu,
+/* .action-select-wrap .action-menu,
 .action-select-wrap .abs-action-menu .action-submenu,
 .action-select-wrap .action-menu .action-submenu,
 .action-select-wrap .actions-split .dropdown-menu .action-submenu,
@@ -463,7 +399,7 @@ input[type="checkbox"] {
 .action-select-wrap .actions-split .action-menu .action-submenu ._disabled .action-menu-item {
     cursor: default;
     opacity: .5;
-}
+} */
 
 .action-select-wrap .action-menu-items {
     left: 0;
@@ -472,7 +408,7 @@ input[type="checkbox"] {
     top: 100%;
 }
 
-.action-select-wrap .action-menu-items > .action-menu,
+/* .action-select-wrap .action-menu-items > .action-menu,
 .action-select-wrap .action-menu-items > .abs-action-menu .action-submenu,
 .action-select-wrap .action-menu-items > .action-menu .action-submenu,
 .action-select-wrap .action-menu-items > .actions-split .dropdown-menu .action-submenu,
@@ -488,7 +424,7 @@ input[type="checkbox"] {
 .action-select-wrap .action-menu-items > .actions-split .action-menu .action-submenu .action-submenu {
     position: absolute;
     right: -100%;
-}
+} */
 
 .admin__action-multiselect-crumb .action-close {
     bottom: 0;
@@ -541,10 +477,10 @@ input[type="checkbox"] {
     min-width: 15rem;
     width: calc(100% - 4rem);
 }
-
+/* 
 .admin__control-text {
     min-width: 4rem;
-}
+} */
 
 /* button, input, optgroup, select, textarea, .block-footer .action-add {
     color: inherit;
@@ -584,7 +520,7 @@ input[type='checkbox'] {
     width: 16px;
 } */
 
-.admin__scope-old input[type="radio"] {
+/* .admin__scope-old input[type="radio"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     -ms-appearance: none;
@@ -611,21 +547,24 @@ input[type='checkbox'] {
     right: 2.2rem;
     top: 1.7rem;
     width: 1em;
-}
+} */
 
-[class*='admin__'] + label, [class*='admin__'] + label:after,
+/* [class*='admin__'] + label, [class*='admin__'] + label:after,
 [class*='admin__'] + label:before, [class*='admin__']:before, [class*='admin__']:after {
     box-sizing: border-box;
-}
+} */
 
-.admin__control-checkbox + label:before, .mass-select-wrap select + label:before {
+.admin__control-checkbox + label:before, 
+.mass-select-wrap select + label:before {
     border-radius: 1px;
     content: '';
     font-size: 0;
     transition: font-size 0.1s ease-out, color 0.1s ease-out, border-color 0.1s linear;
 }
 
-.admin__control-radio + label:before, .admin__control-checkbox + label:before, .mass-select-wrap select + label:before {
+.admin__control-radio + label:before, 
+.admin__control-checkbox + label:before, 
+.mass-select-wrap select + label:before {
     background-color: #ffffff;
     border: 1px solid #adadad;
     color: transparent;
@@ -647,13 +586,15 @@ input[type='checkbox'] {
     margin-right: 1rem;
 }
 
-.admin__control-checkbox:checked + label:before, .mass-select-wrap select._checked + label:before {
+.admin__control-checkbox:checked + label:before, 
+.mass-select-wrap select._checked + label:before {
     content: '\e610';
     font-size: 1.1rem;
-    line-height: 125%;
-    color: #000;
+    line-height: 152%;
+    color: #FFF;
     font-family: 'luma-icons';
-    background-color: #35a927; /* Add a background for checked state */
+    background-color: #35a927;
+    border-color: #35a927;
 }
 
 .admin__scope-old input[type=text] {
@@ -816,7 +757,7 @@ ul, ol, dl, ul > li, ol > li {
     vertical-align: top;
 }
 
-.action-close {
+/* .action-close {
     background-color: transparent;
     border: none;
     border-radius: 0;
@@ -837,7 +778,7 @@ ul, ol, dl, ul > li, ol > li {
     position: absolute;
     display: none;
     visibility: hidden;
-}
+} */
 
 .admin__action-multiselect-search-wrap input[type="text"] {
     width: 100%;
@@ -849,7 +790,18 @@ ul, ol, dl, ul > li, ol > li {
 .admin__action-multiselect-search-wrap .admin__action-multiselect-menu-inner-item ul > li {
     margin-bottom: 0;
 }
-
+@media(min-width:1024px) and (max-width:1279px) { 
+.mbblog-post-history .post-list-content .image-content .post-image { min-width: 220px; width: 220px; }    
+}
+@media(min-width:768px) and (max-width:1023px) { 
+.mbblog-post-history .post-list-content .image-content .post-image { min-width: 150px; width: 150px; } 
+.mbblog-post-history .post-list-content .mb-post-title { font-size: 20px; }
+}
+@media (max-width: 767px) { 
+.mbblog-post-history .post-list-content .image-content { flex-wrap: wrap; }     
+.mbblog-post-history .post-list-content .image-content .post-image { width: 100%; min-width: 10px; }
+.mbblog-post-history .post-list-content .image-content .post-image img { width: 100%; }
+}
 @media (max-width: 575px) { 
     .author-form .mb-field { flex-direction: column; }
     .author-form .mb-field .label { width: auto; }
