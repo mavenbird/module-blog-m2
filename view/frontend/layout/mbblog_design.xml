@@ -31,12 +31,12 @@
                 <container name="blog.sidebar.main" as="sidebar_main" label="Sidebar Main">
                     <block class="Mavenbird\Blog\Block\Sidebar\Search" name="mbblog.sidebar.search" template="Mavenbird_Blog::sidebar/search.phtml" ifconfig="blog/sidebar/search/enable_search"/>
                     <block class="Mavenbird\Blog\Block\Sidebar\MostView" name="mbblog.sidebar.mostview" template="Mavenbird_Blog::sidebar/mostview.phtml" ifconfig="blog/sidebar/recent_post/enable_widget"/>
-                    <block class="Mavenbird\Blog\Block\Category\Widget" name="mbblog.sidebar.category" template="Mavenbird_Blog::category/widget.phtml"/>
-                    <block class="Mavenbird\Blog\Block\MonthlyArchive\Widget" name="mbblog.sidebar.monthly" template="Mavenbird_Blog::monthly/widget.phtml"/>
-                    <block class="Mavenbird\Blog\Block\Topic\Widget" name="mbblog.sidebar.topic" template="Mavenbird_Blog::topic/widget.phtml"/>
-                    <block class="Mavenbird\Blog\Block\Tag\Widget" name="mbblog.sidebar.tag" template="Mavenbird_Blog::tag/widget.phtml"/>
+                    <block class="Mavenbird\Blog\Block\Category\Widget" name="mbblog.sidebar.category" template="Mavenbird_Blog::category/widget.phtml" ifconfig="blog/sidebar/sidebar_category_show"/>
+                    <block class="Mavenbird\Blog\Block\MonthlyArchive\Widget" name="mbblog.sidebar.monthly" template="Mavenbird_Blog::monthly/widget.phtml" ifconfig="blog/sidebar/monthly_archive/enable_monthly"/>
+                    <block class="Mavenbird\Blog\Block\Topic\Widget" name="mbblog.sidebar.topic" template="Mavenbird_Blog::topic/widget.phtml" ifconfig="blog/sidebar/sidebar_topic_show"/>
+                    <block class="Mavenbird\Blog\Block\Tag\Widget" name="mbblog.sidebar.tag" template="Mavenbird_Blog::tag/widget.phtml" ifconfig="blog/sidebar/sidebar_tag_show"/>
                     <container name="blog.sidebar.cmsblock" as="blogsidebar_cmsblock" htmlTag="div" htmlClass="blog-sidebar-cms-block">
-                        <block class="Mavenbird\Blog\Block\Sidebar\StaticBlock" name="mbblog.sidebar.staticblock" template="Mavenbird_Blog::nav/sidebar-static-block.phtml"/>
+                        <block class="Mavenbird\Blog\Block\Sidebar\StaticBlock" name="mbblog.sidebar.staticblock" template="Mavenbird_Blog::nav/sidebar-static-block.phtml" ifconfig="blog/sidebar/show_sidebar_static_block"/>
                     </container>
                     <block class="Mavenbird\Blog\Block\Sidebar\TableOfContent" name="mbblog.sidebar.nav" template="Mavenbird_Blog::nav/post-content-nav.phtml" ifconfig="blog/sidebar/show_table_of_content"/>
                 </container>

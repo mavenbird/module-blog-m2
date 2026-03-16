@@ -216,7 +216,22 @@
                         <field id="show_sidebar_static_block">1</field>
                     </depends>
                 </field>
-                <group id="search" translate="label" showInDefault="1" sortOrder="5" showInWebsite="1" showInStore="1">
+                <field id="sidebar_category_show" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Sidebar Category</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Show/Hide Category in post view page sidebar]]></comment>
+                </field>
+                <field id="sidebar_topic_show" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Sidebar Topic</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Show/Hide Topic in post view page sidebar]]></comment>
+                </field>
+                <field id="sidebar_tag_show" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Sidebar Tag</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Show/Hide Tag in post view page sidebar]]></comment>
+                </field>
+                <group id="search" translate="label" showInDefault="1" sortOrder="9" showInWebsite="1" showInStore="1">
                     <label>Search Settings</label>
                     <field id="enable_search" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>Enable Search</label>
