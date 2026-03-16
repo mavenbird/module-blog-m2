@@ -30,13 +30,13 @@ use Magento\Framework\Escaper;
     require(['jquery'], function ($) {
         $(window).on('load',function () {
             var body = $('body');
-            var isCmsFullWidth = body.hasClass('page-layout-cms-full-width');
-            if (isCmsFullWidth) {
-                body.removeClass('page-layout-1column');
-            }
-            if (body.hasClass('page-layout-1column')) {
-                $('.columns').find('.sidebar.sidebar-main').remove();
-            }
+            // var isCmsFullWidth = body.hasClass('page-layout-cms-full-width');
+            // if (isCmsFullWidth) {
+            //     body.removeClass('page-layout-1column');
+            // }
+            // if (body.hasClass('page-layout-1column')) {
+            //     $('.columns').find('.sidebar.sidebar-main').remove();
+            // }
             <?php if ($block->getCurrentTheme() === "Etheme/yourstore") : ?>
             body.addClass('mbblog-etheme-yourstore');
             <?php endif; ?>

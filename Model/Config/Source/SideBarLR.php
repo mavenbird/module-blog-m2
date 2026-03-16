@@ -31,7 +31,7 @@ class SideBarLR implements ArrayInterface
 {
     const LEFT = '2columns-left';
     const RIGHT = '2columns-right';
-    const CMS_FULL_WIDTH = 'cms-full-width';
+    const ONECOLUMN = '1column';
 
     /**
      * Options getter
@@ -61,7 +61,7 @@ class SideBarLR implements ArrayInterface
         return [
             self::LEFT => __('Left'),
             self::RIGHT => __('Right'),
-            self::CMS_FULL_WIDTH => __('CMS Full Width')
+            self::ONECOLUMN => __('One Column')
         ];
     }
 }

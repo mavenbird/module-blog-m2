@@ -30,16 +30,16 @@ use Magento\Framework\Escaper;
     document.addEventListener('DOMContentLoaded', function () {
         var body = document.body;
         window.addEventListener('load', function () {
-            if (body.classList.contains('page-layout-cms-full-width')) {
-                body.classList.remove('page-layout-1column');
-            }
-            if (body.classList.contains('page-layout-1column')) {
-                var columns = document.querySelector('.columns');
-                var sidebarMain = columns.querySelector('.sidebar.sidebar-main');
-                if (sidebarMain) {
-                    columns.removeChild(sidebarMain);
-                }
-            }
+            // if (body.classList.contains('page-layout-cms-full-width')) {
+            //     body.classList.remove('page-layout-1column');
+            // }
+            // if (body.classList.contains('page-layout-1column')) {
+            //     var columns = document.querySelector('.columns');
+            //     var sidebarMain = columns.querySelector('.sidebar.sidebar-main');
+            //     if (sidebarMain) {
+            //         columns.removeChild(sidebarMain);
+            //     }
+            // }
             var currentTheme = "<?php echo /** @noEscape */ $block->getCurrentTheme() ?>";
             if (currentTheme === "Etheme/yourstore") {
                 body.classList.add('mbblog-etheme-yourstore');

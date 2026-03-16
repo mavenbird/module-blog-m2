@@ -341,7 +341,7 @@ class Data extends CoreHelper
             return SideBarLR::RIGHT;
         }
         if ($sideBarConfig == 2) {
-            return SideBarLR::CMS_FULL_WIDTH;
+            return SideBarLR::ONECOLUMN;
         }
         return $sideBarConfig;
     }
