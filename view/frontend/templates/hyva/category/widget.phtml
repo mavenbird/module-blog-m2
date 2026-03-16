@@ -26,6 +26,7 @@ use Magento\Framework\Escaper;
 /** @var Escaper $escaper */
 $tree = $block->getTree();
 $accordion = $block->isCategoryAccordionEnabled();
+$isSidebarOneColumn = $block->isCategorySidebarOneColumn();
 if ($tree) : ?>
 <div class="sidebar-info sidebar-categories">
     <div class="block-title categories-title">
@@ -39,8 +40,27 @@ if ($tree) : ?>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-    document.querySelectorAll('.mb-category-toggle')
-        .forEach(function(toggle){
+    const isSidebarOneColumn = <?= $isSidebarOneColumn ? 'true' : 'false' ?>;
+
+    const categoryList = document.querySelector('.categories-item-list');
+    const categoryTitle = document.querySelector('.categories-title');
+
+    /* 1 column sidebar toggle */
+    if (isSidebarOneColumn && categoryList && categoryTitle) {
+
+        // hide by default
+        categoryList.style.display = 'none';
+
+        categoryTitle.addEventListener('click', function () {
+
+            const isOpen = categoryList.style.display === 'block';
+            categoryList.style.display = isOpen ? 'none' : 'block';
+
+        });
+    }
+
+    /* category children toggle */
+    document.querySelectorAll('.mb-category-toggle').forEach(function(toggle){
 
         toggle.addEventListener('click', function (e) {
             e.preventDefault();
@@ -54,7 +74,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const isOpen = children.style.display === 'block';
 
             children.style.display = isOpen ? 'none' : 'block';
-            this.textContent = isOpen ? '<i class="fa-solid fa-plus"></i>' : '<i class="fa-solid fa-minus"></i>';
+            this.innerHTML = isOpen 
+                ? '<i class="fa-solid fa-plus"></i>' 
+                : '<i class="fa-solid fa-minus"></i>';
         });
 
     });

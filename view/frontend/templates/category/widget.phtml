@@ -27,6 +27,8 @@ use Magento\Framework\Escaper;
 /** @var \Mavenbird\Blog\Block\Category\Widget $block */
 $tree = $block->getTree();
 $accordion = $block->isCategoryAccordionEnabled();
+$isSidebarOneColumn = $block->isCategorySidebarOneColumn();
+// echo $isSidebarOneColumn;
 ?>
 
 <?php if ($tree) : ?>
@@ -42,14 +44,26 @@ $accordion = $block->isCategoryAccordionEnabled();
     </div>
 </div>
 
-<?php if ($accordion) : ?>
+<?php if ($accordion || $isSidebarOneColumn) : ?>
 <script type="text/javascript">
 require(['jquery', 'categoryTree'], function ($, categoryTree) {
+
     var element = document.querySelector('.categories-items-list');
 
     if (element) {
         categoryTree({}, element);
     }
+
+    <?php if ($isSidebarOneColumn) : ?>
+    var $categoryList = $('.sidebar-categories .categories-items-list');
+    // hide by default
+    $categoryList.hide();
+    // toggle on title click
+    $('.sidebar-categories .categories-title').on('click', function () {
+        $categoryList.slideToggle();
+    });
+    <?php endif; ?>
+
 });
 </script>
 <?php endif; ?>

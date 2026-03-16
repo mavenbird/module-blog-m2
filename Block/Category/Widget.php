@@ -165,4 +165,12 @@ class Widget extends Frontend
     {
         return (bool)$this->helperData->getConfigValue('blog/display/category_accordion');
     }
+
+    /**
+     * @return bool
+     */
+    public function isCategorySidebarOneColumn()
+    {
+        return $this->helperData->getSidebarConfig('sidebar_left_right') === '1column';
+    }
 }
