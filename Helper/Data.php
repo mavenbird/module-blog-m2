@@ -363,7 +363,6 @@ class Data extends CoreHelper
         if ($sideBarConfig == 2) {
             return SideBarLR::ONECOLUMN;
         }
-        echo $sideBarConfig;
         return $sideBarConfig;
     }
 
