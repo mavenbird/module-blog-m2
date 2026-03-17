@@ -69,7 +69,7 @@ class Index extends Action
     {
         $page = $this->resultPageFactory->create();
 
-        $page->getConfig()->setPageLayout($this->_helperBlog->getSidebarLayout());
+        $page->getConfig()->setPageLayout($this->_helperBlog->getBlogListingLayout());
 
         $page->getConfig()->getTitle()->set(
             $this->_helperBlog->getSeoConfig('blog_seo_meta_title')

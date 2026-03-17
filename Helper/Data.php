@@ -347,6 +347,27 @@ class Data extends CoreHelper
     }
 
     /**
+     * @param null $storeId
+     *
+     * @return array|mixed|string
+     */
+    public function getBlogListingLayout($storeId = null)
+    {
+        $sideBarConfig = $this->getConfigValue(self::CONFIG_MODULE_PATH . '/post_view_page/blog_list_layout', $storeId);
+        if ($sideBarConfig == 0) {
+            return SideBarLR::LEFT;
+        }
+        if ($sideBarConfig == 1) {
+            return SideBarLR::RIGHT;
+        }
+        if ($sideBarConfig == 2) {
+            return SideBarLR::ONECOLUMN;
+        }
+        echo $sideBarConfig;
+        return $sideBarConfig;
+    }
+
+    /**
      * @param $code
      * @param null $storeId
      *
