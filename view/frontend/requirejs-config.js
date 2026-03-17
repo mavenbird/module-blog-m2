@@ -23,13 +23,17 @@ var config = {
         comment: 'Mavenbird_Blog/js/comment',
         categoryTree: 'Mavenbird_Blog/js/categorytree',
         owlCarousel: 'Mavenbird_Blog/js/owl.carousel.min',
-        mbDevbridgeAutocomplete: 'Mavenbird_Blog/js/jquery.autocomplete.min'
+        mbDevbridgeAutocomplete: 'Mavenbird_Blog/js/jquery.autocomplete.min',
+        prism: 'Mavenbird_Blog/js/prism'
     },
     shim: {
         owlCarousel: {
             deps: ['jquery']
         },
         mbDevbridgeAutocomplete: ["jquery"],
-        categoryTree:['jquery']
+        categoryTree:['jquery'],
+        prism: {
+            exports: 'Prism'
+        }
     }
 };
