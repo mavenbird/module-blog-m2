@@ -235,6 +235,11 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[Show/Hide Tag in post view page sidebar]]></comment>
                 </field>
+                <field id="sidebar_rss_show" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Sidebar RSS</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Show/Hide RSS in post view page sidebar]]></comment>
+                </field>
                 <group id="search" translate="label" showInDefault="1" sortOrder="9" showInWebsite="1" showInStore="1">
                     <label>Search Settings</label>
                     <field id="enable_search" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">

@@ -75,6 +75,11 @@
                     <min_chars>1</min_chars>
                     <show_image>1</show_image>
                     <description>100</description>
+                    <show_table_of_content>1</show_table_of_content>
+                    <sidebar_category_show>1</sidebar_category_show>
+                    <sidebar_topic_show>1</sidebar_topic_show>
+                    <sidebar_tag_show>1</sidebar_tag_show>
+                    <sidebar_rss_show>1</sidebar_rss_show>
                 </search>
                 <recent_post>
                     <enable_widget>1</enable_widget>

@@ -41,6 +41,7 @@
                         <block class="Mavenbird\Blog\Block\Sidebar\StaticBlock" name="mbblog.sidebar.staticblock" template="Mavenbird_Blog::nav/sidebar-static-block.phtml" ifconfig="blog/sidebar/show_sidebar_static_block"/>
                     </container>
                     <block class="Mavenbird\Blog\Block\Sidebar\TableOfContent" name="mbblog.sidebar.nav" template="Mavenbird_Blog::nav/post-content-nav.phtml" ifconfig="blog/sidebar/show_table_of_content"/>
+                    <block class="Mavenbird\Blog\Block\Rss\Widget" name="mbblog.sidebar.rss" template="Mavenbird_Blog::rss/widget.phtml" ifconfig="blog/sidebar/sidebar_rss_show"/>
                 </container>
             </container>
         </referenceContainer>
