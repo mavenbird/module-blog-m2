@@ -80,7 +80,8 @@ class View extends Action
         $id = $this->getRequest()->getParam('id');
         $topic = $this->helperBlog->getFactoryByType(HelperBlog::TYPE_TOPIC)->create()->load($id);
         $page = $this->resultPageFactory->create();
-        $page->getConfig()->setPageLayout($this->helperBlog->getSidebarLayout());
+        // $page->getConfig()->setPageLayout($this->helperBlog->getSidebarLayout());
+        $this->helperBlog->applySidebarLayout($page);
         $metaRobots = $topic->getMetaRobots();
         $page->getConfig()->setMetadata('robots',$metaRobots);
 

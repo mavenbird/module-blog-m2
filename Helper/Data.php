@@ -366,6 +366,52 @@ class Data extends CoreHelper
         return $sideBarConfig;
     }
 
+     public function applySidebarLayout($page)
+    {
+        $layout = $this->getSidebarLayout();
+
+        switch ($layout) {
+            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::LEFT:
+                $page->getConfig()->setPageLayout('2columns-left');
+                $page->addHandle('mbblog_layout_left');
+                break;
+            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::RIGHT:
+                $page->getConfig()->setPageLayout('2columns-right');
+                $page->addHandle('mbblog_layout_right');
+                break;
+            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::ONECOLUMN:
+            default:
+                $page->getConfig()->setPageLayout('1column');
+                $page->addHandle('mbblog_layout_1column');
+                break;
+        }
+
+        return $page;
+    }
+
+    public function applyBlogListingLayout($page)
+    {
+        $layout = $this->getBlogListingLayout();
+
+        switch ($layout) {
+            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::LEFT:
+                $page->getConfig()->setPageLayout('2columns-left');
+                $page->addHandle('mbblog_layout_left');
+                break;
+            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::RIGHT:
+                $page->getConfig()->setPageLayout('2columns-right');
+                $page->addHandle('mbblog_layout_right');
+                break;
+            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::ONECOLUMN:
+            default:
+                $page->getConfig()->setPageLayout('1column');
+                $page->addHandle('mbblog_layout_1column');
+                break;
+        }
+
+        return $page;
+    }
+
     /**
      * @param $code
      * @param null $storeId

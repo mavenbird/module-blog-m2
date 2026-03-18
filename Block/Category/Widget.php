@@ -171,6 +171,9 @@ class Widget extends Frontend
      */
     public function isCategorySidebarOneColumn()
     {
-        return $this->helperData->getSidebarConfig('sidebar_left_right') === '1column';
+        return (
+        $this->helperData->getSidebarConfig('sidebar_left_right') === '1column' ||
+        $this->helperData->getPostViewPageConfig('blog_list_layout') === '1column'
+        );
     }
 }

@@ -67,7 +67,8 @@ class View extends Action
     public function execute()
     {
         $page = $this->resultPageFactory->create();
-        $page->getConfig()->setPageLayout($this->_helperBlog->getSidebarLayout());
+        // $page->getConfig()->setPageLayout($this->_helperBlog->getSidebarLayout());
+        $this->_helperBlog->applySidebarLayout($page);
 
         return $page;
     }
