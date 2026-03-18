@@ -31,4 +31,9 @@
     <referenceBlock name="mbblog.sidebar.staticblock" remove="true"/>
     <referenceBlock name="mbblog.sidebar.nav" remove="true"/>
     <referenceBlock name="mbblog.sidebar.rss" remove="true"/>
+    <container name="blog.top.cate.search" htmlTag="div" htmlClass="blog-top-cate-search"></container>    
+    
+    <move element="blog.top.cate.search" destination="div.sidebar.main" />
+    <move element="mbblog.sidebar.search" destination="blog.top.cate.search" />
+    <move element="mbblog.sidebar.category" destination="blog.top.cate.search" before="-" />
 </page>
