@@ -871,11 +871,11 @@ a.mbblog-comment-action-btn.mbblog-like { color: #333333; }
      -webkit-box-orient: vertical; 
      overflow: hidden; 
      height: 44px;
-     line-height: 1.1;
+     line-height: 1.2;
      font-size: 18px;
      margin: 0 0 12px;
 }
-.mbblog-widget-post .post-list-item .mb-post-title  a { color: #333; }
+.mbblog-widget-post .post-list-item .mb-post-title a { color: #333; }
 .mbblog-widget-post .post-list-item .post-short-description {  
      margin: 0 0 16px;
 }
