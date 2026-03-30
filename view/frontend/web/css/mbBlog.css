@@ -921,6 +921,9 @@ body[class*="mbblog-"] .mb-footer { clear: both; padding-top: 10px;}
 body[class*="mbblog-"][class*="page-layout-2columns-"] main .columns { display: flex; }
 body[class*="mbblog-"][class*="page-layout-2columns-"] main .column.main { flex-basis: inherit; -webkit-flex-basis: inherit; -webkit-flex-grow: inherit; flex-grow: inherit; }
 body[class*="mbblog-"][class*="page-layout-2columns-"] main .sidebar-main { flex-basis: inherit; -webkit-flex-basis: inherit; -webkit-flex-grow: inherit; flex-grow: inherit; }
+body[class*="mbblog-"][class*="page-layout-2columns-right"] main .sidebar-main { order: 3; }
+body[class*="mbblog-"][class*="page-layout-2columns-left"] .main { padding-left: 0; }
+body[class*="mbblog-"][class*="page-layout-1column"] .sidebar-main { padding-left: 0; padding-right: 0; }
 
 .sidebar .block-contents.sticky { position: sticky; top: 10px; }
 .sidebar .block-contents .blog-content-nav { max-height: 75vh; overflow: auto; }
