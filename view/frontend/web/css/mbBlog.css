@@ -924,6 +924,8 @@ display: flex; justify-content: center; align-items: center; margin: 0; }
 .blog-top-cate-search .autocomplete-suggestions { max-width: 100%; box-shadow: 0 .625rem 1.875rem 0 rgba(0,0,0,.1); }
 
 .mbblog-author-view .blog-top-cate-search .mbblog-search { width: 100%; }
+body[class*="mbblog-"][class*="page-layout-1column"] .sidebar-main { order: 0; }
+
 /* topbar search end */
 
 @media(min-width:1280px) {
