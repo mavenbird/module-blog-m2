@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Mavenbird
  *
@@ -26,77 +27,71 @@ use Magento\Framework\Escaper;
 /** @var Frontend $block */
 /** @var Escaper $escaper */
 ?>
-<!-- <div class="mb-blog-rss">
-    <a href="<?= $escaper->escapeUrl($block->getRssUrl('post/rss')) ?>" class="bb-rss-icon">
-        <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/rss.png')) ?>"
-             width="16px">
-    </a>
-</div> -->
 <div class="post-list-content" id="mbblog-list">
     <?php $postCollection = $block->getPostCollection(); ?>
     <?php if ($postCollection && $postCollection->getSize()) : ?>
         <div class="mb-post-list
-            <?= $block->isGridView() ? /* @noEscape */ 'grid products-grid' : ''?><?= $block->isGridView() ? ' grid-column-' . $block->getBlogModeGridView() : '' ?>">
+            <?= $block->isGridView() ? /* @noEscape */ 'grid products-grid' : '' ?><?= $block->isGridView() ? ' grid-column-' . $block->getBlogModeGridView() : '' ?>">
             <?php /** @var Post $post */
             foreach ($postCollection as $post) : ?>
                 <div class="post-list-item <?= $block->isGridView()
-                    ? ' post-item-grid  ' : ' post-item-list  '; ?>">
-                        <?php if ($post->getImage()) : ?>
-                            <div class="post-image">
-                                <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
-                                    <img class="img-responsive"
-                                         src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(), '1000x')) ?>"
-                                         alt="<?= $escaper->escapeHtml($post->getName()); ?>"/>
-                                </a>
+                                                ? ' post-item-grid  ' : ' post-item-list  '; ?>">
+                    <?php if ($post->getImage()) : ?>
+                        <div class="post-image">
+                            <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
+                                <img class="img-responsive"
+                                    src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(), '1000x')) ?>"
+                                    alt="<?= $escaper->escapeHtml($post->getName()); ?>" />
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                    <div class="post-info">
+                        <h2 class="mb-post-title">
+                            <a class="post-link-title" title="<?= $escaper->escapeHtml($post->getName()); ?>"
+                                href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
+                                <?= $escaper->escapeHtml($post->getName()) ?>
+                            </a>
+                        </h2>
+                        <div class="mb-post-info">
+                            <?=
+                            /** @noEscape */
+                            $block->getPostInfo($post) ?>
+                        </div>
+                        <?php if ($block->getShortDescription()) : ?>
+                            <div class="post-short-description">
+                                <p><?=
+                                    /** @noEscape */
+                                    $block->maxShortDescription($post->getShortDescription(true)) ?></p>
                             </div>
                         <?php endif; ?>
-                        <div class="post-info">
-                            <h2 class="mb-post-title">
-                                <a class="post-link-title" title="<?= $escaper->escapeHtml($post->getName()); ?>"
-                                   href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
-                                    <?= $escaper->escapeHtml($post->getName()) ?>
-                                </a>
-                            </h2>
-                            <div class="mb-post-info">
-                                <?= /** @noEscape */ $block->getPostInfo($post) ?>
-                            </div>
-                            <div class="post-short-description">
-                                <p><?= /** @noEscape */ $block->maxShortDescription($post->getShortDescription(true)) ?></p>
-                            </div>
+                        <?php if ($block->getShowShareButtons()) : ?>
                             <div class="details-sharing">
-                                <div class="mb-post-meta-info">
-                                    <div class="actions">
-                                        <a class="mb-read-more" href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
-                                        title="<?= $escaper->escapeHtmlAttr(__('Read More ...')) ?>">
-                                            <?= $escaper->escapeHtml(__('Read More ...')) ?>
-                                        </a>
+                                <div id="sharing">
+                                    <div class="share-col-left">
+                                        <h5><?= $escaper->escapeHtml(__('Share this post')) ?></h5>
                                     </div>
-                                </div>
-                                    <div id="sharing">
-                                        <div class="share-col-left">
-                                            <h5><?= $escaper->escapeHtml(__('Share this post')) ?></h5>
-                                        </div>
-                                        <div class="share-col-right">
-                                            <div class="post-sharing-button">
-                                                <?php foreach ($block->getShareLinks($post) as $share) : ?>
-                                                    <?php if ($share['enabled']) : ?>
-                                                        <a class="sharing-icon"
+                                    <div class="share-col-right">
+                                        <div class="post-sharing-button">
+                                            <?php foreach ($block->getShareLinks($post) as $share) : ?>
+                                                <?php if ($share['enabled']) : ?>
+                                                    <a class="sharing-icon"
                                                         href="<?= $escaper->escapeUrl($share['url']) ?>"
                                                         target="_blank"
                                                         rel="noopener"
-                                                    title="<?= $escaper->escapeHtmlAttr($share['label']) ?>">
+                                                        title="<?= $escaper->escapeHtmlAttr($share['label']) ?>">
 
                                                         <i class="<?= $escaper->escapeHtmlAttr($share['icon_class']) ?>
                                                                 <?= $escaper->escapeHtmlAttr($share['icon']) ?>"></i>
 
                                                     </a>
-                                                    <?php endif; ?>
-                                                <?php endforeach; ?>
-                                            </div>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
                                         </div>
                                     </div>
+                                </div>
                             </div>
-                        </div>
+                        <?php endif; ?>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>
