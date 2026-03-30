@@ -28,6 +28,7 @@ use Magento\Framework\Phrase;
 use Mavenbird\Blog\Block\Adminhtml\Category\Tree;
 use Mavenbird\Blog\Block\Frontend;
 use Mavenbird\Blog\Helper\Data;
+use Magento\Framework\App\RequestInterface;
 
 /**
  * Class Widget
@@ -35,6 +36,55 @@ use Mavenbird\Blog\Helper\Data;
  */
 class Widget extends Frontend
 {
+    protected $request;
+
+    public function __construct(
+        \Magento\Framework\View\Element\Template\Context $context,
+        \Magento\Cms\Model\Template\FilterProvider $filterProvider,
+        \Mavenbird\Blog\Model\CommentFactory $commentFactory,
+        \Mavenbird\Blog\Model\LikeFactory $likeFactory,
+        \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository,
+        \Magento\Framework\Registry $coreRegistry,
+        \Mavenbird\Blog\Helper\Data $helperData,
+        \Magento\Customer\Model\Url $customerUrl,
+        \Mavenbird\Blog\Model\CategoryFactory $categoryFactory,
+        \Mavenbird\Blog\Model\PostFactory $postFactory,
+        \Magento\Framework\Stdlib\DateTime\DateTime $dateTime,
+        \Mavenbird\Blog\Model\PostLikeFactory $postLikeFactory,
+        \Mavenbird\Blog\Block\Adminhtml\Post\Edit\Tab\Renderer\Category $category,
+        \Mavenbird\Blog\Block\Adminhtml\Post\Edit\Tab\Renderer\Topic $topic,
+        \Mavenbird\Blog\Block\Adminhtml\Post\Edit\Tab\Renderer\Tag $tag,
+        \Magento\Framework\View\Design\Theme\ThemeProviderInterface $themeProvider,
+        \Magento\Framework\Encryption\EncryptorInterface $enc,
+        \Mavenbird\Blog\Model\Config\Source\AuthorStatus $authorStatus,
+        RequestInterface $request, // <-- your dependency
+        array $data = []
+    ) {
+        $this->request = $request;
+
+        parent::__construct(
+            $context,
+            $filterProvider,
+            $commentFactory,
+            $likeFactory,
+            $customerRepository,
+            $coreRegistry,
+            $helperData,
+            $customerUrl,
+            $categoryFactory,
+            $postFactory,
+            $dateTime,
+            $postLikeFactory,
+            $category,
+            $topic,
+            $tag,
+            $themeProvider,
+            $enc,
+            $authorStatus,
+            $data
+        );
+    }
+
     /**
      * @return mixed|null
      */
@@ -171,6 +221,12 @@ class Widget extends Frontend
      */
     public function isCategorySidebarOneColumn()
     {
+        $fullActionName = $this->request->getFullActionName();
+
+        if ($fullActionName === 'mbblog_post_index') {
+            return $this->helperData->getPostViewPageConfig('blog_list_layout') === '1column';
+        }
+
         return $this->helperData->getSidebarConfig('sidebar_left_right') === '1column';
     }
 }

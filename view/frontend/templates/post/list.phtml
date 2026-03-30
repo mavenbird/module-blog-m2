@@ -26,12 +26,12 @@ use Magento\Framework\Escaper;
 /** @var Frontend $block */
 /** @var Escaper $escaper */
 ?>
-<div class="mb-blog-rss">
+<!-- <div class="mb-blog-rss">
     <a href="<?= $escaper->escapeUrl($block->getRssUrl('post/rss')) ?>" class="bb-rss-icon">
         <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::media/images/rss.png')) ?>"
              width="16px">
     </a>
-</div>
+</div> -->
 <div class="post-list-content" id="mbblog-list">
     <?php $postCollection = $block->getPostCollection(); ?>
     <?php if ($postCollection && $postCollection->getSize()) : ?>

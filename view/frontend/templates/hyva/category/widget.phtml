@@ -34,7 +34,7 @@ if ($tree) : ?>
             <strong><?= $escaper->escapeHtml(__('Categories')) ?></strong>
         </p>
     </div>
-    <div class="categories-item-list">
+    <div class="categories-items-list">
 <?= $block->getCategoryTreeHtml($tree, $accordion) ?>    </div>
 </div>
 <script>
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const isSidebarOneColumn = <?= $isSidebarOneColumn ? 'true' : 'false' ?>;
 
-    const categoryList = document.querySelector('.categories-item-list');
+    const categoryList = document.querySelector('.categories-items-list');
     const categoryTitle = document.querySelector('.categories-title');
 
     /* 1 column sidebar toggle */

@@ -50,8 +50,4 @@
     <type name="Magento\Catalog\Model\ResourceModel\Product\Collection">
         <plugin name="blog-post-product-sort" type="Mavenbird\Blog\Plugin\Catalog\AttributeSort"/>
     </type>
-    <!-- update banner in config infomation tab -->
-    <type name="Mavenbird\Blog\Block\Adminhtml\System\Config\Docs">
-        <plugin name="blog-config-banner" type="Mavenbird\Blog\Plugin\System\Config\Banner"/>
-    </type>
 </config>

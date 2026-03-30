@@ -79,7 +79,8 @@ class View extends Action
     {
         $id = $this->getRequest()->getParam('id');
         $page = $this->resultPageFactory->create();
-        $page->getConfig()->setPageLayout($this->_helperBlog->getSidebarLayout());
+        // $page->getConfig()->setPageLayout($this->_helperBlog->getSidebarLayout());
+        $this->_helperBlog->applySidebarLayout($page);
 
         return ($id)
             ? $page

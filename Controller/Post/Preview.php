@@ -204,8 +204,31 @@ class Preview extends Action
         $post->addData($data);
 
         $page       = $this->resultPageFactory->create();
-        $pageLayout = ($post->getLayout() === 'empty') ? $this->helperBlog->getSidebarLayout() : $post->getLayout();
-        $page->getConfig()->setPageLayout($pageLayout);
+        // $pageLayout = ($post->getLayout() === 'empty') ? $this->helperBlog->getSidebarLayout() : $post->getLayout();
+        // $page->getConfig()->setPageLayout($pageLayout);
+        if ($post->getLayout() === 'empty') {
+            // ✅ Use global config (your helper logic)
+            $this->helperBlog->applySidebarLayout($page);
+        } else {
+            // ✅ Use post-specific layout
+            switch ($post->getLayout()) {
+                case '2columns-left':
+                    $page->getConfig()->setPageLayout('2columns-left');
+                    $page->addHandle('mbblog_layout_left');
+                    break;
+
+                case '2columns-right':
+                    $page->getConfig()->setPageLayout('2columns-right');
+                    $page->addHandle('mbblog_layout_right');
+                    break;
+
+                case '1column':
+                default:
+                    $page->getConfig()->setPageLayout('1column');
+                    $page->addHandle('mbblog_layout_1column');
+                    break;
+            }
+        }
 
         if (!$post->getEnabled() || !$this->helperBlog->checkStore($post)) {
             return $this->_redirect('noroute');
