@@ -207,7 +207,7 @@ class View extends Action
         // $page->getConfig()->setPageLayout($pageLayout);
         if ($post->getLayout() === 'empty') {
             // ✅ Use global config (your helper logic)
-            $this->helperBlog->applySidebarLayout($page);
+            $this->helperBlog->applyBlogViewLayout($page);
         } else {
             // ✅ Use post-specific layout
             switch ($post->getLayout()) {

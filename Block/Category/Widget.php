@@ -227,6 +227,10 @@ class Widget extends Frontend
             return $this->helperData->getPostViewPageConfig('blog_list_layout') === '1column';
         }
 
+        if ($fullActionName === 'mbblog_post_view') {
+            return $this->helperData->getPostViewPageConfig('blog_view_layout') === '1column';
+        }
+
         return $this->helperData->getSidebarConfig('sidebar_left_right') === '1column';
     }
 }

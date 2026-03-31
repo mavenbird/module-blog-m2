@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Mavenbird
  *
@@ -183,7 +184,8 @@ class Data extends CoreHelper
     {
         $groupId = (string) $this->_httpContext->getValue(CustomerContext::CONTEXT_GROUP);
 
-        if ($this->getPostViewPageConfig('is_review')
+        if (
+            $this->getPostViewPageConfig('is_review')
             && in_array($groupId, explode(',', (string) $this->getPostViewPageConfig('review_mode')), true)
         ) {
             return true;
@@ -199,7 +201,8 @@ class Data extends CoreHelper
     {
         $login = $this->_httpContext->getValue(CustomerContext::CONTEXT_AUTH);
 
-        if (!$login
+        if (
+            !$login
             && in_array('0', explode(',', $this->getPostViewPageConfig('review_mode') ?? ''), true)
         ) {
             return '0';
@@ -366,7 +369,48 @@ class Data extends CoreHelper
         return $sideBarConfig;
     }
 
-     public function applySidebarLayout($page)
+    /**
+     * @param null $storeId
+     *
+     * @return array|mixed|string
+     */
+    public function getBlogViewLayout($storeId = null)
+    {
+        $sideBarConfig = $this->getConfigValue(self::CONFIG_MODULE_PATH . '/post_view_page/blog_view_layout', $storeId);
+        if ($sideBarConfig == 0) {
+            return SideBarLR::LEFT;
+        }
+        if ($sideBarConfig == 1) {
+            return SideBarLR::RIGHT;
+        }
+        if ($sideBarConfig == 2) {
+            return SideBarLR::ONECOLUMN;
+        }
+        return $sideBarConfig;
+    }
+
+    public function applyBlogViewLayout($page)
+    {
+        $layout = $this->getBlogViewLayout();
+        switch ($layout) {
+            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::LEFT:
+                $page->getConfig()->setPageLayout('2columns-left');
+                $page->addHandle('mbblog_layout_left');
+                break;
+            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::RIGHT:
+                $page->getConfig()->setPageLayout('2columns-right');
+                $page->addHandle('mbblog_layout_right');
+                break;
+            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::ONECOLUMN:
+            default:
+                $page->getConfig()->setPageLayout('1column');
+                $page->addHandle('mbblog_layout_1column');
+                break;
+        }
+        return $page;
+    }
+
+    public function applySidebarLayout($page)
     {
         $layout = $this->getSidebarLayout();
 

@@ -146,6 +146,10 @@
                     <label>Show Short Description on Blog List</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+                <field id="blog_view_layout" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Blog View Page Layout</label>
+                    <source_model>Mavenbird\Blog\Model\Config\Source\SideBarLR</source_model>
+                </field>
                 <field id="is_review" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable Helpfulness Voting</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
