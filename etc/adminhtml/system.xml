@@ -139,11 +139,11 @@
                     <source_model>Mavenbird\Blog\Model\Config\Source\SideBarLR</source_model>
                 </field>
                 <field id="blog_list_display_share" translate="label comment" type="select" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Show Share Buttons</label>
+                    <label>Show social Buttons on Blog List</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="blog_list_display_short_description" translate="label comment" type="select" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Show Short Description</label>
+                    <label>Show Short Description on Blog List</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="is_review" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
