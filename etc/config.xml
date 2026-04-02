@@ -111,9 +111,9 @@
                 </x_platform>
             </platforms>
             <seo>
-                <blog_seo_meta_title>1</blog_seo_meta_title>
-                <blog_seo_meta_description>1</blog_seo_meta_description>
-                <blog_seo_meta_keywords>1</blog_seo_meta_keywords>
+                <blog_seo_meta_title><![CDATA[Latest Blog Articles on Web Development, Magento 2 & PHP]]></blog_seo_meta_title>
+                <blog_seo_meta_description><![CDATA[Explore expert articles on Magento 2, PHP development, eCommerce solutions, performance optimization, and the latest web development trends.]]></blog_seo_meta_description>
+                <blog_seo_meta_keywords><![CDATA[Magento 2, PHP development, web development blog, eCommerce solutions, Magento tutorials, coding tips, backend development, frontend development]]></blog_seo_meta_keywords>
                 <blog_seo_meta_robots>INDEX,FOLLOW</blog_seo_meta_robots>
             </seo>
         </blog>
