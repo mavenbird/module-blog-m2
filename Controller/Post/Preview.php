@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Mavenbird
  *
@@ -194,16 +195,14 @@ class Preview extends Action
      */
     public function execute()
     {
-        $id        = $this->getRequest()->getParam('id');
-        $historyId = $this->getRequest()->getParam('historyId');
-        $history   = $this->helperBlog->getFactoryByType(Data::TYPE_HISTORY)->create()->load($historyId);
-        $post      = $this->helperBlog->getFactoryByType(Data::TYPE_POST)->create()->load($history->getPostId());
+        $postId = $this->getRequest()->getParam('id');
+        $post   = $this->postFactory->create()->load($postId);
         $this->helperBlog->setCustomerContextId();
-
-        $data = $this->prepareData($history);
-        $post->addData($data);
-
-        $page       = $this->resultPageFactory->create();
+        // Only check store, allow both enabled and disabled posts
+        if (!$post->getId()) {
+            return $this->_redirect('noroute'); // still 404 if post doesn't exist or wrong store
+        }
+        $page = $this->resultPageFactory->create();
         // $pageLayout = ($post->getLayout() === 'empty') ? $this->helperBlog->getSidebarLayout() : $post->getLayout();
         // $page->getConfig()->setPageLayout($pageLayout);
         if ($post->getLayout() === 'empty') {
@@ -230,8 +229,8 @@ class Preview extends Action
             }
         }
 
-        if (!$post->getEnabled() || !$this->helperBlog->checkStore($post)) {
-            return $this->_redirect('noroute');
+        if (!$post->getId()) {
+            return $this->_redirect('noroute'); // still 404 if post doesn't exist or wrong store
         }
 
         if ($this->getRequest()->isAjax()) {
@@ -296,7 +295,7 @@ class Preview extends Action
             return $this->getResponse()->representJson($this->jsonHelper->jsonEncode($result));
         }
 
-        return $this->resultPageFactory->create();
+        return $page;
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Mavenbird
  *
@@ -107,6 +108,22 @@ class Edit extends Container
                 ],
                 -100
             );
+            
+            if ($post->getId()) {
+                $this->buttonList->add(
+                    'preview',
+                    [
+                        'label' => __('Preview'),
+                        'class' => 'preview',
+                        'onclick' => sprintf(
+                            "window.open('%s', '_blank')",
+                            $this->getPreviewUrl($post)
+                        ),
+                    ],
+                    -102
+                );
+            }
+
             if ($post->getId() && !$this->_request->getParam('duplicate')) {
                 $this->buttonList->add(
                     'duplicate',
@@ -238,5 +255,11 @@ class Edit extends Container
     protected function getSaveAddHistoryUrl()
     {
         return $this->getUrl('*/*/save', ['action' => 'add']);
+    }
+
+    protected function getPreviewUrl($post)
+    {
+        $store = $this->_storeManager->getStore(); // get current store
+        return $store->getUrl('mbblog/post/preview', ['id' => $post->getId(), '_secure' => true]);
     }
 }
