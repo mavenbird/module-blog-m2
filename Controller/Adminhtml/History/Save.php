@@ -172,16 +172,9 @@ class Save extends History
         $data['publish_date'] = $this->_timezone->convertConfigTimeToUtc(isset($data['publish_date'])
             ? $data['publish_date'] : null);
         $data['modifier_id'] = $this->_auth->getUser()->getId();
-        $data['categories_ids'] = (isset($data['categories_ids']) && $data['categories_ids']) ? explode(
-            ',',
-            $data['categories_ids'] ?? ''
-        ) : [];
-        $data['tags_ids'] = (isset($data['tags_ids']) && $data['tags_ids'])
-            ? explode(',', $data['tags_ids'] ?? '') : [];
-        $data['topics_ids'] = (isset($data['topics_ids']) && $data['topics_ids']) ? explode(
-            ',',
-            $data['topics_ids'] ?? ''
-        ) : [];
+        $data['categories_ids'] = $this->normalizeIdsField($data['categories_ids'] ?? null);
+        $data['tags_ids']       = $this->normalizeIdsField($data['tags_ids'] ?? null);
+        $data['topics_ids']     = $this->normalizeIdsField($data['topics_ids'] ?? null);
 
         if ($post->getCreatedAt() === null) {
             $data['created_at'] = $this->date->date();
@@ -203,5 +196,30 @@ class Save extends History
         }
 
         return $this;
+    }
+
+    /**
+     * Normalize incoming ids field (UI multiselect posts array, legacy renderer posts comma string).
+     *
+     * @param mixed $value
+     * @return array
+     */
+    private function normalizeIdsField($value): array
+    {
+        if ($value === null || $value === '' || $value === false) {
+            return [];
+        }
+
+        if (is_array($value)) {
+            $value = array_filter($value, static fn($v) => $v !== '' && $v !== null);
+            return array_values(array_map('intval', $value));
+        }
+
+        $value = trim((string) $value);
+        if ($value === '') {
+            return [];
+        }
+
+        return array_values(array_map('intval', array_filter(explode(',', $value), static fn($v) => $v !== '')));
     }
 }

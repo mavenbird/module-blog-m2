@@ -31,6 +31,7 @@ use Magento\Framework\Registry;
 use Mavenbird\Blog\Block\Adminhtml\Post\Edit\Tab\Renderer\History\Action;
 use Mavenbird\Blog\Block\Adminhtml\Post\Edit\Tab\Renderer\History\Author;
 use Mavenbird\Blog\Block\Adminhtml\Post\Edit\Tab\Renderer\History\Categories;
+use Mavenbird\Blog\Block\Adminhtml\Post\Edit\Tab\Renderer\History\ImageColumn;
 use Mavenbird\Blog\Block\Adminhtml\Post\Edit\Tab\Renderer\History\Store;
 use Mavenbird\Blog\Block\Adminhtml\Post\Edit\Tab\Renderer\History\Tags;
 use Mavenbird\Blog\Block\Adminhtml\Post\Edit\Tab\Renderer\History\Topics;
@@ -139,6 +140,15 @@ class History extends Extended implements TabInterface
             'index'            => 'short_description',
             'header_css_class' => 'col-short-description',
             'column_css_class' => 'col-short-description'
+        ]);
+        $this->addColumn('image', [
+            'header'           => __('Image'),
+            'index'            => 'image',
+            'filter'           => false,
+            'sortable'         => false,
+            'renderer'         => ImageColumn::class,
+            'header_css_class' => 'col-image',
+            'column_css_class' => 'col-image'
         ]);
         $this->addColumn('store_ids', [
             'header'           => __('Store View'),

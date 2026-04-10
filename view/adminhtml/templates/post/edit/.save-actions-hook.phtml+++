@@ -1,0 +1,58 @@
+<script>
+require(['uiRegistry'], function (registry) {
+    var saveWithAction = function (action) {
+        var component = registry.get('mavenbird_blog_post_form.mavenbird_blog_post_form');
+        if (component && typeof component.save === 'function') {
+            component.save(true, {action: action});
+        }
+    };
+
+    var matchesAny = function (target, selectors) {
+        if (!target || !target.closest) {
+            return null;
+        }
+        for (var i = 0; i < selectors.length; i++) {
+            var matched = target.closest(selectors[i]);
+            if (matched) {
+                return matched;
+            }
+        }
+        return null;
+    };
+
+    document.addEventListener('click', function (event) {
+        var historyBtn = matchesAny(event.target, [
+            '#save_and_add_history',
+            '#save_add_history',
+            '#save_add_history-button',
+            '#save_and_add_history-button',
+            '[data-ui-id="save-button-item-save_and_add_history"]',
+            '[data-ui-id="save-button-item-save_add_history"]'
+        ]);
+        if (historyBtn) {
+            event.preventDefault();
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+            saveWithAction('add');
+            return false;
+        }
+
+        var draftBtn = matchesAny(event.target, [
+            '#save_and_draft',
+            '#save_draft',
+            '#save_draft-button',
+            '#save_and_draft-button',
+            '[data-ui-id="save-button-item-save_and_draft"]',
+            '[data-ui-id="save-button-item-save_draft"]'
+        ]);
+        if (draftBtn) {
+            event.preventDefault();
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+            saveWithAction('draft');
+            return false;
+        }
+    }, true);
+});
+</script>
+

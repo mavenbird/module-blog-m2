@@ -1,52 +1,16 @@
-<?xml version="1.0"?>
-<!--
-/**
- * Mavenbird
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Mavenbird.com license that is
- * available through the world-wide-web at this URL:
- * https://www.mavenbird.com/LICENSE.txt
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade this extension to newer
- * version in the future.
- *
- * @category    Mavenbird
- * @package     Mavenbird_Blog
- * @copyright   Copyright (c) Mavenbird (https://www.mavenbird.com/)
- * @license     https://www.mavenbird.com/LICENSE.txt
- */
--->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      layout="admin-2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <update handle="editor"/>
     <head>
         <css src="Mavenbird_Blog::css/post/edit/post.css"/>
     </head>
     <body>
         <referenceContainer name="content">
-            <block class="Mavenbird\Blog\Block\Adminhtml\Post\Edit" name="mavenbird_blog_post_edit"/>
-        </referenceContainer>
-        <referenceContainer name="left">
-            <block class="Mavenbird\Blog\Block\Adminhtml\Post\Edit\Tabs" name="mavenbird_blog_post_tabs">
-                <block class="Mavenbird\Blog\Block\Adminhtml\Post\Edit\Tab\Post" name="mavenbird_blog_post_edit_tab_post"/>
-                <block class="Mavenbird\Blog\Block\Adminhtml\Post\Edit\Tab\Product" name="mavenbird_blog_post_edit_tab_product"/>
-                <block class="Mavenbird\Blog\Block\Adminhtml\Post\Edit\Tab\History" name="mavenbird_blog_post_edit_tab_history"/>
-                <action method="addTab">
-                    <argument name="name" xsi:type="string">post</argument>
-                    <argument name="block" xsi:type="string">mavenbird_blog_post_edit_tab_post</argument>
-                </action>
-                <action method="addTab">
-                    <argument name="name" xsi:type="string">product</argument>
-                    <argument name="block" xsi:type="string">mavenbird_blog_post_edit_tab_product</argument>
-                </action>
-                <action method="addTab">
-                    <argument name="name" xsi:type="string">history</argument>
-                    <argument name="block" xsi:type="string">mavenbird_blog_post_edit_tab_history</argument>
-                </action>
-            </block>
+            <block class="Magento\Backend\Block\Template"
+                   name="mavenbird_blog_post_save_actions_hook"
+                   template="Mavenbird_Blog::post/edit/save-actions-hook.phtml"/>
+            <uiComponent name="mavenbird_blog_post_form"/>
         </referenceContainer>
     </body>
 </page>

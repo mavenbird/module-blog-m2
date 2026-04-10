@@ -54,7 +54,7 @@ class PostHistory extends AbstractModel
     /**
      * @var string
      */
-    protected $_idFieldName = 'like_id';
+    protected $_idFieldName = 'history_id';
 
     /**
      * Initialize resource model

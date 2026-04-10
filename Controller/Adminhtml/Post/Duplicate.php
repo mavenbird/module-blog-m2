@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Mavenbird
  *
@@ -67,9 +68,33 @@ class Duplicate extends Post
      */
     public function execute()
     {
-        $resultForward = $this->resultForwardFactory->create();
-        $resultForward->forward('edit');
+        $postId = $this->getRequest()->getParam('id');
+        if (!$postId) {
+            $this->messageManager->addErrorMessage(__('Post ID is missing.'));
+            return $this->_redirect('*/*/');
+        }
 
-        return $resultForward;
+        try {
+            // Load original post
+            $originalPost = $this->postFactory->create()->load($postId);
+            if (!$originalPost->getId()) {
+                $this->messageManager->addErrorMessage(__('Original post not found.'));
+                return $this->_redirect('*/*/');
+            }
+
+            // Create new post and copy data
+            $newPost = $this->postFactory->create();
+            $newPost->setData($originalPost->getData());
+            $newPost->setId(null); // Ensure new entity
+            $newPost->setTitle($originalPost->getTitle() . ' (Duplicate)'); // Optionally modify title
+
+            $newPost->save();
+
+            $this->messageManager->addSuccessMessage(__('Post duplicated successfully.'));
+            return $this->_redirect('*/*/edit', ['id' => $newPost->getId()]);
+        } catch (\Exception $e) {
+            $this->messageManager->addErrorMessage(__('Error duplicating post: %1', $e->getMessage()));
+            return $this->_redirect('*/*/');
+        }
     }
 }

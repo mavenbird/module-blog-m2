@@ -1,0 +1,64 @@
+<?php
+
+namespace Mavenbird\Blog\Block\Adminhtml\Post\Edit;
+
+use Magento\Backend\Block\Widget\Context;
+use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
+use Magento\Ui\Component\Control\Container;
+
+class SaveButton implements ButtonProviderInterface
+{
+    protected $context;
+
+    public function __construct(Context $context)
+    {
+        $this->context = $context;
+    }
+
+    public function getButtonData()
+    {
+        $targetName = 'mavenbird_blog_post_form.mavenbird_blog_post_form';
+
+        return [
+            'label' => __('Save'),
+            'class' => 'save primary',
+            'class_name' => Container::SPLIT_BUTTON,
+            'data_attribute' => [
+                'mage-init' => [
+                    'buttonAdapter' => [
+                        'actions' => [
+                            [
+                                'targetName' => $targetName,
+                                'actionName' => 'save',
+                                'params' => [true]
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            'options' => [
+                [
+                    'id_hard' => 'save_and_add_history',
+                    'label' => __('Save & Add History'),
+                    'onclick' => $this->getUiSaveJs('add'),
+                ],
+                [
+                    'id_hard' => 'save_and_draft',
+                    'label' => __('Save as Draft'),
+                    'onclick' => $this->getUiSaveJs('draft'),
+                ],
+            ],
+            'sort_order' => 90,
+        ];
+    }
+
+    private function getUiSaveJs(string $action): string
+    {
+        $action = addslashes($action);
+
+        return "require(['uiRegistry'], function (registry) {"
+            . "var c = registry.get('mavenbird_blog_post_form.mavenbird_blog_post_form');"
+            . "if (c && typeof c.save === 'function') { c.save(true, {action: '" . $action . "'}); }"
+            . "}); return false;";
+    }
+}

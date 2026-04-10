@@ -93,9 +93,7 @@ class Product extends Extended implements TabInterface
         $this->setSaveParametersInSession(false);
         $this->setUseAjax(true);
 
-        if ($this->getPost()->getId()) {
-            $this->setDefaultFilter(['in_products' => 1]);
-        }
+        // Show all products by default; admins can filter "in_products" manually.
     }
 
     /**
@@ -183,7 +181,7 @@ class Product extends Extended implements TabInterface
     protected function _getSelectedProducts()
     {
         $products = $this->getRequest()->getPost('post_products', null);
-        if (!is_array($products)) {
+        if (!is_array($products) || !$products) {
             $products = $this->getPost()->getProductsPosition();
 
             return array_keys($products);
@@ -312,5 +310,75 @@ class Product extends Extended implements TabInterface
     public function getTabClass()
     {
         return 'ajax only';
+    }
+
+    /**
+     * Append serializer fallback so selected products are posted as "products".
+     *
+     * @return string
+     */
+    protected function _toHtml()
+    {
+        $html = parent::_toHtml();
+
+        $html .= '<script>
+            (function () {
+                var bindProductSync = function () {
+                    var form = document.getElementById("mavenbird_blog_post_form")
+                        || document.getElementById("edit_form")
+                        || document.querySelector("form");
+                    if (!form || form.dataset.mbProductsBound === "1") {
+                        return;
+                    }
+
+                    form.dataset.mbProductsBound = "1";
+
+                    var hiddenProducts = document.getElementById("mb_post_products");
+                    if (!hiddenProducts) {
+                        hiddenProducts = document.createElement("input");
+                        hiddenProducts.type = "hidden";
+                        hiddenProducts.id = "mb_post_products";
+                        hiddenProducts.name = "products";
+                        hiddenProducts.setAttribute("data-form-part", "mavenbird_blog_post_form");
+                        form.appendChild(hiddenProducts);
+                    }
+
+                    var syncSelected = function () {
+                        var grid = document.getElementById("product_grid_table");
+                        if (!grid) {
+                            return;
+                        }
+
+                        var checked = grid.querySelectorAll("tbody input.checkbox:checked");
+                        var ids = [];
+                        checked.forEach(function (checkbox) {
+                            var id = parseInt(checkbox.value || "", 10);
+                            if (id > 0) {
+                                ids.push(id);
+                            }
+                        });
+
+                        // Simplified legacy serializer format expected by decodeGridSerializedInput.
+                        hiddenProducts.value = ids.join("&");
+                    };
+
+                    // Initial sync and live updates.
+                    syncSelected();
+                    document.addEventListener("change", function (e) {
+                        if (e.target && e.target.closest && e.target.closest("#product_grid_table")) {
+                            syncSelected();
+                        }
+                    }, true);
+                };
+
+                if (document.readyState === "loading") {
+                    document.addEventListener("DOMContentLoaded", bindProductSync);
+                } else {
+                    bindProductSync();
+                }
+            })();
+        </script>';
+
+        return $html;
     }
 }

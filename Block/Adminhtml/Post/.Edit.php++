@@ -173,10 +173,12 @@ class Edit extends Container
             [
                 'id_hard' => 'save_and_draft',
                 'label' => __('Save as Draft'),
+                'onclick' => $this->getUiSaveJs('draft'),
             ],
             [
-                'id_hard' => 'save_and_add_history',
-                'label' => __('Save & Add History'),
+            'id_hard' => 'save_and_add_history',
+            'label' => __('Save & Add History'),
+            'onclick' => $this->getUiSaveJs('add'),
             ],
         ];
     }
@@ -236,17 +238,6 @@ class Edit extends Container
         }
 
         return "require(['uiRegistry'], function (registry) {"
-            . "(function(){"
-            . "  var form = document.querySelector('#mavenbird_blog_post_form')"
-            . "          || document.querySelector('#edit_form')"
-            . "          || document.querySelector('form');"
-            . "  if (!form) return;"
-            . "  ['action','post[action]'].forEach(function(n){"
-            . "    var el = form.querySelector('input[name=\"'+n+'\"]');"
-            . "    if (!el) { el = document.createElement('input'); el.type='hidden'; el.name=n; form.appendChild(el); }"
-            . "    el.value='" . $action . "';"
-            . "  });"
-            . "})();"
             . "var c = registry.get('mavenbird_blog_post_form.mavenbird_blog_post_form');"
             . "if (c && typeof c.save === 'function') { c.save(true, {action: '" . $action . "'}); }"
             . "}); return false;";

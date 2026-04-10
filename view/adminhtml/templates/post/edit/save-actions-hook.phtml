@@ -1,0 +1,94 @@
+<script>
+require(['uiRegistry'], function (registry) {
+
+    /**
+     * Inject hidden inputs into the form so the controller receives
+     * the action value via both getParam('action') and $data['action'].
+     * This is necessary because UI component's save() does NOT reliably
+     * pass additionalData into the POST body.
+     */
+    var injectAction = function (action) {
+        var form = document.querySelector('#mavenbird_blog_post_form')
+                || document.querySelector('#edit_form')
+                || document.querySelector('form');
+        if (!form) return;
+        ['action', 'post[action]'].forEach(function (name) {
+            var el = form.querySelector('input[name="' + name + '"]');
+            if (!el) {
+                el = document.createElement('input');
+                el.type = 'hidden';
+                el.name = name;
+                form.appendChild(el);
+            }
+            el.value = action;
+        });
+    };
+
+    var saveWithAction = function (action) {
+        injectAction(action);
+        var component = registry.get('mavenbird_blog_post_form.mavenbird_blog_post_form');
+        if (component && typeof component.save === 'function') {
+            component.save(true, {action: action});
+        } else {
+            var form = document.querySelector('#mavenbird_blog_post_form')
+                    || document.querySelector('#edit_form')
+                    || document.querySelector('form');
+            if (form) {
+                window.jQuery ? window.jQuery(form).trigger('submit') : form.submit();
+            }
+        }
+    };
+
+    var matchesAny = function (target, selectors) {
+        if (!target || !target.closest) return null;
+        for (var i = 0; i < selectors.length; i++) {
+            var matched = target.closest(selectors[i]);
+            if (matched) return matched;
+        }
+        return null;
+    };
+
+    /**
+     * Magento converts id_hard underscores to hyphens in data-ui-id.
+     * id_hard='save_and_add_history' → data-ui-id="save-button-item-save-and-add-history"
+     * id_hard='save_and_draft'       → data-ui-id="save-button-item-save-and-draft"
+     * We also cover the raw id_hard as element ID as fallback.
+     */
+    document.addEventListener('click', function (event) {
+
+        var historyBtn = matchesAny(event.target, [
+            '#save_and_add_history',
+            '#save_and_add_history-button',
+            '#save_add_history',
+            '#save_add_history-button',
+            '[data-ui-id="save-button-item-save-and-add-history"]',
+            '[data-ui-id="save-button-item-save_and_add_history"]',
+            '[data-ui-id="save-button-item-save-add-history"]',
+            '[data-ui-id="save-button-item-save_add_history"]'
+        ]);
+        if (historyBtn) {
+            // Keep Magento's native click flow; only inject action for backend detection.
+            injectAction('add');
+            return;
+        }
+
+        var draftBtn = matchesAny(event.target, [
+            '#save_and_draft',
+            '#save_and_draft-button',
+            '#save_as_draft',
+            '#save_as_draft-button',
+            '[data-ui-id="save-button-item-save-and-draft"]',
+            '[data-ui-id="save-button-item-save_and_draft"]',
+            '[data-ui-id="save-button-item-save-as-draft"]',
+            '[data-ui-id="save-button-item-save_as_draft"]'
+        ]);
+        if (draftBtn) {
+            // Keep Magento's native click flow; only inject action for backend detection.
+            injectAction('draft');
+            return;
+        }
+
+    }, true); // capture phase = inject action before Magento handlers run
+});
+</script>
+

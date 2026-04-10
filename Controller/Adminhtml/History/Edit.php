@@ -25,8 +25,6 @@ use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Registry;
 use Magento\Framework\Stdlib\DateTime\DateTime;
-use Magento\Framework\View\Result\Page;
-use Magento\Framework\View\Result\PageFactory;
 use Mavenbird\Blog\Controller\Adminhtml\History;
 use Mavenbird\Blog\Model\PostFactory;
 use Mavenbird\Blog\Model\PostHistory;
@@ -39,20 +37,12 @@ use Mavenbird\Blog\Model\PostHistoryFactory;
 class Edit extends History
 {
     /**
-     * Page factory
-     *
-     * @var PageFactory
-     */
-    public $resultPageFactory;
-
-    /**
      * Edit constructor.
      *
      * @param PostHistoryFactory $postHistoryFactory
      * @param PostFactory $postFactory
      * @param Registry $coreRegistry
      * @param DateTime $date
-     * @param PageFactory $resultPageFactory
      * @param Context $context
      */
     public function __construct(
@@ -60,10 +50,8 @@ class Edit extends History
         PostFactory $postFactory,
         Registry $coreRegistry,
         DateTime $date,
-        PageFactory $resultPageFactory,
         Context $context
     ) {
-        $this->resultPageFactory = $resultPageFactory;
         parent::__construct($postHistoryFactory, $postFactory, $coreRegistry, $date, $context);
     }
 
@@ -74,23 +62,20 @@ class Edit extends History
     {
         /** @var PostHistory $history */
         $history = $this->initPostHistory();
+        $resultRedirect = $this->resultRedirectFactory->create();
 
         if (!$history) {
-            $resultRedirect = $this->resultRedirectFactory->create();
             $resultRedirect->setPath('*');
-
             return $resultRedirect;
         }
 
-        $this->coreRegistry->register('mavenbird_blog_post', $history);
+        // Force History edit to use the new Post editor (UI form/PageBuilder).
+        $resultRedirect->setPath('mavenbird_blog/post/edit', [
+            'id' => $history->getPostId(),
+            'history_id' => $history->getId(),
+            '_current' => true
+        ]);
 
-        /** @var \Magento\Backend\Model\View\Result\Page|Page $resultPage */
-        $resultPage = $this->resultPageFactory->create();
-        $resultPage->setActiveMenu('Mavenbird_Blog::history');
-        $resultPage->getConfig()->getTitle()->set(__('Post History'));
-
-        $resultPage->getConfig()->getTitle()->prepend(__('Edit Post History'));
-
-        return $resultPage;
+        return $resultRedirect;
     }
 }

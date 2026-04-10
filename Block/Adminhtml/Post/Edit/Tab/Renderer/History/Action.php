@@ -65,10 +65,10 @@ class Action extends \Magento\Backend\Block\Widget\Grid\Column\Renderer\Action
     {
         $actions[] = [
             'url' =>
-                $this->getUrl('*/history/edit', [
-                    'id' => $row->getId(),
-                    'post_id' => $row->getPostId(),
-                    'history' => true
+                $this->getUrl('*/post/edit', [
+                    'id' => $row->getPostId(),
+                    'history_id' => $row->getId(),
+                    '_current' => true
                 ]),
             'popup' => false,
             'caption' => __('Edit'),

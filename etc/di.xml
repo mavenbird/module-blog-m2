@@ -99,5 +99,16 @@
     <preference for="Mavenbird\Blog\Api\Data\SearchResult\TopicSearchResultInterface" type="Mavenbird\Blog\Model\ResourceModel\Topic\Collection" />
     <preference for="Mavenbird\Blog\Api\Data\SearchResult\CommentSearchResultInterface" type="Mavenbird\Blog\Model\ResourceModel\Comment\Collection" />
 
-
+    <type name="Mavenbird\Blog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">blog/tmp/blog</argument>
+            <argument name="basePath" xsi:type="string">blog/blog</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
