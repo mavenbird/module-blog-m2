@@ -2,6 +2,7 @@
 namespace Mavenbird\Blog\Block\Adminhtml\Post\Edit;
 
 use Magento\Backend\Block\Widget\Context;
+use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 use Magento\Store\Model\StoreManagerInterface;
 
@@ -25,8 +26,9 @@ class PreviewButton implements ButtonProviderInterface
             return [];
         }
 
-        $store      = $this->storeManager->getStore();
-        $previewUrl = $store->getUrl('mavenbird_blog/post/preview', ['id' => $postId, '_secure' => true]);
+        $store = $this->storeManager->getStore();
+        $previewUrl = rtrim($store->getBaseUrl(UrlInterface::URL_TYPE_WEB), '/')
+            . '/mbblog/post/preview?id=' . (int)$postId;
 
         return [
             'label'      => __('Preview'),

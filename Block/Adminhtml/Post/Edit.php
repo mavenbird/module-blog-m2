@@ -4,6 +4,7 @@ namespace Mavenbird\Blog\Block\Adminhtml\Post;
 
 use Magento\Backend\Block\Widget\Context;
 use Magento\Backend\Block\Widget\Form\Container;
+use Magento\Framework\UrlInterface;
 use Magento\Framework\Registry;
 use Mavenbird\Blog\Model\Post;
 
@@ -260,10 +261,8 @@ class Edit extends Container
     {
         $store = $this->_storeManager->getStore();
 
-        return $store->getUrl(
-            'mbblog/post/preview',
-            ['id' => $post->getId(), '_secure' => true]
-        );
+        return rtrim($store->getBaseUrl(UrlInterface::URL_TYPE_WEB), '/')
+            . '/mbblog/post/preview?id=' . (int)$post->getId();
     }
 }
 

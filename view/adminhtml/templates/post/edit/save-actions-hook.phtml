@@ -48,6 +48,20 @@ require(['uiRegistry'], function (registry) {
         return null;
     };
 
+    var getPostId = function () {
+        try {
+            var currentUrl = new URL(window.location.href);
+            var idFromQuery = currentUrl.searchParams.get('id');
+            if (idFromQuery) {
+                return parseInt(idFromQuery, 10) || 0;
+            }
+            var match = currentUrl.pathname.match(/\/id\/(\d+)\//);
+            return match ? (parseInt(match[1], 10) || 0) : 0;
+        } catch (e) {
+            return 0;
+        }
+    };
+
     /**
      * Magento converts id_hard underscores to hyphens in data-ui-id.
      * id_hard='save_and_add_history' → data-ui-id="save-button-item-save-and-add-history"
@@ -86,6 +100,24 @@ require(['uiRegistry'], function (registry) {
             // Keep Magento's native click flow; only inject action for backend detection.
             injectAction('draft');
             return;
+        }
+
+        var previewBtn = matchesAny(event.target, [
+            '#preview',
+            '#preview-button',
+            '[data-ui-id="preview-button"]',
+            '[data-ui-id="preview"]',
+            '.action-preview'
+        ]);
+        if (previewBtn) {
+            var postId = getPostId();
+            if (postId > 0) {
+                event.preventDefault();
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+                window.open(window.location.origin + '/mbblog/post/preview?id=' + postId, '_blank');
+                return false;
+            }
         }
 
     }, true); // capture phase = inject action before Magento handlers run
