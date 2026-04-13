@@ -42,7 +42,7 @@ class SaveButton implements ButtonProviderInterface
     {
         return [
             [
-                'label' => __('Save as Draft'),
+                'label' => __('Save & add History'),
                 'id_hard' => 'save_as_draft',
                 'data_attribute' => [
                     'mage-init' => [
@@ -59,7 +59,7 @@ class SaveButton implements ButtonProviderInterface
                 ]
             ],
             [
-                'label' => __('Save & add History'),
+                'label' => __('Save as Draft'),
                 'id_hard' => 'save_add_history',
                 'data_attribute' => [
                     'mage-init' => [

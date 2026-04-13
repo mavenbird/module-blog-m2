@@ -152,15 +152,18 @@ class Save extends Post
                         ['post' => $post, 'request' => $this->getRequest()]
                     );
                     $this->messageManager->addSuccessMessage(__('The post has been saved.'));
-                    // Create one history snapshot on save (action-independent).
-                    // If one already exists for this post, addHistory() will show duplicate message.
-                    $this->addHistory($post, $action ?: 'default');
+                    // Always create a history snapshot after a successful save
+                    // so that the History tab is reliably populated.
+                    $this->addHistory($post, 'add');
                 }
 
                 $this->_getSession()->setData('mavenbird_blog_post_data', false);
 
-                // Always go back to posts grid after save.
-                $resultRedirect->setPath('mavenbird_blog/*/');
+                if ($this->getRequest()->getParam('back')) {
+                    $resultRedirect->setPath('mavenbird_blog/*/edit', ['id' => $post->getId(), '_current' => true]);
+                } else {
+                    $resultRedirect->setPath('mavenbird_blog/*/');
+                }
 
                 return $resultRedirect;
             } catch (RuntimeException $e) {
@@ -187,37 +190,38 @@ class Save extends Post
      */
     protected function addHistory($post, $action = null)
     {
-        try {
-            $history = $this->_postHistory->create();
-            $data = $post->getData();
-            unset(
-                $data['is_changed_tag_list'],
-                $data['is_changed_topic_list'],
-                $data['is_changed_category_list'],
-                $data['is_changed_product_list']
-            );
-
-            // Keep only one history entry per post (draft/history whichever saved first).
-            $existing = $this->_postHistory->create()->getCollection()
-                ->addFieldToFilter('post_id', (int)$post->getPostId())
-                ->getFirstItem();
-            if ($existing && $existing->getId()) {
-                $this->messageManager->addErrorMessage(__(
-                    'Record Id %1 like the one you want to save.',
-                    $existing->getId()
-                ));
-                return;
+        if (!empty($action)) {
+            $history      = $this->_postHistory->create();
+            $historyCount = $history->getSumPostHistory($post->getPostId());
+            $limitHistory = (int) $this->_helperData->getConfigGeneral('history_limit');
+            try {
+                $data = $post->getData();
+                unset(
+                    $data['is_changed_tag_list'],
+                    $data['is_changed_topic_list'],
+                    $data['is_changed_category_list'],
+                    $data['is_changed_product_list']
+                );
+                if ($isSave = $this->checkHistory($data)) {
+                    $this->messageManager->addErrorMessage(__(
+                        'Record Id %1 like the one you want to save.',
+                        $isSave->getId()
+                    ));
+                } else {
+                    if ($historyCount >= $limitHistory) {
+                        $history->removeFirstHistory($post->getPostId());
+                    }
+                    $history->addData($data);
+                    $history->save();
+                }
+            } catch (RuntimeException $e) {
+                $this->messageManager->addErrorMessage($e->getMessage());
+            } catch (Exception $e) {
+                $this->messageManager->addExceptionMessage(
+                    $e,
+                    __('Something went wrong while saving the Post History.')
+                );
             }
-
-            $history->addData($data);
-            $history->save();
-        } catch (RuntimeException $e) {
-            $this->messageManager->addErrorMessage($e->getMessage());
-        } catch (Exception $e) {
-            $this->messageManager->addExceptionMessage(
-                $e,
-                __('Something went wrong while saving the Post History.')
-            );
         }
     }
 
