@@ -344,10 +344,19 @@ class Post extends Generic implements TabInterface
         ]);
 
         $staticBlockOptions = $this->_staticBlockOptions->toOptionArray();
+        $hasEmpty = false;
+        foreach ($staticBlockOptions as $option) {
+            if ($option['value'] === '') {
+                $hasEmpty = true;
+                break;
+            }
+        }
+        if (!$hasEmpty) {
             array_unshift($staticBlockOptions, [
                 'value' => '',
                 'label' => __('-- Please Select --')
             ]);
+        }
 
         $designFieldset->addField('static_block_identifier', 'select', [
             'name'   => 'static_block_identifier',
