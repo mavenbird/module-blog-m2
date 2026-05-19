@@ -52,7 +52,7 @@ class ListOfStaticBlock implements ArrayInterface
         $options = [];
         $options[] = [
             'value' => '',
-            'label' => __('--Please Select--')
+            'label' => __('Please Select')
         ];
         $collection = $this->blockCollectionFactory->create();
         foreach ($collection as $block) {
@@ -72,7 +72,7 @@ class ListOfStaticBlock implements ArrayInterface
     public function toArray()
     {
         $options = [];
-        $options[''] = __('--Please Select--');
+        $options[''] = __('Please Select');
         $collection = $this->blockCollectionFactory->create();
         foreach ($collection as $block) {
             $options[$block->getIdentifier()] = $block->getTitle();

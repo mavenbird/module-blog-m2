@@ -343,6 +343,7 @@ class Post extends Generic implements TabInterface
             'values' => $this->_layoutOptions->toOptionArray()
         ]);
 
+        
         $staticBlockOptions = $this->_staticBlockOptions->toOptionArray();
         $hasEmpty = false;
         foreach ($staticBlockOptions as $option) {
