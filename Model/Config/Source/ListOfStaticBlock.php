@@ -80,3 +80,4 @@ class ListOfStaticBlock implements ArrayInterface
         return $options;
     }
 }
+
