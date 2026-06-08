@@ -437,19 +437,22 @@ class Category extends AbstractDb
         /** Get old category position */
         $positionOld = $category->getPosition();
         /** Get new category position */
-        if (empty($afterCategoryId)) {
-            $positionNew = 1;
+        if (empty($afterCategoryId) || $afterCategoryId == 0) {
+            $positionNew = 0;
         } else {
             $select      = $connect->select()->from($table, 'position')->where('category_id = :category_id');
             $positionNew = $connect->fetchOne($select, ['category_id' => $afterCategoryId]);
+            // Ensure we have a valid integer position
+            if ($positionNew === false || !is_numeric($positionNew)) {
+                $positionNew = 0;
+            }
         }
+        // Cast to integer to avoid PHP warnings when incrementing
+        $positionNew = (int)$positionNew;
 
         /** Update position when the item is moved */
         /** Move to other category parent */
         if ($category->getParentId() != $newParent->getId()) {
-            if ($afterCategoryId == 0) {
-                $positionNew = 0;
-            }
             $positionNew++;
             // phpcs:disable Magento2.SQL.RawQuery
             $sql = "UPDATE `" . $table . "` SET `position`= (`position`-1) WHERE `parent_id`= "
@@ -471,7 +474,7 @@ class Category extends AbstractDb
             } else {
                 /** Move up */
                 $positionNew++;
-                if (empty($afterCategoryId)) {
+                if (empty($afterCategoryId) || $afterCategoryId == 0) {
                     $positionNew = 1;
                 }
                 $sql = "UPDATE `" . $table . "` SET `position`= (`position`+1) WHERE `parent_id`= "

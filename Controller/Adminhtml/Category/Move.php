@@ -108,10 +108,10 @@ class Move extends Category
             }
         } catch (LocalizedException $e) {
             $error = true;
-            $this->messageManager->addErrorMessage(__('There was a Blog category move error.'));
+            $this->messageManager->addErrorMessage($e->getMessage());
         } catch (Exception $e) {
             $error = true;
-            $this->messageManager->addErrorMessage(__('There was a Blog category move error.'));
+            $this->messageManager->addErrorMessage($e->getMessage());
             $this->logger->critical($e);
         }
 

@@ -240,6 +240,13 @@ class Category extends AbstractModel
                 __('We can\'t perform this Blog Category move operation because the parent Blog Category matches the child Blog Category.')
             );
         }
+        
+        // Prevent moving a category into one of its own children
+        if (in_array($this->getId(), $parent->getPathIds())) {
+            throw new LocalizedException(
+                __('We can\'t perform this Blog Category move operation because you cannot move a category into one of its own children.')
+            );
+        }
 
         $this->setMovedCategoryId($this->getId());
         $oldParentId = $this->getParentId();
