@@ -357,9 +357,9 @@ class Tree extends Dbp
         if ($sorted) {
             if (is_string($sorted)) {
                 // $sorted is supposed to be attribute name
-                $collection->addFieldToSort($sorted);
+                $collection->addOrder($sorted, 'ASC');
             } else {
-                $collection->addFieldToSort('name');
+                $collection->addOrder('name', 'ASC');
             }
         }
 

@@ -978,4 +978,24 @@ class Data extends CoreHelper
 
         return $data;
     }
+
+    public function getBlogStyle()
+    {
+        return $this->getPostViewPageConfig('blog_style_layout');
+    }
+
+    public function getFeaturedCategories()
+    {
+        return $this->getPostViewPageConfig('featured_blog_category');
+    }
+
+    public function getRecommendCount()
+    {
+        return $this->getPostViewPageConfig('blog_style_recommend');
+    }
+
+    public function getAuthorId()
+    {
+        return $this->getPostViewPageConfig('featured_blog_authors');
+    }
 }

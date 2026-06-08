@@ -232,6 +232,18 @@ class Frontend extends Template
     }
 
     /**
+     * Check if current theme is Hyva
+     *
+     * @return bool
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function isHyvaTheme()
+    {
+        $currentTheme = $this->themeProvider->getThemeById($this->helperData->getCurrentThemeId());
+        return str_contains($currentTheme->getCode(), 'Hyva/') || str_contains($currentTheme->getCode(), 'hyva/');
+    }
+
+    /**
      * @param string $content
      *
      * @return string
@@ -524,4 +536,125 @@ class Frontend extends Template
             $storeId
         );
     }
+
+    /** blog style 2 listing */
+
+    public function getBlogStyle()
+    {
+        return $this->helperData->getBlogStyle();
+    }
+
+    public function getFeaturedCategories()
+    {
+        return $this->helperData->getFeaturedCategories();
+    }
+
+    /**
+     * Get posts by category IDs
+     * 
+     * @param array $categoryIds
+     * @return \Mavenbird\Blog\Model\ResourceModel\Post\Collection
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function getPostsByCategoryIds($categoryIds)
+    {
+        $collection = $this->helperData->getPostList();
+        
+        // Join with post_category table to filter by multiple category IDs
+        $collection->getSelect()->join(
+            ['post_category' => $collection->getTable('mavenbird_blog_post_category')],
+            'main_table.post_id = post_category.post_id',
+            []
+        )->where('post_category.category_id IN (?)', $categoryIds)
+        ->group('main_table.post_id')
+        ->order('main_table.created_at DESC')
+        ->limit(4);
+        
+        $this->helperData->addStoreFilter($collection);
+        
+        return $collection;
+    }
+
+    /**
+     * Get category names by IDs
+     * 
+     * @param array $categoryIds
+     * @return array
+     */
+    public function getCategoryNamesByIds($categoryIds)
+    {
+        $categories = $this->helperData->getCategoryCollection($categoryIds);
+        
+        $categoryNames = [];
+        foreach ($categories as $category) {
+            $categoryNames[] = $category->getName();
+        }
+        
+        return $categoryNames;
+    }
+
+    public function getRecommendCount()
+    {
+        return $this->helperData->getRecommendCount();
+    }
+
+    /**
+     * @param Post $post
+     *
+     * @return Phrase|string
+     */
+    public function getstyle2PostInfo($post)
+    {
+        try {
+            // Calculate read time using the same logic as readtime.phtml
+            $postContent = strip_tags($post->getPostContent());
+            $wordCount = str_word_count($postContent);
+            $wordsPerMinute = 200; // Average reading speed
+            $readTime = max(1, ceil($wordCount / $wordsPerMinute));
+            
+            // Format date as d-m-Y (20-05-2026) specifically for style 2
+            $dateTime = new \DateTime($post->getPublishDate(), new \DateTimeZone('UTC'));
+            $dateTime->setTimezone(new \DateTimeZone($this->helperData->getTimezone()));
+            $formattedDate = $dateTime->format('d-m-Y');
+            
+            // Return HTML with separate divs for read time and publish date
+            $html = '<div class="post-read-time">' . __('%1 min read', $readTime) . '</div>';
+            $html .= '<div class="post-publish-date">' . $formattedDate . '</div>';
+        } catch (Exception $e) {
+            $html = '';
+        }
+
+        return $html;
+    }
+
+    public function getAuthorIds(): array
+    {
+        $authorIds = $this->helperData->getAuthorId();
+
+        if (is_string($authorIds)) {
+            $authorIds = json_decode($authorIds, true) ?: [];
+        }
+
+        return $authorIds;
+    }
+
+    /**
+     * Get authors by their IDs
+     * 
+     * @param array $authorIds
+     * @return array
+     */
+    public function getAuthorsByIds($authorIds)
+    {
+        $authors = [];
+        foreach ($authorIds as $authorId) {
+            $author = $this->helperData->getObjectByParam($authorId, null, \Mavenbird\Blog\Helper\Data::TYPE_AUTHOR);
+            if ($author && $author->getId()) {
+                $authors[] = $author;
+            }
+        }
+        return $authors;
+    }
+
+    /** blog style 2 listing end*/
 }

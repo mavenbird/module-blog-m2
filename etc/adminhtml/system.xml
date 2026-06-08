@@ -138,6 +138,37 @@
                     <label>Blog Listing Page Layout</label>
                     <source_model>Mavenbird\Blog\Model\Config\Source\SideBarLR</source_model>
                 </field>
+                <field id="blog_style_layout" translate="label" type="select" sortOrder="51" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Blog Style Layout</label>
+                    <source_model>Mavenbird\Blog\Model\Config\Source\BlogStyleList</source_model>
+                </field>
+                <field id="blog_style_recommend" translate="label" type="text" sortOrder="52" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Blogs Show on List</label>
+                    <depends>
+                        <field id="blog_style_layout">2</field>
+                    </depends>
+                    <comment>Number of blogs to show on list when Style 2 is selected. Default is 3.</comment>
+                    <validate>required-entry validate-digits</validate>
+                </field>
+                <field id="featured_blog_category" translate="label" type="text" sortOrder="53" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Select Featured Blog Category</label>
+                    <frontend_model>Mavenbird\Blog\Block\Adminhtml\System\Config\BlogCategoryTree</frontend_model>
+                    <backend_model>Mavenbird\Blog\Model\Config\Backend\FeaturedCategories</backend_model>
+                    <depends>
+                        <field id="blog_style_layout">2</field>
+                    </depends>
+                    <comment>Select multiple blog categories to feature when Style 2 is selected.</comment>
+                </field>
+                <field id="featured_blog_authors" translate="label" type="multiselect" sortOrder="54" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Select Featured Blog Authors</label>
+                    <source_model>Mavenbird\Blog\Model\Config\Source\Author</source_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="blog_style_layout">2</field>
+                    </depends>
+                    <comment>Select multiple blog authors to feature when Style 2 is selected.</comment>
+                </field>
                 <field id="blog_list_display_share" translate="label comment" type="select" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Show social Buttons on Blog List</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
