@@ -1,7 +1,7 @@
 /* ================================ HYVABLOG.CSS FROM MY SIDE Start ======================================== */
 
-body[class*="mbblog-"][class*="page-layout-2columns-"] main .sidebar-main { width: 22%; display: block;}
-body[class*="mbblog-"][class*="page-layout-2columns-"] main .column.main { width: 78%; display: block; }
+body[class*="mbblog-"][class*="page-layout-2columns-"] main .sidebar-main { width: 26%; display: block;}
+body[class*="mbblog-"][class*="page-layout-2columns-"] main .column.main { width: 74%; display: block; }
 
 .mb-post-info a.mb-info:hover,
 .post-list-content .mb-post-title a:hover { text-decoration: underline; }

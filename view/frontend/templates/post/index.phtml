@@ -108,7 +108,7 @@ use Magento\Framework\Escaper;
     }
 </style>
 <?php elseif ($block->getBlogStyle() == '2'): ?>
-<div class="post-list-content blog-layout" id="mbblog-list">
+<div class="post-list-content blog-style2" id="mbblog-list">
     <?php $postCollection = $block->getPostCollection(); ?>
 
     <?php if ($postCollection && $postCollection->getSize()) : ?>
@@ -142,8 +142,8 @@ use Magento\Framework\Escaper;
                         />
                     </a>
 
-                    <div class="blog-hero-content">
-                        <h3 class="blog-hero-title">
+                    <div class="blog-content">
+                        <h3 class="blog-title">
                             <a class="post-link-title"
                                href="<?= $escaper->escapeUrl($heroPost->getUrl()) ?>"
                                title="<?= $escaper->escapeHtmlAttr($heroPost->getName()) ?>">
@@ -151,7 +151,7 @@ use Magento\Framework\Escaper;
                             </a>
                         </h3>
 
-                        <div class="blog-hero-meta">
+                        <div class="blog-readtime-date">
                             <?=
                             /** @noEscape */
                             $block->getstyle2PostInfo($heroPost)
@@ -168,15 +168,15 @@ use Magento\Framework\Escaper;
                             <?php if ($post->getImage()) : ?>
                                 <a class="blog-mini-media" href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
                                     <img
-                                        class="blog-mini-image"
+                                        class="blog-image"
                                         src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(), '1000x')) ?>"
                                         alt="<?= $escaper->escapeHtmlAttr($post->getName()) ?>"
                                     />
                                 </a>
                             <?php endif; ?>
 
-                            <div class="blog-mini-content">
-                                <h3 class="blog-mini-title">
+                            <div class="blog-content">
+                                <h3 class="blog-title">
                                     <a class="post-link-title"
                                        href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
                                        title="<?= $escaper->escapeHtmlAttr($post->getName()) ?>">
@@ -184,7 +184,7 @@ use Magento\Framework\Escaper;
                                     </a>
                                 </h3>
 
-                                <div class="blog-mini-meta">
+                                <div class="blog-readtime-date">
                                     <?=
                                     /** @noEscape */
                                     $block->getstyle2PostInfo($post)
@@ -246,8 +246,8 @@ use Magento\Framework\Escaper;
                                     </a>
                                 <?php endif; ?>
 
-                                <div class="blog-category-feature-content">
-                                    <h3 class="blog-category-feature-title">
+                                <div class="blog-content">
+                                    <h3 class="blog-title">
                                         <a class="post-link-title"
                                            href="<?= $escaper->escapeUrl($leadPost->getUrl()) ?>"
                                            title="<?= $escaper->escapeHtmlAttr($leadPost->getName()) ?>">
@@ -266,7 +266,7 @@ use Magento\Framework\Escaper;
                                         </div>
                                     <?php endif; ?>
 
-                                     <div class="blog-category-feature-meta">
+                                     <div class="blog-readtime-date">
                                         <?=
                                         /** @noEscape */
                                         $block->getstyle2PostInfo($leadPost)
@@ -279,7 +279,7 @@ use Magento\Framework\Escaper;
                         <div class="blog-category-list">
                             <?php foreach ($listPosts as $post) : ?>
                                 <article class="blog-category-list-item">
-                                    <h3 class="blog-category-list-title">
+                                    <h3 class="blog-title">
                                         <a class="post-link-title"
                                            href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
                                            title="<?= $escaper->escapeHtmlAttr($post->getName()) ?>">
@@ -287,7 +287,7 @@ use Magento\Framework\Escaper;
                                         </a>
                                     </h3>
 
-                                    <div class="blog-category-list-meta">
+                                    <div class="blog-readtime-date">
                                         <?=
                                         /** @noEscape */
                                         $block->getstyle2PostInfo($post)
@@ -309,12 +309,14 @@ use Magento\Framework\Escaper;
                     <h2 class="blog-section-heading">
                         <?= $escaper->escapeHtml(__('Featured Authors')) ?>
                     </h2>
-                    <?php if ($block->isHyvaTheme()): ?>
+                    <?php /*if ($block->isHyvaTheme()): */ ?>
+                    <?php if (true): ?>
                     <div id="featured-authors-splide" class="blog-authors-slider splide">
                         <div class="splide__track">
                             <ul class="splide__list">
                                 <?php foreach ($featuredAuthors as $author) : ?>
                                     <li class="blog-author-card splide__slide">
+                                        <div class="blog-author-top">
                                         <a class="blog-author-link" href="<?= $escaper->escapeUrl($author->getUrl()) ?>">
                                             <?php if ($author->getImage()) : ?>
                                                 <img 
@@ -330,11 +332,24 @@ use Magento\Framework\Escaper;
                                                 />
                                             <?php endif; ?>
                                         </a>
-
-                                            <h3 class="blog-author-name">
-                                                <?= $escaper->escapeHtml($author->getName()) ?>
-                                            </h3>
-                                            
+                                            <div class="blog-author-info">
+                                                <h3 class="blog-author-name">
+                                                    <?= $escaper->escapeHtml($author->getName()) ?>
+                                                </h3>
+                                                <div class="blog-author-social">
+                                                    <?php if ($author->getFacebookLink()) : ?>
+                                                        <a href="<?= $escaper->escapeUrl($author->getFacebookLink()) ?>" target="_blank" rel="noopener" aria-label="Facebook">
+                                                            <i class="fa-brands fa-facebook-f"></i>
+                                                        </a>
+                                                    <?php endif; ?>
+                                                    <?php if ($author->getTwitterLink()) : ?>
+                                                        <a href="<?= $escaper->escapeUrl($author->getTwitterLink()) ?>" target="_blank" rel="noopener" aria-label="Twitter">
+                                                            <i class="fa-brands fa-x-twitter"></i>
+                                                        </a>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                        </div>
                                             <?php if ($author->getJobtitle()) : ?>
                                                 <p class="blog-author-jobtitle">
                                                     <?= $escaper->escapeHtml($author->getJobtitle()) ?>
@@ -342,23 +357,11 @@ use Magento\Framework\Escaper;
                                             <?php endif; ?>
                                             
                                             <?php if ($author->getShortDescription()) : ?>
-                                                <p class="blog-author-description">
+                                                <div class="blog-author-description">
                                                     <?= $block->maxShortDescription($author->getShortDescription()) ?>
-                                                </p>
+                                                </div>
                                             <?php endif; ?>
-                                            
-                                            <div class="blog-author-social">
-                                                <?php if ($author->getFacebookLink()) : ?>
-                                                    <a href="<?= $escaper->escapeUrl($author->getFacebookLink()) ?>" target="_blank" rel="noopener" aria-label="Facebook">
-                                                        <i class="fa-brands fa-facebook-f"></i>
-                                                    </a>
-                                                <?php endif; ?>
-                                                <?php if ($author->getTwitterLink()) : ?>
-                                                    <a href="<?= $escaper->escapeUrl($author->getTwitterLink()) ?>" target="_blank" rel="noopener" aria-label="Twitter">
-                                                        <i class="fa-brands fa-x-twitter"></i>
-                                                    </a>
-                                                <?php endif; ?>
-                                            </div>
+                                                                                    
                                     </li>
                                 <?php endforeach; ?>
                             </ul>
@@ -417,8 +420,8 @@ use Magento\Framework\Escaper;
                     </div>
                     <?php endif; ?>
                 </section>
-                
-                <?php if ($block->isHyvaTheme()): ?>
+                <?php /* if ($block->isHyvaTheme()): */ ?>
+                <?php if (true): ?>
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const splideElement = document.getElementById('featured-authors-splide');
@@ -478,276 +481,217 @@ use Magento\Framework\Escaper;
 </div>
 
 <style>
-    #mbblog-list.blog-layout {
+.blog-style2.blog-style2 {
     width: 100%;
 }
-
-#mbblog-list .blog-section-heading,
-#mbblog-list .blog-category-heading {
+.blog-style2 .blog-section-heading,
+.blog-style2 .blog-category-heading {
     margin: 0;
-    font-size: 28px;
+    font-size: 34px;
     line-height: 1.2;
-    font-weight: 500;
-    color: #111;
+    font-weight: 400;
+    color: #000000;
+}
+.blog-recommended .blog-section-heading { margin-bottom: 20px; }
+.blog-style2 .blog-hero-card {
+    margin-bottom: 48px;
 }
 
-#mbblog-list .blog-recommended {
-    margin-bottom: 34px;
-}
-
-#mbblog-list .blog-section-heading {
-    margin-bottom: 14px;
-}
-
-#mbblog-list .blog-hero-card {
-    display: grid;
-    grid-template-columns: 1.15fr 1fr;
-    gap: 0;
-    overflow: hidden;
-    border-radius: 16px;
-    background: #e8ebff;
-    min-height: 280px;
-    margin-bottom: 12px;
-}
-
-#mbblog-list .blog-hero-media,
-#mbblog-list .blog-mini-media,
-#mbblog-list .blog-category-feature-media {
+.blog-style2 .blog-hero-media,
+.blog-style2 .blog-mini-media,
+.blog-style2 .blog-category-feature-media {
     display: block;
     text-decoration: none;
 }
 
-#mbblog-list .blog-hero-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-#mbblog-list .blog-hero-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 26px 24px;
-    background: #e8ebff;
-}
-
-#mbblog-list .blog-hero-title {
+.blog-style2 .blog-hero-title {
     margin: 0 0 12px;
     font-size: 30px;
     line-height: 1.25;
     font-weight: 700;
-    color: #2d55d4;
 }
 
-#mbblog-list .blog-hero-title a,
-#mbblog-list .blog-mini-title a,
-#mbblog-list .blog-category-feature-title a,
-#mbblog-list .blog-category-list-title a {
-    color: inherit;
-    text-decoration: none;
-}
-
-#mbblog-list .blog-hero-meta,
-#mbblog-list .blog-mini-meta,
-#mbblog-list .blog-category-feature-meta,
-#mbblog-list .blog-category-list-meta {
-    font-size: 12px;
+.blog-style2 .blog-readtime-date {
+    font-size: 16px;
     line-height: 1.4;
-    color: #8b8b8b;
+    color: #6B7280;
+    display: flex;
+    gap: 12px;
+}
+.blog-style2 .blog-readtime-date div:not(:last-child)::after {
+    content: '|';
+    color: #D9D9D9;
+    margin-left: 12px;
 }
 
-#mbblog-list .blog-mini-grid {
+.blog-style2 .blog-mini-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 16px;
-    margin-bottom: 34px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
 }
 
-#mbblog-list .blog-mini-card {
-    overflow: hidden;
-    border-radius: 16px;
+.blog-style2 .blog-category-feature-image,
+.blog-style2 .blog-hero-image,
+.blog-style2 .blog-image {
+    width: 100%;    
+    border-radius: 20px;
 }
 
-#mbblog-list .blog-mini-image {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    display: block;
-    border-radius: 16px;
+.blog-style2 .blog-content {
+    padding-top: 12px;
+}
+.blog-style2 .blog-title {
+    margin: 0 0 8px;
+    font-size: 22px;
+    line-height: 1.2;
+    font-weight: 400;
+    color: #000;
+}
+.blog-style2 .blog-category-section {
+    margin-top: 50px;
 }
 
-#mbblog-list .blog-mini-content {
-    padding-top: 10px;
-}
-
-#mbblog-list .blog-mini-title {
-    margin: 0 0 6px;
-    font-size: 18px;
-    line-height: 1.3;
-    font-weight: 500;
-    color: #222;
-}
-
-#mbblog-list .blog-category-section {
-    margin-top: 24px;
-}
-
-#mbblog-list .blog-category-header {
+.blog-style2 .blog-category-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    margin-bottom: 14px;
+    margin-bottom: 20px;
 }
 
-#mbblog-list .blog-category-link {
-    font-size: 14px;
-    color: #777;
+.blog-style2 .blog-category-link {
+    font-size: 20px;
+    color: #6B7280;
     text-decoration: none;
     white-space: nowrap;
 }
-
-#mbblog-list .blog-category-grid {
+.blog-style2 .blog-category-link:hover {
+    color: var(--primary-color);
+}
+.page-layout-2columns-left .blog-style2.blog-style2 {
+    padding-left: 10px;
+}
+.page-layout-2columns-right .blog-style2.blog-style2 {
+    padding-right: 10px;
+}
+.blog-style2 .blog-category-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-    gap: 24px;
+    gap: 50px;
     align-items: start;
 }
 
-#mbblog-list .blog-category-feature {
+.blog-style2 .blog-category-feature {
     display: block;
 }
-
-#mbblog-list .blog-category-feature-image {
-    width: 100%;
-    height: 190px;
-    object-fit: cover;
-    display: block;
-    border-radius: 14px;
-    margin-bottom: 10px;
-}
-
-#mbblog-list .blog-category-feature-title {
-    margin: 0 0 8px;
-    font-size: 20px;
-    line-height: 1.35;
-    font-weight: 500;
-    color: #222;
-}
-
-#mbblog-list .blog-category-feature-desc {
+.blog-style2 .blog-category-feature-desc {
     margin-top: 10px;
     font-size: 14px;
     line-height: 1.6;
     color: #8b8b8b;
 }
 
-#mbblog-list .blog-category-feature-desc p {
+.blog-style2 .blog-category-feature-desc p {
     margin: 0;
 }
 
-#mbblog-list .blog-category-list {
+.blog-style2 .blog-category-list {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 16px;
 }
 
-#mbblog-list .blog-category-list-item {
-    padding-bottom: 14px;
-    border-bottom: 1px solid #ededed;
+.blog-style2 .blog-category-list-item {
+    padding-bottom: 16px;
+    border-bottom: 1px solid #D9D9D9;
 }
 
-#mbblog-list .blog-category-list-item:last-child {
+.blog-style2 .blog-category-list-item:last-child {
     padding-bottom: 0;
     border-bottom: 0;
 }
-
-#mbblog-list .blog-category-list-title {
-    margin: 0 0 6px;
-    font-size: 18px;
-    line-height: 1.35;
-    font-weight: 500;
-    color: #222;
-}
-
-#mbblog-list .blog-empty-state {
+.blog-style2 .blog-empty-state {
     padding: 20px 0;
     color: #666;
 }
 
-#mbblog-list .blog-featured-authors {
+.blog-style2 .blog-featured-authors {
     margin-top: 48px;
 }
 
-#mbblog-list .blog-authors-slider {
+.blog-style2 .blog-authors-slider {
     position: relative;
-    padding: 0 3rem 2.5rem;
-    margin: 0 auto;
-    max-width: 1200px;
+    padding: 0;
+    margin: 0;
     margin-top: 24px;
+    padding-bottom: 30px;
 }
 
-#mbblog-list .blog-author-card {
-    text-align: center;
+.blog-style2 .blog-author-card {
     padding: 24px;
-    border-radius: 16px;
-    background: #ffffff;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    background: #ffffff;    
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     height: 100%;
+    border: 1px solid #6B7280;
+    border-radius: 10px;
 }
 
-#mbblog-list .blog-author-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+.blog-style2 .blog-author-card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-#mbblog-list .blog-author-link {
+.blog-style2 .blog-author-link {
     text-decoration: none;
     color: inherit;
     display: block;
 }
 
-#mbblog-list .blog-author-avatar {
-    width: 100px;
-    height: 100px;
+.blog-style2 .blog-author-avatar {
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     object-fit: cover;
-    margin: 0 auto 1rem;
-    border: 3px solid #f3f4f6;
+    margin: 0;
+    border: 1px solid #f3f4f6;
 }
 
-#mbblog-list .blog-author-name {
+.blog-style2 .blog-author-name {
     margin: 0 0 8px;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #1f2937;
+    font-size: 20px;
+    font-weight: 400;
+    color: #000;
 }
 
-#mbblog-list .blog-author-jobtitle {
+.blog-style2 .blog-author-jobtitle {
     margin: 0 0 12px;
     font-size: 0.875rem;
     color: #6b7280;
     font-weight: 500;
 }
 
-#mbblog-list .blog-author-description {
+.blog-style2 .blog-author-description {
     margin: 0 0 16px;
-    font-size: 0.875rem;
+    font-size: 18px;
     line-height: 1.5;
-    color: #4b5563;
+    color: #6B7280;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.blog-style2 .blog-author-description p {
+    font-size: 18px;
+    color: #6B7280;
 }
 
-#mbblog-list .blog-author-social {
+.blog-style2 .blog-author-social {
     display: flex;
-    justify-content: center;
-    gap: 1rem;
+    gap: 8px;
 }
 
-#mbblog-list .blog-author-social a {
-    width: 36px;
-    height: 36px;
+.blog-style2 .blog-author-social a {
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     background: #f3f4f6;
     color: #374151;
@@ -757,59 +701,66 @@ use Magento\Framework\Escaper;
     text-decoration: none;
     transition: all 0.3s ease;
 }
-
-#mbblog-list .blog-author-social a:hover {
+.blog-author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.blog-style2 .blog-author-social a:hover {
     background: #3b82f6;
     color: #ffffff;
 }
 
-#mbblog-list .blog-author-social i {
+.blog-style2 .blog-author-social i {
     font-size: 14px;
 }
 
 /* Splide Navigation */
-#mbblog-list .blog-authors-slider .splide__arrow--prev,
-#mbblog-list .blog-authors-slider .splide__arrow--next {
-    width: 40px;
-    height: 40px;
+.blog-style2 .blog-authors-slider .splide__arrow--prev,
+.blog-style2 .blog-authors-slider .splide__arrow--next {
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     background: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
     opacity: 1;
+    top: -30px;
+    border: 1px solid #000;
 }
 
-#mbblog-list .blog-authors-slider .splide__arrow--prev:hover,
-#mbblog-list .blog-authors-slider .splide__arrow--next:hover {
-    background: #3b82f6;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+.blog-style2 .blog-authors-slider .splide__arrow--prev:hover,
+.blog-style2 .blog-authors-slider .splide__arrow--next:hover {
+    background: #000;
 }
 
-#mbblog-list .blog-authors-slider .splide__arrow--prev svg,
-#mbblog-list .blog-authors-slider .splide__arrow--next svg {
-    fill: #374151;
+.blog-style2 .blog-authors-slider .splide__arrow--prev svg,
+.blog-style2 .blog-authors-slider .splide__arrow--next svg {
+    fill: #000;
     transition: fill 0.3s ease;
+    width: 14px;
+    height: 14px;
 }
 
-#mbblog-list .blog-authors-slider .splide__arrow--prev:hover svg,
-#mbblog-list .blog-authors-slider .splide__arrow--next:hover svg {
+.blog-style2 .blog-authors-slider .splide__arrow--prev:hover svg,
+.blog-style2 .blog-authors-slider .splide__arrow--next:hover svg {
     fill: #ffffff;
 }
 
-#mbblog-list .blog-authors-slider .splide__arrow--prev {
-    left: 10px;
+.blog-style2 .blog-authors-slider .splide__arrow--prev {
+    left: auto;
+    right: 40px;
 }
 
-#mbblog-list .blog-authors-slider .splide__arrow--next {
-    right: 10px;
+.blog-style2 .blog-authors-slider .splide__arrow--next {
+    right: 0px;
 }
 
 /* Splide Pagination */
-#mbblog-list .blog-authors-slider .splide__pagination {
+.blog-style2 .blog-authors-slider .splide__pagination {
     bottom: 0;
 }
 
-#mbblog-list .blog-authors-slider .splide__pagination__page {
+.blog-style2 .blog-authors-slider .splide__pagination__page {
     width: 10px;
     height: 10px;
     background: #d1d5db;
@@ -817,38 +768,46 @@ use Magento\Framework\Escaper;
     transition: all 0.3s ease;
 }
 
-#mbblog-list .blog-authors-slider .splide__pagination__page.is-active {
-    background: #3b82f6;
+.blog-style2 .blog-authors-slider .splide__pagination__page.is-active {
+    background: #000;
     transform: scale(1.2);
 }
-
+.blog-author-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
 @media (max-width: 768px) {
-    #mbblog-list .blog-hero-card,
-    #mbblog-list .blog-category-grid {
+    .blog-style2 .blog-hero-card,
+    .blog-style2 .blog-category-grid {
         grid-template-columns: 1fr;
     }
-
-    #mbblog-list .blog-mini-grid {
+    .blog-style2 .blog-hero-card {
+        margin-bottom: 28px;
+    }
+    .blog-style2 .blog-category-section { margin-top: 28px; }
+    .blog-style2 .blog-mini-grid {
         grid-template-columns: 1fr;
+        gap: 24px;
     }
 
-    #mbblog-list .blog-authors-slider {
-        padding: 0 1rem 2.5rem;
-    }
-    
-    #mbblog-list .blog-authors-slider .splide__arrow--prev,
-    #mbblog-list .blog-authors-slider .splide__arrow--next {
-        display: none;
-    }
-
-    #mbblog-list .blog-category-header {
+    .blog-style2 .blog-category-header {
         align-items: flex-start;
         flex-direction: column;
     }
 
-    #mbblog-list .blog-hero-title {
-        font-size: 24px;
+    .blog-style2 .blog-title {
+        font-size: 18px;
     }
+    .blog-style2 .blog-readtime-date { 
+        font-size: 14px;
+    }
+    .blog-style2 .blog-section-heading, 
+    .blog-style2 .blog-category-heading {
+        font-size: 26px;
+    }
+    .blog-style2 .blog-category-link { font-size: 16px; }
 }
 </style>
 <?php endif; ?>
