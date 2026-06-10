@@ -504,6 +504,9 @@ body[class*="mbblog-"][class*="page-layout-2columns-"] main .column.main { width
         width: 100%;
         order: 0 ;
     }
+    body[class*="mbblog-"][class*="page-layout-2columns-"] main .columns {
+        grid-template-columns: repeat(1,minmax(0,1fr));
+    }
     
 }
 @media (max-width: 575px) { 
