@@ -20,8 +20,8 @@
  * @license     https://www.mavenbird.com/LICENSE.txt
  */
 -->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <update handle="mbblog_design"/>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-right" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <!-- <update handle="mbblog_design"/> -->
     <body>
         <referenceContainer name="content">
             <block class="Mavenbird\Blog\Block\Category\Listpost" name="mb.blog.category.post.list" template="Mavenbird_Blog::post/list.phtml"/>

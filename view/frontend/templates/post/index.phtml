@@ -334,7 +334,9 @@ use Magento\Framework\Escaper;
                                         </a>
                                             <div class="blog-author-info">
                                                 <h3 class="blog-author-name">
-                                                    <?= $escaper->escapeHtml($author->getName()) ?>
+                                                    <a class="blog-author-link" href="<?= $escaper->escapeUrl($author->getUrl()) ?>">
+                                                        <?= $escaper->escapeHtml($author->getName()) ?>
+                                                    </a>
                                                 </h3>
                                                 <div class="blog-author-social">
                                                     <?php if ($author->getFacebookLink()) : ?>
