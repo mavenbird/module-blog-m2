@@ -309,8 +309,7 @@ use Magento\Framework\Escaper;
                     <h2 class="blog-section-heading">
                         <?= $escaper->escapeHtml(__('Featured Authors')) ?>
                     </h2>
-                    <?php /*if ($block->isHyvaTheme()): */ ?>
-                    <?php if (true): ?>
+                    <?php if ($block->isHyvaTheme()): ?>
                     <div id="featured-authors-splide" class="blog-authors-slider splide">
                         <div class="splide__track">
                             <ul class="splide__list">
@@ -422,8 +421,7 @@ use Magento\Framework\Escaper;
                     </div>
                     <?php endif; ?>
                 </section>
-                <?php /* if ($block->isHyvaTheme()): */ ?>
-                <?php if (true): ?>
+                <?php if ($block->isHyvaTheme()): ?>
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const splideElement = document.getElementById('featured-authors-splide');

@@ -240,7 +240,20 @@ class Frontend extends Template
     public function isHyvaTheme()
     {
         $currentTheme = $this->themeProvider->getThemeById($this->helperData->getCurrentThemeId());
-        return str_contains($currentTheme->getCode(), 'Hyva/') || str_contains($currentTheme->getCode(), 'hyva/');
+        
+        // Check current theme and all parent themes recursively
+        while ($currentTheme) {
+            if (str_contains(strtolower($currentTheme->getCode()), 'hyva')) {
+                return true;
+            }
+            $parentTheme = $currentTheme->getParentTheme();
+            if (!$parentTheme) {
+                break;
+            }
+            $currentTheme = $parentTheme;
+        }
+        
+        return false;
     }
 
     /**

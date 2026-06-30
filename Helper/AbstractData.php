@@ -378,40 +378,41 @@ HTML;
     public function checkHyvaTheme()
     {
         try {
-            $themeCode = $this->getThemeCodeByCache();
+            /** @var DesignInterface $themeProviderInterface */
+            $themeProviderInterface = $this->objectManager->create(DesignInterface::class);
+            $theme = $themeProviderInterface->getDesignTheme();
+            
+            // Check current theme and all parent themes recursively
+            while ($theme) {
+                if (str_contains(strtolower($theme->getCode()), 'hyva')) {
+                    return true;
+                }
+                $theme = $theme->getParentTheme();
+            }
         } catch (Exception $e) {
             try {
                 /** @var ThemeProviderInterface $themeProviderInterface */
                 $themeProviderInterface = $this->objectManager->create(ThemeProviderInterface::class);
-                $themeId                = $this->storeManager->getStore()->getConfig('design/theme/theme_id');
-                $theme                  = $themeProviderInterface->getThemeById($themeId);
-                $themeCode              = $theme->getCode();
+                $themeId = $this->storeManager->getStore()->getConfig('design/theme/theme_id');
+                $theme = $themeProviderInterface->getThemeById($themeId);
+                
+                // Check current theme and all parent themes recursively
+                while ($theme) {
+                    if (str_contains(strtolower($theme->getCode()), 'hyva')) {
+                        return true;
+                    }
+                    $parentTheme = $theme->getParentTheme();
+                    if (!$parentTheme) {
+                        break;
+                    }
+                    $theme = $parentTheme;
+                }
             } catch (NoSuchEntityException $noSuchEntityException) {
                 return false;
             }
         }
 
-        if (str_contains(strtolower($themeCode), 'hyva')) {
-            return true;
-        }
-
         return false;
-    }
-
-    /**
-     * GetThemeCode By Cache in DesignInterface
-     *
-     * @return string
-     */
-    private function getThemeCodeByCache()
-    {
-        /** @var DesignInterface $themeProviderInterface */
-        $themeProviderInterface = $this->objectManager->create(DesignInterface::class);
-        $theme                  = $themeProviderInterface->getDesignTheme();
-
-        $parentTheme = $theme->getParentTheme();
-
-        return $parentTheme ? $parentTheme->getCode() : $theme->getCode();
     }
 
     /**
