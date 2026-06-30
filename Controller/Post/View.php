@@ -273,7 +273,7 @@ class View extends Action
                     'user_name'  => $userName,
                     'user_email' => $this->session->isLoggedIn() ? $customerData->getEmail() : $params['guestEmail'],
                     'created_at' => $this->dateTime->date(),
-                    'status'     => $this->helperBlog->getBlogConfig('comment/need_approve')
+                    'status'     => $this->helperBlog->getCommentNeedApprove()
                         ? Status::PENDING : Status::APPROVED,
                     'store_ids'  => $this->storeManager->getStore()->getId()
                 ];

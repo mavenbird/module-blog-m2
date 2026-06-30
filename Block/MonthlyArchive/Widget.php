@@ -42,8 +42,7 @@ class Widget extends Frontend
      */
     public function isEnable()
     {
-        return $this->helperData->getBlogConfig(
-            'sidebar/monthly_archive/enable_monthly',
+        return $this->helperData->getEnableMonthly(
             $this->helperData->getCurrentStoreId()
         );
     }
@@ -91,7 +90,7 @@ class Widget extends Frontend
             $postDates = [];
             if ($posts->getSize()) {
                 foreach ($posts as $post) {
-                    $postDates[] = $post->getPublishDate();
+                     $postDates[] = $post->getPublishDate();
                 }
             }
             $this->_postDate = $postDates;
@@ -106,8 +105,7 @@ class Widget extends Frontend
      */
     public function getDateCount()
     {
-        $limit = $this->helperData->getBlogConfig(
-            'sidebar/monthly_archive/number_records',
+        $limit = $this->helperData->getNumberRecords(
             $this->helperData->getCurrentStoreId())
             ?: 5;
         $dateArrayCount = $this->getDateArrayCount();

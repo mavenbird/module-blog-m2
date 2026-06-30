@@ -24,11 +24,11 @@ use Magento\Framework\Escaper;
 
 /** @var Footer $block */
 /** @var Escaper $escaper */
-$helper = $block->getHelperData();
-?>
-<?php if ($helper->isEnabled()) : ?>
-    <?php if ($helper->getBlogConfig('display/footer')) : ?>
-        <li class="mt-4">
+  $helper = $block->getHelperData();
+  ?>
+  <?php if ($helper->isEnabled()) : ?>
+     <?php if ($helper->isFooterEnabled()) : ?>
+          <li class="mt-4">
             <a class="text-base leading-6" <?= /** @noEscape */
             $block->getLinkAttributes() ?>>
                 <?= $escaper->escapeHtml($block->getLabel()); ?>

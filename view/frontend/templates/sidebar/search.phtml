@@ -56,13 +56,13 @@ use Magento\Framework\Escaper;
 </div>
 <script>
     require(['jquery', 'mbDevbridgeAutocomplete'], function ($) {
-        var visibleImage = <?= /** @noEscape */ $block->getSidebarConfig('search/show_image') ?>;
+        var visibleImage = <?= /** @noEscape */ $block->getSearchShowImage() ?>;
 
         $('#mbblog-search-box').autocomplete({
             lookup: <?= /** @noEscape */ $block->getSearchBlogData() ?>,
-            lookupLimit: <?= $block->getSidebarConfig('search/search_limit') ?: 10; ?>,
+            lookupLimit: <?= $block->getSearchLimit() ?: 10; ?>,
             maxHeight: 2000,
-            minChars: <?= $block->getSidebarConfig('search/min_chars') ?: 1; ?>,
+            minChars: <?= $block->getSearchMinChars() ?: 1; ?>,
             autoSelectFirst: true,
             showNoSuggestionNotice: true,
             triggerSelectOnValidInput: false,

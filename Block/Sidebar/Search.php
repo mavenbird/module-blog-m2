@@ -39,7 +39,7 @@ class Search extends Frontend
     {
         $result = [];
         $posts = $this->helperData->getPostList();
-        $limitDesc = (int)$this->getSidebarConfig('search/description');
+        $limitDesc = (int)$this->getSearchDescription();
         if (!empty($posts)) {
             foreach ($posts as $item) {
                 $shortDescription = ($item->getShortDescription() && $limitDesc > 0) ?
@@ -60,16 +60,23 @@ class Search extends Frontend
         return Data::jsonEncode($result);
     }
 
-    /**
-     * get sidebar config
-     *
-     * @param $code
-     * @param $storeId
-     *
-     * @return mixed
-     */
-    public function getSidebarConfig($code, $storeId = null)
+    public function getSearchShowImage($storeId = null)
     {
-        return $this->helperData->getBlogConfig('sidebar/' . $code, $storeId);
+        return $this->helperData->getShowImage($storeId);
+    }
+
+    public function getSearchMinChars($storeId = null)
+    {
+        return $this->helperData->getMinChars($storeId);
+    }
+
+    public function getSearchLimit($storeId = null)
+    {
+        return $this->helperData->getSearchLimit($storeId);
+    }
+
+    public function getSearchDescription($storeId = null)
+    {
+        return $this->helperData->getSearchDescription($storeId);
     }
 }

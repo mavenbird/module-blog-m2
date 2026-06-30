@@ -73,19 +73,19 @@ class Index extends Action
         $this->_helperBlog->applyBlogListingLayout($page);
 
         $page->getConfig()->getTitle()->set(
-            $this->_helperBlog->getSeoConfig('blog_seo_meta_title')
+            $this->_helperBlog->getSeoMetaTitle()
         );
         $page->getConfig()->setMetadata(
             'description',
-            $this->_helperBlog->getSeoConfig('blog_seo_meta_description')
+            $this->_helperBlog->getSeoMetaDescription()
         );
         $page->getConfig()->setMetadata(
             'keywords',
-            $this->_helperBlog->getSeoConfig('blog_seo_meta_keywords')
+            $this->_helperBlog->getSeoMetaKeywords()
         );
         $page->getConfig()->setMetadata(
             'robots',
-            $this->_helperBlog->getSeoConfig('blog_seo_meta_robots')
+            $this->_helperBlog->getSeoMetaRobots()
         );
         return $page;
     }

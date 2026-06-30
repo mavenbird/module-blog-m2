@@ -98,50 +98,7 @@ class AbstractData extends AbstractHelper
      */
     public function isEnabled($storeId = null)
     {
-        return $this->getConfigGeneral('enabled', $storeId);
-    }
-
-    // /**
-    //  * @param null $storeId
-    //  *
-    //  * @return bool
-    //  */
-    // public function isEnabledNotificationUpdate($storeId = null)
-    // {
-    //     $isEnable   = $this->getConfigGeneral('notice_enable', $storeId);
-    //     $noticeType = $this->getConfigGeneral('notice_type', $storeId);
-    //     if ($noticeType) {
-    //         $noticeType = explode(',', $noticeType);
-    //         $noticeType = in_array(NoticeType::TYPE_NEWUPDATE, $noticeType);
-    //     }
-
-    //     return $isEnable && $noticeType;
-    // }
-
-    /**
-     * @param string $code
-     * @param null $storeId
-     *
-     * @return mixed
-     */
-    public function getConfigGeneral($code = '', $storeId = null)
-    {
-        $code = ($code !== '') ? '/' . $code : '';
-
-        return $this->getConfigValue(static::CONFIG_MODULE_PATH . '/general' . $code, $storeId);
-    }
-
-    /**
-     * @param string $field
-     * @param null $storeId
-     *
-     * @return mixed
-     */
-    public function getModuleConfig($field = '', $storeId = null)
-    {
-        $field = ($field !== '') ? '/' . $field : '';
-
-        return $this->getConfigValue(static::CONFIG_MODULE_PATH . $field, $storeId);
+        return (bool) $this->getConfigValue(static::CONFIG_MODULE_PATH . '/general/basic_settings/enabled', $storeId);
     }
 
     /**

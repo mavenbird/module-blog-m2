@@ -46,7 +46,7 @@ class Listpost extends Frontend
             $pager = $this->getLayout()->createBlock(Pager::class, 'mbblog.post.pager');
 
             $perPageValues = (string) $this->helperData
-                ->getDisplayConfig('pagination', $this->store->getStore()->getId());
+                ->getPagination($this->store->getStore()->getId());
 
             $perPageValues = explode(',', $perPageValues ?? '');
             $perPageValues = array_combine($perPageValues, $perPageValues);
@@ -107,7 +107,7 @@ class Listpost extends Frontend
      */
     public function isGridView()
     {
-        return $this->helperData->getPostViewPageConfig('display_style') == DisplayType::GRID;
+        return $this->helperData->getDisplayStyle() == DisplayType::GRID;
     }
 
     /**
@@ -161,15 +161,15 @@ class Listpost extends Frontend
         $object      = $this->getBlogObject();
         $storeId     = $this->store->getStore()->getId();
         $description = $object ? $this->getMetaFieldByStoreId($object->getMetaDescription(), $storeId) : null;
-        $this->pageConfig->setDescription($description ?: $this->helperData->getBlogConfig('seo/meta_description', $storeId));
+        $this->pageConfig->setDescription($description ?: $this->helperData->getSeoMetaDescription($storeId));
 
         $keywords = $object ? $this->getMetaFieldByStoreId($object->getMetaKeywords(), $storeId) : null;
-        $this->pageConfig->setKeywords($keywords ?: $this->helperData->getBlogConfig('seo/meta_keywords', $storeId));
+        $this->pageConfig->setKeywords($keywords ?: $this->helperData->getSeoMetaKeywords($storeId));
 
         $robots = $object ? $this->getMetaRobotsByStoreId($object->getMetaRobots(), $storeId) : null;
-        $this->pageConfig->setRobots($robots ?: $this->helperData->getBlogConfig('seo/meta_robots', $storeId));
+        $this->pageConfig->setRobots($robots ?: $this->helperData->getSeoMetaRobots($storeId));
 
-        $url = $object ? $object->getUrl() : $this->helperData->getBlogConfig('seo/url_key', $storeId);
+        $url = $object ? $object->getUrl() : $this->helperData->getSeoUrlKey($storeId);
 
         if ($this->getRequest()->getFullActionName() === 'mbblog_post_view' && $url) {
             $this->pageConfig->addRemotePageAsset(
@@ -205,9 +205,9 @@ class Listpost extends Frontend
      */
     public function getBlogTitle($meta = false)
     {
-        $pageTitle = $this->helperData->getDisplayConfig('name') ?: __('Blog');
+        $pageTitle = $this->helperData->getBlogName() ?: __('Blog');
         if ($meta) {
-            $title = $this->helperData->getBlogConfig('seo/meta_title') ?: $pageTitle;
+            $title = $this->helperData->getSeoMetaTitle() ?: $pageTitle;
 
             return [$title];
         }
@@ -257,6 +257,6 @@ class Listpost extends Frontend
 
     public function getBlogModeGridView()
     {
-        return (int) $this->helperData->getPostViewPageConfig('blog_mode_grid_view');
+        return (int) $this->helperData->getBlogModeGridView();
     }
 }

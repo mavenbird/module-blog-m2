@@ -181,7 +181,7 @@ class Menu extends Template
      */
     public function getBlogHomePageTitle()
     {
-        return $this->helper->getBlogConfig('display/name', $this->helper->getCurrentStoreId()) ?: __('Blog');
+        return $this->helper->getBlogName($this->helper->getCurrentStoreId()) ?: __('Blog');
     }
 
     /**

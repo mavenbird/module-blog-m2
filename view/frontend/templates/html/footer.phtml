@@ -27,7 +27,7 @@ use Magento\Framework\Escaper;
 $helper = $block->getHelperData();
 ?>
 <?php if ($helper->isEnabled()) : ?>
-    <?php if ($helper->getBlogConfig('display/footer')) : ?>
+    <?php if ($helper->isFooterEnabled()) : ?>
         <li>
             <a <?= /** @noEscape */ $block->getLinkAttributes() ?>>
                 <?= $escaper->escapeHtml($block->getLabel()); ?>

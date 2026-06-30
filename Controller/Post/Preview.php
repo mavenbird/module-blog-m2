@@ -256,7 +256,7 @@ class Preview extends Action
                         'reply_id'   => $replyId,
                         'content'    => $cmtText,
                         'created_at' => $this->dateTime->date(),
-                        'status'     => $this->helperBlog->getBlogConfig('comment/need_approve')
+                        'status'     => $this->helperBlog->getCommentNeedApprove()
                             ? Status::PENDING : Status::APPROVED,
                         'store_ids'  => $this->storeManager->getStore()->getId()
                     ];
@@ -271,7 +271,7 @@ class Preview extends Action
                         'user_name'  => $params['guestName'],
                         'user_email' => $params['guestEmail'],
                         'created_at' => $this->dateTime->date(),
-                        'status'     => $this->helperBlog->getBlogConfig('comment/need_approve')
+                        'status'     => $this->helperBlog->getCommentNeedApprove()
                             ? Status::PENDING : Status::APPROVED,
                         'store_ids'  => $this->storeManager->getStore()->getId()
                     ];

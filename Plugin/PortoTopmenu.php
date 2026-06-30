@@ -54,7 +54,7 @@ class PortoTopmenu
      */
     public function afterGetMegamenuHtml(\Smartwave\Megamenu\Block\Topmenu $topmenu, $html)
     {
-        if ($this->helper->isEnabled() && $this->helper->getBlogConfig('display/toplinks')) {
+        if ($this->helper->isEnabled() && $this->helper->getToplinks()) {
             $blogHtml = $topmenu->getLayout()->createBlock(Menu::class)
                 ->setTemplate('Mavenbird_Blog::category/topPortoMenu.phtml')->toHtml();
 

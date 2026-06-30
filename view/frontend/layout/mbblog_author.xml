@@ -61,7 +61,7 @@
             </block>
         </referenceContainer>
         <referenceBlock name="head.additional">
-            <block class="Mavenbird\Blog\Block\Design" ifconfig="blog/general/customer_approve" name="mbblog.design" template="Mavenbird_Blog::design.phtml"/>
+            <block class="Mavenbird\Blog\Block\Design" ifconfig="blog/general/author_settings/customer_approve" name="mbblog.design" template="Mavenbird_Blog::design.phtml"/>
         </referenceBlock>
     </body>
 </page>

@@ -213,7 +213,7 @@ class Widget extends Frontend
      */
     public function isCategoryAccordionEnabled()
     {
-        return (bool)$this->helperData->getConfigValue('blog/display/category_accordion');
+        return (bool)$this->helperData->getCategoryAccordion();
     }
 
     /**
@@ -224,13 +224,13 @@ class Widget extends Frontend
         $fullActionName = $this->request->getFullActionName();
 
         if ($fullActionName === 'mbblog_post_index') {
-            return $this->helperData->getPostViewPageConfig('blog_list_layout') === '1column';
+            return $this->helperData->getBlogListLayout() === '1column';
         }
 
         if ($fullActionName === 'mbblog_post_view') {
-            return $this->helperData->getPostViewPageConfig('blog_view_layout') === '1column';
+            return $this->helperData->getBlogViewLayout() === '1column';
         }
 
-        return $this->helperData->getSidebarConfig('sidebar_left_right') === '1column';
+        return $this->helperData->getSidebarLeftRight() === '1column';
     }
 }

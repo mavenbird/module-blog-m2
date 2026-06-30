@@ -298,7 +298,7 @@ class Post extends AbstractModel
     {
         $shortDescription = $this->getData('short_description');
 
-        $maxLength = (int) $this->helperData->getDisplayConfig('short_description_length');
+        $maxLength = (int) $this->helperData->getShortDescriptionLength();
         $descArr   = explode(' ', $shortDescription ?? '');
         if ($shorten && count($descArr) > $maxLength) {
             $descArr          = array_slice($descArr, 0, $maxLength);
@@ -557,7 +557,7 @@ class Post extends AbstractModel
                     ['position']
                 )->group('main_table.post_id')->order('topic.position');
 
-            if ($limit = (int) $this->helperData->getPostViewPageConfig('related_post')) {
+            if ($limit = (int) $this->helperData->getRelatedPost()) {
                 $collection->getSelect()
                     ->limit($limit);
             }

@@ -375,7 +375,7 @@ class Frontend extends Template
             $count      = 0;
             foreach ($categories as $_cat) {
                 $count++;
-                $maximum = $this->helperData->getSidebarConfig('categories/maximum');
+                $maximum = $this->helperData->getCategoriesMaximum();
                 if ($maximum && $count > $maximum) {
                     continue;
                 }
@@ -456,49 +456,49 @@ class Frontend extends Template
 
         return [
             [
-                'enabled' => $this->helperData->getBlogConfig('platforms/x_platform/x_share'),
+                'enabled' => $this->helperData->getShareTwitterEnabled(),
                 'label' => __('X'),
                 'icon_class' => 'fa-brands',
                 'icon' => 'fa-x-twitter',
                 'url' => "https://twitter.com/intent/tweet?url={$url}&text={$title}"
             ],
             [
-                'enabled' => $this->helperData->getBlogConfig('platforms/fb_platform/fb_share'),
+                'enabled' => $this->helperData->getShareFbEnabled(),
                 'label' => __('Facebook'),
                 'icon_class' => 'fa-brands',
                 'icon' => 'fa-facebook-f',
                 'url' => "https://www.facebook.com/sharer/sharer.php?u={$url}"
             ],
             [
-                'enabled' => $this->helperData->getBlogConfig('platforms/whatsapp_platform/whatsapp_share'),
+                'enabled' => $this->helperData->getShareWhatsappEnabled(),
                 'label' => __('WhatsApp'),
                 'icon_class' => 'fa-brands',
                 'icon' => 'fa-whatsapp',
                 'url' => "https://wa.me/?text={$title}%20{$url}"
             ],
             [
-                'enabled' => $this->helperData->getBlogConfig('platforms/telegram_platform/telegram_share'),
+                'enabled' => $this->helperData->getShareTelegramEnabled(),
                 'label' => __('Telegram'),
                 'icon_class' => 'fa-brands',
                 'icon' => 'fa-telegram',
                 'url' => "https://t.me/share/url?url={$url}&text={$title}"
             ],
             [
-                'enabled' => $this->helperData->getBlogConfig('platforms/linkedin_platform/linkedin_share'),
+                'enabled' => $this->helperData->getShareLinkedinEnabled(),
                 'label' => __('LinkedIn'),
                 'icon_class' => 'fa-brands',
                 'icon' => 'fa-linkedin-in',
                 'url' => "https://www.linkedin.com/sharing/share-offsite/?url={$url}"
             ],
             [
-                'enabled' => $this->helperData->getBlogConfig('platforms/reddit_platform/reddit_share'),
+                'enabled' => $this->helperData->getShareRedditEnabled(),
                 'label' => __('Reddit'),
                 'icon_class' => 'fa-brands',
                 'icon' => 'fa-reddit-alien',
                 'url' => "https://www.reddit.com/submit?url={$url}&title={$title}"
             ],
             [
-                'enabled' => $this->helperData->getBlogConfig('platforms/email_platform/email_share'),
+                'enabled' => $this->helperData->getShareEmailEnabled(),
                 'label' => __('Email'),
                 'icon_class' => 'fa-solid',
                 'icon' => 'fa-envelope',
@@ -516,10 +516,7 @@ class Frontend extends Template
     {
         $storeId = $this->store->getStore()->getId();
 
-        return $this->helperData->getPostViewPageConfig(
-            'blog_list_display_short_description',
-            $storeId
-        );
+        return $this->helperData->getBlogListDisplayShortDescription($storeId);
     }
 
     /**
@@ -531,10 +528,7 @@ class Frontend extends Template
     {
         $storeId = $this->store->getStore()->getId();
 
-        return $this->helperData->getPostViewPageConfig(
-            'blog_list_display_share',
-            $storeId
-        );
+        return $this->helperData->getBlogListDisplayShare($storeId);
     }
 
     /** blog style 2 listing */

@@ -58,7 +58,7 @@ class Topmenu
         \Magento\Theme\Block\Html\Topmenu $subject,
         $html
     ) {
-        if ($this->helper->isEnabled() && $this->helper->getBlogConfig('display/toplinks')) {
+        if ($this->helper->isEnabled() && $this->helper->getToplinks()) {
             $blogHtml = $subject->getLayout()->createBlock(Menu::class)
                 ->setTemplate('Mavenbird_Blog::category/topmenu.phtml')->toHtml();
 
