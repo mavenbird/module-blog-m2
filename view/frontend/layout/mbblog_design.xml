@@ -24,8 +24,8 @@
     <head>
         <css src="Mavenbird_Blog::css/owl.carousel.css"/>
         <css src="Mavenbird_Blog::css/owl.theme.css"/>
-	    <css src="Mavenbird_Blog::css/prism.css"/>
-        <script src="Mavenbird_Blog::js/prism.js"/>
+        <css src="Mavenbird_Blog::css/enlighterjs.min.css"/>
+        <script src="Mavenbird_Blog::js/enlighterjs.min.js"/>
     </head>
     <body>
         <referenceContainer name="columns">

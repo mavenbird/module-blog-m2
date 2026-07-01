@@ -75,6 +75,7 @@ class Data extends CoreHelper
 
     const XML_PATH_ENABLED = 'blog/general/basic_settings/enabled';
     const XML_PATH_BLOG_NAME = 'blog/general/basic_settings/name';
+    const XML_PATH_BLOG_SUBTITLE = 'blog/general/basic_settings/blog_subtitle';
     const XML_PATH_URL_PREFIX = 'blog/general/basic_settings/url_prefix';
     const XML_PATH_URL_SUFFIX = 'blog/general/basic_settings/url_suffix';
     const XML_PATH_TOPLINKS = 'blog/general/basic_settings/toplinks';
@@ -565,6 +566,18 @@ class Data extends CoreHelper
     public function getBlogName($store = null)
     {
         return $this->getConfigValue(self::XML_PATH_BLOG_NAME, $store) ?: __('Blog');
+    }
+
+    /**
+     * Get blog subtitle
+     *
+     * @param null $store
+     *
+     * @return string
+     */
+    public function getBlogSubtitle($store = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_BLOG_SUBTITLE, $store) ?: '';
     }
 
     /**

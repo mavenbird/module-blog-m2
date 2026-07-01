@@ -137,7 +137,7 @@ use Magento\Framework\Escaper;
                     <a class="blog-hero-media" href="<?= $escaper->escapeUrl($heroPost->getUrl()) ?>">
                         <img
                             class="blog-hero-image"
-                            src="<?= $escaper->escapeUrl($block->resizeImage($heroPost->getImage(), '1000x')) ?>"
+                            src="<?= $escaper->escapeUrl($block->resizeImage($heroPost->getImage(), '1500x')) ?>"
                             alt="<?= $escaper->escapeHtmlAttr($heroPost->getName()) ?>"
                         />
                     </a>
@@ -154,7 +154,7 @@ use Magento\Framework\Escaper;
                         <div class="blog-readtime-date">
                             <?=
                             /** @noEscape */
-                            $block->getstyle2PostInfo($heroPost)
+                            $block->getPostInfo($heroPost)
                             ?>
                         </div>
                     </div>
@@ -169,7 +169,7 @@ use Magento\Framework\Escaper;
                                 <a class="blog-mini-media" href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
                                     <img
                                         class="blog-image"
-                                        src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(), '1000x')) ?>"
+                                        src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(), '1500x')) ?>"
                                         alt="<?= $escaper->escapeHtmlAttr($post->getName()) ?>"
                                     />
                                 </a>
@@ -187,7 +187,7 @@ use Magento\Framework\Escaper;
                                 <div class="blog-readtime-date">
                                     <?=
                                     /** @noEscape */
-                                    $block->getstyle2PostInfo($post)
+                                    $block->getPostInfo($post)
                                     ?>
                                 </div>
                             </div>
@@ -269,7 +269,7 @@ use Magento\Framework\Escaper;
                                      <div class="blog-readtime-date">
                                         <?=
                                         /** @noEscape */
-                                        $block->getstyle2PostInfo($leadPost)
+                                        $block->getPostInfo($leadPost)
                                         ?>
                                     </div>
                                 </div>
@@ -290,7 +290,7 @@ use Magento\Framework\Escaper;
                                     <div class="blog-readtime-date">
                                         <?=
                                         /** @noEscape */
-                                        $block->getstyle2PostInfo($post)
+                                        $block->getPostInfo($post)
                                         ?>
                                     </div>
                                 </article>
@@ -320,7 +320,7 @@ use Magento\Framework\Escaper;
                                             <?php if ($author->getImage()) : ?>
                                                 <img 
                                                     class="blog-author-avatar"
-                                                    src="<?= $escaper->escapeUrl($block->resizeImage($author->getImage(), '200x')) ?>"
+                                                    src="<?= $escaper->escapeUrl($block->getBlogHelper()->getImageHelper()->resizeImage($author->getImage(), '200x', 'auth')) ?>"
                                                     alt="<?= $escaper->escapeHtmlAttr($author->getName()) ?>"
                                                 />
                                             <?php else : ?>
@@ -376,7 +376,7 @@ use Magento\Framework\Escaper;
                                     <?php if ($author->getImage()) : ?>
                                         <img 
                                             class="blog-author-avatar"
-                                            src="<?= $escaper->escapeUrl($block->resizeImage($author->getImage(), '200x')) ?>"
+                                            src="<?= $escaper->escapeUrl($block->getBlogHelper()->getImageHelper()->resizeImage($author->getImage(), '200x', 'auth')) ?>"
                                             alt="<?= $escaper->escapeHtmlAttr($author->getName()) ?>"
                                         />
                                     <?php else : ?>

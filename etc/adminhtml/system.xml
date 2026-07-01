@@ -42,24 +42,27 @@
                     <field id="name" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>Blog Title</label>
                     </field>
-                    <field id="url_prefix" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <field id="blog_subtitle" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Blog Subtitle</label>
+                    </field>
+                    <field id="url_prefix" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>Blog URL Route</label>
                         <validate>validate-alphanum</validate>
                     </field>
-                    <field id="url_suffix" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <field id="url_suffix" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>URL Suffix</label>
                         <comment>Leave empty for no suffix. Default: html</comment>
                         <validate>validate-alphanum</validate>
                     </field>
-                    <field id="toplinks" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <field id="toplinks" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>Show Blog Link in Top Navigation</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     </field>
-                    <field id="footer" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <field id="footer" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>Show Blog Link in Footer</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     </field>
-                    <field id="font_color" translate="label comment" type="text" sortOrder="70" showInWebsite="1" showInStore="1" showInDefault="1" canRestore="1">
+                    <field id="font_color" translate="label comment" type="text" sortOrder="80" showInWebsite="1" showInStore="1" showInDefault="1" canRestore="1">
                         <label>Theme Color</label>
                         <frontend_model>Mavenbird\Blog\Block\Adminhtml\System\Config\ColorPicker</frontend_model>
                     </field>

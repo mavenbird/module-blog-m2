@@ -26,6 +26,9 @@
         <css src="Mavenbird_Blog::css/mbBlog-style2.css"/>
     </head>
     <body>
+        <referenceBlock name="page.main.title">
+            <block class="Mavenbird\Blog\Block\Html\Subtitle" name="blog.subtitle" after="-" template="Mavenbird_Blog::html/subtitle.phtml"/>
+        </referenceBlock>
         <referenceContainer name="content">
             <block class="Mavenbird\Blog\Block\Post\Listpost" name="mbblog.post.list" as="mbblog_post" template="Mavenbird_Blog::post/index.phtml"/>
             <block class="Magento\Framework\View\Element\Template" name="mbblog.copy.right" after="-" template="Mavenbird_Blog::html/copyright.phtml"/>

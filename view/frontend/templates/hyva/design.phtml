@@ -44,6 +44,14 @@ use Magento\Framework\Escaper;
             if (currentTheme === "Etheme/yourstore") {
                 body.classList.add('mbblog-etheme-yourstore');
             }
+
+            // Initialize EnlighterJS syntax highlighting
+            if (typeof EnlighterJS !== 'undefined') {
+                EnlighterJS.init("pre", "code", {
+                    theme: "dracula",
+                    indent: 4
+                });
+            }
         });
     });
 </script>

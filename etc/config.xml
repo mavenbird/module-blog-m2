@@ -120,6 +120,7 @@
                 <basic_settings>
                     <enabled>1</enabled>
                     <name>Blog</name>
+                    <blog_subtitle>Explore insights, guides, industry trends, and expert perspectives to stay informed.</blog_subtitle>
                     <url_prefix>blog</url_prefix>
                     <url_suffix>html</url_suffix>
                     <toplinks>1</toplinks>
