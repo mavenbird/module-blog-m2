@@ -172,8 +172,49 @@
                         </field>
                     </group>
 
+                    <!-- Post Info Display -->
+                    <group id="list_inline_metadata" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>List Inline Metadata</label>
+                        <!-- Show Publish Date -->
+                        <field id="display_date" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Show Publish Date</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <comment>Show or hide blog publish date in post info.</comment>
+                        </field>
+                        <!-- Show Category -->
+                        <field id="display_category" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Show Category</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <comment>Show or hide blog category in post info.</comment>
+                        </field>
+                        <!-- Show Author -->
+                        <field id="display_author" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Show Author</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <comment>Show or hide author information.</comment>
+                        </field>
+                        <!-- Show Comments -->
+                        <field id="display_comments" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Show Comments Count</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <comment>Show or hide number of comments.</comment>
+                        </field>
+                        <!-- Show Views -->
+                        <field id="display_views" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Show Views Count</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <comment>Show or hide post view count.</comment>
+                        </field>
+                        <!-- Show Likes -->
+                        <field id="display_likes" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Show Likes Count</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <comment>Show or hide likes count.</comment>
+                        </field>
+                    </group>
+
                     <!-- Pagination -->
-                    <group id="pagination_sub" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <group id="pagination_sub" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Pagination</label>
                         <field id="pagination" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
                             <label>Posts Per Page</label>

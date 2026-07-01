@@ -148,6 +148,14 @@
                     <pagination_sub>
                         <pagination>10,20,50</pagination>
                     </pagination_sub>
+                    <list_inline_metadata>
+                        <display_date>1</display_date>
+                        <display_category>1</display_category>
+                        <display_author>1</display_author>
+                        <display_comments>1</display_comments>
+                        <display_views>1</display_views>
+                        <display_likes>1</display_likes>
+                    </list_inline_metadata>
                 </blog_list>
                 <blog_post>
                     <post_inline_metadata>

@@ -113,6 +113,14 @@ class Data extends CoreHelper
     const XML_PATH_REVIEW_MODE = 'blog/blog_pages/blog_post/reviews/review_mode';
     const XML_PATH_ENABLE_TO_SAVE = 'blog/blog_pages/blog_post/post_view_page_settings/enable_to_save';
     const XML_PATH_SEO_URL_KEY = 'blog/seo/url_key';
+    
+    // List Inline Metadata
+    const XML_PATH_LIST_DISPLAY_DATE = 'blog/blog_pages/blog_list/list_inline_metadata/display_date';
+    const XML_PATH_LIST_DISPLAY_CATEGORY = 'blog/blog_pages/blog_list/list_inline_metadata/display_category';
+    const XML_PATH_LIST_DISPLAY_AUTHOR = 'blog/blog_pages/blog_list/list_inline_metadata/display_author';
+    const XML_PATH_LIST_DISPLAY_COMMENTS = 'blog/blog_pages/blog_list/list_inline_metadata/display_comments';
+    const XML_PATH_LIST_DISPLAY_VIEWS = 'blog/blog_pages/blog_list/list_inline_metadata/display_views';
+    const XML_PATH_LIST_DISPLAY_LIKES = 'blog/blog_pages/blog_list/list_inline_metadata/display_likes';
 
     const XML_PATH_SIDEBAR_LEFT_RIGHT = 'blog/sidebar/general/sidebar_left_right';
     const XML_PATH_SHOW_SIDEBAR_STATIC_BLOCK = 'blog/sidebar/general/show_sidebar_static_block';
@@ -556,6 +564,72 @@ class Data extends CoreHelper
     public function showAuthorInfo($storeId = null)
     {
         return $this->getConfigValue(self::XML_PATH_DISPLAY_AUTHOR, $storeId);
+    }
+    
+    /**
+     * Check if publish date should be displayed in blog list
+     * 
+     * @param null $storeId
+     * @return bool
+     */
+    public function showListDate($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_LIST_DISPLAY_DATE, $storeId);
+    }
+    
+    /**
+     * Check if category should be displayed in blog list
+     * 
+     * @param null $storeId
+     * @return bool
+     */
+    public function showListCategory($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_LIST_DISPLAY_CATEGORY, $storeId);
+    }
+    
+    /**
+     * Check if author should be displayed in blog list
+     * 
+     * @param null $storeId
+     * @return bool
+     */
+    public function showListAuthor($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_LIST_DISPLAY_AUTHOR, $storeId);
+    }
+    
+    /**
+     * Check if comments count should be displayed in blog list
+     * 
+     * @param null $storeId
+     * @return bool
+     */
+    public function showListComments($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_LIST_DISPLAY_COMMENTS, $storeId);
+    }
+    
+    /**
+     * Check if views count should be displayed in blog list
+     * 
+     * @param null $storeId
+     * @return bool
+     */
+    public function showListViews($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_LIST_DISPLAY_VIEWS, $storeId);
+    }
+    
+    /**
+     * Check if likes count should be displayed in blog list
+     * 
+     * @param null $storeId
+     * @return bool
+     */
+    public function showListLikes($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_LIST_DISPLAY_LIKES, $storeId);
     }
 
     /**

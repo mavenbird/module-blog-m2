@@ -316,38 +316,48 @@ class Frontend extends Template
             $likeCollection = $this->postLikeFactory->create()->getCollection();
             $couldLike      = $likeCollection->addFieldToFilter('post_id', $post->getId())
                 ->addFieldToFilter('action', '1')->count();
-            $html           = __(
-                '<i class="fa-regular fa-calendar-days"></i> %1',
-                $this->getDateFormat($post->getPublishDate())
-            );
+            $html           = '';
+            
+            if ($this->helperData->showListDate()) {
+                $html = __(
+                    '<i class="fa-regular fa-calendar-days"></i> %1',
+                    $this->getDateFormat($post->getPublishDate())
+                );
+            }
 
-            if ($categoryPost = $this->getPostCategoryHtml($post)) {
-                $html .= __(' | Posted in %1', $categoryPost);
+            if (($categoryPost = $this->getPostCategoryHtml($post)) && $this->helperData->showListCategory()) {
+                $html .= empty($html) ? __('Posted in %1', $categoryPost) : __(' | Posted in %1', $categoryPost);
             }
 
             $author = $this->helperData->getAuthorByPost($post);
-            if ($author && $author->getName() && $this->helperData->showAuthorInfo()) {
+            if ($author && $author->getName() && $this->helperData->showListAuthor()) {
                 $aTag = '<a class="mb-info" href="' . $author->getUrl() . '">'
                     . $this->escapeHtml($author->getName()) . '</a>';
-                $html .= __(' | <i class="fa-solid fa-user"></i> %1', $aTag);
+                $html .= empty($html) ? __('<i class="fa-solid fa-user"></i> %1', $aTag) : __(' | <i class="fa-solid fa-user"></i> %1', $aTag);
             }
 
-            if ($this->getCommentinPost($post)) {
-                $html .= __(
+            if ($this->getCommentinPost($post) && $this->helperData->showListComments()) {
+                $html .= empty($html) ? __(
+                    '<i class="fa-regular fa-comments" aria-hidden="true"></i> %1',
+                    $this->getCommentinPost($post)
+                ) : __(
                     ' | <i class="fa-regular fa-comments" aria-hidden="true"></i> %1',
                     $this->getCommentinPost($post)
                 );
             }
 
-            if ($post->getViewTraffic()) {
-                $html .= __(
+            if ($post->getViewTraffic() && $this->helperData->showListViews()) {
+                $html .= empty($html) ? __(
+                    '<i class="fa-regular fa-eye" title="Views" aria-hidden="true"></i> %1',
+                    $post->getViewTraffic()
+                ) : __(
                     ' | <i class="fa-regular fa-eye" title="Views" aria-hidden="true"></i> %1',
                     $post->getViewTraffic()
                 );
             }
 
-            if ($couldLike > 0) {
-                $html .= __(' | <i class="fa-regular fa-thumbs-up" aria-hidden="true"></i> %1', $couldLike);
+            if ($couldLike > 0 && $this->helperData->showListLikes()) {
+                $html .= empty($html) ? __('<i class="fa-regular fa-thumbs-up" aria-hidden="true"></i> %1', $couldLike) : __(' | <i class="fa-regular fa-thumbs-up" aria-hidden="true"></i> %1', $couldLike);
             }
         } catch (Exception $e) {
             $html = '';
