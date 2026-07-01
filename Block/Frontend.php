@@ -567,6 +567,41 @@ class Frontend extends Template
     }
 
     /**
+     * Get prepared featured categories with their posts
+     * 
+     * @return array
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function getPreparedFeaturedCategories()
+    {
+        $featuredCategories = $this->getFeaturedCategories();
+        if (!$featuredCategories) {
+            return [];
+        }
+        
+        $featuredCategoriesArray = explode(',', $featuredCategories);
+        $categoryCollection = $this->helperData->getCategoryCollection($featuredCategoriesArray);
+        $this->helperData->addStoreFilter($categoryCollection);
+        $categoryCollection->addFieldToFilter('enabled', 1);
+        
+        $preparedCategories = [];
+        foreach ($categoryCollection as $category) {
+            $categoryPosts = $category->getSelectedPostsCollection();
+            $this->helperData->addStoreFilter($categoryPosts);
+            $categoryPosts->setPageSize(4);
+            
+            if ($categoryPosts && $categoryPosts->getSize()) {
+                $preparedCategories[] = [
+                    'model' => $category,
+                    'posts' => $categoryPosts
+                ];
+            }
+        }
+        
+        return $preparedCategories;
+    }
+
+    /**
      * Get posts by category IDs
      * 
      * @param array $categoryIds

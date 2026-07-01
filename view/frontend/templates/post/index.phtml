@@ -197,15 +197,11 @@ use Magento\Framework\Escaper;
             <?php endif; ?>
         </section>
 
-        <?php $featuredCategories = $block->getFeaturedCategories(); ?>
-        <?php if ($featuredCategories) : ?>
-            <?php
-            $categoryIds = array_values(array_filter(array_map('trim', explode(',', $featuredCategories))));
-            $categoryNames = $block->getCategoryNamesByIds($categoryIds);
-            ?>
-
-            <?php foreach ($categoryIds as $index => $categoryId) : ?>
-                <?php $categoryPosts = $block->getPostsByCategoryIds([$categoryId]); ?>
+        <?php $preparedFeaturedCategories = $block->getPreparedFeaturedCategories(); ?>
+        <?php if ($preparedFeaturedCategories) : ?>
+            <?php foreach ($preparedFeaturedCategories as $categoryData) : ?>
+                <?php $category = $categoryData['model']; ?>
+                <?php $categoryPosts = $categoryData['posts']; ?>
                 <?php if (!$categoryPosts || !$categoryPosts->getSize()) : ?>
                     <?php continue; ?>
                 <?php endif; ?>
@@ -216,7 +212,7 @@ use Magento\Framework\Escaper;
                     $categoryArray[] = $postItem;
                 }
 
-                $categoryTitle = $categoryNames[$index] ?? __('Featured Category');
+                $categoryTitle = $category->getName() ?? __('Featured Category');
                 $leadPost = $categoryArray[0] ?? null;
                 $listPosts = array_slice($categoryArray, 1, 3);
                 ?>
@@ -227,7 +223,6 @@ use Magento\Framework\Escaper;
                             <?= $escaper->escapeHtml($categoryTitle) ?>
                         </h2>
 
-                        <?php $category = $block->helperData->getObjectByParam($categoryId, null, \Mavenbird\Blog\Helper\Data::TYPE_CATEGORY); ?>
                         <a class="blog-category-link" href="<?= $escaper->escapeUrl($block->helperData->getBlogUrl($category, \Mavenbird\Blog\Helper\Data::TYPE_CATEGORY)) ?>">
                             <?= $escaper->escapeHtml(__('See all posts')) ?>
                         </a>

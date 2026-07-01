@@ -25,6 +25,7 @@ use Magento\Backend\Block\Template\Context;
 use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Framework\Data\Form\Element\AbstractElement;
 use Magento\Framework\Data\Tree\Node;
+use Mavenbird\Blog\Model\CategoryFactory as BlogCategoryFactory;
 use Mavenbird\Blog\Model\ResourceModel\Category\TreeFactory as BlogCategoryTreeFactory;
 
 /**
@@ -39,18 +40,31 @@ class BlogCategoryTree extends Field
     protected $blogCategoryTreeFactory;
 
     /**
+     * @var BlogCategoryFactory
+     */
+    protected $_categoryFactory;
+
+    /**
+     * @var array
+     */
+    protected $_categories = [];
+
+    /**
      * BlogCategoryTree constructor.
      *
      * @param Context $context
      * @param BlogCategoryTreeFactory $blogCategoryTreeFactory
+     * @param BlogCategoryFactory $categoryFactory
      * @param array $data
      */
     public function __construct(
         Context $context,
         BlogCategoryTreeFactory $blogCategoryTreeFactory,
+        BlogCategoryFactory $categoryFactory,
         array $data = []
     ) {
         $this->blogCategoryTreeFactory = $blogCategoryTreeFactory;
+        $this->_categoryFactory = $categoryFactory;
         parent::__construct($context, $data);
     }
 
@@ -69,7 +83,16 @@ class BlogCategoryTree extends Field
             /** @var \Mavenbird\Blog\Model\ResourceModel\Category\Tree $categoryTree */
             $categoryTree = $this->blogCategoryTreeFactory->create();
             $categoryTree->load(); // Load the tree first
-            $categoryTree->addCollectionData(null, true, [], true, true);
+            $categoryTree->addCollectionData(null, true, [], true, false);
+            
+            // Load selected categories to ensure we have them all
+            $selectedArray = !empty($element->getValue()) ? explode(',', $element->getValue()) : [];
+            foreach ($selectedArray as $categoryId) {
+                $category = $this->_categoryFactory->create()->load($categoryId);
+                if ($category->getId()) {
+                    $this->_categories[$categoryId] = $category;
+                }
+            }
             
             // Get root node by ID (root category ID is always 1 for blog categories)
             $rootNode = $categoryTree->getNodeById(1);
@@ -113,8 +136,13 @@ class BlogCategoryTree extends Field
         if ($level > 0) {
             $categoryId = $node->getId();
             $categoryName = $node->getName();
-            $checked = in_array($categoryId, $selectedArray) ? 'checked="checked"' : '';
+            $isEnabled = $node->getData('enabled');
+            // For disabled categories, always uncheck and disable the checkbox
+            $checked = !$isEnabled ? '' : (in_array($categoryId, $selectedArray) ? 'checked="checked"' : '');
+            $disabledAttr = !$isEnabled ? 'disabled="disabled"' : '';
             $hasChildren = $node->hasChildren();
+            $disabledStyle = !$isEnabled ? 'color: #999; font-style: italic;' : 'color: #333; font-weight:500;';
+            $cursorStyle = !$isEnabled ? 'cursor:not-allowed;' : 'cursor:pointer;';
             
             $html .= '<li style="margin-left: ' . $padding . 'px; list-style: none; padding: 6px 0; line-height: 1.5;">';
             if ($hasChildren) {
@@ -122,7 +150,12 @@ class BlogCategoryTree extends Field
             } else {
                 $html .= '<span style="display:inline-block; width:21px;"></span>';
             }
-            $html .= '<label style="margin-left:2px; cursor:pointer; color:#333; font-weight:500;"><input type="checkbox" name="blog_category_select" value="' . $this->escapeHtml($categoryId) . '" ' . $checked . ' style="margin:0 5px 0 0; vertical-align:middle;"/> ' . $this->escapeHtml($categoryName) . '</label>';
+            $labelClass = !$isEnabled ? 'disabled-label ' : '';
+            $html .= '<label class="' . $labelClass . '" style="margin-left:2px; ' . $cursorStyle . ' ' . $disabledStyle . '"><input type="checkbox" name="blog_category_select" value="' . $this->escapeHtml($categoryId) . '" ' . $checked . ' ' . $disabledAttr . ' style="margin:0 5px 0 0; vertical-align:middle;"/> ' . $this->escapeHtml($categoryName);
+            if (!$isEnabled) {
+                $html .= ' <span style="color: #e03030; font-size: 11px;">(Disabled)</span>';
+            }
+            $html .= '</label>';
         }
         
         // Render children
@@ -163,16 +196,30 @@ class BlogCategoryTree extends Field
                  background: #e0e0e0 !important;
                  border-color: #999 !important;
              }
-             .blog-category-tree label:hover {
+             .blog-category-tree label:hover:not(.disabled-label) {
                  color: #007bdb !important;
+             }
+             .blog-category-tree input[type="checkbox"]:disabled {
+                 opacity: 0.5;
+                 cursor: not-allowed;
+                 pointer-events: none;
+             }
+             .blog-category-tree .disabled-label {
+                 pointer-events: none;
              }
          </style>
         <script type="text/javascript">
             require(['jquery'], function($) {
                 $(document).ready(function() {
+                    // Add disabled-label class to labels containing disabled checkboxes
+                    $('input[name="blog_category_select"]:disabled').each(function() {
+                        $(this).closest('label').addClass('disabled-label');
+                    });
+                    
                     function updateHiddenField() {
                         var selected = [];
-                        $('input[name="blog_category_select"]:checked').each(function() {
+                        // Only include enabled and checked checkboxes
+                        $('input[name="blog_category_select"]:checked:not(:disabled)').each(function() {
                             selected.push($(this).val());
                         });
                         $('#$htmlId').val(selected.join(','));
@@ -190,7 +237,15 @@ class BlogCategoryTree extends Field
                         }
                     }
                     
-                    $('input[name="blog_category_select"]').on('change', function() {
+                    // Prevent any interaction with disabled checkboxes
+                    $('input[name="blog_category_select"]:disabled').on('click change', function(e) {
+                        e.preventDefault();
+                        e.stopImmediatePropagation();
+                        return false;
+                    });
+                    
+                    // Only attach change handler to enabled checkboxes
+                    $('input[name="blog_category_select"]:not(:disabled)').on('change', function() {
                         updateHiddenField();
                     });
                     
