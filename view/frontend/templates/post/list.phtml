@@ -51,6 +51,19 @@ use Magento\Framework\Escaper;
                                     alt="<?= $escaper->escapeHtml($post->getName()); ?>" />
                             </a>
                         </div>
+                    <?php else : ?>
+                        <div class="post-placeholder">
+                            <div class="post-image">
+                                <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
+                                    <img
+                                    src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::images/placeholder.jpg')) ?>"
+                                    alt="<?= $escaper->escapeHtmlAttr($post->getName()) ?>"
+                                    class="img-responsive"
+                                />
+                                    <div class="post-name-placeholder"><?= $escaper->escapeHtml($post->getName()) ?></div>
+                                </a>
+                            </div>
+                        </div>
                     <?php endif; ?>
                     <div class="post-info">
                         <h2 class="mb-post-title">

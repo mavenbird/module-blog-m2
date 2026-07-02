@@ -10,6 +10,9 @@ use Magento\Framework\Escaper;
 
 $posts = $block->getCollection();
 $blogShowType = $block->getData('blog_show_type') ?? 'grid'; // default to grid
+$showPostInfo = $block->showPostInfo();
+$showShortDescription = $block->showShortDescription();
+$showReadMore = $block->showReadMore();
 ?>
 
 <!-- Include Splide CSS & JS -->
@@ -38,9 +41,9 @@ $blogShowType = $block->getData('blog_show_type') ?? 'grid'; // default to grid
                                 <?php if ($post->getImage()): ?>
                                     <div class="post-image mb-3">
                                         <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
-                                            <img class="w-full h-56 object-cover rounded"
-                                                 src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(),'400x')) ?>"
-                                                 alt="<?= $escaper->escapeHtml($post->getName()) ?>" />
+                                            <img class="w-full object-cover rounded"
+                                                src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(),'1000x')) ?>"
+                                                alt="<?= $escaper->escapeHtml($post->getName()) ?>" />
                                         </a>
                                     </div>
                                 <?php endif; ?>
@@ -53,21 +56,27 @@ $blogShowType = $block->getData('blog_show_type') ?? 'grid'; // default to grid
                                     </a>
                                 </h2>
 
-                                <div class="mb-post-info text-sm text-gray-500 mb-2">
-                                    <?= /** @noEscape */ $block->getPostInfo($post) ?>
-                                </div>
+                                <?php if ($showPostInfo): ?>
+                                    <div class="mb-post-info text-sm text-gray-500 mb-2">
+                                        <?= /** @noEscape */ $block->getPostInfo($post) ?>
+                                    </div>
+                                <?php endif; ?>
 
-                                <div class="post-short-description text-gray-700 mb-2">
-                                    <p><?= /** @noEscape */ $post->getShortDescription(true) ?></p>
-                                </div>
+                                <?php if ($showShortDescription): ?>
+                                    <div class="post-short-description text-gray-700 mb-2">
+                                        <p><?= /** @noEscape */ $post->getShortDescription(true) ?></p>
+                                    </div>
+                                <?php endif; ?>
 
-                                <div class="mb-post-meta-info text-left">
-                                    <a class="mb-read-more hover:underline py-2.5 font-medium mt-4 rounded-lg text-primary"
-                                       href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
-                                       title="<?= $escaper->escapeHtmlAttr(__('Read More')) ?>">
-                                        <?= $escaper->escapeHtml(__('Read more')) ?>
-                                    </a>
-                                </div>
+                                <?php if ($showReadMore): ?>
+                                    <div class="mb-post-meta-info text-left">
+                                        <a class="mb-read-more hover:underline py-2.5 font-medium mt-4 rounded-lg text-primary"
+                                           href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
+                                           title="<?= $escaper->escapeHtmlAttr(__('Read More')) ?>">
+                                            <?= $escaper->escapeHtml(__('Read more')) ?>
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </li>
                     <?php endforeach; ?>
@@ -112,28 +121,34 @@ $blogShowType = $block->getData('blog_show_type') ?? 'grid'; // default to grid
                     <?php endif; ?>
 
                     <h2 class="mb-post-title text-lg xl:text-xl font-semibold mb-2">
-                        <a class="hover:text-blue-600"
-                           href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
-                           title="<?= $escaper->escapeHtmlAttr($post->getName()) ?>">
-                            <?= $escaper->escapeHtml($post->getName()) ?>
-                        </a>
-                    </h2>
+                            <a class="hover:text-blue-600"
+                               href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
+                               title="<?= $escaper->escapeHtmlAttr($post->getName()) ?>">
+                                <?= $escaper->escapeHtml($post->getName()) ?>
+                            </a>
+                        </h2>
 
-                    <div class="mb-post-info text-sm text-gray-500 mb-2">
-                        <?= /** @noEscape */ $block->getPostInfo($post) ?>
-                    </div>
+                        <?php if ($showPostInfo): ?>
+                            <div class="mb-post-info text-sm text-gray-500 mb-2">
+                                <?= /** @noEscape */ $block->getPostInfo($post) ?>
+                            </div>
+                        <?php endif; ?>
 
-                    <div class="post-short-description text-gray-700 mb-2">
-                        <p><?= /** @noEscape */ $post->getShortDescription(true) ?></p>
-                    </div>
+                        <?php if ($showShortDescription): ?>
+                            <div class="post-short-description text-gray-700 mb-2">
+                                <p><?= /** @noEscape */ $post->getShortDescription(true) ?></p>
+                            </div>
+                        <?php endif; ?>
 
-                    <div class="mb-post-meta-info text-right">
-                        <a class="mb-read-more px-6 py-2.5  font-medium mt-4 rounded-lg hover:underline"
-                           href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
-                           title="<?= $escaper->escapeHtmlAttr(__('Read More')) ?>">
-                            <?= $escaper->escapeHtml(__('Read more')) ?>
-                        </a>
-                    </div>
+                        <?php if ($showReadMore): ?>
+                            <div class="mb-post-meta-info text-right">
+                                <a class="mb-read-more px-6 py-2.5  font-medium mt-4 rounded-lg hover:underline"
+                                   href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
+                                   title="<?= $escaper->escapeHtmlAttr(__('Read More')) ?>">
+                                    <?= $escaper->escapeHtml(__('Read more')) ?>
+                                </a>
+                            </div>
+                        <?php endif; ?>
                 </div>
             <?php endforeach; ?>
         </div>

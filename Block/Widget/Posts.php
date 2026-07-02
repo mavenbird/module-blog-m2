@@ -95,4 +95,34 @@ class Posts extends Frontend implements BlockInterface
         }
         return parent::_toHtml();
     }
+
+    /**
+     * Check if post info should be shown
+     *
+     * @return bool
+     */
+    public function showPostInfo()
+    {
+        return (bool)$this->getData('show_post_info');
+    }
+
+    /**
+     * Check if short description should be shown
+     *
+     * @return bool
+     */
+    public function showShortDescription()
+    {
+        return (bool)$this->getData('show_short_description');
+    }
+
+    /**
+     * Check if read more link should be shown
+     *
+     * @return bool
+     */
+    public function showReadMore()
+    {
+        return (bool)$this->getData('show_read_more');
+    }
 }

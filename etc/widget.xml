@@ -54,6 +54,39 @@
                     </option>
                 </options>
             </parameter>
+            <parameter name="show_post_info" xsi:type="select" required="false" visible="true">
+                <label>Show Post Info (Author, Date)</label>
+                <options>
+                    <option name="no" value="0">
+                        <label>No</label>
+                    </option>
+                    <option name="yes" value="1" selected="true">
+                        <label>Yes</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="show_short_description" xsi:type="select" required="false" visible="true">
+                <label>Show Short Description</label>
+                <options>
+                    <option name="no" value="0">
+                        <label>No</label>
+                    </option>
+                    <option name="yes" value="1" selected="true">
+                        <label>Yes</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="show_read_more" xsi:type="select" required="false" visible="true">
+                <label>Show Read More Link</label>
+                <options>
+                    <option name="no" value="0">
+                        <label>No</label>
+                    </option>
+                    <option name="yes" value="1" selected="true">
+                        <label>Yes</label>
+                    </option>
+                </options>
+            </parameter>
             <parameter name="template" xsi:type="select" required="true" visible="true">
                 <label>Template</label>
                 <options>

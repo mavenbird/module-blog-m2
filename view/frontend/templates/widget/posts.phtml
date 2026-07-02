@@ -5,8 +5,12 @@ use Magento\Framework\Escaper;
 
 /** @var Posts $block */
 /** @var Escaper $escaper */
+
 $posts = $block->getCollection();
 $blogShowType = $block->getData('blog_show_type');
+$showPostInfo = $block->showPostInfo();
+$showShortDescription = $block->showShortDescription();
+$showReadMore = $block->showReadMore();
 ?>
 
 <div class="mbblog-widget-post post-list-container" id="mbblog-list">
@@ -45,27 +49,33 @@ $blogShowType = $block->getData('blog_show_type');
                                 </a>
                             </h3>
 
-                            <div class="mb-post-info">
-                                <?=
-                                /** @noEscape */
-                                $block->getPostInfo($post) ?>
-                            </div>
-
-                            <div class="post-short-description">
-                                <p><?=
+                            <?php if ($showPostInfo): ?>
+                                <div class="mb-post-info">
+                                    <?=
                                     /** @noEscape */
-                                    $post->getShortDescription(true) ?></p>
-                            </div>
+                                    $block->getPostInfo($post) ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if ($showShortDescription): ?>
+                                <div class="post-short-description">
+                                    <p><?=
+                                        /** @noEscape */
+                                        $post->getShortDescription(true) ?></p>
+                                </div>
+                            <?php endif; ?>
                         </div>
-                        <div class="mb-post-meta-info mb-alignright">
-                            <div class="mb-read-more">
-                                <a class="action primary"
-                                    href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
-                                    title="<?= $escaper->escapeHtmlAttr(__('Read More')) ?>">
-                                    <?= $escaper->escapeHtml(__('Read more')) ?>
-                                </a>
+                        <?php if ($showReadMore): ?>
+                            <div class="mb-post-meta-info mb-alignright">
+                                <div class="mb-read-more">
+                                    <a class="action primary"
+                                        href="<?= $escaper->escapeUrl($post->getUrl()) ?>"
+                                        title="<?= $escaper->escapeHtmlAttr(__('Read More')) ?>">
+                                        <?= $escaper->escapeHtml(__('Read more')) ?>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             <?php endforeach; ?>
