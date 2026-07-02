@@ -81,6 +81,7 @@ class Data extends CoreHelper
     const XML_PATH_TOPLINKS = 'blog/general/basic_settings/toplinks';
     const XML_PATH_FOOTER = 'blog/general/basic_settings/footer';
     const XML_PATH_FONT_COLOR = 'blog/general/basic_settings/font_color';
+    const XML_PATH_BLOG_DEFAULT_LAYOUT = 'blog/general/basic_settings/blog_layout';
 
     const XML_PATH_CUSTOMER_APPROVE = 'blog/general/author_settings/customer_approve';
     const XML_PATH_AUTO_APPROVE = 'blog/general/author_settings/auto_approve';
@@ -104,6 +105,9 @@ class Data extends CoreHelper
     const XML_PATH_PAGINATION = 'blog/blog_pages/blog_list/pagination_sub/pagination';
 
     const XML_PATH_BLOG_VIEW_LAYOUT = 'blog/blog_pages/blog_post/layout/blog_view_layout';
+    const XML_PATH_BLOG_CATEGORY_LAYOUT = 'blog/blog_pages/blog_category/layout/blog_category_layout';
+    const XML_PATH_BLOG_TOPIC_LAYOUT = 'blog/blog_pages/blog_topic/layout/blog_topic_layout';
+    const XML_PATH_BLOG_TAG_LAYOUT = 'blog/blog_pages/blog_tag/layout/blog_tag_layout';
     const XML_PATH_DISPLAY_AUTHOR = 'blog/blog_pages/blog_post/post_inline_metadata/display_author';
     const XML_PATH_DISPLAY_EDITING_DATE = 'blog/blog_pages/blog_post/post_inline_metadata/display_editing_date';
     const XML_PATH_DISPLAY_NAVIGATION_BLOG = 'blog/blog_pages/blog_post/navigation/display_navigation_blog';
@@ -455,19 +459,49 @@ class Data extends CoreHelper
      * @param null $storeId
      * @return array|mixed|string
      */
+    /**
+     * Normalize older numeric configuration/database values to standard layout names.
+     *
+     * @param mixed $value
+     * @return string
+     */
+    protected function normalizeLayoutValue($value)
+    {
+        if ($value === 'empty' || !$value) {
+            return '';
+        }
+        if ($value === '0' || $value === 0) {
+            return '2columns-left';
+        }
+        if ($value === '1' || $value === 1) {
+            return '2columns-right';
+        }
+        if ($value === '2' || $value === 2) {
+            return '1column';
+        }
+        return (string)$value;
+    }
+
+    /**
+     * @param null $storeId
+     * @return array|mixed|string
+     */
+    public function getBlogDefaultLayout($storeId = null)
+    {
+        $layout = $this->getConfigValue(self::XML_PATH_BLOG_DEFAULT_LAYOUT, $storeId);
+        $layout = $this->normalizeLayoutValue($layout);
+        return $layout ?: '2columns-right';
+    }
+
+    /**
+     * @param null $storeId
+     * @return array|mixed|string
+     */
     public function getBlogListingLayout($storeId = null)
     {
-        $sideBarConfig = $this->getConfigValue(self::XML_PATH_BLOG_LIST_LAYOUT, $storeId);
-        if ($sideBarConfig == 0) {
-            return SideBarLR::LEFT;
-        }
-        if ($sideBarConfig == 1) {
-            return SideBarLR::RIGHT;
-        }
-        if ($sideBarConfig == 2) {
-            return SideBarLR::ONECOLUMN;
-        }
-        return $sideBarConfig;
+        $layout = $this->getConfigValue(self::XML_PATH_BLOG_LIST_LAYOUT, $storeId);
+        $layout = $this->normalizeLayoutValue($layout);
+        return $layout ?: $this->getBlogDefaultLayout($storeId);
     }
 
     /**
@@ -476,84 +510,174 @@ class Data extends CoreHelper
      */
     public function getBlogViewLayout($storeId = null)
     {
-        $sideBarConfig = $this->getConfigValue(self::XML_PATH_BLOG_VIEW_LAYOUT, $storeId);
-        if ($sideBarConfig == 0) {
-            return SideBarLR::LEFT;
-        }
-        if ($sideBarConfig == 1) {
-            return SideBarLR::RIGHT;
-        }
-        if ($sideBarConfig == 2) {
-            return SideBarLR::ONECOLUMN;
-        }
-        return $sideBarConfig;
+        $layout = $this->getConfigValue(self::XML_PATH_BLOG_VIEW_LAYOUT, $storeId);
+        $layout = $this->normalizeLayoutValue($layout);
+        return $layout ?: $this->getBlogDefaultLayout($storeId);
     }
 
-    public function applyBlogViewLayout($page)
+    /**
+     * @param null $storeId
+     * @return array|mixed|string
+     */
+    public function getBlogCategoryLayout($storeId = null)
     {
-        $layout = $this->getBlogViewLayout();
+        $layout = $this->getConfigValue(self::XML_PATH_BLOG_CATEGORY_LAYOUT, $storeId);
+        $layout = $this->normalizeLayoutValue($layout);
+        return $layout ?: $this->getBlogDefaultLayout($storeId);
+    }
+
+    /**
+     * @param null $storeId
+     * @return array|mixed|string
+     */
+    public function getBlogTopicLayout($storeId = null)
+    {
+        $layout = $this->getConfigValue(self::XML_PATH_BLOG_TOPIC_LAYOUT, $storeId);
+        $layout = $this->normalizeLayoutValue($layout);
+        return $layout ?: $this->getBlogDefaultLayout($storeId);
+    }
+
+    /**
+     * @param null $storeId
+     * @return array|mixed|string
+     */
+    public function getBlogTagLayout($storeId = null)
+    {
+        $layout = $this->getConfigValue(self::XML_PATH_BLOG_TAG_LAYOUT, $storeId);
+        $layout = $this->normalizeLayoutValue($layout);
+        return $layout ?: $this->getBlogDefaultLayout($storeId);
+    }
+
+    /**
+     * Helper to apply layout configuration to a page result.
+     *
+     * @param \Magento\Framework\View\Result\Page $page
+     * @param string $layout
+     * @return \Magento\Framework\View\Result\Page
+     */
+    public function applyPageLayout($page, $layout)
+    {
+        $layout = $this->normalizeLayoutValue($layout);
         switch ($layout) {
-            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::LEFT:
+            case '2columns-left':
                 $page->getConfig()->setPageLayout('2columns-left');
                 $page->addHandle('mbblog_layout_left');
                 break;
-            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::RIGHT:
+            case '2columns-right':
                 $page->getConfig()->setPageLayout('2columns-right');
                 $page->addHandle('mbblog_layout_right');
                 break;
-            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::ONECOLUMN:
-            default:
+            case '1column':
                 $page->getConfig()->setPageLayout('1column');
                 $page->addHandle('mbblog_layout_1column');
+                break;
+            case '3columns':
+                $page->getConfig()->setPageLayout('3columns');
+                $page->addHandle('mbblog_layout_3columns');
+                break;
+            case '1column-fullwidth':
+                $page->getConfig()->setPageLayout('1column-fullwidth');
+                $page->addHandle('mbblog_layout_1column-fullwidth');
+                break;
+            default:
+                if ($layout) {
+                    $page->getConfig()->setPageLayout($layout);
+                }
                 break;
         }
         return $page;
     }
 
-    public function applySidebarLayout($page)
+    /**
+     * @param \Magento\Framework\View\Result\Page $page
+     * @param \Mavenbird\Blog\Model\Category|null $category
+     * @return \Magento\Framework\View\Result\Page
+     */
+    public function applyBlogCategoryLayout($page, $category = null)
     {
-        $layout = $this->getSidebarLayout();
-
-        switch ($layout) {
-            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::LEFT:
-                $page->getConfig()->setPageLayout('2columns-left');
-                $page->addHandle('mbblog_layout_left');
-                break;
-            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::RIGHT:
-                $page->getConfig()->setPageLayout('2columns-right');
-                $page->addHandle('mbblog_layout_right');
-                break;
-            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::ONECOLUMN:
-            default:
-                $page->getConfig()->setPageLayout('1column');
-                $page->addHandle('mbblog_layout_1column');
-                break;
+        $layout = '';
+        if ($category && $category->getLayout()) {
+            $layout = $category->getLayout();
         }
-
-        return $page;
+        $layout = $this->normalizeLayoutValue($layout);
+        if (empty($layout)) {
+            $layout = $this->getBlogCategoryLayout();
+        }
+        return $this->applyPageLayout($page, $layout);
     }
 
+    /**
+     * @param \Magento\Framework\View\Result\Page $page
+     * @param \Mavenbird\Blog\Model\Topic|null $topic
+     * @return \Magento\Framework\View\Result\Page
+     */
+    public function applyBlogTopicLayout($page, $topic = null)
+    {
+        $layout = '';
+        if ($topic && $topic->getLayout()) {
+            $layout = $topic->getLayout();
+        }
+        $layout = $this->normalizeLayoutValue($layout);
+        if (empty($layout)) {
+            $layout = $this->getBlogTopicLayout();
+        }
+        return $this->applyPageLayout($page, $layout);
+    }
+
+    /**
+     * @param \Magento\Framework\View\Result\Page $page
+     * @param \Mavenbird\Blog\Model\Tag|null $tag
+     * @return \Magento\Framework\View\Result\Page
+     */
+    public function applyBlogTagLayout($page, $tag = null)
+    {
+        $layout = '';
+        if ($tag && $tag->getLayout()) {
+            $layout = $tag->getLayout();
+        }
+        $layout = $this->normalizeLayoutValue($layout);
+        if (empty($layout)) {
+            $layout = $this->getBlogTagLayout();
+        }
+        return $this->applyPageLayout($page, $layout);
+    }
+
+    /**
+     * @param \Magento\Framework\View\Result\Page $page
+     * @param \Mavenbird\Blog\Model\Post|null $post
+     * @return \Magento\Framework\View\Result\Page
+     */
+    public function applyBlogViewLayout($page, $post = null)
+    {
+        $layout = '';
+        if ($post && $post->getLayout()) {
+            $layout = $post->getLayout();
+        }
+        $layout = $this->normalizeLayoutValue($layout);
+        if (empty($layout)) {
+            $layout = $this->getBlogViewLayout();
+        }
+        return $this->applyPageLayout($page, $layout);
+    }
+
+    /**
+     * @param \Magento\Framework\View\Result\Page $page
+     * @return \Magento\Framework\View\Result\Page
+     */
     public function applyBlogListingLayout($page)
     {
         $layout = $this->getBlogListingLayout();
+        return $this->applyPageLayout($page, $layout);
+    }
 
-        switch ($layout) {
-            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::LEFT:
-                $page->getConfig()->setPageLayout('2columns-left');
-                $page->addHandle('mbblog_layout_left');
-                break;
-            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::RIGHT:
-                $page->getConfig()->setPageLayout('2columns-right');
-                $page->addHandle('mbblog_layout_right');
-                break;
-            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::ONECOLUMN:
-            default:
-                $page->getConfig()->setPageLayout('1column');
-                $page->addHandle('mbblog_layout_1column');
-                break;
-        }
-
-        return $page;
+    /**
+     * @param \Magento\Framework\View\Result\Page $page
+     * @return \Magento\Framework\View\Result\Page
+     */
+    public function applySidebarLayout($page)
+    {
+        $layout = $this->getSidebarLayout();
+        return $this->applyPageLayout($page, $layout);
     }
 
 

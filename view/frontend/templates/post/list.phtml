@@ -28,6 +28,13 @@ use Magento\Framework\Escaper;
 /** @var Escaper $escaper */
 ?>
 <div class="post-list-content" id="mbblog-list">
+    <?php if (method_exists($block, 'getBlogObject') && ($blogObject = $block->getBlogObject())) : ?>
+        <?php if ($blogObject->getDescription()) : ?>
+            <div class="category-description" style="margin-bottom: 20px;">
+                <?= /* @noEscape */ $block->getPageFilter($blogObject->getDescription()) ?>
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
     <?php $postCollection = $block->getPostCollection(); ?>
     <?php if ($postCollection && $postCollection->getSize()) : ?>
         <div class="mb-post-list

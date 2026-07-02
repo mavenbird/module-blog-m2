@@ -126,6 +126,7 @@
                     <toplinks>1</toplinks>
                     <footer>1</footer>
                     <font_color>#00a046</font_color>
+                    <blog_layout>2columns-right</blog_layout>
                 </basic_settings>
                 <author_settings>
                     <customer_approve>0</customer_approve>
@@ -140,6 +141,7 @@
                 <blog_list>
                     <layout>
                         <display_style>1</display_style>
+                        <blog_list_layout></blog_list_layout>
                     </layout>
                     <content_display>
                         <date_type>F j, Y</date_type>
@@ -158,6 +160,9 @@
                     </list_inline_metadata>
                 </blog_list>
                 <blog_post>
+                    <layout>
+                        <blog_view_layout></blog_view_layout>
+                    </layout>
                     <post_inline_metadata>
                         <display_author>1</display_author>
                     </post_inline_metadata>
@@ -169,6 +174,21 @@
                         <is_review>1</is_review>
                     </reviews>
                 </blog_post>
+                <blog_category>
+                    <layout>
+                        <blog_category_layout></blog_category_layout>
+                    </layout>
+                </blog_category>
+                <blog_topic>
+                    <layout>
+                        <blog_topic_layout></blog_topic_layout>
+                    </layout>
+                </blog_topic>
+                <blog_tag>
+                    <layout>
+                        <blog_tag_layout></blog_tag_layout>
+                    </layout>
+                </blog_tag>
             </blog_pages>
 
             <!-- 3. Sidebar -->

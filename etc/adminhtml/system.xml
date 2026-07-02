@@ -66,6 +66,10 @@
                         <label>Theme Color</label>
                         <frontend_model>Mavenbird\Blog\Block\Adminhtml\System\Config\ColorPicker</frontend_model>
                     </field>
+                    <field id="blog_layout" translate="label" type="select" sortOrder="90" showInWebsite="1" showInStore="1" showInDefault="1" canRestore="1">
+                        <label>Default Blog Layout</label>
+                        <source_model>Mavenbird\Blog\Model\Config\Source\BlogLayout</source_model>
+                    </field>
                 </group>
 
                 <!-- Author Settings Subgroup -->
@@ -116,7 +120,7 @@
                         </field>
                         <field id="blog_list_layout" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                             <label>Blog List Layout</label>
-                            <source_model>Mavenbird\Blog\Model\Config\Source\SideBarLR</source_model>
+                            <source_model>Mavenbird\Blog\Model\Config\Source\CategoryLayout</source_model>
                         </field>
                         <field id="blog_style_layout" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                             <label>Blog Style Layout</label>
@@ -233,7 +237,7 @@
                         <label>Layout</label>
                         <field id="blog_view_layout" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                             <label>Post Layout</label>
-                            <source_model>Mavenbird\Blog\Model\Config\Source\SideBarLR</source_model>
+                            <source_model>Mavenbird\Blog\Model\Config\Source\CategoryLayout</source_model>
                         </field>
                     </group>
 
@@ -288,9 +292,45 @@
                             <source_model>Magento\Customer\Model\ResourceModel\Group\Collection</source_model>
                             <comment>Select customer group(s) allowed to vote for helpfulness.</comment>
                         </field>
-                    </group>
                 </group>
             </group>
+
+            <!-- Blog Category Subgroup -->
+            <group id="blog_category" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Blog Category</label>
+                <group id="layout" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Layout</label>
+                    <field id="blog_category_layout" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Default Category Layout</label>
+                        <source_model>Mavenbird\Blog\Model\Config\Source\CategoryLayout</source_model>
+                    </field>
+                </group>
+            </group>
+
+            <!-- Blog Topic Subgroup -->
+            <group id="blog_topic" translate="label" type="text" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Blog Topic</label>
+                <group id="layout" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Layout</label>
+                    <field id="blog_topic_layout" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Default Topic Layout</label>
+                        <source_model>Mavenbird\Blog\Model\Config\Source\CategoryLayout</source_model>
+                    </field>
+                </group>
+            </group>
+
+            <!-- Blog Tag Subgroup -->
+            <group id="blog_tag" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Blog Tag</label>
+                <group id="layout" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Layout</label>
+                    <field id="blog_tag_layout" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Default Tag Layout</label>
+                        <source_model>Mavenbird\Blog\Model\Config\Source\CategoryLayout</source_model>
+                    </field>
+                </group>
+            </group>
+        </group>
 
             <!-- 3. SIDEBAR GROUP -->
             <group id="sidebar" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
