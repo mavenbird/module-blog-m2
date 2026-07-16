@@ -173,7 +173,18 @@ use Magento\Framework\Escaper;
                                         alt="<?= $escaper->escapeHtmlAttr($post->getName()) ?>"
                                     />
                                 </a>
-                            <?php endif; ?>
+                            <?php else : ?>
+                                    <div class="post-placeholder">
+                                        <a class="blog-category-feature-media" href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
+                                            <img
+                                                class="blog-category-feature-image"
+                                                src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::images/placeholder.jpg')) ?>"
+                                                alt="<?= $escaper->escapeHtmlAttr($post->getName()) ?>"
+                                            />
+                                            <div class="post-name-placeholder"><?= $escaper->escapeHtml($post->getName()) ?></div>
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
 
                             <div class="blog-content">
                                 <h3 class="blog-title">
@@ -239,6 +250,17 @@ use Magento\Framework\Escaper;
                                             alt="<?= $escaper->escapeHtmlAttr($leadPost->getName()) ?>"
                                         />
                                     </a>
+                                <?php else : ?>
+                                    <div class="post-placeholder">
+                                        <a class="blog-category-feature-media" href="<?= $escaper->escapeUrl($leadPost->getUrl()) ?>">
+                                            <img
+                                                class="blog-category-feature-image"
+                                                src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::images/placeholder.jpg')) ?>"
+                                                alt="<?= $escaper->escapeHtmlAttr($leadPost->getName()) ?>"
+                                            />
+                                            <div class="post-name-placeholder"><?= $escaper->escapeHtml($post->getName()) ?></div>
+                                        </a>
+                                    </div>
                                 <?php endif; ?>
 
                                 <div class="blog-content">
@@ -271,8 +293,8 @@ use Magento\Framework\Escaper;
                             </article>
                         <?php endif; ?>
 
+                        <?php foreach ($listPosts as $post) : ?>
                         <div class="blog-category-list">
-                            <?php foreach ($listPosts as $post) : ?>
                                 <article class="blog-category-list-item">
                                     <h3 class="blog-title">
                                         <a class="post-link-title"
@@ -289,8 +311,8 @@ use Magento\Framework\Escaper;
                                         ?>
                                     </div>
                                 </article>
-                            <?php endforeach; ?>
                         </div>
+                        <?php endforeach; ?>
                     </div>
                 </section>
             <?php endforeach; ?>
