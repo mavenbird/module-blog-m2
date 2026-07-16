@@ -26,8 +26,10 @@ use Magento\Framework\Escaper;
 
 /** @var Frontend $block */
 /** @var Escaper $escaper */
+
+$displayStyleClass  = ($block->getBlogStyle() == 2) ? 'blog-style2' : ''
 ?>
-<div class="post-list-content" id="mbblog-list">
+<div class="post-list-content <?= $displayStyleClass ?>" id="mbblog-list">
     <?php if (method_exists($block, 'getBlogObject') && ($blogObject = $block->getBlogObject())) : ?>
         <?php if ($blogObject->getDescription()) : ?>
             <div class="category-description" style="margin-bottom: 20px;">
