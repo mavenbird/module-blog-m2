@@ -43,6 +43,7 @@
     <column xsi:type="text" name="meta_keywords" nullable="true" comment="Post Meta Keywords"/>
     <column xsi:type="text" name="meta_robots" nullable="true"/>
     <column xsi:type="text" name="import_source" nullable="true" comment="Import Source"/>
+    <column xsi:type="text" name="layout" nullable="true" comment="Tag Layout"/>
     <constraint xsi:type="primary" referenceId="PRIMARY">
       <column name="tag_id"/>
     </constraint>
@@ -61,6 +62,7 @@
     <column xsi:type="timestamp" name="updated_at" on_update="false" nullable="true"/>
     <column xsi:type="timestamp" name="created_at" on_update="false" nullable="true"/>
     <column xsi:type="text" name="import_source" nullable="true" comment="Import Source"/>
+    <column xsi:type="text" name="layout" nullable="true" comment="Topic Layout"/>
     <constraint xsi:type="primary" referenceId="PRIMARY">
       <column name="topic_id"/>
     </constraint>
@@ -84,6 +86,7 @@
     <column xsi:type="timestamp" name="updated_at" on_update="false" nullable="true"/>
     <column xsi:type="timestamp" name="created_at" on_update="false" nullable="true"/>
     <column xsi:type="text" name="import_source" nullable="true" comment="Import Source"/>
+    <column xsi:type="text" name="layout" nullable="true" comment="Category Layout"/>
     <constraint xsi:type="primary" referenceId="PRIMARY">
       <column name="category_id"/>
     </constraint>

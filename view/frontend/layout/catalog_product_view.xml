@@ -27,7 +27,7 @@
     </head>
     <body>
         <referenceBlock name="product.info.details">
-            <block class="Mavenbird\Blog\Block\Post\RelatedPost" name="related.post.tab" template="Mavenbird_Blog::post/related_post.phtml" group="detailed_info" ifconfig="blog/product_post/product_detail/enable_post"/>
+            <block class="Mavenbird\Blog\Block\Post\RelatedPost" name="related.post.tab" template="Mavenbird_Blog::post/related_post.phtml" group="detailed_info" ifconfig="blog/product_integration/product_page/enable_post"/>
         </referenceBlock>
     </body>
 </page>

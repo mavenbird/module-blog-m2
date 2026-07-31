@@ -71,7 +71,7 @@ class View extends \Mavenbird\Blog\Block\Listpost
      */
     public function getRelatedMode()
     {
-        return (int) $this->helperData->getPostViewPageConfig('related_mode') === 1 ? true : false;
+        return (int) $this->helperData->getRelatedMode() === 1 ? true : false;
     }
 
     /**
@@ -145,7 +145,24 @@ class View extends \Mavenbird\Blog\Block\Listpost
      */
     public function helperComment($code)
     {
-        return $this->helperData->getBlogConfig('comment/' . $code);
+        switch ($code) {
+            case 'type':
+                return $this->helperData->getCommentType();
+            case 'need_approve':
+                return $this->helperData->getCommentNeedApprove();
+            case 'disqus':
+                return $this->helperData->getCommentDisqus();
+            case 'facebook_appid':
+                return $this->helperData->getCommentFacebookAppid();
+            case 'facebook_number_comment':
+                return $this->helperData->getCommentFacebookNumberComment();
+            case 'facebook_colorscheme':
+                return $this->helperData->getCommentFacebookColorscheme();
+            case 'facebook_order_by':
+                return $this->helperData->getCommentFacebookOrderBy();
+            default:
+                return null;
+        }
     }
 
     /**
@@ -426,8 +443,7 @@ class View extends \Mavenbird\Blog\Block\Listpost
 
     public function getDisplayEditingDate()
     {
-        /** @var \Mavenbird\Blog\Helper\Data $helper */
-        return $this->helperData->getPostViewPageConfig('display_editing_date');
+        return $this->helperData->getDisplayEditingDate();
     }
 
     public function getPreviousPost()
@@ -456,8 +472,7 @@ class View extends \Mavenbird\Blog\Block\Listpost
 
     public function getDisplayNavigationBlog()
     {
-        /** @var \Mavenbird\Blog\Helper\Data $helper */
-        return $this->helperData->getPostViewPageConfig('display_navigation_blog');
+        return $this->helperData->getDisplayNavigationBlog();
     }
 
     /**
@@ -481,43 +496,43 @@ public function getShareLinks(?Post $post = null): array
 
     $platforms = [
         'X' => [
-            'enabled' => $helper->getBlogConfig('platforms/x_platform/x_share'),
+            'enabled' => $helper->getShareTwitterEnabled(),
             'icon_class' => 'fa-brands',
             'icon' => 'fa-x-twitter',
             'url' => "https://twitter.com/intent/tweet?url={$url}&text={$title}"
         ],
         'Facebook' => [
-            'enabled' => $helper->getBlogConfig('platforms/fb_platform/fb_share'),
+            'enabled' => $helper->getShareFbEnabled(),
             'icon_class' => 'fa-brands',
             'icon' => 'fa-facebook-f',
             'url' => "https://www.facebook.com/sharer/sharer.php?u={$url}"
         ],
         'WhatsApp' => [
-            'enabled' => $helper->getBlogConfig('platforms/whatsapp_platform/whatsapp_share'),
+            'enabled' => $helper->getShareWhatsappEnabled(),
             'icon_class' => 'fa-brands',
             'icon' => 'fa-whatsapp',
             'url' => "https://wa.me/?text={$title}%20{$url}"
         ],
         'Telegram' => [
-            'enabled' => $helper->getBlogConfig('platforms/telegram_platform/telegram_share'),
+            'enabled' => $helper->getShareTelegramEnabled(),
             'icon_class' => 'fa-brands',
             'icon' => 'fa-telegram',
             'url' => "https://t.me/share/url?url={$url}&text={$title}"
         ],
         'LinkedIn' => [
-            'enabled' => $helper->getBlogConfig('platforms/linkedin_platform/linkedin_share'),
+            'enabled' => $helper->getShareLinkedinEnabled(),
             'icon_class' => 'fa-brands',
             'icon' => 'fa-linkedin-in',
             'url' => "https://www.linkedin.com/sharing/share-offsite/?url={$url}"
         ],
         'Reddit' => [
-            'enabled' => $helper->getBlogConfig('platforms/reddit_platform/reddit_share'),
+            'enabled' => $helper->getShareRedditEnabled(),
             'icon_class' => 'fa-brands',
             'icon' => 'fa-reddit-alien',
             'url' => "https://www.reddit.com/submit?url={$url}&title={$title}"
         ],
         'Email' => [
-            'enabled' => $helper->getBlogConfig('platforms/email_platform/email_share'),
+            'enabled' => $helper->getShareEmailEnabled(),
             'icon_class' => 'fa-solid',
             'icon' => 'fa-envelope',
             'url' => "mailto:?subject={$title}&body={$url}"

@@ -137,7 +137,7 @@ use Magento\Framework\Escaper;
                     <a class="blog-hero-media" href="<?= $escaper->escapeUrl($heroPost->getUrl()) ?>">
                         <img
                             class="blog-hero-image"
-                            src="<?= $escaper->escapeUrl($block->resizeImage($heroPost->getImage(), '1000x')) ?>"
+                            src="<?= $escaper->escapeUrl($block->resizeImage($heroPost->getImage(), '1500x')) ?>"
                             alt="<?= $escaper->escapeHtmlAttr($heroPost->getName()) ?>"
                         />
                     </a>
@@ -154,7 +154,7 @@ use Magento\Framework\Escaper;
                         <div class="blog-readtime-date">
                             <?=
                             /** @noEscape */
-                            $block->getstyle2PostInfo($heroPost)
+                            $block->getPostInfo($heroPost)
                             ?>
                         </div>
                     </div>
@@ -169,11 +169,22 @@ use Magento\Framework\Escaper;
                                 <a class="blog-mini-media" href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
                                     <img
                                         class="blog-image"
-                                        src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(), '1000x')) ?>"
+                                        src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(), '1500x')) ?>"
                                         alt="<?= $escaper->escapeHtmlAttr($post->getName()) ?>"
                                     />
                                 </a>
-                            <?php endif; ?>
+                            <?php else : ?>
+                                    <div class="post-placeholder">
+                                        <a class="blog-category-feature-media" href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
+                                            <img
+                                                class="blog-category-feature-image"
+                                                src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::images/placeholder.jpg')) ?>"
+                                                alt="<?= $escaper->escapeHtmlAttr($post->getName()) ?>"
+                                            />
+                                            <div class="post-name-placeholder"><?= $escaper->escapeHtml($post->getName()) ?></div>
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
 
                             <div class="blog-content">
                                 <h3 class="blog-title">
@@ -187,7 +198,7 @@ use Magento\Framework\Escaper;
                                 <div class="blog-readtime-date">
                                     <?=
                                     /** @noEscape */
-                                    $block->getstyle2PostInfo($post)
+                                    $block->getPostInfo($post)
                                     ?>
                                 </div>
                             </div>
@@ -197,15 +208,11 @@ use Magento\Framework\Escaper;
             <?php endif; ?>
         </section>
 
-        <?php $featuredCategories = $block->getFeaturedCategories(); ?>
-        <?php if ($featuredCategories) : ?>
-            <?php
-            $categoryIds = array_values(array_filter(array_map('trim', explode(',', $featuredCategories))));
-            $categoryNames = $block->getCategoryNamesByIds($categoryIds);
-            ?>
-
-            <?php foreach ($categoryIds as $index => $categoryId) : ?>
-                <?php $categoryPosts = $block->getPostsByCategoryIds([$categoryId]); ?>
+        <?php $preparedFeaturedCategories = $block->getPreparedFeaturedCategories(); ?>
+        <?php if ($preparedFeaturedCategories) : ?>
+            <?php foreach ($preparedFeaturedCategories as $categoryData) : ?>
+                <?php $category = $categoryData['model']; ?>
+                <?php $categoryPosts = $categoryData['posts']; ?>
                 <?php if (!$categoryPosts || !$categoryPosts->getSize()) : ?>
                     <?php continue; ?>
                 <?php endif; ?>
@@ -216,7 +223,7 @@ use Magento\Framework\Escaper;
                     $categoryArray[] = $postItem;
                 }
 
-                $categoryTitle = $categoryNames[$index] ?? __('Featured Category');
+                $categoryTitle = $category->getName() ?? __('Featured Category');
                 $leadPost = $categoryArray[0] ?? null;
                 $listPosts = array_slice($categoryArray, 1, 3);
                 ?>
@@ -227,7 +234,6 @@ use Magento\Framework\Escaper;
                             <?= $escaper->escapeHtml($categoryTitle) ?>
                         </h2>
 
-                        <?php $category = $block->helperData->getObjectByParam($categoryId, null, \Mavenbird\Blog\Helper\Data::TYPE_CATEGORY); ?>
                         <a class="blog-category-link" href="<?= $escaper->escapeUrl($block->helperData->getBlogUrl($category, \Mavenbird\Blog\Helper\Data::TYPE_CATEGORY)) ?>">
                             <?= $escaper->escapeHtml(__('See all posts')) ?>
                         </a>
@@ -244,6 +250,17 @@ use Magento\Framework\Escaper;
                                             alt="<?= $escaper->escapeHtmlAttr($leadPost->getName()) ?>"
                                         />
                                     </a>
+                                <?php else : ?>
+                                    <div class="post-placeholder">
+                                        <a class="blog-category-feature-media" href="<?= $escaper->escapeUrl($leadPost->getUrl()) ?>">
+                                            <img
+                                                class="blog-category-feature-image"
+                                                src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::images/placeholder.jpg')) ?>"
+                                                alt="<?= $escaper->escapeHtmlAttr($leadPost->getName()) ?>"
+                                            />
+                                            <div class="post-name-placeholder"><?= $escaper->escapeHtml($post->getName()) ?></div>
+                                        </a>
+                                    </div>
                                 <?php endif; ?>
 
                                 <div class="blog-content">
@@ -269,15 +286,15 @@ use Magento\Framework\Escaper;
                                      <div class="blog-readtime-date">
                                         <?=
                                         /** @noEscape */
-                                        $block->getstyle2PostInfo($leadPost)
+                                        $block->getPostInfo($leadPost)
                                         ?>
                                     </div>
                                 </div>
                             </article>
                         <?php endif; ?>
 
+                        <?php foreach ($listPosts as $post) : ?>
                         <div class="blog-category-list">
-                            <?php foreach ($listPosts as $post) : ?>
                                 <article class="blog-category-list-item">
                                     <h3 class="blog-title">
                                         <a class="post-link-title"
@@ -290,12 +307,12 @@ use Magento\Framework\Escaper;
                                     <div class="blog-readtime-date">
                                         <?=
                                         /** @noEscape */
-                                        $block->getstyle2PostInfo($post)
+                                        $block->getPostInfo($post)
                                         ?>
                                     </div>
                                 </article>
-                            <?php endforeach; ?>
                         </div>
+                        <?php endforeach; ?>
                     </div>
                 </section>
             <?php endforeach; ?>
@@ -309,8 +326,7 @@ use Magento\Framework\Escaper;
                     <h2 class="blog-section-heading">
                         <?= $escaper->escapeHtml(__('Featured Authors')) ?>
                     </h2>
-                    <?php /*if ($block->isHyvaTheme()): */ ?>
-                    <?php if (true): ?>
+                    <?php if ($block->isHyvaTheme()): ?>
                     <div id="featured-authors-splide" class="blog-authors-slider splide">
                         <div class="splide__track">
                             <ul class="splide__list">
@@ -321,7 +337,7 @@ use Magento\Framework\Escaper;
                                             <?php if ($author->getImage()) : ?>
                                                 <img 
                                                     class="blog-author-avatar"
-                                                    src="<?= $escaper->escapeUrl($block->resizeImage($author->getImage(), '200x')) ?>"
+                                                    src="<?= $escaper->escapeUrl($block->getBlogHelper()->getImageHelper()->resizeImage($author->getImage(), '200x', 'auth')) ?>"
                                                     alt="<?= $escaper->escapeHtmlAttr($author->getName()) ?>"
                                                 />
                                             <?php else : ?>
@@ -377,7 +393,7 @@ use Magento\Framework\Escaper;
                                     <?php if ($author->getImage()) : ?>
                                         <img 
                                             class="blog-author-avatar"
-                                            src="<?= $escaper->escapeUrl($block->resizeImage($author->getImage(), '200x')) ?>"
+                                            src="<?= $escaper->escapeUrl($block->getBlogHelper()->getImageHelper()->resizeImage($author->getImage(), '200x', 'auth')) ?>"
                                             alt="<?= $escaper->escapeHtmlAttr($author->getName()) ?>"
                                         />
                                     <?php else : ?>
@@ -422,8 +438,7 @@ use Magento\Framework\Escaper;
                     </div>
                     <?php endif; ?>
                 </section>
-                <?php /* if ($block->isHyvaTheme()): */ ?>
-                <?php if (true): ?>
+                <?php if ($block->isHyvaTheme()): ?>
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const splideElement = document.getElementById('featured-authors-splide');

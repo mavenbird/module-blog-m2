@@ -66,7 +66,7 @@ class LinkMenu
         Links $subject,
         $links
     ) {
-        if ($this->_moduleManager->isEnabled('Mavenbird_BlogPro') && $this->_helper->getPostViewPageConfig('enable_to_save')) {
+        if ($this->_moduleManager->isEnabled('Mavenbird_BlogPro') && $this->_helper->getEnableToSave()) {
             return $links;
         } else {
             $links = $this->unsetLinks($links);
@@ -82,7 +82,7 @@ class LinkMenu
      */
     protected function unsetLinks($links)
     {
-        if ($links && !$this->_helper->getConfigGeneral('customer_approve')) {
+        if ($links && !$this->_helper->getCustomerApprove()) {
             foreach ($links as $key => $link) {
                 if ($link->getPath() === 'mbblog/author/signup') {
                     $this->_helper->setCustomerContextId();

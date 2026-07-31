@@ -20,10 +20,6 @@
  * @license     https://www.mavenbird.com/LICENSE.txt
  */
 -->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <body>
-        <referenceContainer name="fieldset.create.info.additional">
-            <block class="Mavenbird\Blog\Block\Frontend" ifconfig="blog/general/author_settings/customer_approve" name="mbblog.author.create" as="mbblog.author.create" template="Mavenbird_Blog::author/create.phtml"/>
-        </referenceContainer>
-    </body>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="3columns" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="mbblog_design"/>
 </page>

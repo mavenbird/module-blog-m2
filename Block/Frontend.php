@@ -240,7 +240,20 @@ class Frontend extends Template
     public function isHyvaTheme()
     {
         $currentTheme = $this->themeProvider->getThemeById($this->helperData->getCurrentThemeId());
-        return str_contains($currentTheme->getCode(), 'Hyva/') || str_contains($currentTheme->getCode(), 'hyva/');
+        
+        // Check current theme and all parent themes recursively
+        while ($currentTheme) {
+            if (str_contains(strtolower($currentTheme->getCode()), 'hyva')) {
+                return true;
+            }
+            $parentTheme = $currentTheme->getParentTheme();
+            if (!$parentTheme) {
+                break;
+            }
+            $currentTheme = $parentTheme;
+        }
+        
+        return false;
     }
 
     /**
@@ -303,38 +316,48 @@ class Frontend extends Template
             $likeCollection = $this->postLikeFactory->create()->getCollection();
             $couldLike      = $likeCollection->addFieldToFilter('post_id', $post->getId())
                 ->addFieldToFilter('action', '1')->count();
-            $html           = __(
-                '<i class="fa-regular fa-calendar-days"></i> %1',
-                $this->getDateFormat($post->getPublishDate())
-            );
+            $html           = '';
+            
+            if ($this->helperData->showListDate()) {
+                $html = __(
+                    '<i class="fa-regular fa-calendar-days"></i> %1',
+                    $this->getDateFormat($post->getPublishDate())
+                );
+            }
 
-            if ($categoryPost = $this->getPostCategoryHtml($post)) {
-                $html .= __(' | Posted in %1', $categoryPost);
+            if (($categoryPost = $this->getPostCategoryHtml($post)) && $this->helperData->showListCategory()) {
+                $html .= empty($html) ? __('Posted in %1', $categoryPost) : __(' | Posted in %1', $categoryPost);
             }
 
             $author = $this->helperData->getAuthorByPost($post);
-            if ($author && $author->getName() && $this->helperData->showAuthorInfo()) {
+            if ($author && $author->getName() && $this->helperData->showListAuthor()) {
                 $aTag = '<a class="mb-info" href="' . $author->getUrl() . '">'
                     . $this->escapeHtml($author->getName()) . '</a>';
-                $html .= __(' | <i class="fa-solid fa-user"></i> %1', $aTag);
+                $html .= empty($html) ? __('<i class="fa-solid fa-user"></i> %1', $aTag) : __(' | <i class="fa-solid fa-user"></i> %1', $aTag);
             }
 
-            if ($this->getCommentinPost($post)) {
-                $html .= __(
+            if ($this->getCommentinPost($post) && $this->helperData->showListComments()) {
+                $html .= empty($html) ? __(
+                    '<i class="fa-regular fa-comments" aria-hidden="true"></i> %1',
+                    $this->getCommentinPost($post)
+                ) : __(
                     ' | <i class="fa-regular fa-comments" aria-hidden="true"></i> %1',
                     $this->getCommentinPost($post)
                 );
             }
 
-            if ($post->getViewTraffic()) {
-                $html .= __(
+            if ($post->getViewTraffic() && $this->helperData->showListViews()) {
+                $html .= empty($html) ? __(
+                    '<i class="fa-regular fa-eye" title="Views" aria-hidden="true"></i> %1',
+                    $post->getViewTraffic()
+                ) : __(
                     ' | <i class="fa-regular fa-eye" title="Views" aria-hidden="true"></i> %1',
                     $post->getViewTraffic()
                 );
             }
 
-            if ($couldLike > 0) {
-                $html .= __(' | <i class="fa-regular fa-thumbs-up" aria-hidden="true"></i> %1', $couldLike);
+            if ($couldLike > 0 && $this->helperData->showListLikes()) {
+                $html .= empty($html) ? __('<i class="fa-regular fa-thumbs-up" aria-hidden="true"></i> %1', $couldLike) : __(' | <i class="fa-regular fa-thumbs-up" aria-hidden="true"></i> %1', $couldLike);
             }
         } catch (Exception $e) {
             $html = '';
@@ -375,7 +398,7 @@ class Frontend extends Template
             $count      = 0;
             foreach ($categories as $_cat) {
                 $count++;
-                $maximum = $this->helperData->getSidebarConfig('categories/maximum');
+                $maximum = $this->helperData->getCategoriesMaximum();
                 if ($maximum && $count > $maximum) {
                     continue;
                 }
@@ -456,49 +479,49 @@ class Frontend extends Template
 
         return [
             [
-                'enabled' => $this->helperData->getBlogConfig('platforms/x_platform/x_share'),
+                'enabled' => $this->helperData->getShareTwitterEnabled(),
                 'label' => __('X'),
                 'icon_class' => 'fa-brands',
                 'icon' => 'fa-x-twitter',
                 'url' => "https://twitter.com/intent/tweet?url={$url}&text={$title}"
             ],
             [
-                'enabled' => $this->helperData->getBlogConfig('platforms/fb_platform/fb_share'),
+                'enabled' => $this->helperData->getShareFbEnabled(),
                 'label' => __('Facebook'),
                 'icon_class' => 'fa-brands',
                 'icon' => 'fa-facebook-f',
                 'url' => "https://www.facebook.com/sharer/sharer.php?u={$url}"
             ],
             [
-                'enabled' => $this->helperData->getBlogConfig('platforms/whatsapp_platform/whatsapp_share'),
+                'enabled' => $this->helperData->getShareWhatsappEnabled(),
                 'label' => __('WhatsApp'),
                 'icon_class' => 'fa-brands',
                 'icon' => 'fa-whatsapp',
                 'url' => "https://wa.me/?text={$title}%20{$url}"
             ],
             [
-                'enabled' => $this->helperData->getBlogConfig('platforms/telegram_platform/telegram_share'),
+                'enabled' => $this->helperData->getShareTelegramEnabled(),
                 'label' => __('Telegram'),
                 'icon_class' => 'fa-brands',
                 'icon' => 'fa-telegram',
                 'url' => "https://t.me/share/url?url={$url}&text={$title}"
             ],
             [
-                'enabled' => $this->helperData->getBlogConfig('platforms/linkedin_platform/linkedin_share'),
+                'enabled' => $this->helperData->getShareLinkedinEnabled(),
                 'label' => __('LinkedIn'),
                 'icon_class' => 'fa-brands',
                 'icon' => 'fa-linkedin-in',
                 'url' => "https://www.linkedin.com/sharing/share-offsite/?url={$url}"
             ],
             [
-                'enabled' => $this->helperData->getBlogConfig('platforms/reddit_platform/reddit_share'),
+                'enabled' => $this->helperData->getShareRedditEnabled(),
                 'label' => __('Reddit'),
                 'icon_class' => 'fa-brands',
                 'icon' => 'fa-reddit-alien',
                 'url' => "https://www.reddit.com/submit?url={$url}&title={$title}"
             ],
             [
-                'enabled' => $this->helperData->getBlogConfig('platforms/email_platform/email_share'),
+                'enabled' => $this->helperData->getShareEmailEnabled(),
                 'label' => __('Email'),
                 'icon_class' => 'fa-solid',
                 'icon' => 'fa-envelope',
@@ -516,10 +539,7 @@ class Frontend extends Template
     {
         $storeId = $this->store->getStore()->getId();
 
-        return $this->helperData->getPostViewPageConfig(
-            'blog_list_display_short_description',
-            $storeId
-        );
+        return $this->helperData->getBlogListDisplayShortDescription($storeId);
     }
 
     /**
@@ -531,10 +551,7 @@ class Frontend extends Template
     {
         $storeId = $this->store->getStore()->getId();
 
-        return $this->helperData->getPostViewPageConfig(
-            'blog_list_display_share',
-            $storeId
-        );
+        return $this->helperData->getBlogListDisplayShare($storeId);
     }
 
     /** blog style 2 listing */
@@ -547,6 +564,41 @@ class Frontend extends Template
     public function getFeaturedCategories()
     {
         return $this->helperData->getFeaturedCategories();
+    }
+
+    /**
+     * Get prepared featured categories with their posts
+     * 
+     * @return array
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function getPreparedFeaturedCategories()
+    {
+        $featuredCategories = $this->getFeaturedCategories();
+        if (!$featuredCategories) {
+            return [];
+        }
+        
+        $featuredCategoriesArray = explode(',', $featuredCategories);
+        $categoryCollection = $this->helperData->getCategoryCollection($featuredCategoriesArray);
+        $this->helperData->addStoreFilter($categoryCollection);
+        $categoryCollection->addFieldToFilter('enabled', 1);
+        
+        $preparedCategories = [];
+        foreach ($categoryCollection as $category) {
+            $categoryPosts = $category->getSelectedPostsCollection();
+            $this->helperData->addStoreFilter($categoryPosts);
+            $categoryPosts->setPageSize(4);
+            
+            if ($categoryPosts && $categoryPosts->getSize()) {
+                $preparedCategories[] = [
+                    'model' => $category,
+                    'posts' => $categoryPosts
+                ];
+            }
+        }
+        
+        return $preparedCategories;
     }
 
     /**

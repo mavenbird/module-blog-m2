@@ -42,12 +42,12 @@ class TableOfContent extends Template
 
     public function canShowTableOfContent()
     {
-        return (bool) $this->blogHelper->getSidebarConfig('show_table_of_content');
+        return (bool) $this->blogHelper->getShowTableOfContent();
     }
 
     public function isStickyTableOfContent()
     {
-        return (bool) $this->blogHelper->getSidebarConfig('sticky_table_of_content');
+        return (bool) $this->blogHelper->getStickyTableOfContent();
     }
 
 }

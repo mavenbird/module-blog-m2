@@ -19,21 +19,16 @@
  * @license     https://www.mavenbird.com/LICENSE.txt
  */
 
-use Mavenbird\Blog\Block\Html\Footer;
 use Magento\Framework\Escaper;
+use Mavenbird\Blog\Block\Html\Subtitle;
 
-/** @var Footer $block */
+/** @var Subtitle $block */
 /** @var Escaper $escaper */
-  $helper = $block->getHelperData();
-  ?>
-  <?php if ($helper->isEnabled()) : ?>
-     <?php if ($helper->isFooterEnabled()) : ?>
-          <li class="mt-4">
-            <a class="text-base leading-6" <?= /** @noEscape */
-            $block->getLinkAttributes() ?>>
-                <?= $escaper->escapeHtml($block->getLabel()); ?>
-                <?= ($block->getCounter()) ? '<span>' . $escaper->escapeHtml($block->getCounter()) . '</span>' : ''; ?>
-            </a>
-        </li>
-    <?php endif; ?>
+$subtitle = $block->getBlogSubtitle();
+?>
+
+<?php if ($subtitle): ?>
+    <div class="blog-subtitle w-full mt-2 text-sm lg:text-lg text-gray-600 font-normal text-center pb-4">
+        <?= $escaper->escapeHtml($subtitle) ?>
+    </div>
 <?php endif; ?>

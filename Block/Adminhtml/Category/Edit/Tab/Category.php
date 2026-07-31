@@ -72,6 +72,11 @@ class Category extends Generic implements TabInterface
     protected $systemStore;
 
     /**
+     * @var \Mavenbird\Blog\Model\Config\Source\CategoryLayout
+     */
+    protected $categoryLayoutOptions;
+
+    /**
      * Category constructor.
      *
      * @param Context $context
@@ -82,6 +87,7 @@ class Category extends Generic implements TabInterface
      * @param Enabledisable $enableDisable
      * @param Robots $metaRobotsOptions
      * @param Store $systemStore
+     * @param \Mavenbird\Blog\Model\Config\Source\CategoryLayout $categoryLayoutOptions
      * @param array $data
      */
     public function __construct(
@@ -93,6 +99,7 @@ class Category extends Generic implements TabInterface
         Enabledisable $enableDisable,
         Robots $metaRobotsOptions,
         Store $systemStore,
+        \Mavenbird\Blog\Model\Config\Source\CategoryLayout $categoryLayoutOptions,
         array $data = []
     ) {
         $this->wysiwygConfig     = $wysiwygConfig;
@@ -100,6 +107,7 @@ class Category extends Generic implements TabInterface
         $this->enableDisable     = $enableDisable;
         $this->metaRobotsOptions = $metaRobotsOptions;
         $this->systemStore       = $systemStore;
+        $this->categoryLayoutOptions = $categoryLayoutOptions;
 
         parent::__construct($context, $registry, $formFactory, $data);
     }
@@ -145,11 +153,29 @@ class Category extends Generic implements TabInterface
             'label' => __('URL Key'),
             'title' => __('URL Key')
         ]);
+        $fieldset->addField('description', 'editor', [
+            'name'   => 'description',
+            'label'  => __('Description'),
+            'title'  => __('Description'),
+            'required' => false,
+            'class' => 'wysiwyg-editor',
+            'config' => $this->wysiwygConfig->getConfig([
+                'add_variables'  => false,
+                'add_widgets'    => true,
+                'add_directives' => true
+            ])
+        ]);
         $fieldset->addField('enabled', 'select', [
             'name'   => 'enabled',
             'label'  => __('Status'),
             'title'  => __('Status'),
             'values' => $this->enableDisable->toOptionArray(),
+        ]);
+        $fieldset->addField('layout', 'select', [
+            'name'   => 'layout',
+            'label'  => __('Layout'),
+            'title'  => __('Layout'),
+            'values' => $this->categoryLayoutOptions->toOptionArray(),
         ]);
 
         if ($this->_storeManager->isSingleStoreMode()) {

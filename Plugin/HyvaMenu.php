@@ -64,7 +64,7 @@ class HyvaMenu
         \Hyva\Theme\ViewModel\Navigation $subject,
         array $dataSubject = []
     ) {
-        if ($this->helper->isEnabled() && $this->helper->getBlogConfig('display/toplinks')) {
+        if ($this->helper->isEnabled() && $this->helper->getToplinks()) {
             $blockMenu  = $this->layout->createBlock(Menu::class);
             $categories = $blockMenu->getCollections();
             $childData  = [];

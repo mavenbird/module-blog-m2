@@ -23,10 +23,13 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
         <blog>
+            <!-- Module Settings -->
             <module>
                 <type>0</type>
                 <user_guide>magento/blog-m2/standard</user_guide>
             </module>
+
+            <!-- Old Paths (Retained for Backward Compatibility) -->
             <general>
                 <enabled>1</enabled>
                 <customer_approve>0</customer_approve>
@@ -110,6 +113,180 @@
                     <x_share>0</x_share>
                 </x_platform>
             </platforms>
+
+            <!-- New Hierarchical Configuration Paths -->
+            <!-- 1. General -->
+            <general>
+                <basic_settings>
+                    <enabled>1</enabled>
+                    <name>Blog</name>
+                    <blog_subtitle>Explore insights, guides, industry trends, and expert perspectives to stay informed.</blog_subtitle>
+                    <url_prefix>blog</url_prefix>
+                    <url_suffix>html</url_suffix>
+                    <toplinks>1</toplinks>
+                    <footer>1</footer>
+                    <font_color>#00a046</font_color>
+                    <blog_layout>2columns-right</blog_layout>
+                </basic_settings>
+                <author_settings>
+                    <customer_approve>0</customer_approve>
+                    <auto_approve>0</auto_approve>
+                    <auto_post>0</auto_post>
+                    <history_limit>5</history_limit>
+                </author_settings>
+            </general>
+
+            <!-- 2. Blog Pages -->
+            <blog_pages>
+                <blog_list>
+                    <layout>
+                        <display_style>1</display_style>
+                        <blog_list_layout></blog_list_layout>
+                    </layout>
+                    <content_display>
+                        <date_type>F j, Y</date_type>
+                        <short_description_length>12</short_description_length>
+                    </content_display>
+                    <pagination_sub>
+                        <pagination>10,20,50</pagination>
+                    </pagination_sub>
+                    <list_inline_metadata>
+                        <display_date>1</display_date>
+                        <display_category>1</display_category>
+                        <display_author>1</display_author>
+                        <display_comments>1</display_comments>
+                        <display_views>1</display_views>
+                        <display_likes>1</display_likes>
+                    </list_inline_metadata>
+                </blog_list>
+                <blog_post>
+                    <layout>
+                        <blog_view_layout></blog_view_layout>
+                    </layout>
+                    <post_inline_metadata>
+                        <display_author>1</display_author>
+                    </post_inline_metadata>
+                    <related_posts>
+                        <related_post>5</related_post>
+                        <related_mode>1</related_mode>
+                    </related_posts>
+                    <reviews>
+                        <is_review>1</is_review>
+                    </reviews>
+                </blog_post>
+                <blog_category>
+                    <layout>
+                        <blog_category_layout></blog_category_layout>
+                    </layout>
+                </blog_category>
+                <blog_topic>
+                    <layout>
+                        <blog_topic_layout></blog_topic_layout>
+                    </layout>
+                </blog_topic>
+                <blog_tag>
+                    <layout>
+                        <blog_tag_layout></blog_tag_layout>
+                    </layout>
+                </blog_tag>
+            </blog_pages>
+
+            <!-- 3. Sidebar -->
+            <sidebar>
+                <general>
+                    <sidebar_left_right>2columns-right</sidebar_left_right>
+                </general>
+                <table_of_contents>
+                    <show_table_of_content>1</show_table_of_content>
+                </table_of_contents>
+                <categories>
+                    <sidebar_category_show>1</sidebar_category_show>
+                </categories>
+                <topics>
+                    <sidebar_topic_show>1</sidebar_topic_show>
+                </topics>
+                <tags>
+                    <sidebar_tag_show>1</sidebar_tag_show>
+                </tags>
+                <rss>
+                    <sidebar_rss_show>1</sidebar_rss_show>
+                </rss>
+                <search>
+                    <enable_search>1</enable_search>
+                    <search_limit>10</search_limit>
+                    <min_chars>1</min_chars>
+                    <show_image>1</show_image>
+                    <description>100</description>
+                </search>
+                <recent_post>
+                    <enable_widget>1</enable_widget>
+                    <number_recent_posts>5</number_recent_posts>
+                    <number_mostview_posts>5</number_mostview_posts>
+                </recent_post>
+                <monthly_archive>
+                    <enable_monthly>1</enable_monthly>
+                    <number_records>5</number_records>
+                    <date_type_monthly>F , Y</date_type_monthly>
+                </monthly_archive>
+            </sidebar>
+
+            <!-- 4. Product Integration -->
+            <product_integration>
+                <product_page>
+                    <enable_post>1</enable_post>
+                    <post_limit>10</post_limit>
+                </product_page>
+                <post_detail>
+                    <enable_product>1</enable_product>
+                    <product_limit>12</product_limit>
+                    <related_mode>1</related_mode>
+                    <title>Related Products</title>
+                </post_detail>
+            </product_integration>
+
+            <!-- 5. Comments -->
+            <comments>
+                <general>
+                    <type>4</type>
+                    <need_approve>0</need_approve>
+                </general>
+                <disqus_sub>
+                    <disqus>mavenbirdblog</disqus>
+                </disqus_sub>
+                <facebook>
+                    <facebook_number_comment>10</facebook_number_comment>
+                    <facebook_appid>1562328304081606</facebook_appid>
+                    <facebook_colorscheme>light</facebook_colorscheme>
+                    <facebook_order_by>social</facebook_order_by>
+                </facebook>
+            </comments>
+
+            <!-- 6. Social Sharing -->
+            <social_sharing>
+                <facebook>
+                    <fb_share>0</fb_share>
+                </facebook>
+                <twitter>
+                    <x_share>0</x_share>
+                </twitter>
+                <whatsapp>
+                    <whatsapp_share>0</whatsapp_share>
+                </whatsapp>
+                <telegram>
+                    <telegram_share>0</telegram_share>
+                </telegram>
+                <linkedin>
+                    <linkedin_share>0</linkedin_share>
+                </linkedin>
+                <reddit>
+                    <reddit_share>0</reddit_share>
+                </reddit>
+                <email>
+                    <email_share>0</email_share>
+                </email>
+            </social_sharing>
+
+            <!-- 7. SEO -->
             <seo>
                 <blog_seo_meta_title><![CDATA[Latest Blog Articles on Web Development, Magento 2 & PHP]]></blog_seo_meta_title>
                 <blog_seo_meta_description><![CDATA[Explore expert articles on Magento 2, PHP development, eCommerce solutions, performance optimization, and the latest web development trends.]]></blog_seo_meta_description>

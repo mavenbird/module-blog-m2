@@ -48,7 +48,7 @@ class StaticBlock extends Template
 
        public function canShowStaticBlock()
     {
-        return (bool) $this->blogHelper->getSidebarConfig('show_sidebar_static_block');
+        return (bool) $this->blogHelper->getShowSidebarStaticBlock();
     }
 
     public function getStaticBlockIdentifier()
@@ -59,7 +59,7 @@ class StaticBlock extends Template
             return $post->getStaticBlockIdentifier();
         }
 
-        return $this->blogHelper->getSidebarConfig('list_of_static_block');
+        return $this->blogHelper->getListOfStaticBlock();
     }
 
     public function renderSidebarStaticBlock()

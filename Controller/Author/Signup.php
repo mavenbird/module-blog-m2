@@ -84,20 +84,20 @@ class Signup extends Action
 
         if (!$this->_helperBlog->isEnabled()
             || !$this->_helperBlog->isEnabledAuthor()
-            || ($this->_helperBlog->isAuthor() && !$this->_helperBlog->getConfigGeneral('customer_approve') && !$this->_helperBlog->getPostViewPageConfig('enable_to_save'))) {
+            || ($this->_helperBlog->isAuthor() && !$this->_helperBlog->getCustomerApprove() && !$this->_helperBlog->getEnableToSave())) {
             $resultRedirect->setPath('customer/account');
 
             return $resultRedirect;
         }
 
-        if ($this->_helperBlog->isAuthor() && $this->_helperBlog->getConfigGeneral('customer_approve')) {
+        if ($this->_helperBlog->isAuthor() && $this->_helperBlog->getCustomerApprove()) {
             $page = $this->resultPageFactory->create();
             $page->getConfig()->setPageLayout(SideBarLR::LEFT);
             $page->getConfig()->getTitle()->set('Signup Author');
 
             return $page;
         }
-        if ($this->_helperBlog->isAuthor() && $this->_helperBlog->getPostViewPageConfig('enable_to_save')) {
+        if ($this->_helperBlog->isAuthor() && $this->_helperBlog->getEnableToSave()) {
             $resultRedirect->setPath('mbblog/post/save');
 
             return $resultRedirect;

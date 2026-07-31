@@ -22,6 +22,9 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <update handle="mbblog_design"/>
+     <head>
+        <css src="Mavenbird_Blog::css/mbBlog-style2.css"/>
+    </head>
     <body>
         <referenceContainer name="content">
             <block class="Mavenbird\Blog\Block\Topic\Listpost" name="mb.blog.topic.post.list" template="Mavenbird_Blog::post/list.phtml"/>

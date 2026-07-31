@@ -193,7 +193,7 @@ class Save extends Post
         if (!empty($action)) {
             $history      = $this->_postHistory->create();
             $historyCount = $history->getSumPostHistory($post->getPostId());
-            $limitHistory = (int) $this->_helperData->getConfigGeneral('history_limit');
+            $limitHistory = (int) $this->_helperData->getHistoryLimit();
             try {
                 $data = $post->getData();
                 unset(

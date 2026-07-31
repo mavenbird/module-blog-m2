@@ -177,7 +177,7 @@ class Manage extends Action
 
         $data['author_id']   = $author->getId();
         $data['store_ids']   = $this->_helperBlog->getCurrentStoreId();
-        $data['enabled']     = $this->_helperBlog->getConfigGeneral('auto_post') ? 1 : 0;
+        $data['enabled']     = $this->_helperBlog->getAutoPost() ? 1 : 0;
         $data['in_rss']      = '0';
         $storeIds = (array)$data['store_ids'];
         $selectedRobots = isset($data['meta_robots']) ? $data['meta_robots'] : 'INDEX,FOLLOW';

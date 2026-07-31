@@ -126,7 +126,7 @@ class RelatedProduct extends ListProduct
      */
     public function relatedMode()
     {
-        return $this->helper->getModuleConfig('product_post/post_detail/related_mode');
+        return $this->helper->getPostDetailRelatedMode();
     }
 
     /**
@@ -159,7 +159,7 @@ class RelatedProduct extends ListProduct
                 )
                 ->where('product_post.post_id = ' . $postId)
                 ->order('product_post.position ASC')
-                ->limit((int) $this->helper->getBlogConfig('product_post/post_detail/product_limit') ?: self::LIMIT);
+                ->limit((int) $this->helper->getPostDetailProductLimit() ?: self::LIMIT);
 
             $this->_productCollection = $collection;
         }

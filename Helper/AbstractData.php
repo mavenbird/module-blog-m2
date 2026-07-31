@@ -98,50 +98,7 @@ class AbstractData extends AbstractHelper
      */
     public function isEnabled($storeId = null)
     {
-        return $this->getConfigGeneral('enabled', $storeId);
-    }
-
-    // /**
-    //  * @param null $storeId
-    //  *
-    //  * @return bool
-    //  */
-    // public function isEnabledNotificationUpdate($storeId = null)
-    // {
-    //     $isEnable   = $this->getConfigGeneral('notice_enable', $storeId);
-    //     $noticeType = $this->getConfigGeneral('notice_type', $storeId);
-    //     if ($noticeType) {
-    //         $noticeType = explode(',', $noticeType);
-    //         $noticeType = in_array(NoticeType::TYPE_NEWUPDATE, $noticeType);
-    //     }
-
-    //     return $isEnable && $noticeType;
-    // }
-
-    /**
-     * @param string $code
-     * @param null $storeId
-     *
-     * @return mixed
-     */
-    public function getConfigGeneral($code = '', $storeId = null)
-    {
-        $code = ($code !== '') ? '/' . $code : '';
-
-        return $this->getConfigValue(static::CONFIG_MODULE_PATH . '/general' . $code, $storeId);
-    }
-
-    /**
-     * @param string $field
-     * @param null $storeId
-     *
-     * @return mixed
-     */
-    public function getModuleConfig($field = '', $storeId = null)
-    {
-        $field = ($field !== '') ? '/' . $field : '';
-
-        return $this->getConfigValue(static::CONFIG_MODULE_PATH . $field, $storeId);
+        return (bool) $this->getConfigValue(static::CONFIG_MODULE_PATH . '/general/basic_settings/enabled', $storeId);
     }
 
     /**
@@ -421,40 +378,41 @@ HTML;
     public function checkHyvaTheme()
     {
         try {
-            $themeCode = $this->getThemeCodeByCache();
+            /** @var DesignInterface $themeProviderInterface */
+            $themeProviderInterface = $this->objectManager->create(DesignInterface::class);
+            $theme = $themeProviderInterface->getDesignTheme();
+            
+            // Check current theme and all parent themes recursively
+            while ($theme) {
+                if (str_contains(strtolower($theme->getCode()), 'hyva')) {
+                    return true;
+                }
+                $theme = $theme->getParentTheme();
+            }
         } catch (Exception $e) {
             try {
                 /** @var ThemeProviderInterface $themeProviderInterface */
                 $themeProviderInterface = $this->objectManager->create(ThemeProviderInterface::class);
-                $themeId                = $this->storeManager->getStore()->getConfig('design/theme/theme_id');
-                $theme                  = $themeProviderInterface->getThemeById($themeId);
-                $themeCode              = $theme->getCode();
+                $themeId = $this->storeManager->getStore()->getConfig('design/theme/theme_id');
+                $theme = $themeProviderInterface->getThemeById($themeId);
+                
+                // Check current theme and all parent themes recursively
+                while ($theme) {
+                    if (str_contains(strtolower($theme->getCode()), 'hyva')) {
+                        return true;
+                    }
+                    $parentTheme = $theme->getParentTheme();
+                    if (!$parentTheme) {
+                        break;
+                    }
+                    $theme = $parentTheme;
+                }
             } catch (NoSuchEntityException $noSuchEntityException) {
                 return false;
             }
         }
 
-        if (str_contains(strtolower($themeCode), 'hyva')) {
-            return true;
-        }
-
         return false;
-    }
-
-    /**
-     * GetThemeCode By Cache in DesignInterface
-     *
-     * @return string
-     */
-    private function getThemeCodeByCache()
-    {
-        /** @var DesignInterface $themeProviderInterface */
-        $themeProviderInterface = $this->objectManager->create(DesignInterface::class);
-        $theme                  = $themeProviderInterface->getDesignTheme();
-
-        $parentTheme = $theme->getParentTheme();
-
-        return $parentTheme ? $parentTheme->getCode() : $theme->getCode();
     }
 
     /**

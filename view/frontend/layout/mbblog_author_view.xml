@@ -22,6 +22,9 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <update handle="mbblog_design"/>
+    <head>
+        <css src="Mavenbird_Blog::css/mbBlog-style2.css"/>
+    </head>
     <body>
         <referenceContainer name="content">
             <block class="Mavenbird\Blog\Block\Author\Widget" name="mbblog.view.author" template="Mavenbird_Blog::author/widget.phtml"/>

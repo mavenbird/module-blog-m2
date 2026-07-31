@@ -51,7 +51,7 @@ class AuthorPost extends \Mavenbird\Blog\Block\Listpost
 
             if ($collection && $collection->getSize()) {
                 $pager         = $this->getLayout()->createBlock(Pager::class, 'mbblog.post.pager');
-                $perPageValues = (string) $this->helperData->getDisplayConfig('pagination');
+                $perPageValues = (string) $this->helperData->getPagination();
                 $perPageValues = explode(',', $perPageValues ?? '');
                 $perPageValues = array_combine($perPageValues, $perPageValues);
                 $pager->setAvailableLimit($perPageValues)->setCollection($collection);

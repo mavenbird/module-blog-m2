@@ -72,7 +72,7 @@ class Footer extends Link
      */
     public function getLabel()
     {
-        return $this->helper->getBlogConfig('display/name', $this->helper->getCurrentStoreId()) ? : __('Blog');
+        return $this->helper->getBlogName($this->helper->getCurrentStoreId()) ? : __('Blog');
     }
 
     /**

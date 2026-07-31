@@ -205,29 +205,7 @@ class View extends Action
         $page = $this->resultPageFactory->create();
         // $pageLayout = ($post->getLayout() === 'empty') ? $this->helperBlog->getSidebarLayout() : $post->getLayout();
         // $page->getConfig()->setPageLayout($pageLayout);
-        if ($post->getLayout() === 'empty') {
-            // ✅ Use global config (your helper logic)
-            $this->helperBlog->applyBlogViewLayout($page);
-        } else {
-            // ✅ Use post-specific layout
-            switch ($post->getLayout()) {
-                case '2columns-left':
-                    $page->getConfig()->setPageLayout('2columns-left');
-                    $page->addHandle('mbblog_layout_left');
-                    break;
-
-                case '2columns-right':
-                    $page->getConfig()->setPageLayout('2columns-right');
-                    $page->addHandle('mbblog_layout_right');
-                    break;
-
-                case '1column':
-                default:
-                    $page->getConfig()->setPageLayout('1column');
-                    $page->addHandle('mbblog_layout_1column');
-                    break;
-            }
-        }
+        $this->helperBlog->applyBlogViewLayout($page, $post);
         $page->getConfig()->setMetadata(
             'robots',
             $metaRobots
@@ -273,7 +251,7 @@ class View extends Action
                     'user_name'  => $userName,
                     'user_email' => $this->session->isLoggedIn() ? $customerData->getEmail() : $params['guestEmail'],
                     'created_at' => $this->dateTime->date(),
-                    'status'     => $this->helperBlog->getBlogConfig('comment/need_approve')
+                    'status'     => $this->helperBlog->getCommentNeedApprove()
                         ? Status::PENDING : Status::APPROVED,
                     'store_ids'  => $this->storeManager->getStore()->getId()
                 ];

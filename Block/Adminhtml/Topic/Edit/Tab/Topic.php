@@ -33,6 +33,7 @@ use Magento\Framework\Data\Form\Element\Renderer\RendererInterface;
 use Magento\Framework\Data\FormFactory;
 use Magento\Framework\Registry;
 use Magento\Store\Model\System\Store;
+use Mavenbird\Blog\Model\Config\Source\CategoryLayout;
 
 /**
  * Class Topic
@@ -70,6 +71,11 @@ class Topic extends Generic implements TabInterface
     protected $systemStore;
 
     /**
+     * @var CategoryLayout
+     */
+    protected $categoryLayout;
+
+    /**
      * Topic constructor.
      *
      * @param Context $context
@@ -80,6 +86,7 @@ class Topic extends Generic implements TabInterface
      * @param Enabledisable $enableDisable
      * @param Robots $metaRobotsOptions
      * @param Store $systemStore
+     * @param CategoryLayout $categoryLayout
      * @param array $data
      */
     public function __construct(
@@ -91,6 +98,7 @@ class Topic extends Generic implements TabInterface
         Enabledisable $enableDisable,
         Robots $metaRobotsOptions,
         Store $systemStore,
+        CategoryLayout $categoryLayout,
         array $data = []
     ) {
         $this->wysiwygConfig     = $wysiwygConfig;
@@ -98,6 +106,7 @@ class Topic extends Generic implements TabInterface
         $this->enableDisable     = $enableDisable;
         $this->metaRobotsOptions = $metaRobotsOptions;
         $this->systemStore       = $systemStore;
+        $this->categoryLayout    = $categoryLayout;
 
         parent::__construct($context, $registry, $formFactory, $data);
     }
@@ -143,11 +152,23 @@ class Topic extends Generic implements TabInterface
             $topic->setEnabled(1);
         }
 
+        $fieldset->addField('layout', 'select', [
+            'name'   => 'layout',
+            'label'  => __('Layout'),
+            'title'  => __('Layout'),
+            'values' => $this->categoryLayout->toOptionArray(),
+        ]);
+
         $fieldset->addField('description', 'editor', [
             'name'   => 'description',
             'label'  => __('Description'),
             'title'  => __('Description'),
-            'config' => $this->wysiwygConfig->getConfig(['add_variables' => false, 'add_widgets' => false])
+            'class'  => 'wysiwyg-editor',
+            'config' => $this->wysiwygConfig->getConfig([
+                'add_variables'  => false,
+                'add_widgets'    => true,
+                'add_directives' => true
+            ])
         ]);
 
         if (!$this->_storeManager->isSingleStoreMode()) {

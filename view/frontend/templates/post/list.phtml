@@ -26,8 +26,17 @@ use Magento\Framework\Escaper;
 
 /** @var Frontend $block */
 /** @var Escaper $escaper */
+
+$displayStyleClass  = ($block->getBlogStyle() == 2) ? 'blog-style2' : ''
 ?>
-<div class="post-list-content" id="mbblog-list">
+<div class="post-list-content <?= $displayStyleClass ?>" id="mbblog-list">
+    <?php if (method_exists($block, 'getBlogObject') && ($blogObject = $block->getBlogObject())) : ?>
+        <?php if ($blogObject->getDescription()) : ?>
+            <div class="category-description" style="margin-bottom: 20px;">
+                <?= /* @noEscape */ $block->getPageFilter($blogObject->getDescription()) ?>
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
     <?php $postCollection = $block->getPostCollection(); ?>
     <?php if ($postCollection && $postCollection->getSize()) : ?>
         <div class="mb-post-list
@@ -43,6 +52,19 @@ use Magento\Framework\Escaper;
                                     src="<?= $escaper->escapeUrl($block->resizeImage($post->getImage(), '1000x')) ?>"
                                     alt="<?= $escaper->escapeHtml($post->getName()); ?>" />
                             </a>
+                        </div>
+                    <?php else : ?>
+                        <div class="post-placeholder">
+                            <div class="post-image">
+                                <a href="<?= $escaper->escapeUrl($post->getUrl()) ?>">
+                                    <img
+                                    src="<?= $escaper->escapeUrl($block->getViewFileUrl('Mavenbird_Blog::images/placeholder.jpg')) ?>"
+                                    alt="<?= $escaper->escapeHtmlAttr($post->getName()) ?>"
+                                    class="img-responsive"
+                                />
+                                    <div class="post-name-placeholder"><?= $escaper->escapeHtml($post->getName()) ?></div>
+                                </a>
+                            </div>
                         </div>
                     <?php endif; ?>
                     <div class="post-info">

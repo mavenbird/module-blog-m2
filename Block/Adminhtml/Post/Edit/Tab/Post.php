@@ -91,7 +91,7 @@ class Post extends Generic implements TabInterface
     protected $_date;
 
     /**
-     * @var BasePageLayout
+     * @var \Mavenbird\Blog\Model\Config\Source\CategoryLayout
      */
     protected $_layoutOptions;
 
@@ -117,7 +117,7 @@ class Post extends Generic implements TabInterface
      * @param Registry $registry
      * @param Session $authSession
      * @param DateTime $dateTime
-     * @param BasePageLayout $layoutOption
+     * @param \Mavenbird\Blog\Model\Config\Source\CategoryLayout $layoutOption
      * @param FormFactory $formFactory
      * @param Config $wysiwygConfig
      * @param Yesno $booleanOptions
@@ -133,7 +133,7 @@ class Post extends Generic implements TabInterface
         Registry $registry,
         Session $authSession,
         DateTime $dateTime,
-        BasePageLayout $layoutOption,
+        \Mavenbird\Blog\Model\Config\Source\CategoryLayout $layoutOption,
         FormFactory $formFactory,
         Config $wysiwygConfig,
         Yesno $booleanOptions,

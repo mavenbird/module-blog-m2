@@ -73,6 +73,115 @@ class Data extends CoreHelper
     const TYPE_AUTHOR        = 'author';
     const TYPE_MONTHLY       = 'month';
 
+    const XML_PATH_ENABLED = 'blog/general/basic_settings/enabled';
+    const XML_PATH_BLOG_NAME = 'blog/general/basic_settings/name';
+    const XML_PATH_BLOG_SUBTITLE = 'blog/general/basic_settings/blog_subtitle';
+    const XML_PATH_URL_PREFIX = 'blog/general/basic_settings/url_prefix';
+    const XML_PATH_URL_SUFFIX = 'blog/general/basic_settings/url_suffix';
+    const XML_PATH_TOPLINKS = 'blog/general/basic_settings/toplinks';
+    const XML_PATH_FOOTER = 'blog/general/basic_settings/footer';
+    const XML_PATH_FONT_COLOR = 'blog/general/basic_settings/font_color';
+    const XML_PATH_BLOG_DEFAULT_LAYOUT = 'blog/general/basic_settings/blog_layout';
+
+    const XML_PATH_CUSTOMER_APPROVE = 'blog/general/author_settings/customer_approve';
+    const XML_PATH_AUTO_APPROVE = 'blog/general/author_settings/auto_approve';
+    const XML_PATH_AUTO_POST = 'blog/general/author_settings/auto_post';
+    const XML_PATH_HISTORY_LIMIT = 'blog/general/author_settings/history_limit';
+
+    const XML_PATH_DISPLAY_STYLE = 'blog/blog_pages/blog_list/layout/display_style';
+    const XML_PATH_BLOG_MODE_GRID_VIEW = 'blog/blog_pages/blog_list/layout/blog_mode_grid_view';
+    const XML_PATH_BLOG_LIST_LAYOUT = 'blog/blog_pages/blog_list/layout/blog_list_layout';
+    const XML_PATH_BLOG_STYLE_LAYOUT = 'blog/blog_pages/blog_list/layout/blog_style_layout';
+
+    const XML_PATH_FEATURED_BLOG_CATEGORY = 'blog/blog_pages/blog_list/featured_content/featured_blog_category';
+    const XML_PATH_FEATURED_BLOG_AUTHORS = 'blog/blog_pages/blog_list/featured_content/featured_blog_authors';
+    const XML_PATH_BLOG_STYLE_RECOMMEND = 'blog/blog_pages/blog_list/featured_content/blog_style_recommend';
+
+    const XML_PATH_SHORT_DESCRIPTION_LENGTH = 'blog/blog_pages/blog_list/content_display/short_description_length';
+    const XML_PATH_BLOG_LIST_DISPLAY_SHORT_DESCRIPTION = 'blog/blog_pages/blog_list/content_display/blog_list_display_short_description';
+    const XML_PATH_BLOG_LIST_DISPLAY_SHARE = 'blog/blog_pages/blog_list/content_display/blog_list_display_share';
+    const XML_PATH_DATE_TYPE = 'blog/blog_pages/blog_list/content_display/date_type';
+
+    const XML_PATH_PAGINATION = 'blog/blog_pages/blog_list/pagination_sub/pagination';
+
+    const XML_PATH_BLOG_VIEW_LAYOUT = 'blog/blog_pages/blog_post/layout/blog_view_layout';
+    const XML_PATH_BLOG_CATEGORY_LAYOUT = 'blog/blog_pages/blog_category/layout/blog_category_layout';
+    const XML_PATH_BLOG_TOPIC_LAYOUT = 'blog/blog_pages/blog_topic/layout/blog_topic_layout';
+    const XML_PATH_BLOG_TAG_LAYOUT = 'blog/blog_pages/blog_tag/layout/blog_tag_layout';
+    const XML_PATH_DISPLAY_AUTHOR = 'blog/blog_pages/blog_post/post_inline_metadata/display_author';
+    const XML_PATH_DISPLAY_EDITING_DATE = 'blog/blog_pages/blog_post/post_inline_metadata/display_editing_date';
+    const XML_PATH_DISPLAY_NAVIGATION_BLOG = 'blog/blog_pages/blog_post/navigation/display_navigation_blog';
+    const XML_PATH_RELATED_POST = 'blog/blog_pages/blog_post/related_posts/related_post';
+    const XML_PATH_RELATED_MODE = 'blog/blog_pages/blog_post/related_posts/related_mode';
+    const XML_PATH_IS_REVIEW = 'blog/blog_pages/blog_post/reviews/is_review';
+    const XML_PATH_REVIEW_MODE = 'blog/blog_pages/blog_post/reviews/review_mode';
+    const XML_PATH_ENABLE_TO_SAVE = 'blog/blog_pages/blog_post/post_view_page_settings/enable_to_save';
+    const XML_PATH_SEO_URL_KEY = 'blog/seo/url_key';
+    
+    // List Inline Metadata
+    const XML_PATH_LIST_DISPLAY_DATE = 'blog/blog_pages/blog_list/list_inline_metadata/display_date';
+    const XML_PATH_LIST_DISPLAY_CATEGORY = 'blog/blog_pages/blog_list/list_inline_metadata/display_category';
+    const XML_PATH_LIST_DISPLAY_AUTHOR = 'blog/blog_pages/blog_list/list_inline_metadata/display_author';
+    const XML_PATH_LIST_DISPLAY_COMMENTS = 'blog/blog_pages/blog_list/list_inline_metadata/display_comments';
+    const XML_PATH_LIST_DISPLAY_VIEWS = 'blog/blog_pages/blog_list/list_inline_metadata/display_views';
+    const XML_PATH_LIST_DISPLAY_LIKES = 'blog/blog_pages/blog_list/list_inline_metadata/display_likes';
+
+    const XML_PATH_SIDEBAR_LEFT_RIGHT = 'blog/sidebar/general/sidebar_left_right';
+    const XML_PATH_SHOW_SIDEBAR_STATIC_BLOCK = 'blog/sidebar/general/show_sidebar_static_block';
+    const XML_PATH_LIST_OF_STATIC_BLOCK = 'blog/sidebar/general/list_of_static_block';
+
+    const XML_PATH_SHOW_TABLE_OF_CONTENT = 'blog/sidebar/table_of_contents/show_table_of_content';
+    const XML_PATH_STICKY_TABLE_OF_CONTENT = 'blog/sidebar/table_of_contents/sticky_table_of_content';
+
+    const XML_PATH_SIDEBAR_CATEGORY_SHOW = 'blog/sidebar/categories/sidebar_category_show';
+    const XML_PATH_CATEGORY_ACCORDION = 'blog/sidebar/categories/category_accordion';
+
+    const XML_PATH_SIDEBAR_TOPIC_SHOW = 'blog/sidebar/topics/sidebar_topic_show';
+    const XML_PATH_SIDEBAR_TAG_SHOW = 'blog/sidebar/tags/sidebar_tag_show';
+    const XML_PATH_SIDEBAR_RSS_SHOW = 'blog/sidebar/rss/sidebar_rss_show';
+
+    const XML_PATH_ENABLE_SEARCH = 'blog/sidebar/search/enable_search';
+    const XML_PATH_SEARCH_LIMIT = 'blog/sidebar/search/search_limit';
+    const XML_PATH_MIN_CHARS = 'blog/sidebar/search/min_chars';
+    const XML_PATH_SHOW_IMAGE = 'blog/sidebar/search/show_image';
+    const XML_PATH_SEARCH_DESCRIPTION = 'blog/sidebar/search/description';
+
+    const XML_PATH_ENABLE_WIDGET = 'blog/sidebar/recent_post/enable_widget';
+    const XML_PATH_NUMBER_RECENT_POSTS = 'blog/sidebar/recent_post/number_recent_posts';
+    const XML_PATH_NUMBER_MOSTVIEW_POSTS = 'blog/sidebar/recent_post/number_mostview_posts';
+
+    const XML_PATH_ENABLE_MONTHLY = 'blog/sidebar/monthly_archive/enable_monthly';
+    const XML_PATH_NUMBER_RECORDS = 'blog/sidebar/monthly_archive/number_records';
+    const XML_PATH_DATE_TYPE_MONTHLY = 'blog/sidebar/monthly_archive/date_type_monthly';
+
+    const XML_PATH_PRODUCT_PAGE_ENABLE_POST = 'blog/product_integration/product_page/enable_post';
+    const XML_PATH_PRODUCT_PAGE_POST_LIMIT = 'blog/product_integration/product_page/post_limit';
+    const XML_PATH_POST_DETAIL_ENABLE_PRODUCT = 'blog/product_integration/post_detail/enable_product';
+    const XML_PATH_POST_DETAIL_RELATED_MODE = 'blog/product_integration/post_detail/related_mode';
+    const XML_PATH_POST_DETAIL_PRODUCT_LIMIT = 'blog/product_integration/post_detail/product_limit';
+    const XML_PATH_POST_DETAIL_TITLE = 'blog/product_integration/post_detail/title';
+
+    const XML_PATH_COMMENT_TYPE = 'blog/comments/general/type';
+    const XML_PATH_COMMENT_NEED_APPROVE = 'blog/comments/general/need_approve';
+    const XML_PATH_COMMENT_DISQUS = 'blog/comments/disqus_sub/disqus';
+    const XML_PATH_COMMENT_FACEBOOK_APPID = 'blog/comments/facebook/facebook_appid';
+    const XML_PATH_COMMENT_FACEBOOK_NUMBER_COMMENT = 'blog/comments/facebook/facebook_number_comment';
+    const XML_PATH_COMMENT_FACEBOOK_COLORSCHEME = 'blog/comments/facebook/facebook_colorscheme';
+    const XML_PATH_COMMENT_FACEBOOK_ORDER_BY = 'blog/comments/facebook/facebook_order_by';
+
+    const XML_PATH_SHARE_FB = 'blog/social_sharing/facebook/fb_share';
+    const XML_PATH_SHARE_TWITTER = 'blog/social_sharing/twitter/x_share';
+    const XML_PATH_SHARE_WHATSAPP = 'blog/social_sharing/whatsapp/whatsapp_share';
+    const XML_PATH_SHARE_TELEGRAM = 'blog/social_sharing/telegram/telegram_share';
+    const XML_PATH_SHARE_LINKEDIN = 'blog/social_sharing/linkedin/linkedin_share';
+    const XML_PATH_SHARE_REDDIT = 'blog/social_sharing/reddit/reddit_share';
+    const XML_PATH_SHARE_EMAIL = 'blog/social_sharing/email/email_share';
+
+    const XML_PATH_SEO_META_TITLE = 'blog/seo/blog_seo_meta_title';
+    const XML_PATH_SEO_META_DESCRIPTION = 'blog/seo/blog_seo_meta_description';
+    const XML_PATH_SEO_META_KEYWORDS = 'blog/seo/blog_seo_meta_keywords';
+    const XML_PATH_SEO_META_ROBOTS = 'blog/seo/blog_seo_meta_robots';
+
     /**
      * @var PostFactory
      */
@@ -185,8 +294,8 @@ class Data extends CoreHelper
         $groupId = (string) $this->_httpContext->getValue(CustomerContext::CONTEXT_GROUP);
 
         if (
-            $this->getPostViewPageConfig('is_review')
-            && in_array($groupId, explode(',', (string) $this->getPostViewPageConfig('review_mode')), true)
+            $this->getIsReview()
+            && in_array($groupId, explode(',', (string) $this->getReviewModeConfig()), true)
         ) {
             return true;
         }
@@ -203,7 +312,7 @@ class Data extends CoreHelper
 
         if (
             !$login
-            && in_array('0', explode(',', $this->getPostViewPageConfig('review_mode') ?? ''), true)
+            && in_array('0', explode(',', $this->getReviewModeConfig() ?? ''), true)
         ) {
             return '0';
         }
@@ -317,26 +426,23 @@ class Data extends CoreHelper
     }
 
     /**
-     * @param $code
      * @param null $storeId
-     *
-     * @return mixed
+     * @return bool
      */
-    public function getBlogConfig($code, $storeId = null)
+    public function isEnabled($storeId = null)
     {
-        $code = ($code !== '') ? '/' . $code : '';
-
-        return $this->getConfigValue(self::CONFIG_MODULE_PATH . $code, $storeId);
+        return (bool) $this->getConfigValue(self::XML_PATH_ENABLED, $storeId);
     }
+
+
 
     /**
      * @param null $storeId
-     *
      * @return array|mixed|string
      */
     public function getSidebarLayout($storeId = null)
     {
-        $sideBarConfig = $this->getConfigValue(self::CONFIG_MODULE_PATH . '/sidebar/sidebar_left_right', $storeId);
+        $sideBarConfig = $this->getConfigValue(self::XML_PATH_SIDEBAR_LEFT_RIGHT, $storeId);
         if ($sideBarConfig == 0) {
             return SideBarLR::LEFT;
         }
@@ -351,194 +457,303 @@ class Data extends CoreHelper
 
     /**
      * @param null $storeId
+     * @return array|mixed|string
+     */
+    /**
+     * Normalize older numeric configuration/database values to standard layout names.
      *
+     * @param mixed $value
+     * @return string
+     */
+    protected function normalizeLayoutValue($value)
+    {
+        if ($value === 'empty' || !$value) {
+            return '';
+        }
+        if ($value === '0' || $value === 0) {
+            return '2columns-left';
+        }
+        if ($value === '1' || $value === 1) {
+            return '2columns-right';
+        }
+        if ($value === '2' || $value === 2) {
+            return '1column';
+        }
+        return (string)$value;
+    }
+
+    /**
+     * @param null $storeId
+     * @return array|mixed|string
+     */
+    public function getBlogDefaultLayout($storeId = null)
+    {
+        $layout = $this->getConfigValue(self::XML_PATH_BLOG_DEFAULT_LAYOUT, $storeId);
+        $layout = $this->normalizeLayoutValue($layout);
+        return $layout ?: '2columns-right';
+    }
+
+    /**
+     * @param null $storeId
      * @return array|mixed|string
      */
     public function getBlogListingLayout($storeId = null)
     {
-        $sideBarConfig = $this->getConfigValue(self::CONFIG_MODULE_PATH . '/post_view_page/blog_list_layout', $storeId);
-        if ($sideBarConfig == 0) {
-            return SideBarLR::LEFT;
-        }
-        if ($sideBarConfig == 1) {
-            return SideBarLR::RIGHT;
-        }
-        if ($sideBarConfig == 2) {
-            return SideBarLR::ONECOLUMN;
-        }
-        return $sideBarConfig;
+        $layout = $this->getConfigValue(self::XML_PATH_BLOG_LIST_LAYOUT, $storeId);
+        $layout = $this->normalizeLayoutValue($layout);
+        return $layout ?: $this->getBlogDefaultLayout($storeId);
     }
 
     /**
      * @param null $storeId
-     *
      * @return array|mixed|string
      */
     public function getBlogViewLayout($storeId = null)
     {
-        $sideBarConfig = $this->getConfigValue(self::CONFIG_MODULE_PATH . '/post_view_page/blog_view_layout', $storeId);
-        if ($sideBarConfig == 0) {
-            return SideBarLR::LEFT;
-        }
-        if ($sideBarConfig == 1) {
-            return SideBarLR::RIGHT;
-        }
-        if ($sideBarConfig == 2) {
-            return SideBarLR::ONECOLUMN;
-        }
-        return $sideBarConfig;
+        $layout = $this->getConfigValue(self::XML_PATH_BLOG_VIEW_LAYOUT, $storeId);
+        $layout = $this->normalizeLayoutValue($layout);
+        return $layout ?: $this->getBlogDefaultLayout($storeId);
     }
 
-    public function applyBlogViewLayout($page)
+    /**
+     * @param null $storeId
+     * @return array|mixed|string
+     */
+    public function getBlogCategoryLayout($storeId = null)
     {
-        $layout = $this->getBlogViewLayout();
+        $layout = $this->getConfigValue(self::XML_PATH_BLOG_CATEGORY_LAYOUT, $storeId);
+        $layout = $this->normalizeLayoutValue($layout);
+        return $layout ?: $this->getBlogDefaultLayout($storeId);
+    }
+
+    /**
+     * @param null $storeId
+     * @return array|mixed|string
+     */
+    public function getBlogTopicLayout($storeId = null)
+    {
+        $layout = $this->getConfigValue(self::XML_PATH_BLOG_TOPIC_LAYOUT, $storeId);
+        $layout = $this->normalizeLayoutValue($layout);
+        return $layout ?: $this->getBlogDefaultLayout($storeId);
+    }
+
+    /**
+     * @param null $storeId
+     * @return array|mixed|string
+     */
+    public function getBlogTagLayout($storeId = null)
+    {
+        $layout = $this->getConfigValue(self::XML_PATH_BLOG_TAG_LAYOUT, $storeId);
+        $layout = $this->normalizeLayoutValue($layout);
+        return $layout ?: $this->getBlogDefaultLayout($storeId);
+    }
+
+    /**
+     * Helper to apply layout configuration to a page result.
+     *
+     * @param \Magento\Framework\View\Result\Page $page
+     * @param string $layout
+     * @return \Magento\Framework\View\Result\Page
+     */
+    public function applyPageLayout($page, $layout)
+    {
+        $layout = $this->normalizeLayoutValue($layout);
         switch ($layout) {
-            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::LEFT:
+            case '2columns-left':
                 $page->getConfig()->setPageLayout('2columns-left');
                 $page->addHandle('mbblog_layout_left');
                 break;
-            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::RIGHT:
+            case '2columns-right':
                 $page->getConfig()->setPageLayout('2columns-right');
                 $page->addHandle('mbblog_layout_right');
                 break;
-            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::ONECOLUMN:
-            default:
+            case '1column':
                 $page->getConfig()->setPageLayout('1column');
                 $page->addHandle('mbblog_layout_1column');
+                break;
+            case '3columns':
+                $page->getConfig()->setPageLayout('3columns');
+                $page->addHandle('mbblog_layout_3columns');
+                break;
+            case '1column-fullwidth':
+                $page->getConfig()->setPageLayout('1column-fullwidth');
+                $page->addHandle('mbblog_layout_1column-fullwidth');
+                break;
+            default:
+                if ($layout) {
+                    $page->getConfig()->setPageLayout($layout);
+                }
                 break;
         }
         return $page;
     }
 
-    public function applySidebarLayout($page)
+    /**
+     * @param \Magento\Framework\View\Result\Page $page
+     * @param \Mavenbird\Blog\Model\Category|null $category
+     * @return \Magento\Framework\View\Result\Page
+     */
+    public function applyBlogCategoryLayout($page, $category = null)
     {
-        $layout = $this->getSidebarLayout();
-
-        switch ($layout) {
-            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::LEFT:
-                $page->getConfig()->setPageLayout('2columns-left');
-                $page->addHandle('mbblog_layout_left');
-                break;
-            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::RIGHT:
-                $page->getConfig()->setPageLayout('2columns-right');
-                $page->addHandle('mbblog_layout_right');
-                break;
-            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::ONECOLUMN:
-            default:
-                $page->getConfig()->setPageLayout('1column');
-                $page->addHandle('mbblog_layout_1column');
-                break;
+        $layout = '';
+        if ($category && $category->getLayout()) {
+            $layout = $category->getLayout();
         }
-
-        return $page;
+        $layout = $this->normalizeLayoutValue($layout);
+        if (empty($layout)) {
+            $layout = $this->getBlogCategoryLayout();
+        }
+        return $this->applyPageLayout($page, $layout);
     }
 
+    /**
+     * @param \Magento\Framework\View\Result\Page $page
+     * @param \Mavenbird\Blog\Model\Topic|null $topic
+     * @return \Magento\Framework\View\Result\Page
+     */
+    public function applyBlogTopicLayout($page, $topic = null)
+    {
+        $layout = '';
+        if ($topic && $topic->getLayout()) {
+            $layout = $topic->getLayout();
+        }
+        $layout = $this->normalizeLayoutValue($layout);
+        if (empty($layout)) {
+            $layout = $this->getBlogTopicLayout();
+        }
+        return $this->applyPageLayout($page, $layout);
+    }
+
+    /**
+     * @param \Magento\Framework\View\Result\Page $page
+     * @param \Mavenbird\Blog\Model\Tag|null $tag
+     * @return \Magento\Framework\View\Result\Page
+     */
+    public function applyBlogTagLayout($page, $tag = null)
+    {
+        $layout = '';
+        if ($tag && $tag->getLayout()) {
+            $layout = $tag->getLayout();
+        }
+        $layout = $this->normalizeLayoutValue($layout);
+        if (empty($layout)) {
+            $layout = $this->getBlogTagLayout();
+        }
+        return $this->applyPageLayout($page, $layout);
+    }
+
+    /**
+     * @param \Magento\Framework\View\Result\Page $page
+     * @param \Mavenbird\Blog\Model\Post|null $post
+     * @return \Magento\Framework\View\Result\Page
+     */
+    public function applyBlogViewLayout($page, $post = null)
+    {
+        $layout = '';
+        if ($post && $post->getLayout()) {
+            $layout = $post->getLayout();
+        }
+        $layout = $this->normalizeLayoutValue($layout);
+        if (empty($layout)) {
+            $layout = $this->getBlogViewLayout();
+        }
+        return $this->applyPageLayout($page, $layout);
+    }
+
+    /**
+     * @param \Magento\Framework\View\Result\Page $page
+     * @return \Magento\Framework\View\Result\Page
+     */
     public function applyBlogListingLayout($page)
     {
         $layout = $this->getBlogListingLayout();
-
-        switch ($layout) {
-            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::LEFT:
-                $page->getConfig()->setPageLayout('2columns-left');
-                $page->addHandle('mbblog_layout_left');
-                break;
-            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::RIGHT:
-                $page->getConfig()->setPageLayout('2columns-right');
-                $page->addHandle('mbblog_layout_right');
-                break;
-            case \Mavenbird\Blog\Model\Config\Source\SideBarLR::ONECOLUMN:
-            default:
-                $page->getConfig()->setPageLayout('1column');
-                $page->addHandle('mbblog_layout_1column');
-                break;
-        }
-
-        return $page;
+        return $this->applyPageLayout($page, $layout);
     }
 
     /**
-     * @param $code
-     * @param null $storeId
-     *
-     * @return mixed
+     * @param \Magento\Framework\View\Result\Page $page
+     * @return \Magento\Framework\View\Result\Page
      */
-    public function getDisplayConfig($code, $storeId = null)
+    public function applySidebarLayout($page)
     {
-        return $this->getBlogConfig('display/' . $code, $storeId);
+        $layout = $this->getSidebarLayout();
+        return $this->applyPageLayout($page, $layout);
     }
 
-    /**
-     * @param $code
-     * @param null $storeId
-     *
-     * @return mixed
-     */
-    public function getSeoConfig($code, $storeId = null)
-    {
-        return $this->getBlogConfig('seo/' . $code, $storeId);
-    }
 
-    /**
-     * @param $code
-     * @param null $storeId
-     *
-     * @return mixed
-     */
-    public function getIndexPageConfig($code, $storeId = null)
-    {
-        return $this->getBlogConfig('index_page/' . $code, $storeId);
-    }
-
-    /**
-     * @param $code
-     * @param null $storeId
-     *
-     * @return mixed
-     */
-    public function getPostViewPageConfig($code, $storeId = null)
-    {
-        return $this->getBlogConfig('post_view_page/' . $code, $storeId);
-    }
-
-    /**
-     * @param $code
-     * @param null $storeId
-     *
-     * @return mixed
-     */
-    public function getProductPostConfig($code, $storeId = null)
-    {
-        return $this->getBlogConfig('product_post/' . $code, $storeId);
-    }
-
-    /**
-     * @param $code
-     * @param null $storeId
-     *
-     * @return mixed
-     */
-    public function getSidebarConfig($code, $storeId = null)
-    {
-        return $this->getBlogConfig('sidebar/' . $code, $storeId);
-    }
-
-    /**
-     * @param $code
-     * @param null $storeId
-     *
-     * @return mixed
-     */
-    public function getCommentConfig($code, $storeId = null)
-    {
-        return $this->getBlogConfig('comment/' . $code, $storeId);
-    }
 
     /**
      * @return mixed
      */
     public function showAuthorInfo($storeId = null)
     {
-        return $this->getPostViewPageConfig('display_author', $storeId);
+        return $this->getConfigValue(self::XML_PATH_DISPLAY_AUTHOR, $storeId);
+    }
+    
+    /**
+     * Check if publish date should be displayed in blog list
+     * 
+     * @param null $storeId
+     * @return bool
+     */
+    public function showListDate($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_LIST_DISPLAY_DATE, $storeId);
+    }
+    
+    /**
+     * Check if category should be displayed in blog list
+     * 
+     * @param null $storeId
+     * @return bool
+     */
+    public function showListCategory($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_LIST_DISPLAY_CATEGORY, $storeId);
+    }
+    
+    /**
+     * Check if author should be displayed in blog list
+     * 
+     * @param null $storeId
+     * @return bool
+     */
+    public function showListAuthor($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_LIST_DISPLAY_AUTHOR, $storeId);
+    }
+    
+    /**
+     * Check if comments count should be displayed in blog list
+     * 
+     * @param null $storeId
+     * @return bool
+     */
+    public function showListComments($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_LIST_DISPLAY_COMMENTS, $storeId);
+    }
+    
+    /**
+     * Check if views count should be displayed in blog list
+     * 
+     * @param null $storeId
+     * @return bool
+     */
+    public function showListViews($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_LIST_DISPLAY_VIEWS, $storeId);
+    }
+    
+    /**
+     * Check if likes count should be displayed in blog list
+     * 
+     * @param null $storeId
+     * @return bool
+     */
+    public function showListLikes($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_LIST_DISPLAY_LIKES, $storeId);
     }
 
     /**
@@ -548,7 +763,19 @@ class Data extends CoreHelper
      */
     public function getBlogName($store = null)
     {
-        return $this->getDisplayConfig('name', $store) ?: __('Blog');
+        return $this->getConfigValue(self::XML_PATH_BLOG_NAME, $store) ?: __('Blog');
+    }
+
+    /**
+     * Get blog subtitle
+     *
+     * @param null $store
+     *
+     * @return string
+     */
+    public function getBlogSubtitle($store = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_BLOG_SUBTITLE, $store) ?: '';
     }
 
     /**
@@ -558,7 +785,125 @@ class Data extends CoreHelper
      */
     public function getRoute($store = null)
     {
-        return $this->getDisplayConfig('url_prefix', $store) ?: 'blog';
+        return $this->getConfigValue(self::XML_PATH_URL_PREFIX, $store) ?: 'blog';
+    }
+
+    /**
+     * @param null $storeId
+     * @return bool
+     */
+    public function isTopLinksEnabled($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_TOPLINKS, $storeId);
+    }
+
+    /**
+     * @param null $storeId
+     * @return bool
+     */
+    public function isFooterEnabled($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_FOOTER, $storeId);
+    }
+
+    /**
+     * @param null $storeId
+     * @return string
+     */
+    public function getFontColor($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_FONT_COLOR, $storeId);
+    }
+
+    /**
+     * @param null $storeId
+     * @return bool
+     */
+    public function isFacebookShareEnabled($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_SHARE_FB, $storeId);
+    }
+
+    /**
+     * @param null $storeId
+     * @return bool
+     */
+    public function isTwitterShareEnabled($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_SHARE_TWITTER, $storeId);
+    }
+
+    /**
+     * @param null $storeId
+     * @return bool
+     */
+    public function isLinkedInShareEnabled($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_SHARE_LINKEDIN, $storeId);
+    }
+
+    /**
+     * @param null $storeId
+     * @return bool
+     */
+    public function isEmailShareEnabled($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_SHARE_EMAIL, $storeId);
+    }
+
+    /**
+     * @param null $storeId
+     * @return bool
+     */
+    public function isWhatsAppShareEnabled($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_SHARE_WHATSAPP, $storeId);
+    }
+
+    /**
+     * @param null $storeId
+     * @return bool
+     */
+    public function isTelegramShareEnabled($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_SHARE_TELEGRAM, $storeId);
+    }
+
+    /**
+     * @param null $storeId
+     * @return bool
+     */
+    public function isRedditShareEnabled($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_SHARE_REDDIT, $storeId);
+    }
+
+    /**
+     * @param null $storeId
+     * @return bool
+     */
+    public function isPostDetailProductEnabled($storeId = null)
+    {
+        return (bool)$this->getConfigValue(self::XML_PATH_POST_DETAIL_ENABLE_PRODUCT, $storeId);
+    }
+
+    /**
+     * @param null $store
+     *
+     * @return string
+     */
+    public function getPostDetailProductTitle($store = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_POST_DETAIL_TITLE, $store) ?: __('Related Products');
+    }
+
+    /**
+     * @param null $storeId
+     * @return mixed
+     */
+    public function getFacebookCommentsColorscheme($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_COMMENT_FACEBOOK_COLORSCHEME, $storeId);
     }
 
     /**
@@ -568,8 +913,318 @@ class Data extends CoreHelper
      */
     public function getUrlSuffix($store = null)
     {
-        return $this->getDisplayConfig('url_suffix', $store)
-            ? '.' . $this->getDisplayConfig('url_suffix', $store) : '';
+        $suffix = $this->getConfigValue(self::XML_PATH_URL_SUFFIX, $store);
+        return $suffix ? '.' . $suffix : '';
+    }
+
+    public function getCategoriesMaximum($storeId = null)
+    {
+        return (int) $this->getConfigValue('blog/sidebar/categories/maximum', $storeId);
+    }
+
+    public function getPagination($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_PAGINATION, $storeId);
+    }
+
+    public function getDisplayStyle($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_DISPLAY_STYLE, $storeId);
+    }
+
+    public function getSeoMetaDescription($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_SEO_META_DESCRIPTION, $storeId);
+    }
+
+    public function getSeoMetaKeywords($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_SEO_META_KEYWORDS, $storeId);
+    }
+
+    public function getSeoMetaRobots($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_SEO_META_ROBOTS, $storeId);
+    }
+
+    public function getSeoMetaTitle($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_SEO_META_TITLE, $storeId);
+    }
+
+    public function getBlogModeGridView($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_BLOG_MODE_GRID_VIEW, $storeId);
+    }
+
+    public function getShortDescriptionLength($storeId = null)
+    {
+        return (int) $this->getConfigValue(self::XML_PATH_SHORT_DESCRIPTION_LENGTH, $storeId);
+    }
+
+    public function getRelatedPost($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_RELATED_POST, $storeId);
+    }
+
+    public function getShareTwitterEnabled($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_SHARE_TWITTER, $storeId);
+    }
+
+    public function getShareFbEnabled($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_SHARE_FB, $storeId);
+    }
+
+    public function getShareWhatsappEnabled($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_SHARE_WHATSAPP, $storeId);
+    }
+
+    public function getShareTelegramEnabled($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_SHARE_TELEGRAM, $storeId);
+    }
+
+    public function getShareLinkedinEnabled($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_SHARE_LINKEDIN, $storeId);
+    }
+
+    public function getShareRedditEnabled($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_SHARE_REDDIT, $storeId);
+    }
+
+    public function getShareEmailEnabled($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_SHARE_EMAIL, $storeId);
+    }
+
+    public function getEnableSearch($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_ENABLE_SEARCH, $storeId);
+    }
+
+    public function getSearchLimit($storeId = null)
+    {
+        return (int) $this->getConfigValue(self::XML_PATH_SEARCH_LIMIT, $storeId);
+    }
+
+    public function getMinChars($storeId = null)
+    {
+        return (int) $this->getConfigValue(self::XML_PATH_MIN_CHARS, $storeId);
+    }
+
+    public function getShowImage($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_SHOW_IMAGE, $storeId);
+    }
+
+    public function getSearchDescription($storeId = null)
+    {
+        return (int) $this->getConfigValue(self::XML_PATH_SEARCH_DESCRIPTION, $storeId);
+    }
+
+    public function getShowTableOfContent($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_SHOW_TABLE_OF_CONTENT, $storeId);
+    }
+
+    public function getStickyTableOfContent($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_STICKY_TABLE_OF_CONTENT, $storeId);
+    }
+
+    public function getShowSidebarStaticBlock($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_SHOW_SIDEBAR_STATIC_BLOCK, $storeId);
+    }
+
+    public function getListOfStaticBlock($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_LIST_OF_STATIC_BLOCK, $storeId);
+    }
+
+    public function getNumberRecentPosts($storeId = null)
+    {
+        return (int) $this->getConfigValue(self::XML_PATH_NUMBER_RECENT_POSTS, $storeId);
+    }
+
+    public function getNumberMostviewPosts($storeId = null)
+    {
+        return (int) $this->getConfigValue(self::XML_PATH_NUMBER_MOSTVIEW_POSTS, $storeId);
+    }
+
+    public function getEnableMonthly($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_ENABLE_MONTHLY, $storeId);
+    }
+
+    public function getNumberRecords($storeId = null)
+    {
+        return (int) $this->getConfigValue(self::XML_PATH_NUMBER_RECORDS, $storeId);
+    }
+
+    public function getPostDetailRelatedMode($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_POST_DETAIL_RELATED_MODE, $storeId);
+    }
+
+    public function getPostDetailProductLimit($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_POST_DETAIL_PRODUCT_LIMIT, $storeId);
+    }
+
+    public function getPostDetailTitle($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_POST_DETAIL_TITLE, $storeId);
+    }
+
+    public function getPostDetailEnableProduct($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_POST_DETAIL_ENABLE_PRODUCT, $storeId);
+    }
+
+    public function getProductPagePostLimit($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_PRODUCT_PAGE_POST_LIMIT, $storeId);
+    }
+
+    public function getRelatedMode($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_RELATED_MODE, $storeId);
+    }
+
+    public function getProductPageEnablePost($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_PRODUCT_PAGE_ENABLE_POST, $storeId);
+    }
+
+    public function getCommentType($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_COMMENT_TYPE, $storeId);
+    }
+
+    public function getCommentNeedApprove($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_COMMENT_NEED_APPROVE, $storeId);
+    }
+
+    public function getCommentDisqus($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_COMMENT_DISQUS, $storeId);
+    }
+
+    public function getCommentFacebookAppid($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_COMMENT_FACEBOOK_APPID, $storeId);
+    }
+
+    public function getCommentFacebookNumberComment($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_COMMENT_FACEBOOK_NUMBER_COMMENT, $storeId);
+    }
+
+    public function getCommentFacebookColorscheme($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_COMMENT_FACEBOOK_COLORSCHEME, $storeId);
+    }
+
+    public function getCommentFacebookOrderBy($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_COMMENT_FACEBOOK_ORDER_BY, $storeId);
+    }
+
+    public function getDisplayEditingDate($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_DISPLAY_EDITING_DATE, $storeId);
+    }
+
+    public function getDisplayNavigationBlog($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_DISPLAY_NAVIGATION_BLOG, $storeId);
+    }
+
+    public function getCategoryAccordion($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_CATEGORY_ACCORDION, $storeId);
+    }
+
+    public function getBlogListLayout($storeId = null)
+    {
+        return $this->getBlogListingLayout($storeId);
+    }
+
+    public function getSidebarLeftRight($storeId = null)
+    {
+        return $this->getSidebarLayout($storeId);
+    }
+
+    public function getToplinks($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_TOPLINKS, $storeId);
+    }
+
+    public function getCustomerApprove($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_CUSTOMER_APPROVE, $storeId);
+    }
+
+    public function getEnableToSave($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_ENABLE_TO_SAVE, $storeId);
+    }
+
+    public function getSeoUrlKey($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_SEO_URL_KEY, $storeId);
+    }
+
+    public function getHistoryLimit($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_HISTORY_LIMIT, $storeId);
+    }
+
+    public function getAutoApprove($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_AUTO_APPROVE, $storeId);
+    }
+
+    public function getAutoPost($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_AUTO_POST, $storeId);
+    }
+
+    public function getIsReview($storeId = null)
+    {
+        return (bool) $this->getConfigValue(self::XML_PATH_IS_REVIEW, $storeId);
+    }
+
+    public function getReviewModeConfig($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_REVIEW_MODE, $storeId);
+    }
+
+    public function getDateType($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_DATE_TYPE, $storeId);
+    }
+
+    public function getDateTypeMonthly($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_DATE_TYPE_MONTHLY, $storeId);
+    }
+
+    public function getBlogListDisplayShortDescription($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_BLOG_LIST_DISPLAY_SHORT_DESCRIPTION, $storeId);
+    }
+
+    public function getBlogListDisplayShare($storeId = null)
+    {
+        return $this->getConfigValue(self::XML_PATH_BLOG_LIST_DISPLAY_SHARE, $storeId);
     }
 
     /**
@@ -866,7 +1521,7 @@ class Data extends CoreHelper
         $dateTime = new \DateTime($date, new DateTimeZone('UTC'));
         $dateTime->setTimezone(new DateTimeZone($this->getTimezone()));
 
-        $dateType = $this->getBlogConfig($monthly ? 'sidebar/monthly_archive/date_type_monthly' : 'display/date_type');
+        $dateType = $monthly ? $this->getDateTypeMonthly() : $this->getDateType();
 
         return $dateTime->format($dateType);
     }
@@ -979,23 +1634,36 @@ class Data extends CoreHelper
         return $data;
     }
 
-    public function getBlogStyle()
+    public function getBlogStyle($storeId = null)
     {
-        return $this->getPostViewPageConfig('blog_style_layout');
+        return $this->getConfigValue(self::XML_PATH_BLOG_STYLE_LAYOUT, $storeId);
     }
 
-    public function getFeaturedCategories()
+    public function getFeaturedCategories($storeId = null)
     {
-        return $this->getPostViewPageConfig('featured_blog_category');
+        return $this->getConfigValue(self::XML_PATH_FEATURED_BLOG_CATEGORY, $storeId);
     }
 
-    public function getRecommendCount()
+    public function getRecommendCount($storeId = null)
     {
-        return $this->getPostViewPageConfig('blog_style_recommend');
+        return $this->getConfigValue(self::XML_PATH_BLOG_STYLE_RECOMMEND, $storeId);
     }
 
-    public function getAuthorId()
+    public function getAuthorId($storeId = null)
     {
-        return $this->getPostViewPageConfig('featured_blog_authors');
+        return $this->getConfigValue(self::XML_PATH_FEATURED_BLOG_AUTHORS, $storeId);
+    }
+
+    /**
+     * Retrieve configuration value.
+     *
+     * @param string $field
+     * @param null|int|string|\Magento\Store\Model\Store $scopeValue
+     * @param string $scopeType
+     * @return mixed
+     */
+    public function getConfigValue($field, $scopeValue = null, $scopeType = \Magento\Store\Model\ScopeInterface::SCOPE_STORE)
+    {
+        return parent::getConfigValue($field, $scopeValue, $scopeType);
     }
 }

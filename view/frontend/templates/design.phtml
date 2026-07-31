@@ -40,10 +40,18 @@ use Magento\Framework\Escaper;
             <?php if ($block->getCurrentTheme() === "Etheme/yourstore") : ?>
             body.addClass('mbblog-etheme-yourstore');
             <?php endif; ?>
+
+            // Initialize EnlighterJS syntax highlighting
+            if (typeof EnlighterJS !== 'undefined') {
+                EnlighterJS.init("pre", "code", {
+                    theme: "dracula",
+                    indent: 4
+                });
+            }
         });
     });
 </script>
-<?php $color = $block->getHelper()->getDisplayConfig('font_color'); ?>
+<?php $color = $block->getHelper()->getFontColor(); ?>
 <style type="text/css">
    
     /*Post List Content Css*/

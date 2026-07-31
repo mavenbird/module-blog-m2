@@ -57,7 +57,7 @@ class Listpost extends \Mavenbird\Blog\Block\Listpost
     /**
      * @return mixed
      */
-    protected function getBlogObject()
+    public function getBlogObject()
     {
         if (!$this->_topic) {
             $id = $this->getRequest()->getParam('id');

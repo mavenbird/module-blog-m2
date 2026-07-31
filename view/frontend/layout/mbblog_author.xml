@@ -23,7 +23,9 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
         <css src="Mavenbird_Blog::css/authorInfo.css"/>
+        <css src="Mavenbird_Blog::css/mbBlog-style2.css"/>
     </head>
+    
     <body>
         <attribute name="class" value="account"/>
         <referenceContainer name="sidebar.main">
@@ -61,7 +63,7 @@
             </block>
         </referenceContainer>
         <referenceBlock name="head.additional">
-            <block class="Mavenbird\Blog\Block\Design" ifconfig="blog/general/customer_approve" name="mbblog.design" template="Mavenbird_Blog::design.phtml"/>
+            <block class="Mavenbird\Blog\Block\Design" ifconfig="blog/general/author_settings/customer_approve" name="mbblog.design" template="Mavenbird_Blog::design.phtml"/>
         </referenceBlock>
     </body>
 </page>

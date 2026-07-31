@@ -19,17 +19,17 @@
  * @license     https://www.mavenbird.com/LICENSE.txt
  */
 
-namespace Mavenbird\Blog\Plugin;
+namespace Mavenbird\Blog\Block\Html;
 
-use Magento\Framework\Exception\LocalizedException;
-use Mavenbird\Blog\Block\Category\Menu;
+use Magento\Framework\View\Element\Template;
+use Magento\Framework\View\Element\Template\Context;
 use Mavenbird\Blog\Helper\Data;
 
 /**
- * Class Topmenu
- * @package Mavenbird\Blog\Plugin
+ * Class Subtitle
+ * @package Mavenbird\Blog\Block\Html
  */
-class Topmenu
+class Subtitle extends Template
 {
     /**
      * @var Data
@@ -37,34 +37,38 @@ class Topmenu
     protected $helper;
 
     /**
-     * Topmenu constructor.
+     * Subtitle constructor.
      *
+     * @param Context $context
      * @param Data $helper
+     * @param array $data
      */
     public function __construct(
-        Data $helper
+        Context $context,
+        Data $helper,
+        array $data = []
     ) {
         $this->helper = $helper;
+        parent::__construct($context, $data);
     }
 
     /**
-     * @param \Magento\Theme\Block\Html\Topmenu $subject
-     * @param $html
+     * Get blog subtitle from configuration
      *
      * @return string
-     * @throws LocalizedException
      */
-    public function afterGetHtml(
-        \Magento\Theme\Block\Html\Topmenu $subject,
-        $html
-    ) {
-        if ($this->helper->isEnabled() && $this->helper->getToplinks()) {
-            $blogHtml = $subject->getLayout()->createBlock(Menu::class)
-                ->setTemplate('Mavenbird_Blog::category/topmenu.phtml')->toHtml();
+    public function getBlogSubtitle(): string
+    {
+        return (string)$this->helper->getBlogSubtitle();
+    }
 
-            return $html . $blogHtml;
-        }
-
-        return $html;
+    /**
+     * Get blog helper
+     *
+     * @return Data
+     */
+    public function getBlogHelper(): Data
+    {
+        return $this->helper;
     }
 }
